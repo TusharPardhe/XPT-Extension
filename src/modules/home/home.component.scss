@@ -1,0 +1,16 @@
+.home_component_container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+    
+    .sub_container{
+        display: flex;
+        flex-direction: column;
+
+        .input_btn{
+            padding-top: 10px;
+        }
+    }
+}

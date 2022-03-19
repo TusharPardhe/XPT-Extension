@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 
+import { Client } from "xrpl";
 import { Button, Input } from "semantic-ui-react";
+import { PUBLIC_SERVER } from "../../constants/common.constants";
 
 import "./home.component.scss";
-
-const xrpl = require("xrpl");
 
 const AddAccount = () => {
     const [state, setState] = useState({
         address: "",
-        accName: ""
-    })
+        accName: "",
+    });
 
     const { address, accName } = state;
-
-    const PUBLIC_SERVER = "wss://s2.ripple.com/";
     const keys = localStorage.getItem("xrplPortfolioKeys");
     const [storedAdd, setStoredAdd] = useState(keys ? JSON.parse(keys) : {});
 
@@ -27,35 +25,13 @@ const AddAccount = () => {
                 alert("This account already exists");
                 return;
             }
-
-            const client = new xrpl.Client(PUBLIC_SERVER);
-            await client.connect();
-            console.log("...connecting");
-
-            // account information
-            const response = await client.request({
-                command: "account_info",
-                account: address,
-            });
-
-            const acc_address = response.result.account_data.Account;
-
-            accountsFromLocalStorage[acc_address] = accName;
-            setStoredAdd(accountsFromLocalStorage);
-            localStorage.setItem("xrplPortfolioKeys", JSON.stringify(accountsFromLocalStorage));
-
-            client.disconnect();
+            await verifyAndSaveAddress();
         } catch (err) {
             alert(err);
         }
-
-        // trustlines, and all currency data
-        // const response = await client.request({
-        //     id: 1,
-        //     command: "account_lines",
-        //     account: address,
-        // });
-
+        // XRP TICKER
+        // https://api.alternative.me/v2/ticker/ripple/
+        
         // Last transactions
         // const response = await client.request({
         //     command: "account_tx",
@@ -68,15 +44,40 @@ const AddAccount = () => {
         // });
     };
 
+    const verifyAndSaveAddress = async () => {
+        const client = new Client(PUBLIC_SERVER);
+        await client.connect();
+
+        // account information
+        const response = await client.request({
+            command: "account_info",
+            account: address,
+        });
+
+        const acc_address = response.result.account_data.Account;
+        accountsFromLocalStorage[acc_address] = accName;
+        setStoredAdd(accountsFromLocalStorage);
+        localStorage.setItem("xrplPortfolioKeys", JSON.stringify(accountsFromLocalStorage));
+        client.disconnect();
+    };
+
     return (
         <div className="home_component_container">
             <h1>Welcome!</h1>
             <div className="sub_container">
-                <div className="input_container"><Input placeholder="Enter Account Name" onChange={(e) => setState({ ...state, accName: e.target.value })} /></div>
-                <div className="input_container"><Input placeholder="Enter XRPL Address" onChange={(e) => setState({ ...state, address: e.target.value })} /></div>
-                <div className="input_btn"><Button onClick={onBtnClick} disabled={accName.length === 0 || address.length === 0}>Add Address</Button></div>
+                <div className="input_container">
+                    <Input placeholder="Enter Account Name" onChange={(e) => setState({ ...state, accName: e.target.value })} />
+                </div>
+                <div className="input_container">
+                    <Input placeholder="Enter XRPL Address" onChange={(e) => setState({ ...state, address: e.target.value })} />
+                </div>
+                <div className="input_btn">
+                    <Button onClick={onBtnClick} disabled={accName.length === 0 || address.length === 0}>
+                        Add Address
+                    </Button>
+                </div>
             </div>
-            <div>{Object.keys(storedAdd).map(x => x)}</div>
+            <div>{Object.keys(storedAdd).map((x) => x)}</div>
         </div>
     );
 };

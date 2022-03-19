@@ -9,6 +9,10 @@
         display: flex;
         flex-direction: column;
 
+        .input_container{
+            padding: 12px 0;
+        }
+
         .input_btn{
             padding-top: 10px;
         }

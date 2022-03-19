@@ -1,0 +1,36 @@
+.portfolio_container{
+    .details_container {
+        padding: 0;
+        word-break: break-word;
+        font-size: 12px;
+
+        .table_heading{
+            font-weight: bold;
+        }
+
+        .details_header{
+            font-weight: bold;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .sub_details_header{
+            padding-top: 5px;
+            font-size: 12px;
+        }
+
+        .token_heading{
+            font-weight: bold;
+            font-style: italic;
+            padding: 10px;
+        }
+
+        .small{
+            font-size: 10px;
+        }
+
+        table{
+            padding: 5px;
+        }
+    } 
+}

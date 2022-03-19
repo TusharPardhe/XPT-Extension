@@ -1,14 +1,8 @@
-const path = require('path');
-const webpack = require('webpack');
-const Dotenv = require('dotenv-webpack');
+const path = require("path");
 
 module.exports = {
     mode: "development",
-    plugins: [
-        new Dotenv({
-            path: path.resolve(__dirname, "..", "./.env.development"),
-        }),
-    ],
+    plugins: [],
     devServer: {
         contentBase: path.resolve(__dirname, "..", "./dist"),
         hot: true,

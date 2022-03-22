@@ -11,18 +11,17 @@
         .details_header{
             font-weight: bold;
             text-decoration: underline;
+            cursor: pointer;
             font-size: 14px;
         }
 
         .sub_details_header{
-            padding-top: 5px;
             font-size: 12px;
         }
 
         .token_heading{
             font-weight: bold;
             font-style: italic;
-            padding: 10px;
         }
 
         .small{
@@ -32,5 +31,25 @@
         table{
             padding: 5px;
         }
+
+
+        .transition{
+            margin-top: 10px;
+
+            &.load{
+                opacity: 1;
+                transition: opacity 1s ease;
+                -webkit-transition: opacity 1s ease;
+                margin: 10px 0 15px 0;
+            }
+            &.hide{
+                opacity: 0;
+                overflow: hidden;
+                height: 0;
+                transition: opacity 1s ease;
+                -webkit-transition: opacity 1s ease;
+            }
+        }
+        
     } 
 }

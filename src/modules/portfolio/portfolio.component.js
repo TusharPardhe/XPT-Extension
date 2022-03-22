@@ -6,9 +6,9 @@ import useMergedState from "../../utils/useMergedState";
 
 import { Dimmer, Icon, Loader, Table } from "semantic-ui-react";
 import { PUBLIC_SERVER } from "../../constants/common.constants";
+import { PORTFOLIO_HEADER_KEYS } from "../../constants/portfolio.constants";
 
 import "./portfolio.component.scss";
-import { PORTFOLIO_HEADER_KEYS } from "../../constants/portfolio.constants";
 
 const Portfolio = () => {
     const { id } = useParams();

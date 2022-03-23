@@ -62,10 +62,10 @@ const AddAccount = () => {
 
     return (
         <div className="home_component_container">
-            <h1>Welcome!</h1>
+            <h1>Hello There!</h1>
+            <span>Welcome to XPT Extension. Add a XRPL address below to track the account.</span>
             <div className="sub_container">
                 <div className="input_container">
-                    {/* <div className="ui input"><input type="text" placeholder="Enter Account Name" /></div> */}
                     <Input placeholder="Enter Account Name" value={accName} onChange={(e) => setState({ accName: e.target.value })} />
                 </div>
                 <div className="input_container">

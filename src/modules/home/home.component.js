@@ -28,8 +28,6 @@ const AddAccount = () => {
         } finally {
             setState(HOMEPAGE_INITIAL_STATES);
         }
-        // XRP TICKER
-        // https://api.alternative.me/v2/ticker/ripple/
         
         // Last transactions
         // const response = await client.request({

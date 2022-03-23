@@ -8,6 +8,6 @@ export const ROUTES = {
 
 export const DEV_ENV = process.env.NODE_ENV === "development";
 
-export const PUBLIC_SERVER = "wss://s2.ripple.com/";
+export const PUBLIC_SERVER = "wss://xrplcluster.com/";
 
 export const ALTERNATIVE_ME_API_ENDPOINT = "https://api.alternative.me/v2/ticker/ripple/";

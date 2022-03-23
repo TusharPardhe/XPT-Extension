@@ -8,6 +8,8 @@ body, html, #root {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   word-break: break-word;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(210, 206, 206) transparent;
 }
 
 code {

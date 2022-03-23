@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import { Icon, Menu, Sidebar } from "semantic-ui-react";
 import { ROUTES } from "../../constants/common.constants";
 
 import "./navbar.component.scss";
@@ -17,10 +17,10 @@ const Navbar = (props) => {
 
     return (
         <div className="navbar_container" style={{ height: "100%" }}>
-            <Sidebar.Pushable as={Segment}>
+            <Sidebar.Pushable>
                 <Sidebar
                     as={Menu}
-                    animation="overlay"
+                    animation="push"
                     icon="labeled"
                     inverted
                     onHide={() => setIsNavBarVisible(false)}
@@ -37,8 +37,12 @@ const Navbar = (props) => {
                         <Icon name="address book" />
                         Saved Accounts
                     </Menu.Item>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.XRP_DETAILS)}>
+                        <Icon name="book" />
+                        XRP Details
+                    </Menu.Item>
                 </Sidebar>
-                <Sidebar.Pusher dimmed={isNavBarVisible}>
+                <Sidebar.Pusher dimmed={isNavBarVisible} className={isNavBarVisible ? "content_pusher" : ""}>
                     <div className="slider">
                         <Icon name="bars" className="icon" onClick={() => setIsNavBarVisible(true)} />
                     </div>

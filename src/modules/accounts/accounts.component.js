@@ -40,8 +40,8 @@ export default Accounts;
 function RenderSavedAccount({ accounts, currAccount, navigateTo, onDeleteAccClick }) {
     return (
         <div key={currAccount} className="account_btn">
-            <div onClick={() => navigateTo(currAccount)}>{accounts[currAccount]}</div>
-            <Icon name="close" onClick={() => onDeleteAccClick(currAccount)} />
+            <div className="acc_name" onClick={() => navigateTo(currAccount)}>{accounts[currAccount]}</div>
+            <Icon name="close" className="icon-close" onClick={() => onDeleteAccClick(currAccount)} />
         </div>
     );
 }

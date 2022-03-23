@@ -33,7 +33,7 @@ const Portfolio = () => {
 
     const fetchAccountDetails = async () => {
         try {
-            const client = new Client(PUBLIC_SERVER, { timeout: 10000 });
+            const client = new Client(PUBLIC_SERVER, { connectionTimeout: 10000 });
             await client.connect();
             console.log("...connecting");
 
@@ -140,7 +140,7 @@ const Portfolio = () => {
                 <div className="transactions_link">
                     <div className="details_header" onClick={() => toggleDetails(PORTFOLIO_HEADER_KEYS.OTHER_DETAILS)}>Other Details <Icon name={`caret ${isOpen.OTHER_DETAILS ? "down" : "right"}`} /></div>
                     <div className={`transition ${isOpen.OTHER_DETAILS ? "load" : "hide"}`}>
-                        <div className="sub_details_header">Monitor Transactions <Icon name="caret right" /></div>
+                        <div className="sub_details_header">View Recent Transactions <Icon name="caret right" /></div>
                     </div>
                 </div>
             </div>

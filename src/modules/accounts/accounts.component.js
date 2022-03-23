@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Icon } from "semantic-ui-react";
 import { ROUTES } from "../../constants/common.constants";
@@ -7,7 +7,7 @@ import "./accounts.component.scss";
 
 const Accounts = () => {
     const accountsFromLocalStorage = localStorage.getItem("xrplPortfolioKeys");
-    const accounts = accountsFromLocalStorage ? JSON.parse(accountsFromLocalStorage) : {};
+    const [accounts, setAccounts] = useState(accountsFromLocalStorage ? JSON.parse(accountsFromLocalStorage) : {});
 
     const navigate = useNavigate();
 
@@ -15,14 +15,21 @@ const Accounts = () => {
         navigate(ROUTES.PORTFOLIO.replace(":id", id));
     };
 
-    if (Object.keys(accounts).length === 0) return <div>You have not added an account yet. Head to home page to add an account.</div>;
+    const onDeleteAccClick = (id) => {
+        const acc = { ...accounts };
+        delete acc[id];
+        setAccounts(acc);
+        localStorage.setItem("xrplPortfolioKeys", JSON.stringify(acc));
+    }
+
+    if (Object.keys(accounts).length === 0) return <div>No accounts found. Head to home page to add an account.</div>;
 
     return (
         <div className="accounts_component">
             <h2 className="heading">Your Saved Accounts</h2>
             <p>Select your account to view details</p>
-            {Object.keys(accounts).map((currAccount, index) => (
-                <RenderSavedAccount {...{ accounts, currAccount, navigateTo }} key={index} />
+            {Object.keys(accounts)?.map((currAccount, index) => (
+                <RenderSavedAccount {...{ accounts, currAccount, navigateTo, onDeleteAccClick }} key={index} />
             ))}
         </div>
     );
@@ -30,11 +37,11 @@ const Accounts = () => {
 
 export default Accounts;
 
-function RenderSavedAccount({ accounts, currAccount, navigateTo }) {
+function RenderSavedAccount({ accounts, currAccount, navigateTo, onDeleteAccClick }) {
     return (
-        <Button key={currAccount} className="account_btn" onClick={() => navigateTo(currAccount)}>
-            {accounts[currAccount]}
-            <Icon name="close" />
-        </Button>
+        <div key={currAccount} className="account_btn">
+            <div onClick={() => navigateTo(currAccount)}>{accounts[currAccount]}</div>
+            <Icon name="close" onClick={() => onDeleteAccClick(currAccount)} />
+        </div>
     );
 }

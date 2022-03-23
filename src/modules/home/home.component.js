@@ -1,33 +1,32 @@
 import React, { useState } from "react";
 
 import { Client } from "xrpl";
-import { Button, Input } from "semantic-ui-react";
+import useMergedState from "../../utils/useMergedState";
+import { Button, Dimmer, Input, Loader } from "semantic-ui-react";
 import { PUBLIC_SERVER } from "../../constants/common.constants";
+import { HOMEPAGE_INITIAL_STATES } from "../../constants/home.constants";
 
 import "./home.component.scss";
 
 const AddAccount = () => {
-    const [state, setState] = useState({
-        address: "",
-        accName: "",
-    });
-
-    const { address, accName } = state;
-    const keys = localStorage.getItem("xrplPortfolioKeys");
-    const [storedAdd, setStoredAdd] = useState(keys ? JSON.parse(keys) : {});
+    const [state, setState] = useMergedState(HOMEPAGE_INITIAL_STATES);
+    const { address, accName, loading } = state;
 
     const onBtnClick = async () => {
+        setState({ loading: true });
         try {
             const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
             const accountsFromLocalStorage = xrplAddFromLocal ? JSON.parse(xrplAddFromLocal) : {};
 
             if (accountsFromLocalStorage[address]) {
-                alert("This account already exists");
+                alert("This account already exists. Visit Accounts page to check details.");
                 return;
             }
-            await verifyAndSaveAddress();
+            await verifyAndSaveAddress(accountsFromLocalStorage);
         } catch (err) {
             alert(err);
+        } finally {
+            setState(HOMEPAGE_INITIAL_STATES);
         }
         // XRP TICKER
         // https://api.alternative.me/v2/ticker/ripple/
@@ -44,7 +43,7 @@ const AddAccount = () => {
         // });
     };
 
-    const verifyAndSaveAddress = async () => {
+    const verifyAndSaveAddress = async (accountsFromLocalStorage) => {
         const client = new Client(PUBLIC_SERVER);
         await client.connect();
 
@@ -56,8 +55,8 @@ const AddAccount = () => {
 
         const acc_address = response.result.account_data.Account;
         accountsFromLocalStorage[acc_address] = accName;
-        setStoredAdd(accountsFromLocalStorage);
         localStorage.setItem("xrplPortfolioKeys", JSON.stringify(accountsFromLocalStorage));
+        alert("Great!! Your account has been saved in Accounts section.");
         client.disconnect();
     };
 
@@ -66,10 +65,11 @@ const AddAccount = () => {
             <h1>Welcome!</h1>
             <div className="sub_container">
                 <div className="input_container">
-                    <Input placeholder="Enter Account Name" onChange={(e) => setState({ ...state, accName: e.target.value })} />
+                    {/* <div className="ui input"><input type="text" placeholder="Enter Account Name" /></div> */}
+                    <Input placeholder="Enter Account Name" value={accName} onChange={(e) => setState({ accName: e.target.value })} />
                 </div>
                 <div className="input_container">
-                    <Input placeholder="Enter XRPL Address" onChange={(e) => setState({ ...state, address: e.target.value })} />
+                    <Input placeholder="Enter XRPL Address" value={address} onChange={(e) => setState({ address: e.target.value })} />
                 </div>
                 <div className="input_btn">
                     <Button onClick={onBtnClick} disabled={accName.length === 0 || address.length === 0}>
@@ -77,7 +77,10 @@ const AddAccount = () => {
                     </Button>
                 </div>
             </div>
-            <div>{Object.keys(storedAdd).map((x) => x)}</div>
+
+            <Dimmer active={loading} inverted>
+                <Loader inverted content="Verifying..." inline="centered" />
+            </Dimmer>
         </div>
     );
 };

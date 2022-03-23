@@ -16,10 +16,10 @@ const Portfolio = () => {
         data: {},
         otherCurrencies: [],
         isOpen: {
-            [PORTFOLIO_HEADER_KEYS.ACCOUNT_DETAILS]: false,
-            [PORTFOLIO_HEADER_KEYS.RESERVES]: false,
-            [PORTFOLIO_HEADER_KEYS.FUNGIBLE_HOLDINGS]: false,
-            [PORTFOLIO_HEADER_KEYS.OTHER_DETAILS]: false,
+            ACCOUNT_DETAILS: false,
+            RESERVES: false,
+            FUNGIBLE_HOLDINGS: false,
+            OTHER_DETAILS: false,
         }
     });
     const { data, otherCurrencies, isOpen } = state;
@@ -33,7 +33,7 @@ const Portfolio = () => {
 
     const fetchAccountDetails = async () => {
         try {
-            const client = new Client(PUBLIC_SERVER);
+            const client = new Client(PUBLIC_SERVER, { timeout: 10000 });
             await client.connect();
             console.log("...connecting");
 
@@ -48,7 +48,6 @@ const Portfolio = () => {
                 command: "account_lines",
                 account: id,
             });
-
             setState({ otherCurrencies: account_lines.result.lines });
         } catch (err) {
             console.log(err);
@@ -71,8 +70,8 @@ const Portfolio = () => {
                 {Object.keys(data).length > 0 && (
                     <>
                         <div className="account_details">
-                            <div className="details_header" onClick={() => toggleDetails(PORTFOLIO_HEADER_KEYS.ACCOUNT_DETAILS)}>Account Details</div>
-                            <div className={`transition ${isOpen[PORTFOLIO_HEADER_KEYS.ACCOUNT_DETAILS] ? "load" : "hide"}`}>
+                            <div className="details_header" onClick={() => toggleDetails(PORTFOLIO_HEADER_KEYS.ACCOUNT_DETAILS)}>Account Details <Icon name={`caret ${isOpen.ACCOUNT_DETAILS ? "down" : "right"}`} /></div>
+                            <div className={`transition ${isOpen.ACCOUNT_DETAILS ? "load" : "hide"}`}>
                                 <Table celled padded>
                                     <Table.Body>
                                         <Table.Row>
@@ -104,8 +103,8 @@ const Portfolio = () => {
                             </div>
                         </div>
                         <div className="reserve_details">
-                            <div className="details_header" onClick={() => toggleDetails(PORTFOLIO_HEADER_KEYS.RESERVES)}>Reserves</div>
-                            <div className={`transition ${isOpen[PORTFOLIO_HEADER_KEYS.RESERVES] ? "load" : "hide"}`}>
+                            <div className="details_header" onClick={() => toggleDetails(PORTFOLIO_HEADER_KEYS.RESERVES)}>Reserves <Icon name={`caret ${isOpen.RESERVES ? "down" : "right"}`} /></div>
+                            <div className={`transition ${isOpen.RESERVES ? "load" : "hide"}`}>
                                 <div className="sub_details_header">{10 + data.ownerCount * 2} XRP</div>
                                 <Table celled padded>
                                     <Table.Body>
@@ -117,7 +116,7 @@ const Portfolio = () => {
                                         </Table.Row>
                                         <Table.Row>
                                             <Table.Cell collapsing className="table_heading">
-                                                Trustline(s)
+                                                {otherCurrencies.length > 0 ? "Trustline(s)" : "Others"}
                                             </Table.Cell>
                                             <Table.Cell>{data.ownerCount * 2} XRP</Table.Cell>
                                         </Table.Row>
@@ -129,8 +128,8 @@ const Portfolio = () => {
                 )}
                 {otherCurrencies.length > 0 && (
                     <div className="other_holdings">
-                        <div className="details_header" onClick={() => toggleDetails(PORTFOLIO_HEADER_KEYS.FUNGIBLE_HOLDINGS)}>Fungible Token Holdings</div>
-                        <div className={`transition ${isOpen[PORTFOLIO_HEADER_KEYS.FUNGIBLE_HOLDINGS] ? "load" : "hide"}`}>
+                        <div className="details_header" onClick={() => toggleDetails(PORTFOLIO_HEADER_KEYS.FUNGIBLE_HOLDINGS)}>Fungible Token Holdings <Icon name={`caret ${isOpen.FUNGIBLE_HOLDINGS ? "down" : "right"}`} /></div>
+                        <div className={`transition ${isOpen.FUNGIBLE_HOLDINGS ? "load" : "hide"}`}>
                             <div className="sub_details_header">Total tokens: {otherCurrencies.length}</div>
                             {otherCurrencies.map((token, index) => (
                                 <RenderFungibleTokenDetails token={token} key={index} />
@@ -139,8 +138,8 @@ const Portfolio = () => {
                     </div>
                 )}
                 <div className="transactions_link">
-                    <div className="details_header" onClick={() => toggleDetails(PORTFOLIO_HEADER_KEYS.OTHER_DETAILS)}>Other Details</div>
-                    <div className={`transition ${isOpen[PORTFOLIO_HEADER_KEYS.OTHER_DETAILS] ? "load" : "hide"}`}>
+                    <div className="details_header" onClick={() => toggleDetails(PORTFOLIO_HEADER_KEYS.OTHER_DETAILS)}>Other Details <Icon name={`caret ${isOpen.OTHER_DETAILS ? "down" : "right"}`} /></div>
+                    <div className={`transition ${isOpen.OTHER_DETAILS ? "load" : "hide"}`}>
                         <div className="sub_details_header">Monitor Transactions <Icon name="caret right" /></div>
                     </div>
                 </div>

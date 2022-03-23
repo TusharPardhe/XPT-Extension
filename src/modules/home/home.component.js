@@ -77,7 +77,6 @@ const AddAccount = () => {
                     </Button>
                 </div>
             </div>
-
             <Dimmer active={loading} inverted>
                 <Loader inverted content="Verifying..." inline="centered" />
             </Dimmer>

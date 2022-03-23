@@ -35,13 +35,11 @@ const Portfolio = () => {
         try {
             const client = new Client(PUBLIC_SERVER, { connectionTimeout: 10000 });
             await client.connect();
-            console.log("...connecting");
 
             await fetch(`https://api.xrpscan.com/api/v1/account/${id}`)
                 .then((res) => res.json())
                 .then((res) => {
                     setState({ data: res });
-                    console.log(res);
                 });
 
             const account_lines = await client.request({
@@ -50,7 +48,7 @@ const Portfolio = () => {
             });
             setState({ otherCurrencies: account_lines.result.lines });
         } catch (err) {
-            console.log(err);
+            alert(err);
         } finally {
             setLoading(false);
         }

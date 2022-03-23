@@ -4,17 +4,24 @@
     flex-direction: column;
     text-align: center;
     height: 100%;
+
+    .sub_header{
+        padding-bottom: 20px;
+    }
     
     .sub_container{
         display: flex;
         flex-direction: column;
+        border-radius: 24px;
+        box-shadow: 0px 0px 13px rgba(225, 224, 218, 0.67);
+        padding: 10px;
 
         .input_container{
             padding: 12px 0;
         }
 
         .input_btn{
-            padding-top: 10px;
+            padding: 10px 0;
             button{
                 background-size: 300% 300%;
                 background-image: linear-gradient(

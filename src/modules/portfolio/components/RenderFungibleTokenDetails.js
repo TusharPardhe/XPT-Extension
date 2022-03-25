@@ -7,10 +7,10 @@ export default function RenderFungibleTokenDetails({ token }) {
 
     return (
         <Table celled>
-            <Table.Row className="token_heading">
-                <Table.Cell colSpan="2"><Label ribbon>{name}</Label></Table.Cell>
-            </Table.Row>
             <Table.Body>
+                <Table.Row className="token_heading">
+                    <Table.Cell colSpan="2"><Label ribbon>{name}</Label></Table.Cell>
+                </Table.Row>
                 <Table.Row>
                     <Table.Cell collapsing className="table_heading">
                         Balance

@@ -88,7 +88,8 @@ const Portfolio = () => {
 
     return (
         <div className="portfolio_container">
-            <h3>{storedAddresses[id]}</h3>
+            <h3 className="heading">{storedAddresses[id]}</h3>
+            <div className="sub_heading">{id}</div>
             <div className="details_container">
                 {Object.keys(data).length > 0 && <AccountDetails {...{ toggleDetails, isOpen, data, otherCurrencies }} />}
                 {otherCurrencies.length > 0 && <AccountFungibleHoldings {...{ toggleDetails, isOpen, otherCurrencies }} />}

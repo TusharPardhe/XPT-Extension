@@ -18,10 +18,16 @@ const AddAccount = () => {
             const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
             const accountsFromLocalStorage = xrplAddFromLocal ? JSON.parse(xrplAddFromLocal) : {};
 
-            if (accountsFromLocalStorage[address] || Object.values(accountsFromLocalStorage).indexOf(address) > -1) {
+            if (Object.values(accountsFromLocalStorage).indexOf(accName) > -1) {
+                alert("This nickname already exists. Please choose a different one.");
+                return;
+            }
+
+            if (accountsFromLocalStorage[address]) {
                 alert("This account already exists. Visit Accounts page to check details.");
                 return;
             }
+
             await verifyAndSaveAddress(accountsFromLocalStorage);
         } catch (err) {
             alert(err);

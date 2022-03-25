@@ -1,8 +1,21 @@
 .portfolio_container{
     padding: 0 15px;
+
+    .heading{
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .sub_heading{
+        font-size: 12px;
+        font-style: italic;
+        padding: 10px 0;
+        text-align: center;
+    }
     
     .details_container {
-        padding: 0;
+        border-top: 1px solid black;
+        padding: 20px 0 10px 0;
         word-break: break-word;
         font-size: 12px;
 

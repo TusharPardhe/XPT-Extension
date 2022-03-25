@@ -10,8 +10,8 @@ export default function IssuedCurrencies({ toggleDetails, isOpen, issuedFungible
         <div className={`transition ${isOpen.ISSUED_FUNGIBLE_TOKENS ? "load" : "hide"}`}>
             <Table celled>
                 <Table.Body>
-                    {Object.keys(issuedFungibleTokens).map(tokenName => (
-                        <Table.Row>
+                    {Object.keys(issuedFungibleTokens).map((tokenName, index) => (
+                        <Table.Row key={index}>
                             <Table.Cell collapsing className="table_heading">
                                 {tokenName}
                             </Table.Cell>

@@ -3,7 +3,9 @@ export const ROUTES = {
     ACCOUNTS: "/accounts",
     PORTFOLIO: "/portfolio/:id",
     TRANSACTIONS: "/transactions/:id",
-    XRP_DETAILS: "/xrp_details"
+    XRP_DETAILS: "/price",
+    NFT_DETAILS: "/nft",
+    USEFUL_LINKS: "/links"
 };
 
 export const DEV_ENV = process.env.NODE_ENV === "development";

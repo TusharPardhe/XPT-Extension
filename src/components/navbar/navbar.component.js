@@ -38,8 +38,16 @@ const Navbar = (props) => {
                         Saved Accounts
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.XRP_DETAILS)}>
-                        <Icon name="book" />
-                        XRP Details
+                        <Icon name="chart line" />
+                        Price
+                    </Menu.Item>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.USEFUL_LINKS)}>
+                        <Icon name="bell" />
+                        Useful Links
+                    </Menu.Item>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.NFT_DETAILS)}>
+                        <Icon name="image outline" />
+                        NFT Visualiser 
                     </Menu.Item>
                 </Sidebar>
                 <Sidebar.Pusher dimmed={isNavBarVisible} className={isNavBarVisible ? "content_pusher" : ""}>

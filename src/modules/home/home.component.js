@@ -18,7 +18,7 @@ const AddAccount = () => {
             const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
             const accountsFromLocalStorage = xrplAddFromLocal ? JSON.parse(xrplAddFromLocal) : {};
 
-            if (accountsFromLocalStorage[address]) {
+            if (accountsFromLocalStorage[address] || Object.values(accountsFromLocalStorage).indexOf(address) > -1) {
                 alert("This account already exists. Visit Accounts page to check details.");
                 return;
             }
@@ -42,7 +42,7 @@ const AddAccount = () => {
     };
 
     const verifyAndSaveAddress = async (accountsFromLocalStorage) => {
-        const client = new Client(PUBLIC_SERVER);
+        const client = new Client(PUBLIC_SERVER, { connectionTimeout: 10000 });
         await client.connect();
 
         // account information

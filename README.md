@@ -50,7 +50,8 @@ This is a simple browser plugin built with ReactJs that allows users to save and
 
 ## Demo
 
-https://drive.google.com/file/d/1jiNUWr_6QCQRIR0KkHLK0bUdPNX5dm59/view?usp=sharing
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/V_MzL013tDc/0.jpg)](https://youtu.be/V_MzL013tDc)
+
 
 
 ## Installation

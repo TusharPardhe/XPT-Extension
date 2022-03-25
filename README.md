@@ -75,5 +75,5 @@ Currently this extension is supported for chrome browsers. You need to follow th
 - Remove all the cloned files except the dist folder to clean up the space.
 ## Feedback
 
-If you have any feedback, please reach out to us at tpardhe@gmail.com
+If you have any feedback, please reach out at tpardhe@gmail.com
 

@@ -4,10 +4,10 @@ import { Client } from "xrpl";
 
 import useMergedState from "../../utils/useMergedState";
 
-import AccountDetails from "./components/AccountDetails";
-import AccountFungibleHoldings from "./components/AccountFungibleHoldings";
-import OtherDetails from "./components/OtherDetails";
-import IssuedCurrencies from "./components/IssuedCurrencies";
+import AccountDetails from "./components/accountDetails";
+import AccountFungibleHoldings from "./components/accountFungibleHoldings";
+import OtherDetails from "./components/otherDetails";
+import IssuedCurrencies from "./components/issuedCurrencies";
 
 import { Dimmer, Loader } from "semantic-ui-react";
 import { PUBLIC_SERVER } from "../../constants/common.constants";

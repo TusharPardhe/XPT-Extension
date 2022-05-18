@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 
 import { Dimmer, Image, Label, Loader, Table } from "semantic-ui-react";
-import { ALTERNATIVE_ME_API_ENDPOINT } from "../../constants/common.constants";
+import { ALTERNATIVE_ME_API_ENDPOINT, URLS } from "../../constants/common.constants";
 import useMergedState from "../../utils/useMergedState";
-import xrpImage from "../../../public/xrp.png";
 
 import "./xrpDetaills.component.scss";
 
@@ -37,7 +36,7 @@ const XRPDetails = () => {
         return (
             <div className="sub_container">
                 <div className="img_container">
-                    <Image src={xrpImage} className="img_c" />
+                    <Image src={URLS.XRP_ICON} className="img_c" />
                     <div className="name">XRP</div>
                 </div>
                 {/* <div className='last_updated_time'>{new Date(token_data_against_usd.quotes.last_updated).getTime()}</div> */}

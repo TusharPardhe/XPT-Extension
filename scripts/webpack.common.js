@@ -1,7 +1,6 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
@@ -13,15 +12,6 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: [/node_modules/],
                 use: ["babel-loader"],
-            },
-            {
-                test: /\.css|s[ac]ss$/i,
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-            },
-            {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                use: ["style-loader", "css-loader", "sass-loader"],
             },
             {
                 test: /\.(jpg|png|gif|jpeg|woff|woff2|eot|ttf|svg)$/,
@@ -37,10 +27,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "..", "./src/index.html"),
             favicon: "./favicon.ico",
-        }),
-        new MiniCssExtractPlugin({
-            filename: "[name].[chunkhash].min.css",
-            chunkFilename: "[id].[chunkhash].min..css",
         }),
         new NodePolyfillPlugin(),
         new CopyWebpackPlugin({

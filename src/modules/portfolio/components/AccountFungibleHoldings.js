@@ -1,5 +1,5 @@
 import React from "react";
-import RenderFungibleTokenDetails from "./RenderFungibleTokenDetails";
+import RenderFungibleTokenDetails from "./renderFungibleTokenDetails";
 import { Icon } from "semantic-ui-react";
 import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
 

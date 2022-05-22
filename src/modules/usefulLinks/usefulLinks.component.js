@@ -1,7 +1,8 @@
 import React from 'react';
+import UnderConstruction from '../../components/underConstruction/underConstruction';
 
 const UsefulLinks = () => {
-    return (<div>In progress...</div>);
+    return (<UnderConstruction />);
 }
 
 export default UsefulLinks;

@@ -1,8 +1,8 @@
 import React from 'react';
 import UnderConstruction from '../../components/underConstruction/underConstruction';
 
-const NftVisualiser = () => {
-    return (<UnderConstruction />);
+const ProjectCalendar = () => {
+    return <UnderConstruction />;
 }
 
-export default NftVisualiser;
+export default ProjectCalendar;

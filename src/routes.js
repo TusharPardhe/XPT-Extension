@@ -7,6 +7,7 @@ import Accounts from "./modules/accounts/accounts.component";
 import Portfolio from "./modules/portfolio/portfolio.component";
 import XRPDetails from "./modules/xrpDetails/xrpDetaills.component";
 import UsefulLinks from "./modules/usefulLinks/usefulLinks.component";
+import ProjectCalendar from "./modules/projectCalendar/projectCalendar";
 import NftVisualiser from "./modules/nftVisualiser/nftVisualiser.component";
 import { ROUTES } from "./constants/common.constants";
 
@@ -23,6 +24,7 @@ export default function Routes() {
             <Route path={ROUTES.XRP_DETAILS} element={wrapWithNavBar(<XRPDetails />)} />
             <Route path={ROUTES.USEFUL_LINKS} element={wrapWithNavBar(<UsefulLinks />)} />
             <Route path={ROUTES.NFT_DETAILS} element={wrapWithNavBar(<NftVisualiser />)} />
+            <Route path={ROUTES.PROJECT_CALENDAR} element={wrapWithNavBar(<ProjectCalendar />)} />
             <Route path="/*" element={<div>Error</div>} />
         </RoutesBundle>
     );

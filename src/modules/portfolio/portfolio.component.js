@@ -91,7 +91,7 @@ const Portfolio = () => {
             <h3 className="heading">{storedAddresses[id]}</h3>
             <div className="sub_heading">{id}</div>
             <div className="details_container">
-                {Object.keys(data).length > 0 && <AccountDetails {...{ toggleDetails, isOpen, data, otherCurrencies }} />}
+                {Object.keys(data).length > 0 && <AccountDetails {...{ toggleDetails, isOpen, data }} />}
                 {otherCurrencies.length > 0 && <AccountFungibleHoldings {...{ toggleDetails, isOpen, otherCurrencies }} />}
                 {Object.keys(issuedFungibleTokens).length > 0 && <IssuedCurrencies {...{ toggleDetails, isOpen, issuedFungibleTokens }} />}
                 <OtherDetails {...{ toggleDetails, isOpen }} />

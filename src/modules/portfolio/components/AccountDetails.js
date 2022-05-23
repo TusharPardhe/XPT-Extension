@@ -2,7 +2,7 @@ import React from "react";
 import { Icon, Table } from "semantic-ui-react";
 import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
 
-export default function AccountDetails({ toggleDetails, isOpen, data, otherCurrencies }) {
+export default function AccountDetails({ toggleDetails, isOpen, data }) {
     return (
         <>
             <div className="account_details">
@@ -56,7 +56,7 @@ export default function AccountDetails({ toggleDetails, isOpen, data, otherCurre
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell collapsing className="table_heading">
-                                    {otherCurrencies.length > 0 ? "Trustline(s)" : "Others"}
+                                    Other(s)
                                 </Table.Cell>
                                 <Table.Cell>{data.ownerCount * 2} XRP</Table.Cell>
                             </Table.Row>

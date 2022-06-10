@@ -17,5 +17,22 @@ export const ALTERNATIVE_ME_API_ENDPOINT = "https://api.alternative.me/v2/ticker
 
 export const URLS = {
     XRP_ICON: "https://drive.google.com/uc?export=view&id=1VUSemYB5GqRNihGVELTrlcW3VObhhn0-",
-    CONSTRUCTION_GIF: "https://drive.google.com/uc?export=view&id=1219VV9-YnQBRiPnSFz2WjTULg6J0vdNc"
-}
+    CONSTRUCTION_GIF: "https://drive.google.com/uc?export=view&id=1219VV9-YnQBRiPnSFz2WjTULg6J0vdNc",
+};
+
+export const FIELD_INITIAL_STATE = {
+    value: "",
+    inputValue: "",
+    error: false,
+};
+
+export const NO_ACCOUNTS_INITIAL_STATE = {
+    isEnterBtnPressed: false,
+    xrplAddress: {
+        ...FIELD_INITIAL_STATE,
+        loading: false,
+    },
+    alias: {
+        ...FIELD_INITIAL_STATE,
+    },
+};

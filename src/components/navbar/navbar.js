@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Icon, Menu, Sidebar } from "semantic-ui-react";
 import { ROUTES } from "../../constants/common.constants";
 
-import "./navbar.component.scss";
+import "./navbar.scss";
 
 const Navbar = (props) => {
     const [isNavBarVisible, setIsNavBarVisible] = useState(false);
@@ -35,7 +35,7 @@ const Navbar = (props) => {
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.ACCOUNTS)}>
                         <Icon name="address book" />
-                        Saved Accounts
+                        Save Account
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.XRP_DETAILS)}>
                         <Icon name="chart line" />
@@ -51,7 +51,7 @@ const Navbar = (props) => {
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.NFT_DETAILS)}>
                         <Icon name="image outline" />
-                        NFT Visualiser 
+                        NFT Visualiser
                     </Menu.Item>
                 </Sidebar>
                 <Sidebar.Pusher dimmed={isNavBarVisible} className={isNavBarVisible ? "content_pusher" : ""}>

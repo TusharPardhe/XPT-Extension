@@ -4,7 +4,7 @@ import { Dimmer, Image, Label, Loader, Table } from "semantic-ui-react";
 import { ALTERNATIVE_ME_API_ENDPOINT, URLS } from "../../constants/common.constants";
 import useMergedState from "../../utils/useMergedState";
 
-import "./xrpDetaills.component.scss";
+import "./xrpDetaills.scss";
 
 const XRPDetails = () => {
     const [state, setState] = useMergedState({

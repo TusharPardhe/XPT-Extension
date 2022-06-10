@@ -1,0 +1,36 @@
+.home_component{
+    text-align: center;
+
+    .heading{
+        margin: 0;
+        padding-bottom: 6px;
+    }
+
+    .account_btn{
+        width: 100%;
+        cursor: pointer;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        border-radius: 10px;
+        background: var(--babyBlue);
+        padding: 16px;
+        box-shadow:var(--generic-box-shadow);
+
+        .acc_name{
+            white-space: break-spaces;
+            text-align: center;
+        }
+
+        .icon-close{
+            font-size: 1.2rem;
+            color: var(--black);
+        }
+    }
+
+    .saved_accounts_grid {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10px;
+    }
+}

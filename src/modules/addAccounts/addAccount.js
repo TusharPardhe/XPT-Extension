@@ -4,12 +4,12 @@ import { Client } from "xrpl";
 import useMergedState from "../../utils/useMergedState";
 import { Button, Dimmer, Input, Loader } from "semantic-ui-react";
 import { PUBLIC_SERVER } from "../../constants/common.constants";
-import { HOMEPAGE_INITIAL_STATES } from "../../constants/home.constants";
+import { ADD_ACCOUNTS_INITIAL_STATES } from "../../constants/addAccounts.constants";
 
-import "./home.component.scss";
+import "./addAccount.scss";
 
 const AddAccount = () => {
-    const [state, setState] = useMergedState(HOMEPAGE_INITIAL_STATES);
+    const [state, setState] = useMergedState(ADD_ACCOUNTS_INITIAL_STATES);
     const { address, accName, loading } = state;
 
     const onBtnClick = async () => {
@@ -32,9 +32,9 @@ const AddAccount = () => {
         } catch (err) {
             alert(err);
         } finally {
-            setState(HOMEPAGE_INITIAL_STATES);
+            setState(ADD_ACCOUNTS_INITIAL_STATES);
         }
-        
+
         // Last transactions
         // const response = await client.request({
         //     command: "account_tx",
@@ -65,7 +65,7 @@ const AddAccount = () => {
     };
 
     return (
-        <div className="home_component_container">
+        <div className="add_accounts_container">
             <h1 className="header">Hello There!</h1>
             <span className="sub_header">Welcome to XPT Extension. Add a XRPL address below to track the account.</span>
             <div className="sub_container">

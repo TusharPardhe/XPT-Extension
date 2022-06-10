@@ -1,0 +1,49 @@
+.no_saved_container {
+    display: block;
+    padding: 20px;
+    border-radius: 14px;
+    line-height: 1;
+    // box-shadow: var(--generic-box-shadow);
+
+    .heading {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .subHeading {
+        padding: 16px 0;
+        line-height: 1.5;
+    }
+
+    button:disabled,
+    button[disabled] {
+        background-color: #666666;
+    }
+
+    .track_details_container {
+        padding: 40px 0;
+
+        .track_details_label {
+            text-align: left;
+        }
+
+        .xrpl_details_box_heading {
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .input_details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px 5px;
+
+            .disabled{
+                background-color: gray;
+                box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                color: white;
+            }
+        }
+    }
+}

@@ -12,7 +12,7 @@ import IssuedCurrencies from "./components/issuedCurrencies";
 import { Dimmer, Loader } from "semantic-ui-react";
 import { PUBLIC_SERVER } from "../../constants/common.constants";
 
-import "./portfolio.component.scss";
+import "./portfolio.scss";
 
 const Portfolio = () => {
     const { id } = useParams();

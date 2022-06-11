@@ -1,9 +1,10 @@
 .home_component{
     text-align: center;
 
-    .heading{
-        margin: 0;
-        padding-bottom: 6px;
+    .heading {
+        font-size: 30px;
+        font-weight: bold;
+        color: var(--indigo-dye);
     }
 
     .account_btn{
@@ -13,9 +14,10 @@
         justify-content: space-between;
         text-align: center;
         border-radius: 10px;
-        background: var(--babyBlue);
+        background: var(--baby-blue-eyes);
+        transition: background-color 2s ease-out 100ms;
         padding: 16px;
-        box-shadow:var(--generic-box-shadow);
+        box-shadow:2px 3px 0px rgba(225, 224, 218, 0.67);
 
         .acc_name{
             white-space: break-spaces;
@@ -26,11 +28,42 @@
             font-size: 1.2rem;
             color: var(--black);
         }
+
+        &:hover{
+            background-color: #FFC6FF;
+            box-shadow: 0px 4px 6px 1px rgba(225, 224, 218, 0.67);
+        }
     }
 
     .saved_accounts_grid {
         display: grid;
-        grid-template-columns: auto auto;
         gap: 10px;
+        padding: 10px;
+    }
+
+    .no_added_accounts{
+        display: block;
+        padding: 20px;
+        border-radius: 14px;
+        line-height: 1;
+        
+        .heading {
+            font-size: 30px;
+            font-weight: bold;
+            color: var(--indigo-dye);
+        }
+    
+        .subHeading {
+            padding: 16px 0;
+            line-height: 1.5;
+        }
+    
+        .enter_btn{
+            display: flex;
+            justify-content: center;
+            button{
+                padding: 10px 40px;
+            }
+        }
     }
 }

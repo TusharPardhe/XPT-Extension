@@ -1,88 +1,114 @@
 import React from "react";
-
 import { Client } from "xrpl";
+import { Dimmer } from "semantic-ui-react";
+
 import useMergedState from "../../utils/useMergedState";
-import { Button, Dimmer, Input, Loader } from "semantic-ui-react";
-import { PUBLIC_SERVER } from "../../constants/common.constants";
-import { ADD_ACCOUNTS_INITIAL_STATES } from "../../constants/addAccounts.constants";
+import Loader from "../../components/loader/loader";
+import NewAccountDetailsInputs from "./components/newAccountDetailsInputs";
+
+import { isValidXrplRAddress } from "../../utils/validations";
+import { PUBLIC_SERVER, ADD_ACCOUNTS_INITIAL_STATE } from "../../constants/common.constants";
 
 import "./addAccount.scss";
+import AccountAdditionSuccess from "./components/accountAdditionSuccess";
 
 const AddAccount = () => {
-    const [state, setState] = useMergedState(ADD_ACCOUNTS_INITIAL_STATES);
-    const { address, accName, loading } = state;
+    const [state, setState] = useMergedState(ADD_ACCOUNTS_INITIAL_STATE);
+    const { xrplAddress, alias, isLoading, hasAccountAdded } = state;
 
-    const onBtnClick = async () => {
-        setState({ loading: true });
-        try {
-            const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
-            const accountsFromLocalStorage = xrplAddFromLocal ? JSON.parse(xrplAddFromLocal) : {};
+    const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
+    const accountsFromLocalStorage = xrplAddFromLocal ? JSON.parse(xrplAddFromLocal) : {};
 
-            if (Object.values(accountsFromLocalStorage).indexOf(accName) > -1) {
-                alert("This nickname already exists. Please choose a different one.");
-                return;
-            }
-
-            if (accountsFromLocalStorage[address]) {
-                alert("This account already exists. Visit Accounts page to check details.");
-                return;
-            }
-
-            await verifyAndSaveAddress(accountsFromLocalStorage);
-        } catch (err) {
-            alert(err);
-        } finally {
-            setState(ADD_ACCOUNTS_INITIAL_STATES);
-        }
-
-        // Last transactions
-        // const response = await client.request({
-        //     command: "account_tx",
-        //     account: address,
-        //     ledger_index_min: -1,
-        //     ledger_index_max: -1,
-        //     binary: false,
-        //     limit: 5,
-        //     forward: false,
-        // });
-    };
-
-    const verifyAndSaveAddress = async (accountsFromLocalStorage) => {
+    const validateXRPAccount = async () => {
+        setState({
+            xrplAddress: {
+                ...xrplAddress,
+                loading: true,
+            },
+        });
         const client = new Client(PUBLIC_SERVER, { connectionTimeout: 10000 });
         await client.connect();
+        try {
+            const payload = {
+                command: "account_info",
+                account: xrplAddress.inputValue,
+            };
 
-        // account information
-        const response = await client.request({
-            command: "account_info",
-            account: address,
-        });
-
-        const acc_address = response.result.account_data.Account;
-        accountsFromLocalStorage[acc_address] = accName;
-        localStorage.setItem("xrplPortfolioKeys", JSON.stringify(accountsFromLocalStorage));
-        alert("Great!! Your account has been saved in Accounts section.");
+            const res = await client.request(payload);
+            if (res && res.result.account_data.Account === xrplAddress.inputValue) {
+                setState({
+                    xrplAddress: {
+                        ...xrplAddress,
+                        value: xrplAddress.inputValue,
+                        loading: false,
+                        error: [],
+                    },
+                });
+            } else {
+                setState({
+                    xrplAddress: { ...xrplAddress, error: ["Invalid Input, please try again."], loading: false },
+                });
+            }
+        } catch (err) {
+            setState({
+                xrplAddress: { ...xrplAddress, error: ["Invalid Input, please try again."], loading: false },
+            });
+            console.log(err);
+        }
         client.disconnect();
     };
 
+    const onXrplAddressChange = (event) => {
+        const { value } = event.target;
+        let error = [];
+
+        if (accountsFromLocalStorage[value]) {
+            error.push("Entered account already exists.");
+        }
+
+        setState({
+            xrplAddress: {
+                ...xrplAddress,
+                value: "",
+                inputValue: value,
+                error: error,
+            },
+            alias: ADD_ACCOUNTS_INITIAL_STATE.alias,
+        });
+    };
+
+    const onAliasValueChange = (event) => {
+        const { value } = event.target;
+        let error = [];
+
+        if (Object.values(accountsFromLocalStorage).indexOf(value) > -1) {
+            error.push("This nickname already exists. Please choose a different one.");
+        }
+        setState({ alias: { ...alias, value: "", inputValue: value, error: error } });
+    };
+
+    const verifyAndSaveAddress = () => {
+        // API Call to MongoDB
+        accountsFromLocalStorage[xrplAddress.value] = alias.inputValue;
+        localStorage.setItem("xrplPortfolioKeys", JSON.stringify(accountsFromLocalStorage));
+        setState({ ...ADD_ACCOUNTS_INITIAL_STATE, hasAccountAdded: true });
+        alert("Great!! Your account has been saved in Accounts section.");
+    };
+
+    const isErrorXrplAddInput = !isValidXrplRAddress(xrplAddress.inputValue) || xrplAddress.error.length > 0;
+
     return (
-        <div className="add_accounts_container">
-            <h1 className="header">Hello There!</h1>
-            <span className="sub_header">Welcome to XPT Extension. Add a XRPL address below to track the account.</span>
-            <div className="sub_container">
-                <div className="input_container">
-                    <Input placeholder="Enter Account Nickname" value={accName} onChange={(e) => setState({ accName: e.target.value })} />
-                </div>
-                <div className="input_container">
-                    <Input placeholder="Enter XRPL Address" value={address} onChange={(e) => setState({ address: e.target.value })} />
-                </div>
-                <div className="input_btn">
-                    <Button onClick={onBtnClick} disabled={accName.length === 0 || address.length === 0}>
-                        Add Address
-                    </Button>
-                </div>
-            </div>
-            <Dimmer active={loading} inverted>
-                <Loader inverted content="Verifying..." inline="centered" />
+        <div className="add_account">
+            <div className="heading">{hasAccountAdded ? "Awesome! 🎉" : `Hi! @userName`}</div>
+            {hasAccountAdded ? (
+                <AccountAdditionSuccess {...{ state, setState }} />
+            ) : (
+                <NewAccountDetailsInputs
+                    {...{ state, onXrplAddressChange, onAliasValueChange, verifyAndSaveAddress, isErrorXrplAddInput, validateXRPAccount }}
+                />
+            )}
+            <Dimmer active={isLoading} inverted>
+                <Loader loadingText={"Saving...."} />
             </Dimmer>
         </div>
     );

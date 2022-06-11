@@ -23,11 +23,10 @@ export const URLS = {
 export const FIELD_INITIAL_STATE = {
     value: "",
     inputValue: "",
-    error: false,
+    error: [],
 };
 
-export const NO_ACCOUNTS_INITIAL_STATE = {
-    isEnterBtnPressed: false,
+export const ADD_ACCOUNTS_INITIAL_STATE = {
     xrplAddress: {
         ...FIELD_INITIAL_STATE,
         loading: false,
@@ -35,4 +34,6 @@ export const NO_ACCOUNTS_INITIAL_STATE = {
     alias: {
         ...FIELD_INITIAL_STATE,
     },
+    isLoading: false,
+    hasAccountAdded: false,
 };

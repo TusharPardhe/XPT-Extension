@@ -1,0 +1,106 @@
+.login_container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+    padding: 30px;
+    line-height: 1;
+
+    .heading {
+        font-size: 34px;
+        font-weight: bold;
+        padding: 10px 0px;
+    }
+
+    .btns_container {
+        display: flex;
+        flex-direction: column;
+        margin-top: auto;
+        gap: 10px;
+        padding: 30px 0px;
+
+        button{
+            font-size: 16px;
+        }
+
+        .buttons{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            width: 100%;
+
+            .container{
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                background-color: #FFF;
+
+                .btn {
+                    letter-spacing: 0.1em;
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 45px;
+                    position: relative;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    width: 100%;
+                  }
+                  .btn:hover {
+                    text-decoration: none;
+                  }
+                  
+                  .effect04 {
+                    --uismLinkDisplay: var(--smLinkDisplay, inline-flex);
+                    display: var(--uismLinkDisplay);
+                    color: #000;
+                    outline: solid  2px #000;
+                    position: relative;
+                    transition-duration: 0.4s;
+                    overflow: hidden;
+                    border-radius: 20px;
+                  }
+                  
+                  .effect04::before,
+                  .effect04 span{
+                      margin: 0 auto;
+                      transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+                      transition-duration: 0.4s;
+                  }
+                  
+                  .effect04:hover{
+                    background-color: #000;
+                    &.success{
+                        background-color: var(--cotton-candy);
+                    }
+                  }
+                  
+                  .effect04:hover span{
+                    -webkit-transform: translateY(-400%) scale(-0.1,20);
+                            transform: translateY(-400%) scale(-0.1,20);
+                  }
+                  
+                  .effect04::before{
+                    content: attr(data-sm-link-text);
+                      color: #FFF;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    -webkit-transform: translateY(500%) scale(-0.1,20);
+                            transform: translateY(500%) scale(-0.1,20);
+                  }
+                  
+                  .effect04:hover::before{
+                    letter-spacing: 0.05em;
+                    -webkit-transform: translateY(0) scale(1,1);
+                            transform: translateY(0) scale(1,1);
+                  }
+            }
+        }
+    }
+       
+       
+}

@@ -10,6 +10,7 @@ import UsefulLinks from "./modules/usefulLinks/usefulLinks";
 import NftVisualiser from "./modules/nftVisualiser/nftVisualiser";
 import ProjectCalendar from "./modules/projectCalendar/projectCalendar";
 import { ROUTES } from "./constants/common.constants";
+import Login from "./modules/login/login";
 
 export default function Routes() {
     const location = useLocation();
@@ -18,6 +19,7 @@ export default function Routes() {
 
     return (
         <RoutesBundle location={location}>
+            <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route path={ROUTES.HOME} element={wrapWithNavBar(<Home />)} />
             <Route path={ROUTES.ACCOUNTS} element={wrapWithNavBar(<AddAccount />)} />
             <Route path={ROUTES.PORTFOLIO} element={wrapWithNavBar(<Portfolio />)} />

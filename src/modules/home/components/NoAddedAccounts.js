@@ -9,7 +9,7 @@ const NoAddedAccounts = ({ enterBtnHover, setEnterBtnHover, navigate }) => {
             <div className="subHeading">
                 Your inventory is empty.
                 <br />
-                Press the button below to begin tracking an XRPL account
+                Press the button below to begin your journey.
             </div>
             <div className="enter_btn">
                 <Transition duration="1500" visible={enterBtnHover} animation="tada">

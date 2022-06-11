@@ -35,10 +35,18 @@
         }
     }
 
-    .saved_accounts_grid {
-        display: grid;
-        gap: 10px;
-        padding: 10px;
+    .saved_accounts_container{
+        text-align: left;
+        padding: 0px 30px;
+        
+        .table_header{
+            color: var(--oxford-blue);
+        }
+        .accounts_grid {
+            display: grid;
+            gap: 10px;
+            padding: 10px 0px;
+        }
     }
 
     .no_added_accounts{

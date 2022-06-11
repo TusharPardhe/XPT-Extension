@@ -35,7 +35,7 @@ const Navbar = (props) => {
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.ACCOUNTS)}>
                         <Icon name="address book" />
-                        Save Account
+                        Add Account
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.XRP_DETAILS)}>
                         <Icon name="chart line" />

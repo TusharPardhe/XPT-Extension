@@ -1,12 +1,12 @@
 export const ROUTES = {
     HOME: "/",
-    ACCOUNTS: "/accounts",
+    ACCOUNTS: "/add_account",
     PORTFOLIO: "/portfolio/:id",
     TRANSACTIONS: "/transactions/:id",
     XRP_DETAILS: "/price",
     NFT_DETAILS: "/nft",
     USEFUL_LINKS: "/links",
-    PROJECT_CALENDAR: "/calendar"
+    PROJECT_CALENDAR: "/calendar",
 };
 
 export const DEV_ENV = process.env.NODE_ENV === "development";

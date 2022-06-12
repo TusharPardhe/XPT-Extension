@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+import { Dimmer, Image, Label, Table } from "semantic-ui-react";
 
-import { Dimmer, Image, Label, Loader, Table } from "semantic-ui-react";
-import { ALTERNATIVE_ME_API_ENDPOINT, URLS } from "../../constants/common.constants";
 import useMergedState from "../../utils/useMergedState";
+import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
+
+import { ALTERNATIVE_ME_API_ENDPOINT, URLS } from "../../constants/common.constants";
 
 import "./xrpDetaills.scss";
 
@@ -22,9 +24,9 @@ const XRPDetails = () => {
             .then((res) => res.json())
             .then((res) => setState({ data: res.data, loading: false }))
             .catch((err) => {
-                alert(err)
+                alert(err);
                 setState({ loading: false });
-            })
+            });
     };
 
     const renderDetails = () => {
@@ -50,17 +52,26 @@ const XRPDetails = () => {
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell collapsing className="table_heading">
-                                    <Label ribbon>1hr Change %:</Label> <span className={`color-${current_details.percentage_change_1h > 0 ? "green" : "red"}`}>{current_details.percentage_change_1h.toLocaleString()} %</span>
+                                    <Label ribbon>1hr Change %:</Label>{" "}
+                                    <span className={`color-${current_details.percentage_change_1h > 0 ? "green" : "red"}`}>
+                                        {current_details.percentage_change_1h.toLocaleString()} %
+                                    </span>
                                 </Table.Cell>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell collapsing className="table_heading">
-                                    <Label ribbon>24hrs Change %:</Label> <span className={`color-${current_details.percentage_change_24h > 0 ? "green" : "red"}`}>{current_details.percentage_change_24h.toLocaleString()} %</span>
+                                    <Label ribbon>24hrs Change %:</Label>{" "}
+                                    <span className={`color-${current_details.percentage_change_24h > 0 ? "green" : "red"}`}>
+                                        {current_details.percentage_change_24h.toLocaleString()} %
+                                    </span>
                                 </Table.Cell>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell collapsing className="table_heading">
-                                    <Label ribbon>7hrs Change %:</Label> <span className={`color-${current_details.percentage_change_7d > 0 ? "green" : "red"}`}>{current_details.percentage_change_7d.toLocaleString()} %</span>
+                                    <Label ribbon>7hrs Change %:</Label>{" "}
+                                    <span className={`color-${current_details.percentage_change_7d > 0 ? "green" : "red"}`}>
+                                        {current_details.percentage_change_7d.toLocaleString()} %
+                                    </span>
                                 </Table.Cell>
                             </Table.Row>
                             <Table.Row>
@@ -80,7 +91,8 @@ const XRPDetails = () => {
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell collapsing className="table_heading">
-                                    <Label ribbon>Circulating Supply:</Label> <span>{token_data_against_usd.circulating_supply.toLocaleString()}</span>
+                                    <Label ribbon>Circulating Supply:</Label>{" "}
+                                    <span>{token_data_against_usd.circulating_supply.toLocaleString()}</span>
                                 </Table.Cell>
                             </Table.Row>
                             <Table.Row>
@@ -91,7 +103,7 @@ const XRPDetails = () => {
                         </Table.Body>
                     </Table>
                 </div>
-            </div >
+            </div>
         );
     };
 
@@ -99,7 +111,7 @@ const XRPDetails = () => {
         <div className="xrp_details_container">
             {renderDetails()}
             <Dimmer active={loading} inverted>
-                <Loader inverted content="Fetching details..." inline="centered" />
+                <AnimatedLoader loadingText="Fetching details..." />
             </Dimmer>
         </div>
     );

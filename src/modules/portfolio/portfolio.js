@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Client } from "xrpl";
+import { Dimmer } from "semantic-ui-react";
+import { Hashicon } from "@emeraldpay/hashicon-react";
 
 import useMergedState from "../../utils/useMergedState";
 
@@ -8,8 +10,8 @@ import AccountDetails from "./components/accountDetails";
 import AccountFungibleHoldings from "./components/accountFungibleHoldings";
 import OtherDetails from "./components/otherDetails";
 import IssuedCurrencies from "./components/issuedCurrencies";
+import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 
-import { Dimmer, Loader } from "semantic-ui-react";
 import { PUBLIC_SERVER } from "../../constants/common.constants";
 
 import "./portfolio.scss";
@@ -77,7 +79,7 @@ const Portfolio = () => {
             const response = await client.request({
                 command: "gateway_balances",
                 account: id,
-                "ledger_index": "validated"
+                ledger_index: "validated",
             });
             if (response.result.obligations) setState({ issuedFungibleTokens: response.result.obligations });
             await client.disconnect();
@@ -88,7 +90,10 @@ const Portfolio = () => {
 
     return (
         <div className="portfolio_container">
-            <h3 className="heading">{storedAddresses[id]}</h3>
+            <div className="icon">
+                <Hashicon value={id} size={50} />
+            </div>
+            <div className="heading">{storedAddresses[id]}</div>
             <div className="sub_heading">{id}</div>
             <div className="details_container">
                 {Object.keys(data).length > 0 && <AccountDetails {...{ toggleDetails, isOpen, data }} />}
@@ -97,7 +102,7 @@ const Portfolio = () => {
                 <OtherDetails {...{ toggleDetails, isOpen }} />
             </div>
             <Dimmer active={loading} inverted>
-                <Loader inverted content="Loading..." inline="centered" />
+                <AnimatedLoader loadingText="Fetching details..." />
             </Dimmer>
         </div>
     );

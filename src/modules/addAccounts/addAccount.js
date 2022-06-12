@@ -3,14 +3,14 @@ import { Client } from "xrpl";
 import { Dimmer } from "semantic-ui-react";
 
 import useMergedState from "../../utils/useMergedState";
-import Loader from "../../components/loader/loader";
+import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 import NewAccountDetailsInputs from "./components/newAccountDetailsInputs";
+import AccountAdditionSuccess from "./components/accountAdditionSuccess";
 
 import { isValidXrplRAddress } from "../../utils/validations";
 import { PUBLIC_SERVER, ADD_ACCOUNTS_INITIAL_STATE } from "../../constants/common.constants";
 
 import "./addAccount.scss";
-import AccountAdditionSuccess from "./components/accountAdditionSuccess";
 
 const AddAccount = () => {
     const [state, setState] = useMergedState(ADD_ACCOUNTS_INITIAL_STATE);
@@ -108,7 +108,7 @@ const AddAccount = () => {
                 />
             )}
             <Dimmer active={isLoading} inverted>
-                <Loader loadingText={"Saving...."} />
+                <AnimatedLoader loadingText={"Saving...."} />
             </Dimmer>
         </div>
     );

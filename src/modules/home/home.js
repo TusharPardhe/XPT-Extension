@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import NoAddedAccounts from "./components/NoAddedAccounts";
 import SavedAccounts from "./components/SavedAccounts";
+import UserDetails from "./components/UserDetails";
 
 import { ROUTES } from "../../constants/common.constants";
 
@@ -27,9 +28,7 @@ const Home = () => {
 
     return (
         <div className="home_component">
-            <div className="portfolio_container">
-                <div className="details">This is where I will add portfolio</div>
-            </div>
+            <UserDetails />
             {Object.keys(accounts).length === 0 ? <NoAddedAccounts /> : <SavedAccounts {...{ accounts, navigateTo, onDeleteAccClick }} />}
         </div>
     );

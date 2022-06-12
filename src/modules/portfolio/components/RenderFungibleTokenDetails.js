@@ -9,7 +9,9 @@ export default function RenderFungibleTokenDetails({ token }) {
         <Table celled>
             <Table.Body>
                 <Table.Row className="token_heading">
-                    <Table.Cell colSpan="2"><Label ribbon>{name}</Label></Table.Cell>
+                    <Table.Cell colSpan="2">
+                        <Label ribbon>{name}</Label>
+                    </Table.Cell>
                 </Table.Row>
                 <Table.Row>
                     <Table.Cell collapsing className="table_heading">
@@ -33,4 +35,3 @@ export default function RenderFungibleTokenDetails({ token }) {
         </Table>
     );
 }
-;

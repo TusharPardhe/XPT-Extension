@@ -1,8 +1,8 @@
 import React from "react";
 
-import "./loader.scss";
+import "./AnimatedLoader.scss";
 
-const Loader = ({ loadingText }) => {
+const AnimatedLoader = ({ loadingText }) => {
     return (
         <div className="loader_component">
             <div className="loading_icons">
@@ -17,4 +17,4 @@ const Loader = ({ loadingText }) => {
     );
 };
 
-export default Loader;
+export default AnimatedLoader;

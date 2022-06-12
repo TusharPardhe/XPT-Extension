@@ -1,9 +1,14 @@
 .portfolio_container{
     padding: 0 15px;
 
-    .heading{
-        font-size: 20px;
+    .icon{
         text-align: center;
+        padding: 2px 2px 10px 2px;
+    }
+    .heading{
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
     }
 
     .sub_heading{
@@ -14,10 +19,13 @@
     }
     
     .details_container {
+        display: flex;
+        flex-direction: column;
         border-top: 1px solid black;
         padding: 20px 0 10px 0;
         word-break: break-word;
         font-size: 12px;
+        gap: 6px;
 
         .table_heading{
             font-weight: bold;
@@ -26,7 +34,7 @@
         .details_header{
             font-weight: bold;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .sub_details_header{
@@ -44,6 +52,7 @@
 
         table{
             padding: 5px;
+            box-shadow: 6px 6px 0px rgba(225, 224, 218, 0.67);
         }
 
 

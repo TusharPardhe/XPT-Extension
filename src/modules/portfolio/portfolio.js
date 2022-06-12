@@ -7,7 +7,7 @@ import { Hashicon } from "@emeraldpay/hashicon-react";
 import useMergedState from "../../utils/useMergedState";
 
 import AccountDetails from "./components/accountDetails";
-import AccountFungibleHoldings from "./components/accountFungibleHoldings";
+import AccountTrustlines from "./components/AccountTrustlines";
 import OtherDetails from "./components/otherDetails";
 import IssuedCurrencies from "./components/issuedCurrencies";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
@@ -97,7 +97,7 @@ const Portfolio = () => {
             <div className="sub_heading">{id}</div>
             <div className="details_container">
                 {Object.keys(data).length > 0 && <AccountDetails {...{ toggleDetails, isOpen, data }} />}
-                {otherCurrencies.length > 0 && <AccountFungibleHoldings {...{ toggleDetails, isOpen, otherCurrencies }} />}
+                {otherCurrencies.length > 0 && <AccountTrustlines {...{ toggleDetails, isOpen, otherCurrencies }} />}
                 {Object.keys(issuedFungibleTokens).length > 0 && <IssuedCurrencies {...{ toggleDetails, isOpen, issuedFungibleTokens }} />}
                 <OtherDetails {...{ toggleDetails, isOpen }} />
             </div>

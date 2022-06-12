@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./backButton.scss";
+
 const BackButton = (props) => {
     const { displayName, onClick, ...otherProps } = props;
     return (

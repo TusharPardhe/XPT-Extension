@@ -23,6 +23,10 @@ const SignUp = () => {
                     <Input name="id" placeholder="Enter your preferred username" autoComplete="off" />
                 </div>
                 <div className="input_field">
+                    <div className="labelTxt">XRPL Account Address: </div>
+                    <Input name="id" placeholder="Enter your account address" autoComplete="off" />
+                </div>
+                <div className="input_field">
                     <div className="labelTxt">Passphrase: </div>
                     <Input placeholder="Enter passphrase" type="password" autoComplete="off" />
                 </div>

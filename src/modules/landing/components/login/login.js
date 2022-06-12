@@ -19,8 +19,8 @@ const Login = () => {
             </div>
             <div className="input_container">
                 <div className="input_field">
-                    <div className="labelTxt">Username: </div>
-                    <Input name="id" placeholder="Enter Username" autoComplete="off" />
+                    <div className="labelTxt">Username/XRPL Address: </div>
+                    <Input name="id" placeholder="Enter Username/XRPL Address" autoComplete="off" />
                 </div>
                 <div className="input_field">
                     <div className="labelTxt">Passphrase: </div>

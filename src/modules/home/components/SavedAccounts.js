@@ -5,10 +5,12 @@ const SavedAccounts = ({ accounts, navigateTo, onDeleteAccClick }) => {
     return (
         <>
             <h2 className="heading">Welcome aboard explorer</h2>
-            <p>Click your preferred account to view details.</p>
+            <p>Select your preferred account to track.</p>
             <Divider />
             <div className="saved_accounts_container">
-                <div className="table_header">Your saved accounts: </div>
+                <div className="heading_details">
+                    <div className="table_header">Accounts: </div>
+                </div>
                 <div className="accounts_grid">
                     {Object.keys(accounts).map((currAccount, index) => (
                         <div key={currAccount} className="account_btn">

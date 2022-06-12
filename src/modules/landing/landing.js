@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import SimpleAnimationButton from "../../components/simpleAnimationButton/simpleAnimationButton";
 import { ROUTES } from "../../constants/common.constants";
 
 import "./landing.scss";
@@ -17,20 +18,8 @@ const Landing = () => {
             <div className="subHeading">XRPL Portfolio Tracker</div>
             <div className="short_phrase">Let's keep it simple.</div>
             <div className="btns_container">
-                <div class="anim_button" onClick={() => navigate(ROUTES.LOGIN)}>
-                    <div class="container">
-                        <div class="btn effect04" data-sm-link-text="Enter">
-                            <span>Login</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="anim_button" onClick={() => navigate(ROUTES.SIGN_UP)}>
-                    <div class="container">
-                        <div class="btn effect04 success" data-sm-link-text="Join Us!">
-                            <span>Sign Up</span>
-                        </div>
-                    </div>
-                </div>
+                <SimpleAnimationButton onClick={() => navigate(ROUTES.LOGIN)} firstText="Login" secondText="Enter" />
+                <SimpleAnimationButton onClick={() => navigate(ROUTES.SIGN_UP)} firstText="Sign Up" secondText="Join Us!" color="candy" />
             </div>
         </div>
     );

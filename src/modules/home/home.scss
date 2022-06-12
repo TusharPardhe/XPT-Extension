@@ -70,21 +70,43 @@
         
         .heading {
             font-size: 30px;
+            padding: 0 0 40px 0;
             font-weight: bold;
             color: var(--indigo-dye);
         }
     
-        .subHeading {
-            padding: 20px 0;
-            line-height: 1.5;
+        .no_accounts_detail_box {
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 8px 8px 0px rgba(225, 224, 218, 0.67);
+            font-size: 14px;
+            font-weight: lighter;
+            padding: 30px 10px;
         }
     
         .enter_btn{
             display: flex;
+            flex-direction: column;
             justify-content: center;
+            padding: 40px 0 0 0;
+
             button{
                 padding: 10px 40px;
+                font-size: 20px;
             }
+
+            .simple_animation_component{
+                padding: 20px;
+            }
+        }
+    }
+
+    .portfolio_container{
+        padding: 20px;
+        .details{
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 20px 10px;  
         }
     }
 }

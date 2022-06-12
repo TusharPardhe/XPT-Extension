@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Input, Transition } from "semantic-ui-react";
 
-import BackButton from "../../../../components/button/backButton";
+import BackButton from "../../../../components/backButton/backButton";
 
 import "./signUp.scss";
 

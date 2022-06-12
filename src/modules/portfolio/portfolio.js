@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Client } from "xrpl";
-import { Dimmer } from "semantic-ui-react";
 import { Hashicon } from "@emeraldpay/hashicon-react";
 
 import useMergedState from "../../utils/useMergedState";
@@ -13,23 +12,13 @@ import IssuedCurrencies from "./components/issuedCurrencies";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 
 import { PUBLIC_SERVER } from "../../constants/common.constants";
+import { PORTFOLIO_INITIAL_STATE } from "../../constants/portfolio.constants";
 
 import "./portfolio.scss";
 
 const Portfolio = () => {
     const { id } = useParams();
-    const [state, setState] = useMergedState({
-        data: {},
-        otherCurrencies: [],
-        issuedFungibleTokens: {},
-        isOpen: {
-            ACCOUNT_DETAILS: false,
-            RESERVES: false,
-            FUNGIBLE_HOLDINGS: false,
-            OTHER_DETAILS: false,
-            ISSUED_FUNGIBLE_TOKENS: false,
-        },
-    });
+    const [state, setState] = useMergedState(PORTFOLIO_INITIAL_STATE);
     const { data, otherCurrencies, isOpen, issuedFungibleTokens } = state;
     const [loading, setLoading] = useState(true);
     const xrplPortfolioKeys = localStorage.getItem("xrplPortfolioKeys");
@@ -101,9 +90,7 @@ const Portfolio = () => {
                 {Object.keys(issuedFungibleTokens).length > 0 && <IssuedCurrencies {...{ toggleDetails, isOpen, issuedFungibleTokens }} />}
                 <OtherDetails {...{ toggleDetails, isOpen }} />
             </div>
-            <Dimmer active={loading} inverted>
-                <AnimatedLoader loadingText="Fetching details..." />
-            </Dimmer>
+            <AnimatedLoader loadingText="Fetching details..." isActive={loading} />
         </div>
     );
 };

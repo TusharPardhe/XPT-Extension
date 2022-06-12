@@ -1,6 +1,5 @@
 import React from "react";
 import { Client } from "xrpl";
-import { Dimmer } from "semantic-ui-react";
 
 import useMergedState from "../../utils/useMergedState";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
@@ -107,9 +106,7 @@ const AddAccount = () => {
                     {...{ state, onXrplAddressChange, onAliasValueChange, verifyAndSaveAddress, isErrorXrplAddInput, validateXRPAccount }}
                 />
             )}
-            <Dimmer active={isLoading} inverted>
-                <AnimatedLoader loadingText={"Saving...."} />
-            </Dimmer>
+            <AnimatedLoader loadingText={"Saving...."} isActive={isLoading} />
         </div>
     );
 };

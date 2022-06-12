@@ -25,7 +25,7 @@
         padding: 20px 0 10px 0;
         word-break: break-word;
         font-size: 12px;
-        gap: 6px;
+        gap: 10px;
 
         .table_heading{
             font-weight: bold;
@@ -34,7 +34,10 @@
         .details_header{
             font-weight: bold;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 14px;
+            padding: 5px 10px;
+            border: 1px solid var(--light-gray);
+            box-shadow: 1px 0px 6px rgba(225, 224, 218, 0.67);
         }
 
         .sub_details_header{
@@ -51,8 +54,9 @@
         }
 
         table{
-            padding: 5px;
             box-shadow: 6px 6px 0px rgba(225, 224, 218, 0.67);
+            border: 1px solid var(--light-gray);
+            border-radius: 0px;
         }
 
 

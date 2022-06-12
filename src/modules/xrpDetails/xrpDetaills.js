@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Dimmer, Image, Label, Table } from "semantic-ui-react";
+import { Image, Label, Table } from "semantic-ui-react";
 
 import useMergedState from "../../utils/useMergedState";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
@@ -110,9 +110,7 @@ const XRPDetails = () => {
     return (
         <div className="xrp_details_container">
             {renderDetails()}
-            <Dimmer active={loading} inverted>
-                <AnimatedLoader loadingText="Fetching details..." />
-            </Dimmer>
+            <AnimatedLoader loadingText="Fetching details..." isActive={loading} />
         </div>
     );
 };

@@ -45,7 +45,6 @@ export default function AccountDetails({ toggleDetails, isOpen, data }) {
                     Reserves <Icon name={`caret ${isOpen.RESERVES ? "down" : "right"}`} />
                 </div>
                 <div className={`transition ${isOpen.RESERVES ? "load" : "hide"}`}>
-                    <div className="sub_details_header">{10 + data.ownerCount * 2} XRP</div>
                     <Table celled padded>
                         <Table.Body>
                             <Table.Row>

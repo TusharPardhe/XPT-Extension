@@ -11,9 +11,10 @@ module.exports = {
             },
         ],
     },
+    target: "web",
     devServer: {
         contentBase: path.resolve(__dirname, "..", "./dist"),
-        hot: true,
+        liveReload: true,
     },
     devtool: "eval-source-map",
 };

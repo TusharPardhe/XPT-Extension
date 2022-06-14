@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon, Table } from "semantic-ui-react";
+import { convertHexToString } from "xrpl";
 import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
 
 export default function IssuedCurrencies({ toggleDetails, isOpen, issuedFungibleTokens }) {
@@ -11,10 +12,14 @@ export default function IssuedCurrencies({ toggleDetails, isOpen, issuedFungible
             <div className={`transition ${isOpen.ISSUED_FUNGIBLE_TOKENS ? "load" : "hide"}`}>
                 <Table celled>
                     <Table.Body>
+                        <Table.Row>
+                            <Table.Cell collapsing className="table_heading">Name</Table.Cell>
+                            <Table.Cell collapsing className="table_heading">Limit</Table.Cell>
+                        </Table.Row>
                         {Object.keys(issuedFungibleTokens).map((tokenName, index) => (
                             <Table.Row key={index}>
-                                <Table.Cell collapsing className="table_heading">
-                                    {tokenName}
+                                <Table.Cell>
+                                    {tokenName.length === 40 ? convertHexToString(tokenName) : tokenName}
                                 </Table.Cell>
                                 <Table.Cell>{parseFloat(issuedFungibleTokens[tokenName]).toLocaleString()}</Table.Cell>
                             </Table.Row>

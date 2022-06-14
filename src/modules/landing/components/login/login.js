@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Input, Transition } from "semantic-ui-react";
+import { Input } from "semantic-ui-react";
 
 import BackButton from "../../../../components/backButton/backButton";
+import SimpleAnimationButton from "../../../../components/simpleAnimationButton/simpleAnimationButton";
+import { ROUTES } from "../../../../constants/common.constants";
 
 import "./login.scss";
 
 const Login = () => {
     const navigate = useNavigate();
-    const [submitBtnHover, setSubmitBtnHover] = useState(true);
 
     return (
         <div className="login_container">
@@ -28,11 +29,7 @@ const Login = () => {
                 </div>
             </div>
             <div className="submit_btn">
-                <Transition duration="500" visible={submitBtnHover} animation="pulse">
-                    <Button inverted color="green" onMouseOver={() => setSubmitBtnHover(!submitBtnHover)}>
-                        Submit
-                    </Button>
-                </Transition>
+                <SimpleAnimationButton firstText="Submit" secondText="Proceed" onClick={() => navigate(ROUTES.HOME)} color="baby-blue" />
             </div>
         </div>
     );

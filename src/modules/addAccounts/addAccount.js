@@ -1,5 +1,4 @@
 import React from "react";
-import { Client } from "xrpl";
 
 import useMergedState from "../../utils/useMergedState";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
@@ -7,7 +6,7 @@ import NewAccountDetailsInputs from "./components/newAccountDetailsInputs";
 import AccountAdditionSuccess from "./components/accountAdditionSuccess";
 
 import { isValidXrplRAddress } from "../../utils/validations";
-import { PUBLIC_SERVER, ADD_ACCOUNTS_INITIAL_STATE } from "../../constants/common.constants";
+import { ADD_ACCOUNTS_INITIAL_STATE } from "../../constants/common.constants";
 
 import "./addAccount.scss";
 
@@ -17,45 +16,6 @@ const AddAccount = () => {
 
     const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
     const accountsFromLocalStorage = xrplAddFromLocal ? JSON.parse(xrplAddFromLocal) : {};
-
-    const validateXRPAccount = async () => {
-        setState({
-            xrplAddress: {
-                ...xrplAddress,
-                loading: true,
-            },
-        });
-        const client = new Client(PUBLIC_SERVER, { connectionTimeout: 10000 });
-        await client.connect();
-        try {
-            const payload = {
-                command: "account_info",
-                account: xrplAddress.inputValue,
-            };
-
-            const res = await client.request(payload);
-            if (res && res.result.account_data.Account === xrplAddress.inputValue) {
-                setState({
-                    xrplAddress: {
-                        ...xrplAddress,
-                        value: xrplAddress.inputValue,
-                        loading: false,
-                        error: [],
-                    },
-                });
-            } else {
-                setState({
-                    xrplAddress: { ...xrplAddress, error: ["Invalid Input, please try again."], loading: false },
-                });
-            }
-        } catch (err) {
-            setState({
-                xrplAddress: { ...xrplAddress, error: ["Invalid Input, please try again."], loading: false },
-            });
-            console.log(err);
-        }
-        client.disconnect();
-    };
 
     const onXrplAddressChange = (event) => {
         const { value } = event.target;
@@ -103,7 +63,7 @@ const AddAccount = () => {
                 <AccountAdditionSuccess {...{ state, setState }} />
             ) : (
                 <NewAccountDetailsInputs
-                    {...{ state, onXrplAddressChange, onAliasValueChange, verifyAndSaveAddress, isErrorXrplAddInput, validateXRPAccount }}
+                    {...{ state, setState, onXrplAddressChange, onAliasValueChange, verifyAndSaveAddress, isErrorXrplAddInput }}
                 />
             )}
             <AnimatedLoader loadingText={"Saving...."} isActive={isLoading} />

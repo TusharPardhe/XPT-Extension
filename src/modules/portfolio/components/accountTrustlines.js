@@ -2,11 +2,11 @@ import React from "react";
 import RenderFungibleTokenDetails from "./renderFungibleTokenDetails";
 import { Button, Icon } from "semantic-ui-react";
 import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
+import { URLS } from "../../../constants/common.constants";
 
 export default function AccountTrustlines({ id, toggleDetails, isOpen, otherCurrencies }) {
-
     const onXrpscanBtnClick = () => {
-        window.open(`https://xrpscan.com/account/${id}`, "_blank");
+        window.open(`${URLS.XRPSCAN}/account/${id}`, "_blank");
     };
 
     return (

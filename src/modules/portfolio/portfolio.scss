@@ -38,6 +38,7 @@
             padding: 5px 10px;
             border: 1px solid var(--light-gray);
             box-shadow: 1px 0px 6px rgba(225, 224, 218, 0.67);
+            background: var(--pinkish-body-tint);
         }
 
         .sub_details_header{
@@ -84,6 +85,17 @@
         .links{
             display: flex;
             flex-direction: column;
+
+            button{
+                border: 1px solid gray;
+                border-radius: 0;
+                background: white;
+                transition: box-shadow 0.2s ease-in-out;
+                box-shadow: 1px 0px 0px 0px rgba(225, 224, 218, 0.67);
+                &:hover {
+                    box-shadow: 9px 8px 0px rgba(225, 224, 218, 0.67);
+                }
+            }
         }
     }
 }

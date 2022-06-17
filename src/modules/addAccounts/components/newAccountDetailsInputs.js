@@ -1,14 +1,8 @@
 import React from "react";
 import { Button, Input } from "semantic-ui-react";
+import { validateXRPAccountFromAPI } from "../../../utils/validations";
 
-const NewAccountDetailsInputs = ({
-    state,
-    onXrplAddressChange,
-    onAliasValueChange,
-    verifyAndSaveAddress,
-    isErrorXrplAddInput,
-    validateXRPAccount,
-}) => {
+const NewAccountDetailsInputs = ({ state, setState, onXrplAddressChange, onAliasValueChange, verifyAndSaveAddress, isErrorXrplAddInput }) => {
     const { xrplAddress, alias } = state;
 
     return (
@@ -49,7 +43,7 @@ const NewAccountDetailsInputs = ({
                         inverted
                         color={isErrorXrplAddInput ? "grey" : "green"}
                         type="submit"
-                        onClick={validateXRPAccount}
+                        onClick={() => validateXRPAccountFromAPI({ setState, xrplAddress })}
                         disabled={isErrorXrplAddInput}
                         loading={xrplAddress.loading}
                     >

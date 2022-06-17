@@ -6,8 +6,7 @@
     height: 100%;
     padding: 30px;
     line-height: 1;
-    background-color:radial-gradient( circle 621px at 25.3% 13.8%, rgb(255, 255, 255) 0%, rgb(238, 234, 255) 90% );
-
+    background: var(--pinkish-body-tint);
 
     .heading_container {
         .heading {
@@ -25,6 +24,7 @@
     .input_container {
         display: flex;
         flex-direction: column;
+        gap: 14px;
 
         .input_field {
             display: flex;
@@ -35,6 +35,7 @@
                 font-size: 14px;
                 padding: 12px 0px 0px 0px;
                 color: var(--davys-grey);
+                font-weight: 500;
             }
 
             input {
@@ -45,6 +46,20 @@
                 background-color: inherit;
                 font-size: 12px;
             }
+
+            .note{
+                padding: 0 10px;
+                font-size: 11px;
+                color: rebeccapurple;
+            }
+
+            .error_txt {
+                font-size: 12px;
+                font-style: normal;
+                color: var(--ruby-red);
+                padding-top: 4px;
+            }
+               
         }
     }
 

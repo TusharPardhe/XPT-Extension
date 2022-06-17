@@ -6,7 +6,7 @@
     height: 100%;
     padding: 30px;
     line-height: 1;
-    background-color: white;
+    background: var(--pinkish-body-tint);
 
     .heading_container {
         text-align: left;
@@ -32,16 +32,17 @@
             text-align: left;
 
             .labelTxt {
-                font-size: 15px;
+                font-size: 14px;
                 padding: 10px 0px;
                 color: var(--davys-grey);
+                font-weight: 500;
             }
 
             input {
                 border-top: none;
                 border-left: none;
                 border-right: none;
-                border-radius: 0px;
+                border-radius: 10px;
             }
         }
     }

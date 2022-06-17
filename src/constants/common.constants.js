@@ -21,6 +21,7 @@ export const ALTERNATIVE_ME_API_ENDPOINT = "https://api.alternative.me/v2/ticker
 export const URLS = {
     XRP_ICON: "https://drive.google.com/uc?export=view&id=1VUSemYB5GqRNihGVELTrlcW3VObhhn0-",
     CONSTRUCTION_GIF: "https://drive.google.com/uc?export=view&id=1219VV9-YnQBRiPnSFz2WjTULg6J0vdNc",
+    XRPSCAN: "https://xrpscan.com",
 };
 
 export const FIELD_INITIAL_STATE = {
@@ -34,9 +35,19 @@ export const ADD_ACCOUNTS_INITIAL_STATE = {
         ...FIELD_INITIAL_STATE,
         loading: false,
     },
-    alias: {
-        ...FIELD_INITIAL_STATE,
-    },
+    alias: FIELD_INITIAL_STATE,
     isLoading: false,
     hasAccountAdded: false,
+};
+
+export const LOGIN_INITIAL_STATE = {
+    isNextInputsVisible: false,
+    username: FIELD_INITIAL_STATE,
+    password: FIELD_INITIAL_STATE,
+    confirmPassword: FIELD_INITIAL_STATE,
+    xrplAddress: FIELD_INITIAL_STATE,
+};
+
+export const VALIDATION_REGEX = {
+    PASSWORD: /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/,
 };

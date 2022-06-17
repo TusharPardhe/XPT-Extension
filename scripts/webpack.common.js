@@ -30,7 +30,7 @@ module.exports = {
         }),
         new NodePolyfillPlugin(),
         new CopyWebpackPlugin({
-            patterns: [{ from: path.resolve(__dirname, "..", "manifest.json") }, { from: path.resolve(__dirname, "..", "logo192.png") }],
+            patterns: [{ from: path.resolve(__dirname, "..", "manifest.json") }, { from: path.resolve(__dirname, "..", "xpt192.png") }],
         }),
     ],
     output: {
@@ -40,6 +40,6 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
-        inline: true
+        inline: true,
     },
 };

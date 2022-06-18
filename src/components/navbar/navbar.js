@@ -28,6 +28,7 @@ const Navbar = (props) => {
                     visible={isNavBarVisible}
                     direction="right"
                     width="thin"
+                    className="sidebar"
                 >
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.HOME)}>
                         <Icon name="home" />

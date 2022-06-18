@@ -1,17 +1,21 @@
 .add_account {
-    display: block;
     padding: 20px;
-    border-radius: 14px;
-    height: 400px;
     line-height: 1;
-    background: var(--pinkish-body-tint);
-    box-shadow: var(--generic-box-shadow);
+    display: flex;
+    padding: 20px 0px;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
     // box-shadow: var(--generic-box-shadow);
 
     .heading {
         font-size: 30px;
         font-weight: bold;
         color: var(--indigo-dye);
+        padding: 20px;
+        border: 1px solid black;
+        border-radius: 10px;
     }
 
     .subHeading {
@@ -19,15 +23,15 @@
         line-height: 1.5;
     }
 
-    .error_txt{
+    .error_txt {
         color: var(--carnelian);
         font-style: normal;
         font-size: 12px;
     }
-    .enter_btn{
+    .enter_btn {
         display: flex;
         justify-content: center;
-        button{
+        button {
             padding: 10px 40px;
         }
     }
@@ -38,7 +42,15 @@
     }
 
     .track_details_container {
-        padding: 40px 0;
+        padding: 20px;
+        border: 1px solid black;
+        border-radius: 10px;
+        transition: box-shadow 0.5s ease-in-out;
+        box-shadow: none;
+
+        &:hover {
+            box-shadow: 4px 6px 0px rgba(225, 224, 218, 0.67);
+        }
 
         .track_details_label {
             text-align: left;
@@ -56,7 +68,8 @@
             padding: 20px 5px;
 
             .label {
-                background-color:var(--baby-blue-eyes);
+                background-color: var(--baby-blue-eyes);
+                border-radius: 0px;
             }
             .disabled {
                 background-color: gray;
@@ -64,39 +77,46 @@
                 -webkit-box-shadow: none !important;
                 color: white;
             }
-            button{
+
+            .btn_container {
+                display: flex;
+                flex-direction: column;
+            }
+
+            button,
+            input {
                 border-radius: 0px;
             }
         }
     }
 
-    .account_add_success{
-        padding: 20px 0px;
-        .description{
+    .account_add_success {
+        padding: 20px;
+
+        .description {
             padding: 10px 0px;
-            .text{
+            .text {
                 font-size: 16px;
                 line-height: 1.5;
             }
         }
 
-        .buttons_container{
+        .buttons_container {
             display: grid;
             grid-template-columns: 50% 50%;
             grid-template-rows: auto auto;
             padding: 40px 0 0 0;
             gap: 15px 10px;
 
-            button:hover{
+            button:hover {
                 box-shadow: 4px 3px 0px rgba(225, 224, 218, 0.67);
             }
 
-            button:nth-child(3){
+            button:nth-child(3) {
                 grid-column-start: 1;
                 grid-column-end: 3;
                 grid-row-start: 2;
             }
         }
     }
-
 }

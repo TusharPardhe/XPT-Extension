@@ -7,7 +7,7 @@ const NewAccountDetailsInputs = ({ state, setState, onXrplAddressChange, onAlias
 
     return (
         <div className="track_details_container">
-            <div className="xrpl_details_box_heading">Please enter account details:</div>
+            <div className="xrpl_details_box_heading">Enter account details:</div>
             <div className="input_details">
                 <Input
                     placeholder="r....."
@@ -29,27 +29,31 @@ const NewAccountDetailsInputs = ({ state, setState, onXrplAddressChange, onAlias
                             error={alias.error.length > 0}
                         />
                         <i className="error_txt">{alias.error[0]}</i>
-                        <Button
-                            type="submit"
-                            color="green"
-                            disabled={alias.error.length > 0 || alias.inputValue.length === 0}
-                            inverted
-                            onClick={verifyAndSaveAddress}
-                        >
-                            Submit
-                        </Button>
+                        <div className="btn_container">
+                            <Button
+                                type="submit"
+                                color="green"
+                                disabled={alias.error.length > 0 || alias.inputValue.length === 0}
+                                inverted
+                                onClick={verifyAndSaveAddress}
+                            >
+                                Submit
+                            </Button>
+                        </div>
                     </>
                 ) : (
-                    <Button
-                        inverted
-                        color={isErrorXrplAddInput ? "grey" : "green"}
-                        type="submit"
-                        onClick={() => validateXRPAccountFromAPI({ setState, xrplAddress })}
-                        disabled={isErrorXrplAddInput}
-                        loading={xrplAddress.loading}
-                    >
-                        Validate
-                    </Button>
+                    <div className="btn_container">
+                        <Button
+                            inverted
+                            color={isErrorXrplAddInput ? "grey" : "green"}
+                            type="submit"
+                            onClick={() => validateXRPAccountFromAPI({ setState, xrplAddress })}
+                            disabled={isErrorXrplAddInput}
+                            loading={xrplAddress.loading}
+                        >
+                            Validate
+                        </Button>
+                    </div>
                 )}
             </div>
         </div>

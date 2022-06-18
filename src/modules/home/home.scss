@@ -42,8 +42,7 @@
         border: 1px solid gray;
         border-radius: 6px;
         height: 250px;
-        overflow-y: scroll;
-        overflow-x: auto;
+        overflow: auto;
 
         .accounts_grid {
             display: grid;

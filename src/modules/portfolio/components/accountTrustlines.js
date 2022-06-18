@@ -6,7 +6,7 @@ import { URLS } from "../../../constants/common.constants";
 
 export default function AccountTrustlines({ id, toggleDetails, isOpen, otherCurrencies }) {
     const onXrpscanBtnClick = () => {
-        window.open(`${URLS.XRPSCAN}/account/${id}`, "_blank");
+        window.open(`${URLS.XRPSCAN}account/${id}`, "_blank");
     };
 
     return (

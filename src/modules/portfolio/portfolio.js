@@ -13,6 +13,7 @@ import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 
 import { PUBLIC_SERVER } from "../../constants/common.constants";
 import { PORTFOLIO_INITIAL_STATE } from "../../constants/portfolio.constants";
+import { decryptJSON } from "../../utils/common.utils";
 
 import "./portfolio.scss";
 
@@ -22,7 +23,7 @@ const Portfolio = () => {
     const { data, otherCurrencies, isOpen, issuedFungibleTokens } = state;
     const [loading, setLoading] = useState(true);
     const xrplPortfolioKeys = localStorage.getItem("xrplPortfolioKeys");
-    const storedAddresses = xrplPortfolioKeys ? JSON.parse(xrplPortfolioKeys) : {};
+    const storedAddresses = xrplPortfolioKeys ? decryptJSON(xrplPortfolioKeys) : {};
 
     useEffect(() => {
         fetchAccountDetails();

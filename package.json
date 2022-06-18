@@ -6,6 +6,7 @@
     "@emeraldpay/hashicon-react": "^0.5.2",
     "axios": "^0.26.0",
     "bulma": "^0.9.3",
+    "crypto-js": "^4.1.1",
     "material-design-icons": "^3.0.1",
     "net": "^1.0.2",
     "node-polyfill-webpack-plugin": "^1.1.4",

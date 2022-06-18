@@ -28,6 +28,7 @@ const NewAccountDetailsInputs = ({ state, setState, onXrplAddressChange, onAlias
                             onChange={onAliasValueChange}
                             error={alias.error.length > 0}
                         />
+                        <i className="error_txt">{alias.error[0]}</i>
                         <Button
                             type="submit"
                             color="green"

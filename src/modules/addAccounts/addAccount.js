@@ -9,13 +9,14 @@ import { isValidXrplRAddress } from "../../utils/validations";
 import { ADD_ACCOUNTS_INITIAL_STATE } from "../../constants/common.constants";
 
 import "./addAccount.scss";
+import { decryptJSON, encryptJSON } from "../../utils/common.utils";
 
 const AddAccount = () => {
     const [state, setState] = useMergedState(ADD_ACCOUNTS_INITIAL_STATE);
     const { xrplAddress, alias, isLoading, hasAccountAdded } = state;
 
     const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
-    const accountsFromLocalStorage = xrplAddFromLocal ? JSON.parse(xrplAddFromLocal) : {};
+    const accountsFromLocalStorage = xrplAddFromLocal ? decryptJSON(xrplAddFromLocal) : {};
 
     const onXrplAddressChange = (event) => {
         const { value } = event.target;
@@ -49,7 +50,7 @@ const AddAccount = () => {
     const verifyAndSaveAddress = () => {
         // API Call to MongoDB
         accountsFromLocalStorage[xrplAddress.value] = alias.inputValue;
-        localStorage.setItem("xrplPortfolioKeys", JSON.stringify(accountsFromLocalStorage));
+        localStorage.setItem("xrplPortfolioKeys", encryptJSON(accountsFromLocalStorage));
         setState({ ...ADD_ACCOUNTS_INITIAL_STATE, hasAccountAdded: true });
         alert("Great!! Your account has been saved in Accounts section.");
     };

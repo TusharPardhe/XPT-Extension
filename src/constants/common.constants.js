@@ -21,7 +21,8 @@ export const ALTERNATIVE_ME_API_ENDPOINT = "https://api.alternative.me/v2/ticker
 export const URLS = {
     XRP_ICON: "https://drive.google.com/uc?export=view&id=1VUSemYB5GqRNihGVELTrlcW3VObhhn0-",
     CONSTRUCTION_GIF: "https://drive.google.com/uc?export=view&id=1219VV9-YnQBRiPnSFz2WjTULg6J0vdNc",
-    XRPSCAN: "https://xrpscan.com",
+    XRPSCAN: "https://xrpscan.com/",
+    TWITTER: "https://twitter.com/",
 };
 
 export const FIELD_INITIAL_STATE = {
@@ -51,3 +52,5 @@ export const LOGIN_INITIAL_STATE = {
 export const VALIDATION_REGEX = {
     PASSWORD: /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/,
 };
+
+export const ENCRYPTION_KEY = "*Rz?JM7xe^kQk@Ev&ykfU8=_4-*!kY";

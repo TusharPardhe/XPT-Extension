@@ -1,6 +1,8 @@
 import React from "react";
 import { Icon, Table } from "semantic-ui-react";
+import { URLS } from "../../../constants/common.constants";
 import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
+import { redirectToUrl } from "../../../utils/common.utils";
 
 export default function AccountDetails({ toggleDetails, isOpen, data }) {
     return (
@@ -12,6 +14,39 @@ export default function AccountDetails({ toggleDetails, isOpen, data }) {
                 <div className={`transition ${isOpen.ACCOUNT_DETAILS ? "load" : "hide"}`}>
                     <Table celled padded>
                         <Table.Body>
+                            {data.accountName && (
+                                <>
+                                    {data.accountName.name && (
+                                        <Table.Row>
+                                            <Table.Cell collapsing className="table_heading">
+                                                Name
+                                            </Table.Cell>
+                                            <Table.Cell>{data.accountName.name}</Table.Cell>
+                                        </Table.Row>
+                                    )}
+                                    {data.accountName.domain && (
+                                        <Table.Row>
+                                            <Table.Cell collapsing className="table_heading">
+                                                Website
+                                            </Table.Cell>
+                                            <Table.Cell className="url_link" onClick={() => redirectToUrl(`https://www.${data.accountName.domain}`)}>
+                                                {data.accountName.domain}
+                                            </Table.Cell>
+                                        </Table.Row>
+                                    )}
+                                    {data.accountName.twitter && (
+                                        <Table.Row>
+                                            <Table.Cell collapsing className="table_heading">
+                                                Twitter
+                                            </Table.Cell>
+                                            <Table.Cell
+                                                className="url_link"
+                                                onClick={() => redirectToUrl(`${URLS.TWITTER}${data.accountName.twitter}`)}
+                                            >{`@${data.accountName.twitter}`}</Table.Cell>
+                                        </Table.Row>
+                                    )}
+                                </>
+                            )}
                             <Table.Row>
                                 <Table.Cell collapsing className="table_heading">
                                     Balance

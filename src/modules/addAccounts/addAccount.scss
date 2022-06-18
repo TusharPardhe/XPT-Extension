@@ -3,6 +3,8 @@
     padding: 20px;
     border-radius: 14px;
     line-height: 1;
+    background: var(--pinkish-body-tint);
+    box-shadow: var(--generic-box-shadow);
     // box-shadow: var(--generic-box-shadow);
 
     .heading {
@@ -18,7 +20,8 @@
 
     .error_txt{
         color: var(--carnelian);
-        font-size: 13px;
+        font-style: normal;
+        font-size: 12px;
     }
     .enter_btn{
         display: flex;
@@ -52,13 +55,16 @@
             padding: 20px 5px;
 
             .label {
-                background-color: var(--mint-cream);
+                background-color:var(--baby-blue-eyes);
             }
             .disabled {
                 background-color: gray;
                 box-shadow: none !important;
                 -webkit-box-shadow: none !important;
                 color: white;
+            }
+            button{
+                border-radius: 0px;
             }
         }
     }

@@ -8,16 +8,29 @@
     background: var(--pinkish-body-tint);
 
     .heading {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
         font-weight: bold;
         padding: 10px 0px;
         font-size: 60px;
         line-height: 2;
+
+        .logo_img{
+            height: 100px;
+            width: 100px;
+        }
     }
 
     .subHeading {
         font-size: 16px;
         font-weight: bold;
         line-height: 2;
+    }
+
+    .short_phrase {
+        font-weight: lighter;
     }
 
     .btns_container {

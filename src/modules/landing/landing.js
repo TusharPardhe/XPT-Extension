@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Image } from "semantic-ui-react";
 import SimpleAnimationButton from "../../components/simpleAnimationButton/simpleAnimationButton";
 import { ROUTES } from "../../constants/common.constants";
-
+import XPTLogoImg from "../../assets/svg/xpt.svg";
 import "./landing.scss";
 
 const Landing = () => {
@@ -14,7 +15,10 @@ const Landing = () => {
 
     return (
         <div className="landing_container">
-            <div className="heading">XPT</div>
+            <div className="heading">
+                <Image src={XPTLogoImg} className="logo_img" />
+                PT
+            </div>
             <div className="subHeading">XRPL Portfolio Tracker</div>
             <div className="short_phrase">Let's keep it simple.</div>
             <div className="btns_container">

@@ -51,13 +51,13 @@ export default function AccountDetails({ toggleDetails, isOpen, data }) {
                                 <Table.Cell collapsing className="table_heading">
                                     Balance
                                 </Table.Cell>
-                                <Table.Cell>{data.xrpBalance} XRP</Table.Cell>
+                                <Table.Cell>{parseFloat(data.xrpBalance).toLocaleString()} XRP</Table.Cell>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell collapsing className="table_heading">
                                     Initial Balance
                                 </Table.Cell>
-                                <Table.Cell>{data.initial_balance} XRP</Table.Cell>
+                                <Table.Cell>{parseFloat(data.initial_balance).toLocaleString()} XRP</Table.Cell>
                             </Table.Row>
                             <Table.Row>
                                 <Table.Cell collapsing className="table_heading">

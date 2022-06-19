@@ -4,7 +4,6 @@ import { Label, Table } from "semantic-ui-react";
 
 export default function RenderFungibleTokenDetails({ token }) {
     const name = token.currency.length === 40 ? convertHexToString(token.currency) : token.currency;
-
     return (
         <Table celled>
             <Table.Body>
@@ -17,11 +16,11 @@ export default function RenderFungibleTokenDetails({ token }) {
                     <Table.Cell collapsing className="table_heading">
                         Balance
                     </Table.Cell>
-                    <Table.Cell>{parseFloat(token.balance).toFixed(6).toLocaleString()}</Table.Cell>
+                    <Table.Cell>{parseFloat(token.balance).toLocaleString()}</Table.Cell>
                 </Table.Row>
                 <Table.Row>
                     <Table.Cell collapsing className="table_heading">
-                        Issuer
+                        Account
                     </Table.Cell>
                     <Table.Cell>{token.account}</Table.Cell>
                 </Table.Row>
@@ -29,7 +28,7 @@ export default function RenderFungibleTokenDetails({ token }) {
                     <Table.Cell collapsing className="table_heading">
                         Limit
                     </Table.Cell>
-                    <Table.Cell>{token.limit}</Table.Cell>
+                    <Table.Cell>{parseFloat(token.limit).toLocaleString()}</Table.Cell>
                 </Table.Row>
             </Table.Body>
         </Table>

@@ -9,7 +9,7 @@ export const ROUTES = {
     XRP_DETAILS: "/price",
     NFT_DETAILS: "/nft",
     USEFUL_LINKS: "/links",
-    PROJECT_CALENDAR: "/calendar",
+    AIRDROPS: "/airdrops",
 };
 
 export const DEV_ENV = process.env.NODE_ENV === "development";

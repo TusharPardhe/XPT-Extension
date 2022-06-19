@@ -42,9 +42,9 @@ const Navbar = (props) => {
                         <Icon name="chart line" />
                         Price
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.PROJECT_CALENDAR)}>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.AIRDROPS)}>
                         <Icon name="calendar check outline" />
-                        Project Calendar
+                        Airdrops
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.USEFUL_LINKS)}>
                         <Icon name="bell" />

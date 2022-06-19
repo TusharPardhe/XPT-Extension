@@ -1,0 +1,46 @@
+.airdrops_container {
+    .heading_component{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .heading {
+            font-size: 40px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+    
+            .logo_img{
+                height: 40px;
+                width: 40px;
+            }
+        }
+
+        .sub_heading{
+            font-weight: lighter;
+            padding: 6px;
+        }
+    }
+
+    .input_container{
+        .date_picker{
+            text-align: center;
+
+            .react-date-picker__calendar {
+                width: 300px;
+                inset: 100% -50% !important;
+            }
+
+            .react-calendar {
+                border-radius: 10px;
+                box-shadow: var(--generic-box-shadow);
+            }
+
+            .react-date-picker__wrapper {
+                padding: 6px;
+            }
+        }
+    }
+}

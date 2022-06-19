@@ -11,7 +11,7 @@ import UsefulLinks from "./modules/usefulLinks/usefulLinks";
 import Login from "./modules/landing/components/login/login";
 import SignUp from "./modules/landing/components/signUp/signUp";
 import NftVisualiser from "./modules/nftVisualiser/nftVisualiser";
-import ProjectCalendar from "./modules/projectCalendar/projectCalendar";
+import Airdrops from "./modules/airdrops/airdrops";
 
 import { ROUTES } from "./constants/common.constants";
 
@@ -31,7 +31,7 @@ export default function Routes() {
             <Route path={ROUTES.XRP_DETAILS} element={wrapWithNavBar(<XRPDetails />)} />
             <Route path={ROUTES.USEFUL_LINKS} element={wrapWithNavBar(<UsefulLinks />)} />
             <Route path={ROUTES.NFT_DETAILS} element={wrapWithNavBar(<NftVisualiser />)} />
-            <Route path={ROUTES.PROJECT_CALENDAR} element={wrapWithNavBar(<ProjectCalendar />)} />
+            <Route path={ROUTES.AIRDROPS} element={wrapWithNavBar(<Airdrops />)} />
             <Route path="/*" element={<div>Error</div>} />
         </RoutesBundle>
     );

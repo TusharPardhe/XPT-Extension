@@ -15,8 +15,8 @@ const NewAccountDetailsInputs = ({ state, setState, onXrplAddressChange, onAlias
                 </div>
                 <div className="sub_heading">Track XRPL accounts</div>
             </div>
-            <div className="xrpl_details_box_heading">Enter account details:</div>
             <div className="input_details">
+                <div className="xrpl_details_box_heading">Enter account details:</div>
                 <Input
                     placeholder="r....."
                     label={{ content: "Address: " }}

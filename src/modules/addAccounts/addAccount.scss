@@ -55,15 +55,11 @@
                 font-size: 18px;
                 font-weight: lighter;
                 padding: 0 0 20px 0;
+                color: var(--onyx);
             }
         }
 
         .track_details_label {
-            text-align: left;
-        }
-
-        .xrpl_details_box_heading {
-            font-size: 14px;
             text-align: left;
         }
 
@@ -72,6 +68,12 @@
             flex-direction: column;
             gap: 15px;
             padding: 20px 5px;
+
+            .xrpl_details_box_heading {
+                font-size: 14px;
+                text-align: left;
+                color:var(--bdazzled-blue);
+            }
 
             .label {
                 background-color: var(--baby-blue-eyes);

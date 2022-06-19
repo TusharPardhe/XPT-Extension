@@ -19,7 +19,7 @@
         padding: 6px;
         background: white;
         box-shadow: 3px 2px 5px 1px rgba(225, 224, 218, 0.67);
-        border: 1px solid black;
+        border: 1px solid gray;
 
         .acc_name {
             white-space: break-spaces;
@@ -42,12 +42,13 @@
         border: 1px solid gray;
         border-radius: 6px;
         height: 250px;
-        overflow: auto;
 
         .accounts_grid {
             display: grid;
             gap: 16px;
-            padding: 20px 30px;
+            padding: 20px 30px 10px 30px;
+            overflow: scroll;
+            height: calc(100% - 30px);
         }
 
         .heading_details {

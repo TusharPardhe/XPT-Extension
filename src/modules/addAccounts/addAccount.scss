@@ -9,15 +9,6 @@
     text-align: center;
     // box-shadow: var(--generic-box-shadow);
 
-    .heading {
-        font-size: 30px;
-        font-weight: bold;
-        color: var(--indigo-dye);
-        padding: 20px;
-        border: 1px solid black;
-        border-radius: 10px;
-    }
-
     .subHeading {
         padding: 16px 0;
         line-height: 1.5;
@@ -42,14 +33,29 @@
     }
 
     .track_details_container {
-        padding: 20px;
-        border: 1px solid black;
-        border-radius: 10px;
-        transition: box-shadow 0.5s ease-in-out;
-        box-shadow: none;
+        padding: 0px 20px;
 
-        &:hover {
-            box-shadow: 4px 6px 0px rgba(225, 224, 218, 0.67);
+        .heading_container{
+            .track_heading {
+                display: flex;
+                font-size: 34px;
+                font-weight: bold;
+                padding: 10px 0px;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .logo_img{
+                height: 80px;
+                width: 80px;
+            }
+
+            .sub_heading{
+                font-size: 18px;
+                font-weight: lighter;
+                padding: 0 0 20px 0;
+            }
         }
 
         .track_details_label {
@@ -92,6 +98,13 @@
 
     .account_add_success {
         padding: 20px;
+
+        .success_heading {
+            font-size: 30px;
+            font-weight: bold;
+            color: var(--indigo-dye);
+            padding: 20px;
+        }
 
         .description {
             padding: 10px 0px;

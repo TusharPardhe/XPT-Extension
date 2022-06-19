@@ -22,6 +22,7 @@ const AccountAdditionSuccess = ({ setState }) => {
 
     return (
         <div className="account_add_success">
+            <div className="success_heading">Awesome! 🎉</div>
             <div className="description">
                 <div className="text">Your input has been saved, head over to home to keep track of your saved accounts.</div>
             </div>

@@ -1,12 +1,20 @@
 import React from "react";
-import { Button, Input } from "semantic-ui-react";
+import { Button, Image, Input } from "semantic-ui-react";
 import { validateXRPAccountFromAPI } from "../../../utils/validations";
+import XPTLogoImg from "../../../assets/svg/xpt.svg";
 
 const NewAccountDetailsInputs = ({ state, setState, onXrplAddressChange, onAliasValueChange, verifyAndSaveAddress, isErrorXrplAddInput }) => {
     const { xrplAddress, alias } = state;
 
     return (
         <div className="track_details_container">
+            <div className="heading_container">
+                <div className="track_heading">
+                    <Image src={XPTLogoImg} className="logo_img" />
+                    PT
+                </div>
+                <div className="sub_heading">Track XRPL accounts</div>
+            </div>
             <div className="xrpl_details_box_heading">Enter account details:</div>
             <div className="input_details">
                 <Input

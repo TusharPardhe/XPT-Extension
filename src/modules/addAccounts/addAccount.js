@@ -59,7 +59,6 @@ const AddAccount = () => {
 
     return (
         <div className="add_account">
-            <div className="heading">{hasAccountAdded ? "Awesome! 🎉" : `Hi! @userName`}</div>
             {hasAccountAdded ? (
                 <AccountAdditionSuccess {...{ state, setState }} />
             ) : (

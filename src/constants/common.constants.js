@@ -10,6 +10,7 @@ export const ROUTES = {
     NFT_DETAILS: "/nft",
     USEFUL_LINKS: "/links",
     AIRDROPS: "/airdrops",
+    DROP_DETAILS: "/drop/:id",
 };
 
 export const DEV_ENV = process.env.NODE_ENV === "development";

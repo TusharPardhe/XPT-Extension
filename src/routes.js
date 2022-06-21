@@ -12,6 +12,7 @@ import Login from "./modules/landing/components/login/login";
 import SignUp from "./modules/landing/components/signUp/signUp";
 import NftVisualiser from "./modules/nftVisualiser/nftVisualiser";
 import Airdrops from "./modules/airdrops/airdrops";
+import DropDetails from "./modules/airdrops/dropDetails/dropDetails";
 
 import { ROUTES } from "./constants/common.constants";
 
@@ -32,6 +33,7 @@ export default function Routes() {
             <Route path={ROUTES.USEFUL_LINKS} element={wrapWithNavBar(<UsefulLinks />)} />
             <Route path={ROUTES.NFT_DETAILS} element={wrapWithNavBar(<NftVisualiser />)} />
             <Route path={ROUTES.AIRDROPS} element={wrapWithNavBar(<Airdrops />)} />
+            <Route path={ROUTES.DROP_DETAILS} element={wrapWithNavBar(<DropDetails />)} />
             <Route path="/*" element={<div>Error</div>} />
         </RoutesBundle>
     );

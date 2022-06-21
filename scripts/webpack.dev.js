@@ -11,7 +11,7 @@ module.exports = {
             },
         ],
     },
-    target: "web",
+    // target: "web", // to enable live reloading
     devServer: {
         contentBase: path.resolve(__dirname, "..", "./dist"),
         liveReload: true,

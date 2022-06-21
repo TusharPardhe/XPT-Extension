@@ -1,7 +1,9 @@
 import React from "react";
 import DatePicker from "react-date-picker";
+import { useNavigate } from "react-router-dom";
 import { Divider, Image, Pagination } from "semantic-ui-react";
 import XPTLogoImg from "../../assets/svg/xpt.svg";
+import { ROUTES } from "../../constants/common.constants";
 import useMergedState from "../../utils/useMergedState";
 
 import "./airdrops.scss";
@@ -11,9 +13,15 @@ const Airdrops = () => {
         date: new Date(),
     });
 
+    const navigate = useNavigate();
+
     const { date } = state;
 
     const onDateChange = (value) => setState({ date: value });
+
+    const onDropClick = (id) => {
+        navigate(ROUTES.DROP_DETAILS.replace(":id", id));
+    };
 
     return (
         <div className="airdrops_container">
@@ -39,7 +47,7 @@ const Airdrops = () => {
                 </div>
                 <div className="airdrops_container">
                     <div className="airdrops">
-                        <div className="drop">
+                        <div className="drop" onClick={() => onDropClick("a")}>
                             <div className="left_section">Logo</div>
                             <div className="heading">A</div>
                         </div>

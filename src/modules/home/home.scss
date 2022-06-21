@@ -13,13 +13,11 @@
         align-items: center;
         justify-content: space-between;
         text-align: center;
-        border-radius: 10px;
-        // background: var(--baby-blue-eyes);
         transition: background-color 1.5s ease-out 100ms, box-shadow 0.2s ease-in-out;
         padding: 6px;
         background: white;
         box-shadow: 3px 2px 5px 1px rgba(225, 224, 218, 0.67);
-        border: 1px solid gray;
+        border: 1px solid var(--light-gray);
 
         .acc_name {
             white-space: break-spaces;
@@ -41,8 +39,7 @@
         display: flex;
         flex-direction: column;
         text-align: left;
-        border: 1px solid gray;
-        border-radius: 6px;
+        border: 1px solid var(--light-gray);
         height: 250px;
 
         .accounts_grid {
@@ -55,7 +52,7 @@
 
         .heading_details {
             padding: 5px 10px;
-            border-bottom: 1px solid gray;
+            border-bottom: 1px solid var(--platinum);
             border-radius: 2px;
 
             .table_header {
@@ -110,7 +107,7 @@
         .details {
             cursor: pointer;
             display: flex;
-            border: 1px solid black;
+            border: 1px solid var(--platinum);
             border-radius: 10px;
             transition: box-shadow 0.2s ease-in-out;
             padding: 6px 20px;

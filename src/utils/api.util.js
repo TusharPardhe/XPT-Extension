@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { encryptJSON } from "./common.utils";
 
 const ENV = process.env.NODE_ENV.toUpperCase();
@@ -56,6 +57,13 @@ export const ApiCall = (payload) => {
                 resolve(data);
             })
             .catch((error) => {
+                let errorResponse = error.response?.data || error.message;
+
+                if (typeof errorResponse === "object" && errorResponse.error) {
+                    errorResponse = errorResponse.error;
+                }
+                errorResponse = errorResponse ?? "Some error occurred";
+                toast.error(errorResponse);
                 reject(error);
             });
     });

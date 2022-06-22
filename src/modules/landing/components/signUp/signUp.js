@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "semantic-ui-react";
+import { toast } from "react-toastify";
 
 import useMergedState from "../../../../utils/useMergedState";
 import BackButton from "../../../../components/backButton/backButton";
@@ -15,6 +16,7 @@ const SignUp = () => {
     const navigate = useNavigate();
     const [state, setState] = useMergedState(LOGIN_INITIAL_STATE);
     const { isNextInputsVisible, username, password, confirmPassword, xrplAddress } = state;
+    const toastId = useRef(null);
 
     const onGoBackClick = () => (isNextInputsVisible ? setState({ isNextInputsVisible: false }) : navigate(-1));
 
@@ -80,7 +82,7 @@ const SignUp = () => {
         areAllValidInputs = areAllValidInputs && confirmPassword.error.length === 0 && confirmPassword.inputValue.length > 0;
 
         if (areAllValidInputs) {
-            console.log("Api called!");
+            toastId.current = toast("Sending details...");
             const payload = {
                 method: "POST",
                 url: "register/user",
@@ -98,8 +100,8 @@ const SignUp = () => {
                     if (response.data.success) {
                     }
                 })
-                .catch((err) => {
-                    console.log(err);
+                .finally(() => {
+                    toast.dismiss(toastId.current);
                 });
         }
     };

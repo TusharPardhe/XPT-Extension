@@ -1,14 +1,18 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
-import { DEV_ENV } from "./constants/common.constants";
 
 import Routes from "./routes";
+import { DEV_ENV } from "./constants/common.constants";
+
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
     if (DEV_ENV) {
         return (
             <BrowserRouter>
                 <div className="container">
+                    <ToastContainer />
                     <Routes />
                 </div>
             </BrowserRouter>
@@ -18,6 +22,7 @@ function App() {
     return (
         <MemoryRouter>
             <div className="container">
+                <ToastContainer position="top" />
                 <Routes />
             </div>
         </MemoryRouter>

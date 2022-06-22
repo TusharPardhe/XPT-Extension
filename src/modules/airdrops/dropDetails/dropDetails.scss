@@ -7,7 +7,6 @@
             position: relative;
             background: #fff;
             box-shadow: 0 10px 7px -5px rgba(#000, 0.4);
-            padding: 5px;
 
             .header {
                 position: relative;
@@ -15,7 +14,7 @@
                 height: 95px;
                 background-color: var(--cotton-candy);
                 border-radius: 24px 24px 0px 0px;
-                
+
                 .avatar {
                     position: absolute;
                     left: 50%;
@@ -41,6 +40,13 @@
                         height: auto;
                     }
                 }
+
+                .back_link{
+                    padding: 20px;
+                    font-size: 18px;
+                    color: white;
+                    cursor: pointer;
+                }
             }
 
             .drop_name {
@@ -65,11 +71,88 @@
                 color: #777;
             }
 
+            .coin_info {
+                .info_cards_container {
+                    display: grid;
+                    grid-template-columns: 46% 46%;
+                    padding: 10px;
+                    gap: 24px;
+
+                    .details {
+                        display: flex;
+                        position: relative;
+                        padding: 5px;
+                        min-width: 100px;
+                        min-height: 150px;
+                        flex-direction: column;
+                        justify-content: space-evenly;
+                        text-align: center;
+                        box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 40px -7px;
+                        border-radius: 15px;
+                        gap: 8px;
+                        background: white;
+                        z-index: 1;
+
+                        .info_heading {
+                            font-weight: bold;
+                        }
+                    }
+
+                    .box {
+                        position: relative;
+                        background: white;
+                        cursor: pointer;
+
+                        &:hover {
+                            &::after {
+                                position: absolute;
+                                content: "";
+                                top: 15px;
+                                left: 0;
+                                right: 0;
+                                height: 100%;
+                                width: 100%;
+                                transform: scale(0.9) translateZ(0);
+                                transition: background 5s ease-in-out;
+                                background: linear-gradient(
+                                    to left,
+                                    var(--platinum),
+                                    var(--sky-blue-crayola),
+                                    var(--baby-blue-eyes),
+                                    var(--baby-blue-eyes),
+                                    var(--platinum),
+                                    var(--black-shadows),
+                                    var(--sky-blue-crayola),
+                                    var(--light-gray),
+                                    var(--baby-blue-eyes)
+                                );
+                                background-size: 200% 200%;
+                                z-index: 0;
+                                filter: blur(20px);
+                                animation: animateGlow 5s linear infinite;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .trustline {
+                display: flex;
+                flex-direction: column;
+                padding: 10px;
+
+                .trustline_xumm {
+                    padding: 20px;
+                }
+            }
+
             .footer_links {
                 position: relative;
                 padding: 1rem;
                 background-color: var(--shadow-blue);
                 text-align: center;
+                margin-top: 20px;
+
                 a {
                     padding: 0 1rem;
                     color: #e2e2e2;
@@ -82,78 +165,6 @@
                         color: var(--cotton-candy);
                     }
                 }
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: -27px;
-                    left: 50%;
-                    margin-left: -15px;
-                    border: 15px solid transparent;
-                    border-bottom-color: var(--shadow-blue);
-                }
-            }
-        }
-
-        .coin_info {
-            .info_cards_container {
-                display: grid;
-                grid-template-columns: 46% 46%;
-                padding: 10px;
-                gap: 24px;
-
-                .details {
-                    display: flex;
-                    position: relative;
-                    padding: 5px;
-                    min-width: 100px;
-                    min-height: 150px;
-                    flex-direction: column;
-                    justify-content: space-evenly;
-                    text-align: center;
-                    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 40px -7px;
-                    border-radius: 15px;
-                    gap: 8px;
-                    background: white;
-                    z-index: 1;
-
-                    .info_heading {
-                        font-weight: bold;
-                    }
-                }
-
-                .box {
-                    position: relative;
-                    background: white;
-                    
-                    &:hover {
-                        &::after {
-                            position: absolute;
-                            content: "";
-                            top: 15px;
-                            left: 0;
-                            right: 0;
-                            height: 100%;
-                            width: 100%;
-                            transform: scale(0.9) translateZ(0);
-                            transition: background 5s ease-in-out;
-                            background: linear-gradient(to left, #ff5770, #e4428d, #c42da8, #9e16c3, #6501de, #9e16c3, #c42da8, #e4428d, #ff5770);
-                            background-size: 200% 200%;
-                            z-index: 0;
-                            filter: blur(20px);
-                            animation: animateGlow 5s linear infinite;
-                        }
-                    }
-                }               
-            }
-        }
-
-        .trustline {
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-
-            .trustline_xumm {
-                padding: 20px;
             }
         }
     }

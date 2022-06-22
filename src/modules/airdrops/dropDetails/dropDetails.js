@@ -1,13 +1,18 @@
 import React from "react";
-import { Table } from "semantic-ui-react";
+import { useNavigate } from "react-router-dom";
+import { Icon } from "semantic-ui-react";
+
 import "./dropDetails.scss";
 
 const DropDetails = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="drop_details_container">
             <div class="cards-container">
                 <div class="card">
                     <div className="header">
+                        <Icon name="arrow left" onClick={() => navigate(-1)} className="back_link" />
                         <div class="avatar">
                             <img className="drop_logo" src="https://randomuser.me/api/portraits/men/3.jpg" alt="Jhon Doe" />
                         </div>

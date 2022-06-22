@@ -1,7 +1,7 @@
 import { Client } from "xrpl";
 import { PUBLIC_SERVER, VALIDATION_REGEX } from "../constants/common.constants";
 
-export const isValidXrplRAddress = (value) => value.startsWith("r") && value.length >= 25 && value.length <= 35;
+export const isValidXrplRAddress = (value) => VALIDATION_REGEX.XRPL_R_ADDRESS.test(value);
 
 export async function validateXRPAccountFromAPI({ setState, xrplAddress }) {
     setState({

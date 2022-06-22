@@ -38,22 +38,22 @@ const Navbar = (props) => {
                         <Icon name="address book" />
                         Add Account
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.XRP_DETAILS)}>
-                        <Icon name="chart line" />
-                        Price
-                    </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.AIRDROPS)}>
                         <Icon name="calendar check outline" />
                         Airdrops
+                    </Menu.Item>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.XRP_DETAILS)}>
+                        <Icon name="chart line" />
+                        Price
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.USEFUL_LINKS)}>
                         <Icon name="bell" />
                         Useful Links
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.NFT_DETAILS)}>
+                    {/* <Menu.Item as="a" onClick={() => navigateTo(ROUTES.NFT_DETAILS)}>
                         <Icon name="image outline" />
                         NFT Visualiser
-                    </Menu.Item>
+                    </Menu.Item> */}
                 </Sidebar>
                 <Sidebar.Pusher dimmed={isNavBarVisible} className={isNavBarVisible ? "content_pusher" : ""}>
                     <div className="slider">

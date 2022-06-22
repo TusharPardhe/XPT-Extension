@@ -52,6 +52,7 @@ export const LOGIN_INITIAL_STATE = {
 
 export const VALIDATION_REGEX = {
     PASSWORD: /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/,
+    XRPL_R_ADDRESS: /^r[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{24,34}$/,
 };
 
 export const ENCRYPTION_KEY = "*Rz?JM7xe^kQk@Ev&ykfU8=_4-*!kY";

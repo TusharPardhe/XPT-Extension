@@ -2,11 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "semantic-ui-react";
 
+import useMergedState from "../../../../utils/useMergedState";
 import BackButton from "../../../../components/backButton/backButton";
 import SimpleAnimationButton from "../../../../components/simpleAnimationButton/simpleAnimationButton";
 import { LOGIN_INITIAL_STATE } from "../../../../constants/common.constants";
-import useMergedState from "../../../../utils/useMergedState";
-import { isValidPassword } from "../../../../utils/validations";
+import { ApiCall } from "../../../../utils/api.util";
+import { isValidPassword, isValidXrplRAddress } from "../../../../utils/validations";
 
 import "./signUp.scss";
 
@@ -33,6 +34,7 @@ const SignUp = () => {
             xrplAddress: {
                 ...xrplAddress,
                 inputValue: value,
+                error: !isValidXrplRAddress(value) ? ["Enter valid address"] : [],
             },
         });
     };
@@ -79,6 +81,26 @@ const SignUp = () => {
 
         if (areAllValidInputs) {
             console.log("Api called!");
+            const payload = {
+                method: "POST",
+                url: "register/user",
+                encrypt: true,
+                data: {
+                    userName: username.inputValue,
+                    password: password.inputValue,
+                    address: xrplAddress.inputValue,
+                },
+            };
+
+            ApiCall(payload)
+                .then((response) => {
+                    console.log(response);
+                    if (response.data.success) {
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
     };
 

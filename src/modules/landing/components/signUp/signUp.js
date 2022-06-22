@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import useMergedState from "../../../../utils/useMergedState";
 import BackButton from "../../../../components/backButton/backButton";
 import SimpleAnimationButton from "../../../../components/simpleAnimationButton/simpleAnimationButton";
-import { LOGIN_INITIAL_STATE } from "../../../../constants/common.constants";
+import { LOGIN_INITIAL_STATE, ROUTES } from "../../../../constants/common.constants";
 import { ApiCall } from "../../../../utils/api.util";
 import { isValidPassword, isValidXrplRAddress } from "../../../../utils/validations";
 
@@ -82,7 +82,7 @@ const SignUp = () => {
         areAllValidInputs = areAllValidInputs && confirmPassword.error.length === 0 && confirmPassword.inputValue.length > 0;
 
         if (areAllValidInputs) {
-            toastId.current = toast("Sending details...");
+            toastId.current = toast.loading("Sending details...");
             const payload = {
                 method: "POST",
                 url: "register/user",
@@ -96,8 +96,11 @@ const SignUp = () => {
 
             ApiCall(payload)
                 .then((response) => {
-                    console.log(response);
                     if (response.data.success) {
+                        toast.success("Success! Lets redirect you to login page.");
+                        setTimeout(() => {
+                            navigate(ROUTES.LOGIN);
+                        }, 3000);
                     }
                 })
                 .finally(() => {

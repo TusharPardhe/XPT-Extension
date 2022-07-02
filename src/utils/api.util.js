@@ -19,7 +19,7 @@ export const ApiCall = (payload) => {
     if (payload.auth) {
         const jwToken = localStorage.getItem("token");
         delete payload.jwt;
-        payload.token = jwToken;
+        payload.data.token = jwToken;
     }
 
     if (payload.baseURLKey) {

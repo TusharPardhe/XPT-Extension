@@ -1,10 +1,81 @@
-import React from "react";
+import React, { useRef } from "react";
+import { toast } from "react-toastify";
 import { Button, Divider, Image, Input } from "semantic-ui-react";
-import { validateXRPAccountFromAPI } from "../../../utils/validations";
-import XPTLogoImg from "../../../assets/svg/xpt.svg";
 
-const NewAccountDetailsInputs = ({ state, setState, onXrplAddressChange, onAliasValueChange, verifyAndSaveAddress, isErrorXrplAddInput }) => {
+import XPTLogoImg from "../../../assets/svg/xpt.svg";
+import { isValidXrplRAddress, validateXRPAccountFromAPI } from "../../../utils/validations";
+import { decryptJSON, encryptJSON } from "../../../utils/common.utils";
+import { ADD_ACCOUNTS_INITIAL_STATE } from "../../../constants/common.constants";
+import { ApiCall } from "../../../utils/api.util";
+
+const NewAccountDetailsInputs = ({ state, setState }) => {
     const { xrplAddress, alias } = state;
+    const toastId = useRef(null);
+
+    const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
+    const accountsFromLocalStorage = xrplAddFromLocal ? decryptJSON(xrplAddFromLocal) : {};
+
+    const isErrorXrplAddInput = !isValidXrplRAddress(xrplAddress.inputValue) || xrplAddress.error.length > 0;
+
+    const onAliasValueChange = (event) => {
+        const { value } = event.target;
+        let error = [];
+
+        if (Object.values(accountsFromLocalStorage).indexOf(value) > -1) {
+            error.push("This nickname already exists. Please choose a different one.");
+        };
+
+        setState({ alias: { ...alias, value: "", inputValue: value, error: error } });
+    };
+
+    const onXrplAddressChange = (event) => {
+        const { value } = event.target;
+        let error = [];
+
+        if (accountsFromLocalStorage[value]) {
+            error.push("Entered account already exists.");
+        }
+
+        setState({
+            xrplAddress: {
+                ...xrplAddress,
+                value: "",
+                inputValue: value,
+                error: error,
+            },
+            alias: ADD_ACCOUNTS_INITIAL_STATE.alias,
+        });
+    };
+
+    const verifyAndSaveAddress = () => {
+        // API Call to MongoDB
+        toastId.current = toast.loading("Sending details...");
+
+        const payload = {
+            method: "POST",
+            url: "user/save/accounts",
+            encrypt: true,
+            auth: true,
+            data: {
+                userName: localStorage.getItem("userName"),
+                accounts: {
+                    [xrplAddress.value]: alias.inputValue,
+                }
+            },
+        };
+
+        ApiCall(payload)
+            .then((response) => {
+                if (response.data) {
+                    accountsFromLocalStorage[xrplAddress.value] = alias.inputValue;
+                    localStorage.setItem("xrplPortfolioKeys", encryptJSON(accountsFromLocalStorage));
+                    setState({ ...ADD_ACCOUNTS_INITIAL_STATE, hasAccountAdded: true });
+                }
+            })
+            .finally(() => {
+                toast.dismiss(toastId.current);
+            });
+    };
 
     return (
         <div className="track_details_container">

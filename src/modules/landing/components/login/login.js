@@ -58,6 +58,7 @@ const Login = () => {
                 .then((response) => {
                     if (response.data.token) {
                         localStorage.setItem("token", response.data.token);
+                        localStorage.setItem("userName", response.data.userName);
                         navigate(ROUTES.HOME);
                     }
                 })

@@ -56,7 +56,7 @@ const Airdrops = () => {
                             <div className="heading">A</div>
                         </div>
                         <div className="drop">
-                            <div class="left_section"></div>
+                            <div className="left_section"></div>
                             <div className="right_section">
                                 <div className="heading">A</div>
                             </div>

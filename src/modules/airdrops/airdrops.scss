@@ -53,9 +53,11 @@
         .airdrops_container{
             .airdrops {
                 display: grid;
-                grid-template-columns: auto auto;
+                grid-template-columns: calc(50% - 10px) auto;
+                grid-template-rows: 50% 50%;
                 gap: 20px;
                 padding: 20px;
+                height: 250px;
 
                 .drop{
                     padding: 5px;

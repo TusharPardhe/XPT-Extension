@@ -27,6 +27,7 @@
                     overflow: hidden;
                     background: #ccc;
                     border: 3px solid #fff;
+
                     .drop_logo {
                         position: absolute;
                         top: 50%;
@@ -41,7 +42,7 @@
                     }
                 }
 
-                .back_link{
+                .back_link {
                     padding: 20px;
                     font-size: 18px;
                     color: white;
@@ -53,6 +54,7 @@
                 position: relative;
                 margin: 80px 0 30px;
                 text-align: center;
+
                 &::after {
                     content: "";
                     position: absolute;
@@ -64,6 +66,12 @@
                     background: #000;
                 }
             }
+
+            .project_name {
+                padding: 0 0 10px 0;
+                text-align: center;
+            }
+
             .desc {
                 padding: 0 1rem 2rem;
                 text-align: center;
@@ -114,18 +122,16 @@
                                 width: 100%;
                                 transform: scale(0.9) translateZ(0);
                                 transition: background 5s ease-in-out;
-                                background: linear-gradient(
-                                    to left,
-                                    var(--platinum),
-                                    var(--sky-blue-crayola),
-                                    var(--baby-blue-eyes),
-                                    var(--baby-blue-eyes),
-                                    var(--platinum),
-                                    var(--black-shadows),
-                                    var(--sky-blue-crayola),
-                                    var(--light-gray),
-                                    var(--baby-blue-eyes)
-                                );
+                                background: linear-gradient(to left,
+                                        var(--platinum),
+                                        var(--sky-blue-crayola),
+                                        var(--baby-blue-eyes),
+                                        var(--baby-blue-eyes),
+                                        var(--platinum),
+                                        var(--black-shadows),
+                                        var(--sky-blue-crayola),
+                                        var(--light-gray),
+                                        var(--baby-blue-eyes));
                                 background-size: 200% 200%;
                                 z-index: 0;
                                 filter: blur(20px);
@@ -161,6 +167,7 @@
                     -ms-transition: color 0.4s;
                     -o-transition: color 0.4s;
                     transition: color 0.4s;
+
                     &:hover {
                         color: var(--cotton-candy);
                     }
@@ -174,6 +181,7 @@
     0% {
         background-position: 0% 50%;
     }
+
     100% {
         background-position: 200% 50%;
     }

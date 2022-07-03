@@ -15,6 +15,7 @@ const SignUp = React.lazy(() => import("./modules/landing/components/signUp/sign
 const NftVisualiser = React.lazy(() => import("./modules/nftVisualiser/nftVisualiser"));
 const Airdrops = React.lazy(() => import("./modules/airdrops/airdrops"));
 const DropDetails = React.lazy(() => import("./modules/airdrops/dropDetails/dropDetails"));
+const AirdropRegistration = React.lazy(() => import("./modules/airdrops/airdropRegistration/airdropRegistration"));
 
 export default function Routes() {
     const location = useLocation();
@@ -35,6 +36,7 @@ export default function Routes() {
                 <Route path={ROUTES.NFT_DETAILS} element={wrapWithNavBar(<NftVisualiser />)} />
                 <Route path={ROUTES.AIRDROPS} element={wrapWithNavBar(<Airdrops />)} />
                 <Route path={ROUTES.DROP_DETAILS} element={wrapWithNavBar(<DropDetails />)} />
+                <Route path={ROUTES.AIRDROP_REGISTRATION} element={wrapWithNavBar(<AirdropRegistration />)} />
                 <Route path="/*" element={<div>Error</div>} />
             </RoutesBundle>
         </Suspense>

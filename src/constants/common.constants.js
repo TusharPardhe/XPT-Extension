@@ -11,6 +11,7 @@ export const ROUTES = {
     USEFUL_LINKS: "/links",
     AIRDROPS: "/airdrops",
     DROP_DETAILS: "/drop/:id",
+    AIRDROP_REGISTRATION: "/airdrop/register",
 };
 
 export const DEV_ENV = process.env.NODE_ENV === "development";

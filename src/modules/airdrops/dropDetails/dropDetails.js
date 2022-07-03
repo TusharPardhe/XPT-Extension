@@ -1,11 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
 
 import "./dropDetails.scss";
 
 const DropDetails = () => {
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const { projectName, currencyName } = state;
 
     return (
         <div className="drop_details_container">
@@ -17,7 +19,8 @@ const DropDetails = () => {
                             <img className="drop_logo" src="https://randomuser.me/api/portraits/men/3.jpg" alt="Jhon Doe" />
                         </div>
                     </div>
-                    <div className="drop_name">ABC Coin</div>
+                    <div className="drop_name">{currencyName}</div>
+                    <div className="project_name">{projectName}</div>
                     <div className="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit et cupiditate deleniti.</div>
                     <div className="trustline">
                         <div className="heading">Trustline:</div>

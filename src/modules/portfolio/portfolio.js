@@ -74,7 +74,7 @@ const Portfolio = () => {
             if (response.result.obligations) setState({ issuedFungibleTokens: response.result.obligations });
             await client.disconnect();
         } catch (err) {
-            alert(err);
+            console.log(err);
         }
     };
 

@@ -59,6 +59,7 @@ const Login = () => {
                     if (response.data.token) {
                         localStorage.setItem("token", response.data.token);
                         localStorage.setItem("userName", response.data.userName);
+                        localStorage.setItem("xrplAddress", response.data.xrplAddress);
                         navigate(ROUTES.HOME);
                     }
                 })

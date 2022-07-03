@@ -1,0 +1,78 @@
+.airdrop_registration_component {
+    .heading_component {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .heading {
+            font-size: 40px;
+            display: flex;
+            cursor: pointer;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+
+            .logo_img {
+                height: 40px;
+                width: 40px;
+            }
+        }
+
+        .sub_heading {
+            font-weight: lighter;
+            padding: 6px;
+        }
+
+    }
+
+    .registration_box {
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 10px 20px;
+
+            .input_field {
+                .label {
+                    font-size: 12px;
+                    padding: 0 0 2px 0;
+                }
+            }
+
+            .selection,
+            input,
+            textarea {
+                border-radius: 0px;
+                outline: 0;
+                border: 1px solid var(--gainsboro);
+            }
+
+            textarea {
+                padding: 10px;
+                font-weight: lighter;
+            }
+
+            .social_inputs {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+
+                .ui.labeled.input:not([class*="corner labeled"]) {
+                    .label {
+                        padding: 12px;
+                        border-radius: 0px;
+                        text-align: center;
+                        background-color: var(--gainsboro)
+                    }
+                }
+            }
+        }
+        .btn_container{
+            padding: 20px 20px 0px 20px;
+            button {
+                width: 100%;
+            }
+        }
+    }
+}

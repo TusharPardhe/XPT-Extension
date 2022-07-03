@@ -47,6 +47,7 @@ const Airdrops = () => {
                     setState({
                         totalPages: Math.ceil(totalCount / 4),
                         totalCount,
+                        date,
                         list,
                     });
                 }
@@ -58,14 +59,19 @@ const Airdrops = () => {
 
     const onDateChange = (value) => {
         setState({ date: value });
-        if (value) {
+        if (value && value - date !== 0) {
             fetchAirdropList(activePage, value);
         };
-    }
+    };
+
     const handlePaginationChange = (e, { activePage }) => {
         setState({ activePage });
         fetchAirdropList(activePage, date);
-    }
+    };
+
+    const handleRegisterBtnClick = () => {
+        navigate(ROUTES.AIRDROP_REGISTRATION);
+    };
 
     return (
         <div className="airdrops_container">
@@ -76,6 +82,7 @@ const Airdrops = () => {
                     PS
                 </div>
                 <div className="sub_heading">Never let a drop go unnoticed.</div>
+                <div className="register_drop_link" onClick={handleRegisterBtnClick}>Register your drop</div>
             </div>
             <Divider />
             <div className="input_container">
@@ -117,16 +124,18 @@ const AirdropList = ({ list, navigate }) => {
         return null;
     };
 
-    const onDropClick = (id) => {
-        navigate(ROUTES.DROP_DETAILS.replace(":id", id));
+    const onDropClick = (drop) => {
+        navigate(ROUTES.DROP_DETAILS.replace(":id", drop.ticker), {
+            state: drop
+        });
     };
 
     return (
         <div className="airdrops">
-            {list.map(({ projectName }) => (
-                <div className="drop" onClick={() => onDropClick("a")}>
+            {list.map((drop, index) => (
+                <div key={index} className="drop" onClick={() => onDropClick(drop)}>
                     <div className="left_section">Logo</div>
-                    <div className="heading">{projectName}</div>
+                    <div className="heading">{drop.projectName}</div>
                 </div>
             ))}
         </div>

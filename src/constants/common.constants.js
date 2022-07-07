@@ -44,7 +44,6 @@ export const ADD_ACCOUNTS_INITIAL_STATE = {
 };
 
 export const LOGIN_INITIAL_STATE = {
-    isNextInputsVisible: false,
     username: FIELD_INITIAL_STATE,
     password: FIELD_INITIAL_STATE,
     confirmPassword: FIELD_INITIAL_STATE,

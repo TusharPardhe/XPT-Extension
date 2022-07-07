@@ -1,8 +1,6 @@
 import { Client } from "xrpl";
 import { PUBLIC_SERVER, VALIDATION_REGEX } from "../constants/common.constants";
 
-export const isValidXrplRAddress = (value) => VALIDATION_REGEX.XRPL_R_ADDRESS.test(value);
-
 export async function validateXRPAccountFromAPI({ setState, xrplAddress }) {
     setState({
         xrplAddress: {
@@ -40,8 +38,43 @@ export async function validateXRPAccountFromAPI({ setState, xrplAddress }) {
         console.log(err);
     }
     client.disconnect();
+};
+
+export const isValidXrplRAddress = (value) => VALIDATION_REGEX.XRPL_R_ADDRESS.test(value);
+
+export const isValidValue = (value, message = "Please enter a valid value") => {
+    const valid = value.length > 0;
+    return {
+        valid,
+        error: valid ? [] : [message],
+    }
 }
 
-export const isValidPassword = (value) => {
-    return VALIDATION_REGEX.PASSWORD.test(value);
+export const isValidPassword = (value, message = "Enter a stronger password") => {
+    const valid = VALIDATION_REGEX.PASSWORD.test(value);
+
+    if (value.length === 0) {
+        message = "Please enter a valid value.";
+    };
+
+    return {
+        valid,
+        error: valid ? [] : [message],
+    }
+};
+
+export const isValidEqualValue = (value1, value2, message = "Your values don't match") => {
+    if (value1.length === 0 || value2.length === 0) {
+        return {
+            error: ["Please enter a valid value."],
+            valid: false
+        }
+    };
+
+    const valid = value1 === value2;
+
+    return {
+        valid,
+        error: valid ? [] : [message],
+    }
 };

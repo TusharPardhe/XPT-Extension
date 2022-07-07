@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: path.resolve(__dirname, "..", "./src/index.js"),
@@ -21,6 +22,9 @@ module.exports = {
     },
     resolve: {
         extensions: ["*", ".js", ".jsx"],
+        fallback: {
+            "fs": false
+        },
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -31,6 +35,9 @@ module.exports = {
         new NodePolyfillPlugin(),
         new CopyWebpackPlugin({
             patterns: [{ from: path.resolve(__dirname, "..", "manifest.json") }, { from: path.resolve(__dirname, "..", "xpt192.png") }],
+        }),
+        new Dotenv({
+            path: path.resolve(__dirname, "../.env")
         }),
     ],
     output: {

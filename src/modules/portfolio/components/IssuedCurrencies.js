@@ -19,7 +19,7 @@ export default function IssuedCurrencies({ toggleDetails, isOpen, issuedFungible
                         {Object.keys(issuedFungibleTokens).map((tokenName, index) => (
                             <Table.Row key={index}>
                                 <Table.Cell>
-                                    {tokenName.length === 40 ? convertHexToString(tokenName) : tokenName}
+                                    {tokenName.length === 40 ? convertHexToString(tokenName).replaceAll("\u0000", "") : tokenName}
                                 </Table.Cell>
                                 <Table.Cell>{parseFloat(issuedFungibleTokens[tokenName]).toLocaleString()}</Table.Cell>
                             </Table.Row>

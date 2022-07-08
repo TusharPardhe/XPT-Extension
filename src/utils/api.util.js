@@ -6,7 +6,7 @@ const ENV = process.env.NODE_ENV.toUpperCase();
 
 export const API_CONFIG = {
     PRODUCTION: {
-        default: "https://x.com",
+        default: "https://api.xptxrpl.com/",
     },
     DEVELOPMENT: {
         default: "http://localhost:3000/",

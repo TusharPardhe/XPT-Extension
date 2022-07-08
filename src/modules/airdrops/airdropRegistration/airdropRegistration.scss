@@ -27,6 +27,9 @@
     }
 
     .registration_box {
+        .heading{
+            font-size: 15px;
+        }
         .inputs {
             display: flex;
             flex-direction: column;
@@ -35,7 +38,7 @@
 
             .input_field {
                 .label {
-                    font-size: 12px;
+                    font-size: 13px;
                     padding: 0 0 2px 0;
                 }
             }

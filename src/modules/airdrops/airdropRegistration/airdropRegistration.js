@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Divider, Image, Input, Select, TextArea } from 'semantic-ui-react';
-import { Client } from 'xrpl';
+import { Client, convertHexToString } from 'xrpl';
 
 import useMergedState from '../../../utils/useMergedState';
 import XPTLogoImg from "../../../assets/svg/xpt.svg";
 import AnimatedLoader from '../../../components/AnimatedLoader/AnimatedLoader';
 import { PUBLIC_SERVER, ROUTES } from '../../../constants/common.constants';
+import { ApiCall } from "../../../utils/api.util";
+import { isValidValue } from '../../../utils/validations';
 
 import "./airdropRegistration.scss";
 
@@ -16,8 +18,33 @@ const AirdropRegistration = () => {
     const [state, setState] = useMergedState({
         issuedCurrencies: [],
         loading: true,
+        projectName: { value: "", error: [] },
+        currencyName: { value: "", error: [] },
+        date: { value: "", error: [] },
+        description: { value: "", error: [] },
+        logo: { value: "", error: [] },
+        twitter: { value: "", error: [] },
+        discord: { value: "", error: [] },
+        website: { value: "", error: [] },
+        linktree: { value: "", error: [] },
+        others: { value: "", error: [] },
+        ticker: { value: "", error: [] }
     });
-    const { issuedCurrencies, loading } = state;
+    const {
+        issuedCurrencies,
+        projectName,
+        logo,
+        ticker,
+        currencyName,
+        date,
+        description,
+        twitter,
+        discord,
+        website,
+        linktree,
+        others,
+        loading
+    } = state;
 
     useEffect(() => {
         fetchAccountDetails();
@@ -37,13 +64,55 @@ const AirdropRegistration = () => {
                 account: accountXrplAddress,
                 ledger_index: "validated",
             });
-            setState({ issuedCurrencies: response.result.obligations ?? [] });
+            const currencies = response.result.obligations;
+            if (currencies) {
+                const values = Object.keys(currencies).map(a => {
+                    if (a.length === 40) {
+                        const b = convertHexToString(a).replaceAll("\u0000", "");
+                        return ({ key: b, value: b, text: b })
+                    };
+                    return ({ key: a, value: a, text: a });
+                });
+                setState({ issuedCurrencies: values ?? [] });
+            };
             await client.disconnect();
         } catch (err) {
             console.log(err);
         } finally {
             setState({ loading: false });
         }
+    }
+
+    const handleUserInput = (e, res) => {
+        const { name, value } = res || e.target;
+        const { error } = isValidValue(value);
+        const updatedObj = { value, error };
+        if (e.target.files && e.target.files[0]) {
+            updatedObj.file = e.target.files[0];
+        };
+        setState({ [name]: updatedObj });
+    };
+
+    const onSubmit = () => {
+
+        const payload = {
+            method: "POST",
+            url: "airdrop/add",
+            data: {
+                ticker,
+                currencyName,
+            },
+        };
+
+        ApiCall(payload)
+            .then((response) => {
+                if (response.data) {
+
+                }
+            })
+            .finally(() => {
+
+            });
     }
 
     return (
@@ -61,18 +130,15 @@ const AirdropRegistration = () => {
                 <div className="heading">Please enter details:</div>
                 <div className="inputs">
                     <div className="input_field">
-                        <div className="label">Select token:</div>
+                        <div className="label">Select Token Ticker:</div>
                         <Select
                             placeholder="Select your token"
-                            options={
-                                [
-                                    { key: 'af', value: 'af', text: 'Afghanistan' },
-                                    { key: 'ax', value: 'ax', text: 'Aland Islands' },
-                                    { key: 'al', value: 'al', text: 'Albania' },
-                                ]
-                            }
+                            options={issuedCurrencies}
                             error={issuedCurrencies.length === 0 && !loading}
                             style={{ width: "100%" }}
+                            value={ticker.value}
+                            name="ticker"
+                            onChange={handleUserInput}
                         />
                     </div>
                     <div className="input_field">
@@ -80,14 +146,10 @@ const AirdropRegistration = () => {
                         <Input
                             placeholder="Enter name here"
                             style={{ width: "100%" }}
-                        />
-                    </div>
-                    <div className="input_field">
-                        <div className="label">Logo:</div>
-                        <Input
-                            placeholder="Select logo file"
-                            style={{ width: "100%" }}
-                            type="file"
+                            value={projectName.value}
+                            name="projectName"
+                            onChange={handleUserInput}
+                            error={projectName.error.length > 0}
                         />
                     </div>
                     <div className="input_field">
@@ -95,6 +157,10 @@ const AirdropRegistration = () => {
                         <Input
                             placeholder="Enter currency name here"
                             style={{ width: "100%" }}
+                            value={currencyName.value}
+                            name="currencyName"
+                            onChange={handleUserInput}
+                            error={currencyName.error.length > 0}
                         />
                     </div>
                     <div className="input_field">
@@ -102,35 +168,68 @@ const AirdropRegistration = () => {
                         <Input
                             placeholder="dd-mm-yyyy"
                             style={{ width: "100%" }}
+                            value={date.value}
+                            name="date"
+                            onChange={handleUserInput}
+                            error={date.error.length > 0}
                         />
                     </div>
                     <div className="input_field">
-                        <div className="label">Socials:</div>
+                        <div className="label">Links:</div>
                         <div className='social_inputs'>
                             <Input
                                 label={{ content: "Twitter: " }}
                                 labelPosition="left"
                                 style={{ width: "100%" }}
+                                value={twitter.value}
+                                name="twitter"
+                                placeholder="Enter twitter link"
+                                onChange={handleUserInput}
                             />
                             <Input
                                 label={{ content: "Discord: " }}
                                 labelPosition="left"
                                 style={{ width: "100%" }}
+                                value={discord.value}
+                                name="discord"
+                                placeholder="Enter discord link"
+                                onChange={handleUserInput}
+                            />
+                            <Input
+                                label={{ content: "Logo: " }}
+                                labelPosition="left"
+                                style={{ width: "100%" }}
+                                value={logo.value}
+                                name="logo"
+                                placeholder="Png/Jpeg/Jpg link"
+                                onChange={handleUserInput}
                             />
                             <Input
                                 label={{ content: "Website: " }}
                                 labelPosition="left"
                                 style={{ width: "100%" }}
+                                value={website.value}
+                                name="website"
+                                placeholder="Enter website link"
+                                onChange={handleUserInput}
                             />
                             <Input
                                 label={{ content: "LinkTree: " }}
                                 labelPosition="left"
                                 style={{ width: "100%" }}
+                                value={linktree.value}
+                                name="linktree"
+                                placeholder="Enter linktree link"
+                                onChange={handleUserInput}
                             />
                             <Input
                                 label={{ content: "Others: " }}
                                 labelPosition="left"
                                 style={{ width: "100%" }}
+                                value={others.value}
+                                name="others"
+                                placeholder="Enter additional links"
+                                onChange={handleUserInput}
                             />
                         </div>
                     </div>
@@ -144,6 +243,10 @@ const AirdropRegistration = () => {
                                 minHeight: "80px",
                                 maxHeight: "150px"
                             }}
+                            name="description"
+                            onChange={handleUserInput}
+                            value={description.value}
+                            error={description.error.length > 0}
                         />
                     </div>
                 </div>
@@ -152,7 +255,7 @@ const AirdropRegistration = () => {
                         inverted
                         color={"green"}
                         type="submit"
-                        onClick={() => console.log("Click")}
+                        onClick={onSubmit}
                         disabled={false}
                         loading={loading}
                     >

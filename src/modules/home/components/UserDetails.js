@@ -9,7 +9,9 @@ const UserDetails = () => {
     const navigate = useNavigate();
 
     const viewAccountPortfolio = () => {
-        navigate(ROUTES.PORTFOLIO.replace(":id", userAccount))
+        navigate(ROUTES.PORTFOLIO.replace(":id", userAccount), {
+            state: { userName }
+        });
     }
 
     return (

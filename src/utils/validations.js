@@ -42,8 +42,16 @@ export async function validateXRPAccountFromAPI({ setState, xrplAddress }) {
 
 export const isValidXrplRAddress = (value) => VALIDATION_REGEX.XRPL_R_ADDRESS.test(value);
 
-export const isValidValue = (value, message = "Please enter a valid value") => {
-    const valid = value.length > 0;
+export const isValidValue = (value, message = "Please enter a valid value", regex) => {
+    let valid = true;
+
+    if (!value || value.length === 0) {
+        valid = false;
+    }
+    else if (regex) {
+        valid = regex.test(value);
+    };
+
     return {
         valid,
         error: valid ? [] : [message],

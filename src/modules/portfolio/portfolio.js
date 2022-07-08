@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Client } from "xrpl";
 import { Hashicon } from "@emeraldpay/hashicon-react";
 
@@ -19,11 +19,13 @@ import "./portfolio.scss";
 
 const Portfolio = () => {
     const { id } = useParams();
+    const { state: historyState } = useLocation();
     const [state, setState] = useMergedState(PORTFOLIO_INITIAL_STATE);
     const { data, otherCurrencies, isOpen, issuedFungibleTokens } = state;
     const [loading, setLoading] = useState(true);
     const xrplPortfolioKeys = localStorage.getItem("xrplPortfolioKeys");
     const storedAddresses = xrplPortfolioKeys ? decryptJSON(xrplPortfolioKeys) : {};
+    const userName = historyState?.userName ?? storedAddresses[id];
 
     useEffect(() => {
         fetchAccountDetails();
@@ -83,7 +85,7 @@ const Portfolio = () => {
             <div className="icon">
                 <Hashicon value={id} size={50} />
             </div>
-            <div className="heading">{storedAddresses[id]}</div>
+            <div className="heading">{userName}</div>
             <div className="sub_heading">{id}</div>
             <div className="details_container">
                 {Object.keys(data).length > 0 && <AccountDetails {...{ toggleDetails, isOpen, data }} />}

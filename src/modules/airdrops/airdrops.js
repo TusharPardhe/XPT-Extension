@@ -35,7 +35,7 @@ const Airdrops = () => {
             params: {
                 limit,
                 pageNumber,
-                date: date.getTime()
+                date: parseInt(date.getTime() / 1000),
             }
         };
 

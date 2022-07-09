@@ -27,19 +27,22 @@
     }
 
     .registration_box {
+
         .heading{
-            font-size: 15px;
+            font-size: 16px;
+            padding-bottom: 10px;
         }
+
         .inputs {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
             padding: 10px 20px;
 
             .input_field {
                 .label {
                     font-size: 13px;
-                    padding: 0 0 2px 0;
+                    padding: 0 0 4px 0;
                 }
             }
 
@@ -71,11 +74,54 @@
                 }
             }
         }
+
+        .submission_note {
+            font-size: 12px;
+            padding: 10px 20px;
+            span {
+                color: var(--carnelian);
+                font-weight: bold;
+            }
+        }
+           
         .btn_container{
             padding: 20px 20px 0px 20px;
             button {
                 width: 100%;
             }
+        }
+
+        .react-datetime-picker {
+            width: 100%;
+        }
+
+        .react-datetime-picker__calendar {
+            width: 300px;
+            inset: 100% 0% !important;
+        }
+
+        .react-datetime-picker__inputGroup{
+            input {
+                border: none;
+            }
+        }
+
+        .react-datetime-picker__wrapper {
+            border: 1px solid var(--gainsboro); 
+            padding: 5px;
+        }
+
+        .react-calendar {
+            border-radius: 10px;
+            box-shadow: var(--generic-box-shadow);
+        }
+        
+        .error_textarea{
+            background-color: #fff6f6;
+            border-color: #e0b4b4;
+            color: #9f3a38;
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
     }
 }

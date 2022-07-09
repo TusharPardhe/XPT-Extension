@@ -4,8 +4,7 @@ html,
     margin: 0;
     height: 500px;
     width: 350px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
+    font-family: 'PT Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     word-break: break-word;
@@ -76,4 +75,7 @@ code {
     height: 100%;
     background-color: var(--white);
     color: var(--black);
+        //toastify variables
+    --toastify-toast-width: 280px;
+    --toastify-toast-min-height: 45px;
 }

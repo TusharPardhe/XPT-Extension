@@ -12,6 +12,7 @@ export const ROUTES = {
     AIRDROPS: "/airdrops",
     DROP_DETAILS: "/drop/:id",
     AIRDROP_REGISTRATION: "/airdrop/register",
+    REQUEST_SUCCESS: "/request/success",
 };
 
 export const DEV_ENV = process.env.NODE_ENV === "development";
@@ -40,7 +41,6 @@ export const ADD_ACCOUNTS_INITIAL_STATE = {
     },
     alias: FIELD_INITIAL_STATE,
     isLoading: false,
-    hasAccountAdded: false,
 };
 
 export const LOGIN_INITIAL_STATE = {

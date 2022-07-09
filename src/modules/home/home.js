@@ -40,7 +40,7 @@ const Home = () => {
 
             ApiCall(payload)
                 .then((response) => {
-                    if (response.data) {
+                    if (!response.data.error) {
                         const accountList = response.data.list;
                         setAccounts(accountList);
                         localStorage.setItem("xrplPortfolioKeys", encryptJSON(accountList));

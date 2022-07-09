@@ -1,16 +1,18 @@
 import React, { useRef } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { Button, Divider, Image, Input } from "semantic-ui-react";
 
 import XPTLogoImg from "../../../assets/svg/xpt.svg";
 import { isValidXrplRAddress, validateXRPAccountFromAPI } from "../../../utils/validations";
 import { decryptJSON, encryptJSON } from "../../../utils/common.utils";
-import { ADD_ACCOUNTS_INITIAL_STATE } from "../../../constants/common.constants";
+import { ADD_ACCOUNTS_INITIAL_STATE, ROUTES } from "../../../constants/common.constants";
 import { ApiCall } from "../../../utils/api.util";
 
 const NewAccountDetailsInputs = ({ state, setState }) => {
     const { xrplAddress, alias } = state;
     const toastId = useRef(null);
+    const navigate = useNavigate();
 
     const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
     const accountsFromLocalStorage = xrplAddFromLocal ? decryptJSON(xrplAddFromLocal) : {};
@@ -69,7 +71,7 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
                 if (response.data) {
                     accountsFromLocalStorage[xrplAddress.value] = alias.inputValue;
                     localStorage.setItem("xrplPortfolioKeys", encryptJSON(accountsFromLocalStorage));
-                    setState({ ...ADD_ACCOUNTS_INITIAL_STATE, hasAccountAdded: true });
+                    navigate(ROUTES.REQUEST_SUCCESS);
                 }
             })
             .finally(() => {

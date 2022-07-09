@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 import { Button, Divider, Image, Input, Select, TextArea } from 'semantic-ui-react';
 import { Client, convertHexToString } from 'xrpl';
+import DateTimePicker from 'react-datetime-picker';
 
 import useMergedState from '../../../utils/useMergedState';
 import XPTLogoImg from "../../../assets/svg/xpt.svg";
@@ -15,12 +17,13 @@ import "./airdropRegistration.scss";
 const AirdropRegistration = () => {
     const navigate = useNavigate();
     const accountXrplAddress = localStorage.getItem("xrplAddress");
+    const toastId = useRef(null);
+
     const [state, setState] = useMergedState({
-        issuedCurrencies: [],
         loading: true,
         projectName: { value: "", error: [] },
         currencyName: { value: "", error: [] },
-        date: { value: "", error: [] },
+        date: { value: new Date(), error: [] },
         description: { value: "", error: [] },
         logo: { value: "", error: [] },
         twitter: { value: "", error: [] },
@@ -28,10 +31,9 @@ const AirdropRegistration = () => {
         website: { value: "", error: [] },
         linktree: { value: "", error: [] },
         others: { value: "", error: [] },
-        ticker: { value: "", error: [] }
+        ticker: { value: "", error: [], options: [] }
     });
     const {
-        issuedCurrencies,
         projectName,
         logo,
         ticker,
@@ -73,7 +75,7 @@ const AirdropRegistration = () => {
                     };
                     return ({ key: a, value: a, text: a });
                 });
-                setState({ issuedCurrencies: values ?? [] });
+                setState({ ticker: { ...ticker, options: values ?? [] } });
             };
             await client.disconnect();
         } catch (err) {
@@ -86,33 +88,99 @@ const AirdropRegistration = () => {
     const handleUserInput = (e, res) => {
         const { name, value } = res || e.target;
         const { error } = isValidValue(value);
-        const updatedObj = { value, error };
+        const updatedObj = { ...state[name], value, error };
+
         if (e.target.files && e.target.files[0]) {
             updatedObj.file = e.target.files[0];
         };
+
         setState({ [name]: updatedObj });
     };
 
+    const validateAllFields = () => {
+        let isValid = true;
+
+        const { error: tickerError } = isValidValue(ticker.value);
+        if (tickerError.length) {
+            isValid = false;
+            setState({ ticker: { ...ticker, error: tickerError } });
+        }
+
+        const { error: projectNameError } = isValidValue(projectName.value);
+        if (projectNameError.length) {
+            isValid = false;
+            setState({ projectName: { ...projectName, error: projectNameError } });
+        }
+
+        const { error: currencyNameError } = isValidValue(currencyName.value);
+        if (currencyNameError.length) {
+            isValid = false;
+            setState({ currencyName: { ...currencyName, error: currencyNameError } });
+        }
+
+        const { error: dateError } = isValidValue(date.value);
+        if (dateError.length) {
+            isValid = false;
+            setState({ date: { ...date, error: dateError } });
+        }
+
+        const { error: logoError } = isValidValue(logo.value);
+        if (logoError.length) {
+            isValid = false;
+            setState({ logo: { ...logo, error: logoError } });
+        }
+
+        const { error: descriptionError } = isValidValue(description.value);
+        if (descriptionError.length) {
+            isValid = false;
+            setState({ description: { ...description, error: descriptionError } });
+        }
+
+        return isValid;
+    }
+
     const onSubmit = () => {
+        const isValid = validateAllFields();
 
-        const payload = {
-            method: "POST",
-            url: "airdrop/add",
-            data: {
-                ticker,
-                currencyName,
-            },
-        };
+        if (isValid) {
+            toastId.current = toast.loading("Fetching saved accounts...");
 
-        ApiCall(payload)
-            .then((response) => {
-                if (response.data) {
+            const payload = {
+                method: "POST",
+                url: "airdrop/add",
+                auth: true,
+                encrypt: true,
+                data: {
+                    userName: localStorage.getItem("userName"),
+                    projectName: projectName.value,
+                    ticker: ticker.value,
+                    issuer: accountXrplAddress,
+                    addedByAccount: accountXrplAddress,
+                    currencyName: currencyName.value,
+                    date: parseInt(date.value.getTime() / 1000),
+                    description: description.value,
+                    links: {
+                        logo: logo.value,
+                        twitter: twitter.value,
+                        discord: discord.value,
+                        linktree: linktree.value,
+                        others: others.value,
+                    }
+                },
+            };
 
-                }
-            })
-            .finally(() => {
-
-            });
+            ApiCall(payload)
+                .then((response) => {
+                    if (response.data) {
+                        navigate(ROUTES.REQUEST_SUCCESS);
+                    }
+                })
+                .finally(() => {
+                    toast.dismiss(toastId.current);
+                });
+        } else {
+            toast.error("Please check and enter valid details.")
+        }
     }
 
     return (
@@ -133,8 +201,8 @@ const AirdropRegistration = () => {
                         <div className="label">Select Token Ticker:</div>
                         <Select
                             placeholder="Select your token"
-                            options={issuedCurrencies}
-                            error={issuedCurrencies.length === 0 && !loading}
+                            options={ticker.options}
+                            error={ticker.error.length > 0}
                             style={{ width: "100%" }}
                             value={ticker.value}
                             name="ticker"
@@ -165,18 +233,26 @@ const AirdropRegistration = () => {
                     </div>
                     <div className="input_field">
                         <div className="label">Airdrop Date:</div>
-                        <Input
-                            placeholder="dd-mm-yyyy"
-                            style={{ width: "100%" }}
+                        <DateTimePicker
+                            onChange={(value) => setState({ date: { value } })}
                             value={date.value}
-                            name="date"
-                            onChange={handleUserInput}
-                            error={date.error.length > 0}
+                            style={{ width: "100%" }}
+                            required
                         />
                     </div>
                     <div className="input_field">
                         <div className="label">Links:</div>
                         <div className='social_inputs'>
+                            <Input
+                                label={{ content: "Logo: " }}
+                                labelPosition="left"
+                                style={{ width: "100%" }}
+                                value={logo.value}
+                                name="logo"
+                                placeholder="Png/Jpeg/Jpg link"
+                                onChange={handleUserInput}
+                                error={logo.error.length > 0}
+                            />
                             <Input
                                 label={{ content: "Twitter: " }}
                                 labelPosition="left"
@@ -193,15 +269,6 @@ const AirdropRegistration = () => {
                                 value={discord.value}
                                 name="discord"
                                 placeholder="Enter discord link"
-                                onChange={handleUserInput}
-                            />
-                            <Input
-                                label={{ content: "Logo: " }}
-                                labelPosition="left"
-                                style={{ width: "100%" }}
-                                value={logo.value}
-                                name="logo"
-                                placeholder="Png/Jpeg/Jpg link"
                                 onChange={handleUserInput}
                             />
                             <Input
@@ -247,8 +314,12 @@ const AirdropRegistration = () => {
                             onChange={handleUserInput}
                             value={description.value}
                             error={description.error.length > 0}
+                            className={description.error.length > 0 ? "error_textarea" : ""}
                         />
                     </div>
+                </div>
+                <div className="submission_note">
+                    <span>Note:</span> A token issuer can submit only one request per issued token. If you want to omit your details after submission, please contact on Twitter.
                 </div>
                 <div className="btn_container">
                     <Button

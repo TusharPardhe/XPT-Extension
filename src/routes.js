@@ -3,6 +3,7 @@ import { Route, Routes as RoutesBundle, useLocation } from "react-router-dom";
 import { Dimmer, Loader } from "semantic-ui-react";
 
 import { ROUTES } from "./constants/common.constants";
+
 const Home = React.lazy(() => import("./modules/home/home"));
 const Navbar = React.lazy(() => import("./components/navbar/navbar"));
 const Landing = React.lazy(() => import("./modules/landing/landing"));
@@ -16,6 +17,7 @@ const NftVisualiser = React.lazy(() => import("./modules/nftVisualiser/nftVisual
 const Airdrops = React.lazy(() => import("./modules/airdrops/airdrops"));
 const DropDetails = React.lazy(() => import("./modules/airdrops/dropDetails/dropDetails"));
 const AirdropRegistration = React.lazy(() => import("./modules/airdrops/airdropRegistration/airdropRegistration"));
+const SuccessPage = React.lazy(() => import("./components/successPage/sucessPage"));
 
 export default function Routes() {
     const location = useLocation();
@@ -37,6 +39,7 @@ export default function Routes() {
                 <Route path={ROUTES.AIRDROPS} element={wrapWithNavBar(<Airdrops />)} />
                 <Route path={ROUTES.DROP_DETAILS} element={wrapWithNavBar(<DropDetails />)} />
                 <Route path={ROUTES.AIRDROP_REGISTRATION} element={wrapWithNavBar(<AirdropRegistration />)} />
+                <Route path={ROUTES.REQUEST_SUCCESS} element={wrapWithNavBar(<SuccessPage />)} />
                 <Route path="/*" element={<div>Error</div>} />
             </RoutesBundle>
         </Suspense>

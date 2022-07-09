@@ -51,6 +51,8 @@ export const ApiCall = (payload) => {
         };
     }
 
+    console.log(`[${axiosPayload.method.toUpperCase()}] Request for API:`, " ", axiosPayload.baseURL + axiosPayload.url, " ", payload)
+
     return new Promise(function (resolve, reject) {
         _axios(axiosPayload)
             .then((data) => {

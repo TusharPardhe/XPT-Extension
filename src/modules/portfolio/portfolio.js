@@ -35,25 +35,44 @@ const Portfolio = () => {
 
     useEffect(() => {
         fetchAccountDetails();
-        fetchIssuedBalances();
     }, []);
 
     const fetchAccountDetails = async () => {
         try {
             const client = new Client(PUBLIC_SERVER, { connectionTimeout: 10000 });
             await client.connect();
+            let dataFromXrplSocket = {
+                otherCurrencies: [],
+                issuedFungibleTokens: {},
+                data: {},
+            };
 
             await fetch(`https://api.xrpscan.com/api/v1/account/${id}`)
                 .then((res) => res.json())
                 .then((res) => {
-                    setState({ data: res });
+                    dataFromXrplSocket.data = res;
                 });
 
             const account_lines = await client.request({
                 command: "account_lines",
                 account: id,
             });
-            setState({ otherCurrencies: account_lines.result.lines });
+
+            const gateway_balances = await client.request({
+                command: "gateway_balances",
+                account: id,
+                ledger_index: "validated",
+            });
+
+            if (account_lines.result.lines) {
+                dataFromXrplSocket.otherCurrencies = account_lines.result.lines;
+            }
+
+            if (gateway_balances.result.obligations) {
+                dataFromXrplSocket.issuedFungibleTokens = gateway_balances.result.obligations;
+            };
+
+            setState({ ...dataFromXrplSocket });
             await client.disconnect();
         } catch (err) {
             alert(err);
@@ -62,29 +81,14 @@ const Portfolio = () => {
         }
     };
 
-    const toggleDetails = (id) =>
+    const toggleDetails = (id) => {
         setState({
             isOpen: {
                 ...state.isOpen,
                 [id]: !isOpen[id],
             },
         });
-
-    const fetchIssuedBalances = async () => {
-        try {
-            const client = new Client(PUBLIC_SERVER, { connectionTimeout: 10000 });
-            await client.connect();
-            const response = await client.request({
-                command: "gateway_balances",
-                account: id,
-                ledger_index: "validated",
-            });
-            if (response.result.obligations) setState({ issuedFungibleTokens: response.result.obligations });
-            await client.disconnect();
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    }
 
     const onDeleteClick = () => {
 
@@ -117,16 +121,12 @@ const Portfolio = () => {
 
     return (
         <div className="portfolio_container">
-            <div className="icon">
-                <Hashicon value={id} size={50} />
-            </div>
-            <div className="heading">{userName}</div>
-            <div className="sub_heading">{id}</div>
+            <PortfolioHeading {...{ id, userName }} />
             {!isCurrentUser && (<Button color="red" className="delete_btn" onClick={onDeleteClick}>Remove</Button>)}
             <div className="details_container">
-                {Object.keys(data).length > 0 && <AccountDetails {...{ toggleDetails, isOpen, data }} />}
-                {Object.keys(issuedFungibleTokens).length > 0 && <IssuedCurrencies {...{ toggleDetails, isOpen, issuedFungibleTokens }} />}
-                {otherCurrencies.length > 0 && <AccountTrustlines {...{ id, toggleDetails, isOpen, otherCurrencies }} />}
+                <AccountDetails {...{ toggleDetails, isOpen, data }} />
+                <IssuedCurrencies {...{ toggleDetails, isOpen, issuedFungibleTokens }} />
+                <AccountTrustlines {...{ id, toggleDetails, isOpen, otherCurrencies }} />
                 <OtherDetails {...{ toggleDetails, isOpen }} />
             </div>
             <AnimatedLoader loadingText="Fetching details..." isActive={loading} />
@@ -135,3 +135,16 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
+const PortfolioHeading = ({ id, userName }) => {
+    return (
+        <div className="heading_container">
+            <div className="icon">
+                <Hashicon value={id} size={50} />
+            </div>
+            <div className="heading">{userName}</div>
+            <div className="sub_heading">{id}</div>
+        </div>
+    );
+}
+

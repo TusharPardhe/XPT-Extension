@@ -4,6 +4,8 @@ import { convertHexToString } from "xrpl";
 import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
 
 export default function IssuedCurrencies({ toggleDetails, isOpen, issuedFungibleTokens }) {
+    if (Object.keys(issuedFungibleTokens).length === 0) { return null; };
+
     return (
         <div className="issued_tokens_container">
             <div className="details_header" onClick={() => toggleDetails(PORTFOLIO_HEADER_KEYS.ISSUED_FUNGIBLE_TOKENS)}>
@@ -13,10 +15,12 @@ export default function IssuedCurrencies({ toggleDetails, isOpen, issuedFungible
                 {Object.keys(issuedFungibleTokens).map((tokenName, index) => (
                     <Table celled key={index}>
                         <Table.Body>
-                            <Table.Row key={index}>
-                                <Table.Cell>
-                                    {tokenName.length === 40 ? convertHexToString(tokenName).replaceAll("\u0000", "") : tokenName}
-                                </Table.Cell>
+                            <Table.Row key={`${tokenName}_${index}`}>
+                                <Table.Cell>Name</Table.Cell>
+                                <Table.Cell>{tokenName.length === 40 ? convertHexToString(tokenName).replaceAll("\u0000", "") : tokenName}</Table.Cell>
+                            </Table.Row>
+                            <Table.Row key={`${issuedFungibleTokens[tokenName]}_${index}`}>
+                                <Table.Cell>Amount</Table.Cell>
                                 <Table.Cell>{parseFloat(issuedFungibleTokens[tokenName]).toLocaleString()}</Table.Cell>
                             </Table.Row>
                         </Table.Body>

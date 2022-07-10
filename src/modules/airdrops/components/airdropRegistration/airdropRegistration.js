@@ -7,7 +7,7 @@ import { Client, convertHexToString } from 'xrpl';
 import useMergedState from '../../../../utils/useMergedState';
 
 import { RegistrationForm } from './RegistrationForm';
-import XPTLogoImg from "../../../assets/svg/xpt.svg";
+import XPTLogoImg from "../../../../assets/svg/xpt.svg";
 import AnimatedLoader from '../../../../components/AnimatedLoader/AnimatedLoader';
 import { PUBLIC_SERVER, ROUTES } from '../../../../constants/common.constants';
 import { ApiCall } from "../../../../utils/api.util";

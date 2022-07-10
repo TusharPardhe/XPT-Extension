@@ -5,6 +5,8 @@ import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
 import { URLS } from "../../../constants/common.constants";
 
 export default function AccountTrustlines({ id, toggleDetails, isOpen, otherCurrencies }) {
+    if (otherCurrencies.length === 0) { return null; };
+
     const onXrpscanBtnClick = () => {
         window.open(`${URLS.XRPSCAN}account/${id}`, "_blank");
     };

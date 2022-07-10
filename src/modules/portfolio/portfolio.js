@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Client } from "xrpl";
+import { Button } from "semantic-ui-react";
 import { Hashicon } from "@emeraldpay/hashicon-react";
 
 import useMergedState from "../../utils/useMergedState";
@@ -26,6 +27,7 @@ const Portfolio = () => {
     const xrplPortfolioKeys = localStorage.getItem("xrplPortfolioKeys");
     const storedAddresses = xrplPortfolioKeys ? decryptJSON(xrplPortfolioKeys) : {};
     const userName = historyState?.userName ?? storedAddresses[id];
+    const isCurrentUser = !!(historyState?.userName);
 
     useEffect(() => {
         fetchAccountDetails();
@@ -80,6 +82,12 @@ const Portfolio = () => {
         }
     };
 
+    const onDeleteClick = () => {
+        if (!isCurrentUser) {
+            console.log("Delete");
+        }
+    }
+
     return (
         <div className="portfolio_container">
             <div className="icon">
@@ -87,10 +95,11 @@ const Portfolio = () => {
             </div>
             <div className="heading">{userName}</div>
             <div className="sub_heading">{id}</div>
+            {!isCurrentUser && (<Button color="red" className="delete_btn" onClick={onDeleteClick}>Remove</Button>)}
             <div className="details_container">
                 {Object.keys(data).length > 0 && <AccountDetails {...{ toggleDetails, isOpen, data }} />}
-                {otherCurrencies.length > 0 && <AccountTrustlines {...{ id, toggleDetails, isOpen, otherCurrencies }} />}
                 {Object.keys(issuedFungibleTokens).length > 0 && <IssuedCurrencies {...{ toggleDetails, isOpen, issuedFungibleTokens }} />}
+                {otherCurrencies.length > 0 && <AccountTrustlines {...{ id, toggleDetails, isOpen, otherCurrencies }} />}
                 <OtherDetails {...{ toggleDetails, isOpen }} />
             </div>
             <AnimatedLoader loadingText="Fetching details..." isActive={loading} />

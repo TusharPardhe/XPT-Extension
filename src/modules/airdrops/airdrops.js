@@ -1,17 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Divider, Image, Pagination } from "semantic-ui-react";
 import DatePicker from "react-date-picker";
 
+import NoResultCard from "../../components/NoResultCard/noResultCard";
+import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 import XPTLogoImg from "../../assets/svg/xpt.svg";
 import { ROUTES } from "../../constants/common.constants";
 import { ApiCall } from "../../utils/api.util";
 import useMergedState from "../../utils/useMergedState";
+import { executeScrollToRef } from "../../utils/common.utils";
 
 import "./airdrops.scss";
 
 const Airdrops = () => {
     const navigate = useNavigate();
+    const inputContainerRef = useRef();
     const [state, setState] = useMergedState({
         date: new Date(),
         activePage: 1,
@@ -21,7 +25,7 @@ const Airdrops = () => {
         loading: true,
         list: [],
     });
-    const { date, activePage, totalPages, limit, list } = state;
+    const { date, activePage, totalPages, limit, list, loading } = state;
 
     useEffect(() => {
         fetchAirdropList(activePage, date);
@@ -54,6 +58,7 @@ const Airdrops = () => {
             })
             .finally(() => {
                 setState({ loading: false });
+                executeScrollToRef(inputContainerRef);
             });
     }
 
@@ -85,8 +90,9 @@ const Airdrops = () => {
                 <div className="register_drop_link" onClick={handleRegisterBtnClick}>Register your drop</div>
             </div>
             <Divider />
-            <div className="input_container">
+            <div className="input_container" >
                 <div className="date_picker">
+                    <div className="label">From date:</div>
                     <DatePicker
                         value={date}
                         onChange={onDateChange}
@@ -97,8 +103,8 @@ const Airdrops = () => {
                     />
                 </div>
                 <div className="airdrops_container">
-                    <AirdropList {...{ list, navigate }} />
-                    <div className="pagination">
+                    <AirdropList {...{ loading, list, navigate }} />
+                    <div className="pagination" ref={inputContainerRef}>
                         <Pagination
                             pointing
                             secondary
@@ -113,15 +119,18 @@ const Airdrops = () => {
                     </div>
                 </div>
             </div>
+            <AnimatedLoader loadingText={"Fetching drops...."} isActive={loading} />
         </div>
     );
 };
 
 export default Airdrops;
 
-const AirdropList = ({ list, navigate }) => {
+const AirdropList = ({ loading, list, navigate }) => {
+    if (loading) { return null; }
+
     if (!list || list.length === 0) {
-        return null;
+        return <NoResultCard title={"No airdrops found"} />;
     };
 
     const onDropClick = (drop) => {
@@ -133,7 +142,7 @@ const AirdropList = ({ list, navigate }) => {
     return (
         <div className="airdrops">
             {list.map((drop, index) => (
-                <div key={index} className="drop" onClick={() => onDropClick(drop)}>
+                <div key={`${drop.projectName}_${index}`} className="drop" onClick={() => onDropClick(drop)}>
                     <div className="left_section">Logo</div>
                     <div className="heading">{drop.projectName}</div>
                 </div>

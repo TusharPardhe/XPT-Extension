@@ -55,5 +55,3 @@ export const VALIDATION_REGEX = {
     XRPL_R_ADDRESS: /^r[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{24,34}$/,
     URL: /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
 };
-
-export const ENCRYPTION_KEY = "*Rz?JM7xe^kQk@Ev&ykfU8=_4-*!kY";

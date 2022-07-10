@@ -57,6 +57,7 @@ const Login = () => {
             ApiCall(payload)
                 .then((response) => {
                     if (response.data.token) {
+                        localStorage.clear();
                         localStorage.setItem("token", response.data.token);
                         localStorage.setItem("userName", response.data.userName);
                         localStorage.setItem("xrplAddress", response.data.xrplAddress);

@@ -23,7 +23,18 @@
             font-weight: lighter;
             padding: 6px;
         }
+    }
 
+    .not_issuer_not {
+        background: red;
+        font-size: 14px;
+        padding: 10px;
+        color: white;
+        font-weight: bold;
+        
+        span{
+            font-size: 16px;
+        }
     }
 
     .registration_box {

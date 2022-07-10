@@ -10,22 +10,18 @@ export default function IssuedCurrencies({ toggleDetails, isOpen, issuedFungible
                 Issued Fungible Tokens <Icon name={`caret ${isOpen.ISSUED_FUNGIBLE_TOKENS ? "down" : "right"}`} />
             </div>
             <div className={`transition ${isOpen.ISSUED_FUNGIBLE_TOKENS ? "load" : "hide"}`}>
-                <Table celled>
-                    <Table.Body>
-                        <Table.Row>
-                            <Table.Cell collapsing className="table_heading">Name</Table.Cell>
-                            <Table.Cell collapsing className="table_heading">Limit</Table.Cell>
-                        </Table.Row>
-                        {Object.keys(issuedFungibleTokens).map((tokenName, index) => (
+                {Object.keys(issuedFungibleTokens).map((tokenName, index) => (
+                    <Table celled key={index}>
+                        <Table.Body>
                             <Table.Row key={index}>
                                 <Table.Cell>
                                     {tokenName.length === 40 ? convertHexToString(tokenName).replaceAll("\u0000", "") : tokenName}
                                 </Table.Cell>
                                 <Table.Cell>{parseFloat(issuedFungibleTokens[tokenName]).toLocaleString()}</Table.Cell>
                             </Table.Row>
-                        ))}
-                    </Table.Body>
-                </Table>
+                        </Table.Body>
+                    </Table>
+                ))}
             </div>
         </div>
     );

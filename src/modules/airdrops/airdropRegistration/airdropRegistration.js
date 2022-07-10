@@ -21,6 +21,7 @@ const AirdropRegistration = () => {
 
     const [state, setState] = useMergedState({
         loading: true,
+        isAnIssuer: true,
         projectName: { value: "", error: [] },
         currencyName: { value: "", error: [] },
         date: { value: new Date(), error: [] },
@@ -45,7 +46,8 @@ const AirdropRegistration = () => {
         website,
         linktree,
         others,
-        loading
+        loading,
+        isAnIssuer,
     } = state;
 
     useEffect(() => {
@@ -75,8 +77,10 @@ const AirdropRegistration = () => {
                     };
                     return ({ key: a, value: a, text: a });
                 });
-                setState({ ticker: { ...ticker, options: values ?? [] } });
-            };
+                setState({ ticker: { ...ticker, options: values ?? [] }, isAnIssuer: true });
+            } else {
+                setState({ isAnIssuer: false })
+            }
             await client.disconnect();
         } catch (err) {
             console.log(err);
@@ -136,6 +140,10 @@ const AirdropRegistration = () => {
             setState({ description: { ...description, error: descriptionError } });
         }
 
+        if (!isAnIssuer) {
+            isValid = false;
+        }
+
         return isValid;
     }
 
@@ -143,7 +151,7 @@ const AirdropRegistration = () => {
         const isValid = validateAllFields();
 
         if (isValid) {
-            toastId.current = toast.loading("Fetching saved accounts...");
+            toastId.current = toast.loading("Sending request");
 
             const payload = {
                 method: "POST",
@@ -194,6 +202,14 @@ const AirdropRegistration = () => {
                 <div className="sub_heading">Never let a drop go unnoticed.</div>
             </div>
             <Divider />
+            {!isAnIssuer && (
+                <>
+                    <div className="not_issuer_not">
+                        <span>Restricted:</span> Only token issuer accounts can request for an airdrop listing. Please login using an issuer account.
+                    </div>
+                    <Divider />
+                </>
+            )}
             <div className="registration_box">
                 <div className="heading">Please enter details:</div>
                 <div className="inputs">
@@ -313,7 +329,6 @@ const AirdropRegistration = () => {
                             name="description"
                             onChange={handleUserInput}
                             value={description.value}
-                            error={description.error.length > 0}
                             className={description.error.length > 0 ? "error_textarea" : ""}
                         />
                     </div>

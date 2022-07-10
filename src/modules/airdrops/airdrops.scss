@@ -67,8 +67,12 @@
                 height: 250px;
 
                 .drop{
-                    padding: 5px;
+                    display: flex;
+                    flex-direction: column;
                     text-align: center;
+                    align-items: center;
+                    justify-content: space-around;
+                    padding: 5px;
                     cursor: pointer;
                     border: 1px solid var(--platinum);
                     border-radius: 16px;

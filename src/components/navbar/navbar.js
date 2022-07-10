@@ -15,6 +15,11 @@ const Navbar = (props) => {
         setIsNavBarVisible(false);
     };
 
+    const onLogOutClick = () => {
+        localStorage.clear();
+        navigate(ROUTES.LANDING_PAGE);
+    }
+
     return (
         <div className="navbar_container" style={{ height: "100%" }}>
             <Sidebar.Pushable>
@@ -54,6 +59,10 @@ const Navbar = (props) => {
                         <Icon name="image outline" />
                         NFT Visualiser
                     </Menu.Item> */}
+                    <Menu.Item as="a" onClick={onLogOutClick}>
+                        <Icon name="log out" />
+                        Logout
+                    </Menu.Item>
                 </Sidebar>
                 <Sidebar.Pusher dimmed={isNavBarVisible} className={isNavBarVisible ? "content_pusher" : ""}>
                     <div className="slider">

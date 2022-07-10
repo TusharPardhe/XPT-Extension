@@ -15,3 +15,5 @@ export const decryptJSON = (data) => {
 };
 
 export const executeScrollToRef = (ref) => ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+export const saveAddrsInLocStrg = (data) => localStorage.setItem("xrplPortfolioKeys", encryptJSON(data));

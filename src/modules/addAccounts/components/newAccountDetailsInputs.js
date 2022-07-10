@@ -5,7 +5,7 @@ import { Button, Divider, Image, Input } from "semantic-ui-react";
 
 import XPTLogoImg from "../../../assets/svg/xpt.svg";
 import { isValidXrplRAddress, validateXRPAccountFromAPI } from "../../../utils/validations";
-import { decryptJSON, encryptJSON } from "../../../utils/common.utils";
+import { decryptJSON, saveAddrsInLocStrg } from "../../../utils/common.utils";
 import { ADD_ACCOUNTS_INITIAL_STATE, ROUTES } from "../../../constants/common.constants";
 import { ApiCall } from "../../../utils/api.util";
 
@@ -50,7 +50,6 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
     };
 
     const verifyAndSaveAddress = () => {
-        // API Call to MongoDB
         toastId.current = toast.loading("Sending details...");
 
         const payload = {
@@ -70,7 +69,7 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
             .then((response) => {
                 if (response.data) {
                     accountsFromLocalStorage[xrplAddress.value] = alias.inputValue;
-                    localStorage.setItem("xrplPortfolioKeys", encryptJSON(accountsFromLocalStorage));
+                    saveAddrsInLocStrg(accountsFromLocalStorage);
                     navigate(ROUTES.REQUEST_SUCCESS);
                 }
             })

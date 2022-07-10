@@ -6,7 +6,7 @@ import NoAddedAccounts from "./components/NoAddedAccounts";
 import SavedAccounts from "./components/SavedAccounts";
 import UserDetails from "./components/UserDetails";
 
-import { decryptJSON, encryptJSON } from "../../utils/common.utils";
+import { decryptJSON, saveAddrsInLocStrg } from "../../utils/common.utils";
 import { ROUTES } from "../../constants/common.constants";
 import { ApiCall } from "../../utils/api.util";
 
@@ -20,7 +20,7 @@ const Home = () => {
 
     useEffect(() => {
         onHomePageLoad();
-    });
+    }, []);
 
     const navigateTo = (id) => {
         navigate(ROUTES.PORTFOLIO.replace(":id", id));
@@ -43,7 +43,7 @@ const Home = () => {
                     if (!response.data.error) {
                         const accountList = response.data.list;
                         setAccounts(accountList);
-                        localStorage.setItem("xrplPortfolioKeys", encryptJSON(accountList));
+                        saveAddrsInLocStrg(accountList);
                     }
                 })
                 .finally(() => {
@@ -56,7 +56,7 @@ const Home = () => {
         const acc = { ...accounts };
         delete acc[id];
         setAccounts(acc);
-        localStorage.setItem("xrplPortfolioKeys", encryptJSON(acc));
+        saveAddrsInLocStrg(acc);
     };
 
     return (

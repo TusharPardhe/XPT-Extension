@@ -10,8 +10,15 @@ const Landing = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Auto Login from JWT
+        autoLogin();
     }, []);
+
+    const autoLogin = () => {
+        const jwt = localStorage.getItem("token");
+        if (jwt) {
+            navigate(ROUTES.HOME);
+        }
+    }
 
     return (
         <div className="landing_container">

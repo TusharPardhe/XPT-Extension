@@ -26,8 +26,10 @@ const SuccessPage = () => {
             <div className="description">
                 <div className="text">
                     Thank you for using XPT.
-                    <br />Press the back button to add another request or head over to home to track your saved accounts.
-                    Hit the blue button below to support the project and keep us going!
+                    <br /><br />
+                    We are happy to have you here.
+                    To navigate, press the buttons below.
+                    Also, consider donating to the project it keeps us motivated! 
                 </div>
             </div>
             <div className="buttons_container">

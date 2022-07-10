@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Client } from "xrpl";
+import { toast } from "react-toastify";
 import { Button } from "semantic-ui-react";
 import { Hashicon } from "@emeraldpay/hashicon-react";
 
@@ -12,15 +13,18 @@ import OtherDetails from "./components/otherDetails";
 import IssuedCurrencies from "./components/issuedCurrencies";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 
-import { PUBLIC_SERVER } from "../../constants/common.constants";
+import { PUBLIC_SERVER, ROUTES } from "../../constants/common.constants";
 import { PORTFOLIO_INITIAL_STATE } from "../../constants/portfolio.constants";
-import { decryptJSON } from "../../utils/common.utils";
+import { decryptJSON, saveAddrsInLocStrg } from "../../utils/common.utils";
+import { ApiCall } from "../../utils/api.util";
 
 import "./portfolio.scss";
 
 const Portfolio = () => {
     const { id } = useParams();
     const { state: historyState } = useLocation();
+    const toastId = useRef(null);
+    const navigate = useNavigate();
     const [state, setState] = useMergedState(PORTFOLIO_INITIAL_STATE);
     const { data, otherCurrencies, isOpen, issuedFungibleTokens } = state;
     const [loading, setLoading] = useState(true);
@@ -83,9 +87,32 @@ const Portfolio = () => {
     };
 
     const onDeleteClick = () => {
-        if (!isCurrentUser) {
-            console.log("Delete");
-        }
+
+        toastId.current = toast.loading("Deleting account....");
+
+        const payload = {
+            method: "POST",
+            url: "user/delete/account",
+            encrypt: true,
+            auth: true,
+            data: {
+                userName: localStorage.getItem("userName"),
+                account: id,
+            },
+        };
+
+        ApiCall(payload)
+            .then((response) => {
+                if (response.data) {
+                    saveAddrsInLocStrg(response.data.list);
+                    if (Object.keys(response.data.list).length === 0) {
+                        navigate(ROUTES.HOME);
+                    }
+                }
+            })
+            .finally(() => {
+                toast.dismiss(toastId.current);
+            });
     }
 
     return (

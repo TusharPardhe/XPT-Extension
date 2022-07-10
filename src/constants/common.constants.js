@@ -15,7 +15,7 @@ export const ROUTES = {
     REQUEST_SUCCESS: "/request/success",
 };
 
-export const DEV_ENV = process.env.NODE_ENV === "development";
+export const ENV = process.env.NODE_ENV.toUpperCase();
 
 export const PUBLIC_SERVER = "wss://xrplcluster.com/";
 

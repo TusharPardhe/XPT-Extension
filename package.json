@@ -2,6 +2,27 @@
   "name": "xrpl-browser-extension",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "webpack serve --config scripts/webpack.config.js --env env=dev --progress",
+    "build": "webpack --config scripts/webpack.config.js --env env=prod --progress"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@emeraldpay/hashicon-react": "^0.5.2",
     "axios": "^0.26.0",
@@ -26,27 +47,6 @@
     "tls": "^0.0.1",
     "xrpl": "^2.1.1",
     "xumm-oauth2-pkce": "^2.0.3"
-  },
-  "scripts": {
-    "start": "webpack serve --config scripts/webpack.config.js --env env=dev --progress",
-    "build": "webpack --config scripts/webpack.config.js --env env=prod --progress"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",

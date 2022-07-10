@@ -15,6 +15,7 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
     const navigate = useNavigate();
 
     const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
+    const currentUserAccount = localStorage.getItem("xrplAddress");
     const accountsFromLocalStorage = xrplAddFromLocal ? decryptJSON(xrplAddFromLocal) : {};
 
     const isErrorXrplAddInput = !isValidXrplRAddress(xrplAddress.inputValue) || xrplAddress.error.length > 0;
@@ -34,7 +35,7 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
         const { value } = event.target;
         let error = [];
 
-        if (accountsFromLocalStorage[value]) {
+        if (accountsFromLocalStorage[value] || value === currentUserAccount) {
             error.push("Entered account already exists.");
         }
 

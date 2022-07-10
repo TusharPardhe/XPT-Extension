@@ -334,7 +334,7 @@ const AirdropRegistration = () => {
                     </div>
                 </div>
                 <div className="submission_note">
-                    <span>Note:</span> A token issuer can submit only one request per issued token. If you want to omit your details after submission, please contact on Twitter.
+                    <span>Note:</span> A token issuer can submit only one request per issued token. If you want to omit your details after submission, please contact us on <a href=" ">Twitter</a>.
                 </div>
                 <div className="btn_container">
                     <Button

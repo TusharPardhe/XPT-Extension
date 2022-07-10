@@ -1,12 +1,11 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { ENV } from "../constants/common.constants";
 import { encryptJSON } from "./common.utils";
-
-const ENV = process.env.NODE_ENV.toUpperCase();
 
 export const API_CONFIG = {
     PRODUCTION: {
-        default: "https://api.xptxrpl.com/",
+        default: "http://localhost:3000/",
     },
     DEVELOPMENT: {
         default: "http://localhost:3000/",

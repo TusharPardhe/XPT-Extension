@@ -3,15 +3,15 @@ import { ToastContainer } from "react-toastify";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 
 import Routes from "./routes";
-import { DEV_ENV } from "./constants/common.constants";
+import { ENV } from "./constants/common.constants";
 
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-    if (DEV_ENV) {
+    if (ENV === "DEVELOPMENT") {
         return (
             <BrowserRouter>
-                <div className="container">
+                <div className="container" id="xpt_browser_extension">
                     <ToastContainer />
                     <Routes />
                 </div>
@@ -21,7 +21,7 @@ function App() {
 
     return (
         <MemoryRouter>
-            <div className="container">
+            <div className="container" id="xpt_browser_extension">
                 <ToastContainer />
                 <Routes />
             </div>

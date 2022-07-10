@@ -15,8 +15,8 @@ const Login = React.lazy(() => import("./modules/landing/components/login/login"
 const SignUp = React.lazy(() => import("./modules/landing/components/signUp/signUp"));
 const NftVisualiser = React.lazy(() => import("./modules/nftVisualiser/nftVisualiser"));
 const Airdrops = React.lazy(() => import("./modules/airdrops/airdrops"));
-const DropDetails = React.lazy(() => import("./modules/airdrops/dropDetails/dropDetails"));
-const AirdropRegistration = React.lazy(() => import("./modules/airdrops/airdropRegistration/airdropRegistration"));
+const DropDetails = React.lazy(() => import("./modules/airdrops/components/dropDetails/dropDetails"));
+const AirdropRegistration = React.lazy(() => import("./modules/airdrops/components/airdropRegistration/airdropRegistration"));
 const SuccessPage = React.lazy(() => import("./components/successPage/sucessPage"));
 
 export default function Routes() {

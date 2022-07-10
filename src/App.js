@@ -22,7 +22,7 @@ function App() {
     return (
         <MemoryRouter>
             <div className="container">
-                <ToastContainer position="top" />
+                <ToastContainer />
                 <Routes />
             </div>
         </MemoryRouter>

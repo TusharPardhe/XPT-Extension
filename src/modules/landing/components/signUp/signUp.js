@@ -119,7 +119,7 @@ const SignUp = () => {
     };
 
     const onVerifyXrplAddressClick = () => {
-        const auth = new XummPkce(process.env.REACT_APP_XUMM_API_KEY);
+        const auth = new XummPkce(process.env.XUMM_API_KEY);
 
         auth.authorize().then(authorized => {
             setState({

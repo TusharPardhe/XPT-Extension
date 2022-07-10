@@ -8,7 +8,6 @@ import useMergedState from "../../../../utils/useMergedState";
 import BackButton from "../../../../components/backButton/backButton";
 import SimpleAnimationButton from "../../../../components/simpleAnimationButton/simpleAnimationButton";
 import { FIELD_INITIAL_STATE, ROUTES } from "../../../../constants/common.constants";
-import { saveAddrsInLocStrg } from "../../../../utils/common.utils";
 import { ApiCall } from "../../../../utils/api.util";
 
 import "./login.scss";
@@ -61,7 +60,7 @@ const Login = () => {
                         localStorage.clear();
                         localStorage.setItem("token", response.data.token);
                         localStorage.setItem("userName", response.data.userName);
-                        saveAddrsInLocStrg(response.data.xrplAddress);
+                        localStorage.setItem("xrplAddress", response.data.xrplAddress);
                         navigate(ROUTES.HOME);
                     }
                 })

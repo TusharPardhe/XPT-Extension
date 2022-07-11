@@ -16,11 +16,11 @@ export default function IssuedCurrencies({ toggleDetails, isOpen, issuedFungible
                     <Table celled key={index}>
                         <Table.Body>
                             <Table.Row key={`${tokenName}_${index}`}>
-                                <Table.Cell>Name</Table.Cell>
+                                <Table.Cell className="table_heading">Name</Table.Cell>
                                 <Table.Cell>{tokenName.length === 40 ? convertHexToString(tokenName).replaceAll("\u0000", "") : tokenName}</Table.Cell>
                             </Table.Row>
                             <Table.Row key={`${issuedFungibleTokens[tokenName]}_${index}`}>
-                                <Table.Cell>Amount</Table.Cell>
+                                <Table.Cell className="table_heading">Amount</Table.Cell>
                                 <Table.Cell>{parseFloat(issuedFungibleTokens[tokenName]).toLocaleString()}</Table.Cell>
                             </Table.Row>
                         </Table.Body>

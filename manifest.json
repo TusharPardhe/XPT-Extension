@@ -5,8 +5,24 @@
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "Open"
+    "default_title": "XPT"
   },
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "background_worker.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/*"
+      ],
+      "js": [
+        "web_interaction_content_script.js"
+      ]
+    }
+  ],
   "permissions": [
     "storage",
     "tabs",

@@ -196,7 +196,7 @@ const AirdropRegistration = () => {
         <div className="airdrop_registration_component">
             <RegistrationHeading {...{ gotoAirdrops }} />
             <Divider />
-            <RestrictionNote show={!isAnIssuer} />
+            <RestrictionNote isAnIssuer={isAnIssuer} />
             <RegistrationForm {...{ state, setState, handleUserInput, onSubmit }} />
             <AnimatedLoader loadingText="Fetching details..." isActive={loading} />
         </div>
@@ -219,8 +219,8 @@ const RegistrationHeading = ({ gotoAirdrops }) => {
     );
 }
 
-const RestrictionNote = (show) => {
-    if (!show) return null;
+const RestrictionNote = ({ isAnIssuer }) => {
+    if (isAnIssuer) { return null; };
 
     return (
         <>

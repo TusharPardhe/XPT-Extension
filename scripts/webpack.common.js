@@ -31,10 +31,19 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "..", "./src/index.html"),
             favicon: "./favicon.ico",
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true
+            }
         }),
         new NodePolyfillPlugin(),
         new CopyWebpackPlugin({
-            patterns: [{ from: path.resolve(__dirname, "..", "manifest.json") }, { from: path.resolve(__dirname, "..", "xpt192.png") }],
+            patterns: [
+                { from: path.resolve(__dirname, "..", "manifest.json") },
+                { from: path.resolve(__dirname, "..", "xpt192.png") },
+                { from: path.resolve(__dirname, "../scripts/background_worker.js") },
+                { from: path.resolve(__dirname, "../scripts/web_interaction_content_script.js") },
+            ],
         }),
         new Dotenv({
             path: path.resolve(__dirname, "../.env")

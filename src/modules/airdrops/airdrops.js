@@ -4,7 +4,7 @@ import { Divider, Image, Pagination } from "semantic-ui-react";
 import DatePicker from "react-date-picker";
 
 import NoResultCard from "../../components/NoResultCard/noResultCard";
-import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
+import ShimmerLoader from "../../components/shimmerLoader/shimmerLoader";
 import XPTLogoImg from "../../assets/svg/xpt.svg";
 import { ROUTES } from "../../constants/common.constants";
 import { ApiCall } from "../../utils/api.util";
@@ -119,7 +119,6 @@ const Airdrops = () => {
                     </div>
                 </div>
             </div>
-            <AnimatedLoader loadingText={"Fetching drops...."} isActive={loading} />
         </div>
     );
 };
@@ -127,7 +126,9 @@ const Airdrops = () => {
 export default Airdrops;
 
 const AirdropList = ({ loading, list, navigate }) => {
-    if (loading) { return null; }
+    if (loading) { 
+        return <ShimmerLoader/>; 
+    };
 
     if (!list || list.length === 0) {
         return <NoResultCard title={"No airdrops found"} />;

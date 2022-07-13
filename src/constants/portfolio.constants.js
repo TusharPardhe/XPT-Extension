@@ -10,6 +10,7 @@ export const PORTFOLIO_INITIAL_STATE = {
     data: {},
     otherCurrencies: [],
     issuedFungibleTokens: {},
+    loading: false,
     isOpen: {
         ACCOUNT_DETAILS: true,
         RESERVES: false,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Divider } from "semantic-ui-react";
 
-const SavedAccounts = ({ accounts, navigateTo, onDeleteAccClick }) => {
+const SavedAccounts = ({ accounts, navigateTo }) => {
     return (
         <>
             <p>Select your preferred account to track.</p>
@@ -16,7 +16,6 @@ const SavedAccounts = ({ accounts, navigateTo, onDeleteAccClick }) => {
                             <div className="acc_name" onClick={() => navigateTo(currAccount)}>
                                 {accounts[currAccount]}
                             </div>
-                            {/* <Icon name="close" className="icon-close" onClick={() => onDeleteAccClick(currAccount)} /> */}
                         </div>
                     ))}
                 </div>

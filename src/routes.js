@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import { Route, Routes as RoutesBundle, useLocation } from "react-router-dom";
-import { Dimmer, Loader } from "semantic-ui-react";
 
 import { ROUTES } from "./constants/common.constants";
 
+import ShimmerLoader from "./components/shimmerLoader/shimmerLoader";
 const Home = React.lazy(() => import("./modules/home/home"));
 const Navbar = React.lazy(() => import("./components/navbar/navbar"));
 const Landing = React.lazy(() => import("./modules/landing/landing"));
@@ -25,7 +25,7 @@ export default function Routes() {
     const wrapWithNavBar = (component) => <Navbar>{component}</Navbar>;
 
     return (
-        <Suspense fallback={<SuspenseLoader />}>
+        <Suspense fallback={<ShimmerLoader />}>
             <RoutesBundle location={location}>
                 <Route path={ROUTES.LANDING_PAGE} element={<Landing />} />
                 <Route path={ROUTES.LOGIN} element={<Login />} />
@@ -43,13 +43,5 @@ export default function Routes() {
                 <Route path="/*" element={<div>Error</div>} />
             </RoutesBundle>
         </Suspense>
-    );
-};
-
-const SuspenseLoader = () => {
-    return (
-        <Dimmer active inverted style={{ maxHeight: "500px" }}>
-            <Loader inverted></Loader>
-        </Dimmer>
     );
 };

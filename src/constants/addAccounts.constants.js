@@ -1,5 +1,10 @@
-export const ADD_ACCOUNTS_INITIAL_STATES = {
-    address: "",
-    accName: "",
-    loading: false,
-}
+import { FIELD_INITIAL_STATE } from "./common.constants";
+
+export const ADD_ACCOUNTS_INITIAL_STATE = {
+    xrplAddress: {
+        ...FIELD_INITIAL_STATE,
+        loading: false,
+    },
+    alias: FIELD_INITIAL_STATE,
+    isLoading: false,
+};

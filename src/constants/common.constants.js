@@ -34,22 +34,6 @@ export const FIELD_INITIAL_STATE = {
     error: [],
 };
 
-export const ADD_ACCOUNTS_INITIAL_STATE = {
-    xrplAddress: {
-        ...FIELD_INITIAL_STATE,
-        loading: false,
-    },
-    alias: FIELD_INITIAL_STATE,
-    isLoading: false,
-};
-
-export const LOGIN_INITIAL_STATE = {
-    username: FIELD_INITIAL_STATE,
-    password: FIELD_INITIAL_STATE,
-    confirmPassword: FIELD_INITIAL_STATE,
-    xrplAddress: FIELD_INITIAL_STATE,
-};
-
 export const VALIDATION_REGEX = {
     PASSWORD: /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/,
     XRPL_R_ADDRESS: /^r[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{24,34}$/,

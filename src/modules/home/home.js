@@ -52,17 +52,10 @@ const Home = () => {
         }
     }
 
-    const onDeleteAccClick = (id) => {
-        const acc = { ...accounts };
-        delete acc[id];
-        setAccounts(acc);
-        saveAddrsInLocStrg(acc);
-    };
-
     return (
         <div className="home_component">
             <UserDetails />
-            {Object.keys(accounts).length === 0 ? <NoAddedAccounts /> : <SavedAccounts {...{ accounts, navigateTo, onDeleteAccClick }} />}
+            {Object.keys(accounts).length === 0 ? <NoAddedAccounts /> : <SavedAccounts {...{ accounts, navigateTo }} />}
         </div>
     );
 };

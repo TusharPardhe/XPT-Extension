@@ -7,7 +7,8 @@ import { XummPkce } from "xumm-oauth2-pkce";
 import useMergedState from "../../../../utils/useMergedState";
 import BackButton from "../../../../components/backButton/backButton";
 import SimpleAnimationButton from "../../../../components/simpleAnimationButton/simpleAnimationButton";
-import { LOGIN_INITIAL_STATE, ROUTES } from "../../../../constants/common.constants";
+import { ROUTES } from "../../../../constants/common.constants";
+import { SIGNUP_INITIAL_STATE } from "../../../../constants/landing.constants";
 import { ApiCall } from "../../../../utils/api.util";
 import { isValidEqualValue, isValidPassword, isValidValue } from "../../../../utils/validations";
 
@@ -15,7 +16,7 @@ import "./signUp.scss";
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const [state, setState] = useMergedState(LOGIN_INITIAL_STATE);
+    const [state, setState] = useMergedState(SIGNUP_INITIAL_STATE);
     const { username, password, confirmPassword, xrplAddress } = state;
     const toastId = useRef(null);
 

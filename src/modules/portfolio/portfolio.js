@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Client } from "xrpl";
 import { toast } from "react-toastify";
 import { Button } from "semantic-ui-react";
 import { Hashicon } from "@emeraldpay/hashicon-react";
@@ -11,9 +10,9 @@ import AccountDetails from "./components/accountDetails/accountDetails";
 import AccountTrustlines from "./components/accountTrustlines/accountTrustlines";
 import OtherDetails from "./components/otherDetails";
 import IssuedCurrencies from "./components/issuedCurrencies/issuedCurrencies";
-import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
+import ShimmerLoader from "../../components/shimmerLoader/shimmerLoader";
 
-import { PUBLIC_SERVER, ROUTES } from "../../constants/common.constants";
+import { ROUTES } from "../../constants/common.constants";
 import { PORTFOLIO_INITIAL_STATE } from "../../constants/portfolio.constants";
 import { decryptJSON, saveAddrsInLocStrg } from "../../utils/common.utils";
 import { ApiCall } from "../../utils/api.util";
@@ -26,8 +25,7 @@ const Portfolio = () => {
     const toastId = useRef(null);
     const navigate = useNavigate();
     const [state, setState] = useMergedState(PORTFOLIO_INITIAL_STATE);
-    const { data, otherCurrencies, isOpen, issuedFungibleTokens } = state;
-    const [loading, setLoading] = useState(true);
+    const { data, otherCurrencies, isOpen, issuedFungibleTokens, loading } = state;
     const xrplPortfolioKeys = localStorage.getItem("xrplPortfolioKeys");
     const storedAddresses = xrplPortfolioKeys ? decryptJSON(xrplPortfolioKeys) : {};
     const userName = historyState?.userName ?? storedAddresses[id];
@@ -38,47 +36,31 @@ const Portfolio = () => {
     }, []);
 
     const fetchAccountDetails = async () => {
-        try {
-            const client = new Client(PUBLIC_SERVER, { connectionTimeout: 10000 });
-            await client.connect();
-            let dataFromXrplSocket = {
-                otherCurrencies: [],
-                issuedFungibleTokens: {},
-                data: {},
-            };
+        toastId.current = toast.loading("Fetching account details...");
+        setState({ loading: true });
 
-            await fetch(`https://api.xrpscan.com/api/v1/account/${id}`)
-                .then((res) => res.json())
-                .then((res) => {
-                    dataFromXrplSocket.data = res;
-                });
-
-            const account_lines = await client.request({
-                command: "account_lines",
+        const payload = {
+            method: "POST",
+            url: "user/account/details",
+            encrypt: true,
+            auth: true,
+            data: {
+                userName: localStorage.getItem("userName"),
                 account: id,
+            },
+        };
+
+        ApiCall(payload)
+            .then((response) => {
+                if (response.data) {
+                    const { dataFromXrpScan: data, otherCurrencies, issuedFungibleTokens } = response.data;
+                    setState({ data, otherCurrencies, issuedFungibleTokens });
+                }
+            })
+            .finally(() => {
+                toast.dismiss(toastId.current);
+                setState({ loading: false });
             });
-
-            const gateway_balances = await client.request({
-                command: "gateway_balances",
-                account: id,
-                ledger_index: "validated",
-            });
-
-            if (account_lines.result.lines) {
-                dataFromXrplSocket.otherCurrencies = account_lines.result.lines;
-            }
-
-            if (gateway_balances.result.obligations) {
-                dataFromXrplSocket.issuedFungibleTokens = gateway_balances.result.obligations;
-            };
-
-            setState({ ...dataFromXrplSocket });
-            await client.disconnect();
-        } catch (err) {
-            alert(err);
-        } finally {
-            setLoading(false);
-        }
     };
 
     const toggleDetails = (id) => {
@@ -96,7 +78,7 @@ const Portfolio = () => {
 
         const payload = {
             method: "POST",
-            url: "user/delete/account",
+            url: "use/account/details",
             encrypt: true,
             auth: true,
             data: {
@@ -124,12 +106,15 @@ const Portfolio = () => {
             <PortfolioHeading {...{ id, userName }} />
             {!isCurrentUser && (<Button color="red" className="delete_btn" onClick={onDeleteClick}>Remove</Button>)}
             <div className="details_container">
-                <AccountDetails {...{ toggleDetails, isOpen, data }} />
-                <IssuedCurrencies {...{ toggleDetails, isOpen, issuedFungibleTokens }} />
-                <AccountTrustlines {...{ id, toggleDetails, isOpen, otherCurrencies }} />
-                <OtherDetails {...{ toggleDetails, isOpen }} />
+                {loading ? <ShimmerLoader /> : (
+                    <>
+                        <AccountDetails {...{ toggleDetails, isOpen, data }} />
+                        <IssuedCurrencies {...{ toggleDetails, isOpen, issuedFungibleTokens }} />
+                        <AccountTrustlines {...{ id, toggleDetails, isOpen, otherCurrencies }} />
+                        <OtherDetails {...{ toggleDetails, isOpen }} />
+                    </>
+                )}
             </div>
-            <AnimatedLoader loadingText="Fetching details..." isActive={loading} />
         </div>
     );
 };

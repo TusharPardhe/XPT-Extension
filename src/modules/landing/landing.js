@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Image } from "semantic-ui-react";
+
 import SimpleAnimationButton from "../../components/simpleAnimationButton/simpleAnimationButton";
-import { ROUTES } from "../../constants/common.constants";
 import XPTLogoImg from "../../assets/svg/xpt.svg";
+import { ROUTES } from "../../constants/common.constants";
+
 import "./landing.scss";
 
 const Landing = () => {

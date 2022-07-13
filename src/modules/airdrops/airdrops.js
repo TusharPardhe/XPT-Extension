@@ -10,21 +10,14 @@ import { ROUTES } from "../../constants/common.constants";
 import { ApiCall } from "../../utils/api.util";
 import useMergedState from "../../utils/useMergedState";
 import { executeScrollToRef } from "../../utils/common.utils";
+import { AIRDROPS_INITIAL_STATE } from "../../constants/airdrops.constants";
 
 import "./airdrops.scss";
 
 const Airdrops = () => {
     const navigate = useNavigate();
     const inputContainerRef = useRef();
-    const [state, setState] = useMergedState({
-        date: new Date(),
-        activePage: 1,
-        totalPages: 0,
-        totalCount: 0,
-        limit: 4,
-        loading: true,
-        list: [],
-    });
+    const [state, setState] = useMergedState(AIRDROPS_INITIAL_STATE);
     const { date, activePage, totalPages, limit, list, loading } = state;
 
     useEffect(() => {

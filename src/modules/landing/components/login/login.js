@@ -7,14 +7,15 @@ import useMergedState from "../../../../utils/useMergedState";
 
 import BackButton from "../../../../components/backButton/backButton";
 import SimpleAnimationButton from "../../../../components/simpleAnimationButton/simpleAnimationButton";
-import { FIELD_INITIAL_STATE, ROUTES } from "../../../../constants/common.constants";
+import { ROUTES } from "../../../../constants/common.constants";
+import { LOGIN_INITIAL_STATE } from "../../../../constants/landing.constants";
 import { ApiCall } from "../../../../utils/api.util";
 
 import "./login.scss";
 
 const Login = () => {
     const navigate = useNavigate();
-    const [state, setState] = useMergedState({ userName: FIELD_INITIAL_STATE, password: FIELD_INITIAL_STATE });
+    const [state, setState] = useMergedState(LOGIN_INITIAL_STATE);
     const { userName, password } = state;
     const toastId = useRef(null);
 

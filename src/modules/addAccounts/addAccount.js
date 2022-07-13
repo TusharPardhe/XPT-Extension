@@ -3,7 +3,7 @@ import React from "react";
 import useMergedState from "../../utils/useMergedState";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 import NewAccountDetailsInputs from "./components/newAccountDetailsInputs";
-import { ADD_ACCOUNTS_INITIAL_STATE } from "../../constants/common.constants";
+import { ADD_ACCOUNTS_INITIAL_STATE } from "../../constants/addAccounts.constants";
 
 import "./addAccount.scss";
 

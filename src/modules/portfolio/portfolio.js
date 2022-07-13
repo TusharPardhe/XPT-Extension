@@ -7,10 +7,10 @@ import { Hashicon } from "@emeraldpay/hashicon-react";
 
 import useMergedState from "../../utils/useMergedState";
 
-import AccountDetails from "./components/accountDetails";
-import AccountTrustlines from "./components/AccountTrustlines";
+import AccountDetails from "./components/accountDetails/accountDetails";
+import AccountTrustlines from "./components/accountTrustlines/accountTrustlines";
 import OtherDetails from "./components/otherDetails";
-import IssuedCurrencies from "./components/issuedCurrencies";
+import IssuedCurrencies from "./components/issuedCurrencies/issuedCurrencies";
 import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
 
 import { PUBLIC_SERVER, ROUTES } from "../../constants/common.constants";

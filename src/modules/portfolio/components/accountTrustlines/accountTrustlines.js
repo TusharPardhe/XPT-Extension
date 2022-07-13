@@ -1,10 +1,11 @@
 import React from "react";
-import RenderFungibleTokenDetails from "./renderFungibleTokenDetails";
 import { Button, Icon } from "semantic-ui-react";
-import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
-import { URLS } from "../../../constants/common.constants";
 
-export default function AccountTrustlines({ id, toggleDetails, isOpen, otherCurrencies }) {
+import FungibleHoldings from "../fungibleHoldings/fungibleHoldings";
+import { PORTFOLIO_HEADER_KEYS } from "../../../../constants/portfolio.constants";
+import { URLS } from "../../../../constants/common.constants";
+
+const AccountTrustlines = ({ id, toggleDetails, isOpen, otherCurrencies }) => {
     if (otherCurrencies.length === 0) { return null; };
 
     const onXrpscanBtnClick = () => {
@@ -18,7 +19,7 @@ export default function AccountTrustlines({ id, toggleDetails, isOpen, otherCurr
             </div>
             <div className={`transition ${isOpen.FUNGIBLE_HOLDINGS ? "load" : "hide"}`}>
                 {otherCurrencies.slice(0, 20).map((token, index) => (
-                    <RenderFungibleTokenDetails token={token} key={index} />
+                    <FungibleHoldings token={token} key={index} />
                 ))}
                 {otherCurrencies.length > 20 && (
                     <div className="links">
@@ -28,4 +29,6 @@ export default function AccountTrustlines({ id, toggleDetails, isOpen, otherCurr
             </div>
         </div>
     );
-}
+};
+
+export default AccountTrustlines;

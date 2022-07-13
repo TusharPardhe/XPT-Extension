@@ -3,7 +3,8 @@ import { Icon, Table } from "semantic-ui-react";
 import { convertHexToString } from "xrpl";
 import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
 
-export default function IssuedCurrencies({ toggleDetails, isOpen, issuedFungibleTokens }) {
+const IssuedCurrencies = ({ toggleDetails, isOpen, issuedFungibleTokens }) => {
+
     if (Object.keys(issuedFungibleTokens).length === 0) { return null; };
 
     return (
@@ -29,4 +30,6 @@ export default function IssuedCurrencies({ toggleDetails, isOpen, issuedFungible
             </div>
         </div>
     );
-}
+};
+
+export default IssuedCurrencies;

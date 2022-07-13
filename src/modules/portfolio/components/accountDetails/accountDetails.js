@@ -4,7 +4,7 @@ import { URLS } from "../../../constants/common.constants";
 import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
 import { redirectToUrl } from "../../../utils/common.utils";
 
-export default function AccountDetails({ toggleDetails, isOpen, data }) {
+const AccountDetails = ({ toggleDetails, isOpen, data }) => {
     if (Object.keys(data).length === 0) { return null; };
 
     return (
@@ -102,4 +102,6 @@ export default function AccountDetails({ toggleDetails, isOpen, data }) {
             </div>
         </>
     );
-}
+};
+
+export default AccountDetails;

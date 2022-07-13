@@ -2,7 +2,7 @@ import React from "react";
 import { convertHexToString } from "xrpl";
 import { Label, Table } from "semantic-ui-react";
 
-export default function RenderFungibleTokenDetails({ token }) {
+const FungibleHoldings = ({ token }) => {
     const name = token.currency.length === 40 ? convertHexToString(token.currency).replaceAll("\u0000", "") : token.currency;
     return (
         <Table celled>
@@ -33,4 +33,6 @@ export default function RenderFungibleTokenDetails({ token }) {
             </Table.Body>
         </Table>
     );
-}
+};
+
+export default FungibleHoldings;

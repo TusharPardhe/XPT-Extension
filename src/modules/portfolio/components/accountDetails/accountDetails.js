@@ -1,8 +1,8 @@
 import React from "react";
 import { Icon, Table } from "semantic-ui-react";
-import { URLS } from "../../../constants/common.constants";
-import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
-import { redirectToUrl } from "../../../utils/common.utils";
+import { URLS } from "../../../../constants/common.constants";
+import { PORTFOLIO_HEADER_KEYS } from "../../../../constants/portfolio.constants";
+import { redirectToUrl } from "../../../../utils/common.utils";
 
 const AccountDetails = ({ toggleDetails, isOpen, data }) => {
     if (Object.keys(data).length === 0) { return null; };

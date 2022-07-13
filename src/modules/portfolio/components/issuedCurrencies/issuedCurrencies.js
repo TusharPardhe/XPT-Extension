@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon, Table } from "semantic-ui-react";
 import { convertHexToString } from "xrpl";
-import { PORTFOLIO_HEADER_KEYS } from "../../../constants/portfolio.constants";
+import { PORTFOLIO_HEADER_KEYS } from "../../../../constants/portfolio.constants";
 
 const IssuedCurrencies = ({ toggleDetails, isOpen, issuedFungibleTokens }) => {
 

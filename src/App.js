@@ -7,8 +7,14 @@ import { ENV } from "./constants/common.constants";
 
 import "react-toastify/dist/ReactToastify.css";
 
+const DEV_ENV = ENV === "DEVELOPMENT";
+
+if (!DEV_ENV) {
+    console.log = () => { };
+};
+
 function App() {
-    if (ENV === "DEVELOPMENT") {
+    if (DEV_ENV) {
         return (
             <BrowserRouter>
                 <div className="container" id="xpt_browser_extension">

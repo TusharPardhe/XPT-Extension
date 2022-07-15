@@ -65,6 +65,12 @@ export const ApiCall = (payload) => {
                 }
                 errorResponse = errorResponse ?? "Some error occurred";
                 toast.error(errorResponse);
+
+                if (errorResponse === "Invalid Token") {
+                    localStorage.clear();
+                    window.location.href = window.location.origin;
+                }
+
                 reject(error);
             });
     });

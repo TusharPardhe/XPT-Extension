@@ -6,8 +6,9 @@ import { Button, Divider, Image, Input } from "semantic-ui-react";
 import XPTLogoImg from "../../../assets/svg/xpt.svg";
 import { isValidXrplRAddress, validateXRPAccountFromAPI } from "../../../utils/validations";
 import { decryptJSON, saveAddrsInLocStrg } from "../../../utils/common.utils";
-import { ADD_ACCOUNTS_INITIAL_STATE, ROUTES } from "../../../constants/common.constants";
+import { ROUTES } from "../../../constants/common.constants";
 import { ApiCall } from "../../../utils/api.util";
+import { ADD_ACCOUNTS_INITIAL_STATE } from "../../../constants/addAccounts.constants";
 
 const NewAccountDetailsInputs = ({ state, setState }) => {
     const { xrplAddress, alias } = state;

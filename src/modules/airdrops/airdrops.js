@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Divider, Image, Pagination } from "semantic-ui-react";
 import DatePicker from "react-date-picker";
+import dateFormat from "dateformat";
 
 import NoResultCard from "../../components/NoResultCard/noResultCard";
 import ShimmerLoader from "../../components/shimmerLoader/shimmerLoader";
@@ -137,8 +138,9 @@ const AirdropList = ({ loading, list, navigate }) => {
         <div className="airdrops">
             {list.map((drop, index) => (
                 <div key={`${drop.projectName}_${index}`} className="drop" onClick={() => onDropClick(drop)}>
-                    <div className="left_section">Logo</div>
+                    <div className="img">Logo</div>
                     <div className="heading">{drop.projectName}</div>
+                    <div className="sub_heading">{dateFormat(drop.date * 1000, "dd-mm-yyyy")}</div>
                 </div>
             ))}
         </div>

@@ -1,5 +1,5 @@
 .airdrops_container {
-    .heading_component{
+    .heading_component {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -11,14 +11,14 @@
             justify-content: center;
             align-items: center;
             font-weight: 500;
-    
-            .logo_img{
+
+            .logo_img {
                 height: 40px;
                 width: 40px;
             }
         }
 
-        .sub_heading{
+        .sub_heading {
             font-weight: lighter;
             padding: 6px;
         }
@@ -28,11 +28,11 @@
             cursor: pointer;
             color: var(--toastify-color-success);
         }
-           
+
     }
 
-    .input_container{
-        .date_picker{
+    .input_container {
+        .date_picker {
             text-align: center;
 
             .react-date-picker__calendar {
@@ -50,14 +50,19 @@
                 border: 1px solid var(--platinum);
                 color: var(--platinum);
             }
-            .react-date-picker__inputGroup__divider,.react-date-picker__inputGroup__leadingZero{
+
+            .react-date-picker__inputGroup__divider,
+            .react-date-picker__inputGroup__leadingZero {
                 color: black;
             }
-            .react-date-picker__clear-button__icon, .react-date-picker__calendar-button__icon {
+
+            .react-date-picker__clear-button__icon,
+            .react-date-picker__calendar-button__icon {
                 stroke: gray;
             }
         }
-        .airdrops_container{
+
+        .airdrops_container {
             .airdrops {
                 display: grid;
                 grid-template-columns: calc(50% - 10px) auto;
@@ -66,7 +71,7 @@
                 padding: 20px;
                 height: 250px;
 
-                .drop{
+                .drop {
                     display: flex;
                     flex-direction: column;
                     text-align: center;
@@ -78,30 +83,35 @@
                     border-radius: 16px;
                     transition: transform 0.2s ease-in-out 100ms, box-shadow 0.2s ease-in-out;
 
-                    .left_section{
-                        width: 60px;
-                        height: 60px;
-                        img{
-                            width: 50px;
-                            height: 50px;
-                            border-radius: 50px;
-                        }
+                    .img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50px;
                     }
-                    .right_section{
-                        padding: 0px 0px 0px 14px;
-                        display: flex;
+
+                    .sub_heading {
+                        font-size: 12px;
+                        color: var(--onyx);
                     }
-                    
+
+                    ;
+
+                    // .right_section{
+                    //     padding: 0px 0px 0px 14px;
+                    //     display: flex;
+                    // }
+
                     &:hover {
                         box-shadow: rgba(0, 0, 0, 0.2) 0px 40px 40px -7px;
                         transform: scale(1.1);
                     }
                 }
             }
-            .pagination{
+
+            .pagination {
                 text-align: center;
             }
-               
+
         }
     }
 }

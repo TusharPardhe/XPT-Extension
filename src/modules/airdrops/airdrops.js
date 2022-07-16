@@ -4,12 +4,14 @@ import { Divider, Image, Pagination } from "semantic-ui-react";
 import DatePicker from "react-date-picker";
 import dateFormat from "dateformat";
 
+import useMergedState from "../../utils/useMergedState";
+
 import NoResultCard from "../../components/NoResultCard/noResultCard";
 import ShimmerLoader from "../../components/shimmerLoader/shimmerLoader";
 import XPTLogoImg from "../../assets/svg/xpt.svg";
+
 import { ROUTES } from "../../constants/common.constants";
 import { ApiCall } from "../../utils/api.util";
-import useMergedState from "../../utils/useMergedState";
 import { executeScrollToRef } from "../../utils/common.utils";
 import { AIRDROPS_INITIAL_STATE } from "../../constants/airdrops.constants";
 

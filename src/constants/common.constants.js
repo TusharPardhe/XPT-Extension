@@ -26,6 +26,7 @@ export const URLS = {
     CONSTRUCTION_GIF: "https://drive.google.com/uc?export=view&id=1219VV9-YnQBRiPnSFz2WjTULg6J0vdNc",
     XRPSCAN: "https://xrpscan.com/",
     TWITTER: "https://twitter.com/",
+    XPT_TWITTER: "https://twitter.com/xptxrpl",
 };
 
 export const FIELD_INITIAL_STATE = {

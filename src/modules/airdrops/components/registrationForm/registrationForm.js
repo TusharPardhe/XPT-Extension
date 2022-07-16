@@ -1,8 +1,11 @@
 import React from 'react';
-import { Button, Input, Select, TextArea } from 'semantic-ui-react';
-import DateTimePicker from 'react-datetime-picker';
 
-export function RegistrationForm({ state, setState, handleUserInput, onSubmit }) {
+import DateTimePicker from 'react-datetime-picker';
+import { Button, Input, Select, TextArea } from 'semantic-ui-react';
+
+import { URLS } from '../../../../constants/common.constants';
+
+const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
 
     const { ticker, projectName, currencyName, date, logo, twitter, discord, website, linktree, others, description, loading } = state;
 
@@ -120,7 +123,7 @@ export function RegistrationForm({ state, setState, handleUserInput, onSubmit })
                 </div>
             </div>
             <div className="submission_note">
-                <span>Note:</span> A token issuer can submit only one request per issued token.If you want to omit your details after submission, please contact us on <a href=" ">Twitter</a>.
+                <span>Note:</span> A token issuer can submit only one request per issued token.If you want to omit your details after submission, please contact us on <a href={URLS.XPT_TWITTER} target="_blank" rel="noopener noreferrer">Twitter</a>.
             </div>
             <div className="btn_container">
                 <Button
@@ -136,4 +139,6 @@ export function RegistrationForm({ state, setState, handleUserInput, onSubmit })
             </div>
         </div>
     );
-}
+};
+
+export default RegistrationForm;

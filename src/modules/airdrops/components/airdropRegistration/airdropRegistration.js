@@ -13,12 +13,13 @@ import XPTLogoImg from "../../../../assets/svg/xpt.svg";
 import { PUBLIC_SERVER, ROUTES } from '../../../../constants/common.constants';
 import { ApiCall } from "../../../../utils/api.util";
 import { isValidValue } from '../../../../utils/validations';
+import { getDataFromLocalStrg } from '../../../../utils/common.utils';
 
 import "./airdropRegistration.scss";
 
 const AirdropRegistration = () => {
     const navigate = useNavigate();
-    const accountXrplAddress = localStorage.getItem("xrplAddress");
+    const accountXrplAddress = getDataFromLocalStrg("xrplAddress");
     const toastId = useRef(null);
 
     const [state, setState] = useMergedState({
@@ -161,7 +162,7 @@ const AirdropRegistration = () => {
                 auth: true,
                 encrypt: true,
                 data: {
-                    userName: localStorage.getItem("userName"),
+                    userName: getDataFromLocalStrg("userName"),
                     projectName: projectName.value,
                     ticker: ticker.value,
                     issuer: accountXrplAddress,

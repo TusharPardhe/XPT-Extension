@@ -11,9 +11,26 @@ export const encryptJSON = (data) => {
 
 export const decryptJSON = (data) => {
     const decrypt = AES.decrypt(data, process.env.ENCRYPTION_KEY);
-    return JSON.parse(decrypt.toString(enc.Utf8));
+    const str = decrypt.toString(enc.Utf8);
+    return JSON.parse(str);
 };
 
-export const executeScrollToRef = (ref) => ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+export const saveInLocalStrg = (key, data, encrypted = true) => {
+    if (encrypted) {
+        data = encryptJSON(data)
+    };
+    localStorage.setItem(key, data);
+};
 
-export const saveAddrsInLocStrg = (data) => localStorage.setItem("xrplPortfolioKeys", encryptJSON(data));
+export const getDataFromLocalStrg = (key, encrypted = true) => {
+    let data = localStorage.getItem(key);
+    if (!data) { return null; }
+
+    if (encrypted) {
+        data = decryptJSON(data);
+    };
+
+    return data;
+}
+
+export const executeScrollToRef = (ref) => ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });

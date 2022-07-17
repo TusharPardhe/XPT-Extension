@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ENV } from "../constants/common.constants";
-import { encryptJSON } from "./common.utils";
+import { encryptJSON, getDataFromLocalStrg } from "./common.utils";
 
 export const API_CONFIG = {
     PRODUCTION: {
@@ -16,7 +16,7 @@ export const ApiCall = (payload) => {
     const _axios = axios.create();
 
     if (payload.auth) {
-        const jwToken = localStorage.getItem("token");
+        const jwToken = getDataFromLocalStrg("token");
         delete payload.jwt;
         payload.data.token = jwToken;
     }

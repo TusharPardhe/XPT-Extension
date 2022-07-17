@@ -5,7 +5,7 @@ import { Button, Divider, Image, Input } from "semantic-ui-react";
 
 import XPTLogoImg from "../../../assets/svg/xpt.svg";
 import { isValidXrplRAddress, validateXRPAccountFromAPI } from "../../../utils/validations";
-import { decryptJSON, saveAddrsInLocStrg } from "../../../utils/common.utils";
+import { getDataFromLocalStrg, saveInLocalStrg } from "../../../utils/common.utils";
 import { ROUTES } from "../../../constants/common.constants";
 import { ApiCall } from "../../../utils/api.util";
 import { ADD_ACCOUNTS_INITIAL_STATE } from "../../../constants/addAccounts.constants";
@@ -15,9 +15,9 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
     const toastId = useRef(null);
     const navigate = useNavigate();
 
-    const xrplAddFromLocal = localStorage.getItem("xrplPortfolioKeys");
-    const currentUserAccount = localStorage.getItem("xrplAddress");
-    const accountsFromLocalStorage = xrplAddFromLocal ? decryptJSON(xrplAddFromLocal) : {};
+    const xrplAddFromLocal = getDataFromLocalStrg("xrplPortfolioKeys");
+    const currentUserAccount = getDataFromLocalStrg("xrplAddress");
+    const accountsFromLocalStorage = xrplAddFromLocal ?? {};
 
     const isErrorXrplAddInput = !isValidXrplRAddress(xrplAddress.inputValue) || xrplAddress.error.length > 0;
 
@@ -60,7 +60,7 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
             encrypt: true,
             auth: true,
             data: {
-                userName: localStorage.getItem("userName"),
+                userName: getDataFromLocalStrg("userName"),
                 accounts: {
                     [xrplAddress.value]: alias.inputValue,
                 }
@@ -71,7 +71,7 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
             .then((response) => {
                 if (response.data) {
                     accountsFromLocalStorage[xrplAddress.value] = alias.inputValue;
-                    saveAddrsInLocStrg(accountsFromLocalStorage);
+                    saveInLocalStrg("xrplPortfolioKeys", accountsFromLocalStorage);
                     navigate(ROUTES.REQUEST_SUCCESS);
                 }
             })

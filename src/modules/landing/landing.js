@@ -5,6 +5,7 @@ import { Image } from "semantic-ui-react";
 import SimpleAnimationButton from "../../components/simpleAnimationButton/simpleAnimationButton";
 import XPTLogoImg from "../../assets/svg/xpt.svg";
 import { ROUTES } from "../../constants/common.constants";
+import { getDataFromLocalStrg } from "../../utils/common.utils";
 
 import "./landing.scss";
 
@@ -16,7 +17,7 @@ const Landing = () => {
     }, []);
 
     const autoLogin = () => {
-        const jwt = localStorage.getItem("token");
+        const jwt = getDataFromLocalStrg("token");
         if (jwt) {
             navigate(ROUTES.HOME);
         }

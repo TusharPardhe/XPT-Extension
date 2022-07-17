@@ -6,15 +6,15 @@ import NoAddedAccounts from "./components/NoAddedAccounts";
 import SavedAccounts from "./components/SavedAccounts";
 import UserDetails from "./components/UserDetails";
 
-import { decryptJSON, saveAddrsInLocStrg } from "../../utils/common.utils";
+import { getDataFromLocalStrg, saveInLocalStrg } from "../../utils/common.utils";
 import { ROUTES } from "../../constants/common.constants";
 import { ApiCall } from "../../utils/api.util";
 
 import "./home.scss";
 
 const Home = () => {
-    const accountsFromLocalStorage = localStorage.getItem("xrplPortfolioKeys");
-    const [accounts, setAccounts] = useState(accountsFromLocalStorage ? decryptJSON(accountsFromLocalStorage) : {});
+    const accountsFromLocalStorage = getDataFromLocalStrg("xrplPortfolioKeys");
+    const [accounts, setAccounts] = useState(accountsFromLocalStorage ?? {});
     const toastId = useRef(null);
     const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ const Home = () => {
 
     const onHomePageLoad = () => {
         if (!(accounts && Object.keys(accounts).length > 0)) {
-            const userName = localStorage.getItem("userName");
+            const userName = getDataFromLocalStrg("userName");
             const payload = {
                 method: "POST",
                 url: "user/accounts",
@@ -43,7 +43,7 @@ const Home = () => {
                     if (!response.data.error) {
                         const accountList = response.data.list;
                         setAccounts(accountList);
-                        saveAddrsInLocStrg(accountList);
+                        saveInLocalStrg("xrplPortfolioKeys", accountList);
                     }
                 })
                 .finally(() => {

@@ -9,6 +9,7 @@ import BackButton from "../../../../components/backButton/backButton";
 import SimpleAnimationButton from "../../../../components/simpleAnimationButton/simpleAnimationButton";
 import { ROUTES } from "../../../../constants/common.constants";
 import { LOGIN_INITIAL_STATE } from "../../../../constants/landing.constants";
+import { saveInLocalStrg } from "../../../../utils/common.utils";
 import { ApiCall } from "../../../../utils/api.util";
 
 import "./login.scss";
@@ -59,9 +60,9 @@ const Login = () => {
                 .then((response) => {
                     if (response.data.token) {
                         localStorage.clear();
-                        localStorage.setItem("token", response.data.token);
-                        localStorage.setItem("userName", response.data.userName);
-                        localStorage.setItem("xrplAddress", response.data.xrplAddress);
+                        saveInLocalStrg("token", response.data.token);
+                        saveInLocalStrg("userName", response.data.userName);
+                        saveInLocalStrg("xrplAddress", response.data.xrplAddress);
                         navigate(ROUTES.HOME);
                     }
                 })

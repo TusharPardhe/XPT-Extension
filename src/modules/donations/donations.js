@@ -7,6 +7,7 @@ import FUNDRAISING_IMG from "../../assets/png/fundraising.png"
 import { VALIDATION_REGEX } from '../../constants/common.constants';
 import { isPositiveNumber } from '../../utils/validations';
 import { executeScrollToRef } from '../../utils/common.utils';
+import { DONATIONS_INITIAL_STATE } from '../../constants/donations.constants';
 import { ApiCall } from '../../utils/api.util';
 
 import "./donations.scss";
@@ -14,12 +15,9 @@ import "./donations.scss";
 const { NUMBERS_AND_EMPTY } = VALIDATION_REGEX;
 
 const Donations = () => {
-    const [state, setState] = useMergedState({
-        amount: { value: "", error: [] },
-        xummPngLink: "",
-    });
+    const [state, setState] = useMergedState(DONATIONS_INITIAL_STATE);
     const amountRef = useRef();
-    const { amount, xummPngLink } = state;
+    const { amount, xummPngLink, donateBtnEnabled } = state;
 
     useEffect(() => {
         executeScrollToRef(amountRef);
@@ -76,7 +74,10 @@ const Donations = () => {
                 .then((response) => {
                     if (response.data) {
                         const { png } = response.data;
-                        setState({ xummPngLink: png });
+                        setState({ xummPngLink: png, donateBtnEnabled: false });
+                        setTimeout(() => {
+                            setState({ donateBtnEnabled: true });
+                        }, 5000);
                     }
                 }).finally(() => {
                     executeScrollToRef(amountRef);
@@ -110,7 +111,7 @@ const Donations = () => {
                 <Button className="amount_btn" onClick={() => onAmountBtnClick("1000")}>1000 XRP</Button>
             </div>
             <div className="donate_btn">
-                <Button color="green" onClick={onDonationBtnClick}>
+                <Button color="green" onClick={onDonationBtnClick} disabled={!donateBtnEnabled}>
                     Donate
                 </Button>
             </div>

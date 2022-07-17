@@ -14,7 +14,7 @@ import ShimmerLoader from "../../components/shimmerLoader/shimmerLoader";
 
 import { ROUTES } from "../../constants/common.constants";
 import { PORTFOLIO_INITIAL_STATE } from "../../constants/portfolio.constants";
-import { decryptJSON, saveAddrsInLocStrg } from "../../utils/common.utils";
+import { getDataFromLocalStrg, saveInLocalStrg } from "../../utils/common.utils";
 import { ApiCall } from "../../utils/api.util";
 
 import "./portfolio.scss";
@@ -26,8 +26,8 @@ const Portfolio = () => {
     const navigate = useNavigate();
     const [state, setState] = useMergedState(PORTFOLIO_INITIAL_STATE);
     const { data, otherCurrencies, isOpen, issuedFungibleTokens, loading } = state;
-    const xrplPortfolioKeys = localStorage.getItem("xrplPortfolioKeys");
-    const storedAddresses = xrplPortfolioKeys ? decryptJSON(xrplPortfolioKeys) : {};
+    const xrplPortfolioKeys = getDataFromLocalStrg("xrplPortfolioKeys");
+    const storedAddresses = xrplPortfolioKeys ?? {};
     const userName = historyState?.userName ?? storedAddresses[id];
     const isCurrentUser = !!(historyState?.userName);
 
@@ -45,7 +45,7 @@ const Portfolio = () => {
             encrypt: true,
             auth: true,
             data: {
-                userName: localStorage.getItem("userName"),
+                userName: getDataFromLocalStrg("userName"),
                 account: id,
             },
         };
@@ -82,7 +82,7 @@ const Portfolio = () => {
             encrypt: true,
             auth: true,
             data: {
-                userName: localStorage.getItem("userName"),
+                userName: getDataFromLocalStrg("userName"),
                 account: id,
             },
         };
@@ -90,7 +90,7 @@ const Portfolio = () => {
         ApiCall(payload)
             .then((response) => {
                 if (response.data) {
-                    saveAddrsInLocStrg(response.data.list);
+                    saveInLocalStrg("xrplPortfolioKeys", response.data.list);
                     if (Object.keys(response.data.list).length === 0) {
                         navigate(ROUTES.HOME);
                     }

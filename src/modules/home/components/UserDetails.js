@@ -1,11 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Hashicon } from "@emeraldpay/hashicon-react";
+
+import { getDataFromLocalStrg } from "../../../utils/common.utils";
 import { ROUTES } from "../../../constants/common.constants";
 
 const UserDetails = () => {
-    const userAccount = localStorage.getItem("xrplAddress");
-    const userName = localStorage.getItem("userName");
+    const userAccount = getDataFromLocalStrg("xrplAddress");
+    const userName = getDataFromLocalStrg("userName");
     const navigate = useNavigate();
 
     const viewAccountPortfolio = () => {

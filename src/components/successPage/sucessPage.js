@@ -17,7 +17,7 @@ const SuccessPage = () => {
     };
 
     const onSupportBtnClick = () => {
-        console.log("Support!");
+        navigate(ROUTES.DONATIONS);
     };
 
     return (

@@ -61,7 +61,7 @@ const SignUp = () => {
     const checkUserInputs = () => {
         let isValid = true;
 
-        const { error: usernameError } = isValidValue(username.inputValue);
+        const { error: usernameError } = isValidValue(username.inputValue, "Please enter a valid user name.", /^.{5,}$/);
         if (usernameError.length > 0) {
             isValid = false;
             setState({ username: { ...username, error: usernameError } });
@@ -161,6 +161,7 @@ const SignUp = () => {
                     {username.error.length > 0 && <i className="error_txt">{username.error[0]}</i>}
                     <ul className="note">
                         <li>Choose a random & unique username.</li>
+                        <li>Username must have 5 or more characters.</li>
                         <li>For eg: CoolXpt01, xptGuy22 etc.</li>
                     </ul>
                 </div>

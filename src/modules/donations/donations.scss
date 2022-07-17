@@ -23,6 +23,7 @@
     }
 
     .input_field {
+        padding: 10px;
 
         .label {
             color: var(--davys-grey);
@@ -33,6 +34,14 @@
             font-size: 12px;
             border: 1px solid var(--gainsboro);
             border-radius: 0px;
+        }
+
+        textarea {
+            border-radius: 0px;
+            padding: 8px;
+            font-size: 12px;
+            outline: 0;
+            border: 1px solid var(--gainsboro);
         }
     }
 
@@ -46,10 +55,12 @@
         font-size: 18px;
         color: var(--toastify-color-info);
         text-align: center;
+        font-weight: bold;
+        padding-bottom: 15px;
     }
 
     .amount_selection {
-        padding: 5px 0 0 0;
+        padding: 0px 10px 10px 10px;
 
         .amount_btn {
             font-size: 11px;

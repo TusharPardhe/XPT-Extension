@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Button, Divider, Input } from 'semantic-ui-react';
+import { Button, Divider, Input, TextArea } from 'semantic-ui-react';
 
 import useMergedState from '../../utils/useMergedState';
 
@@ -17,7 +17,7 @@ const { NUMBERS_AND_EMPTY } = VALIDATION_REGEX;
 const Donations = () => {
     const [state, setState] = useMergedState(DONATIONS_INITIAL_STATE);
     const amountRef = useRef();
-    const { amount, xummPngLink, donateBtnEnabled } = state;
+    const { amount, xummPngLink, donateBtnEnabled, message } = state;
 
     useEffect(() => {
         executeScrollToRef(amountRef);
@@ -36,6 +36,16 @@ const Donations = () => {
             });
         }
     };
+
+    const handleMsgInput = (e, res) => {
+        const { value } = res;
+        setState({
+            message: {
+                ...message,
+                value,
+            }
+        });
+    }
 
     const onAmountBtnClick = (value) => setState({ amount: { value, error: [] } });
 
@@ -67,6 +77,7 @@ const Donations = () => {
                 auth: false,
                 data: {
                     amount: (parseFloat(amount.value) * 1000000).toString(),
+                    memo: message.value,
                 },
             };
 
@@ -87,13 +98,12 @@ const Donations = () => {
 
     return (
         <div className="donations_container">
-            <div className="donations_quote">Small steps make a big difference. <br /> Your contribution matters!</div>
-            <Divider />
-            <div className="img_container">
+            <div className="donations_quote">Small steps make a big difference. <br /> We appreciated your contribution!</div>
+            <div className="img_container" ref={amountRef}>
                 {xummPngLink.length > 0 && <div className="scan_me">Scan me using XUMM</div>}
                 <img src={xummPngLink.length > 0 ? xummPngLink : FUNDRAISING_IMG} alt="donation_img" className="img" />
             </div>
-            <div className="input_field" ref={amountRef}>
+            <div className="input_field">
                 <div className="label">Amount (in XRP):</div>
                 <Input
                     placeholder="Please enter donation amount (in XRP)"
@@ -109,6 +119,22 @@ const Donations = () => {
                 <Button className="amount_btn" onClick={() => onAmountBtnClick("10")}>10 XRP</Button>
                 <Button className="amount_btn" onClick={() => onAmountBtnClick("100")}>100 XRP</Button>
                 <Button className="amount_btn" onClick={() => onAmountBtnClick("1000")}>1000 XRP</Button>
+            </div>
+            <div className="input_field">
+                <div className="label">Write a message:</div>
+                <TextArea
+                    style={{
+                        width: "100%",
+                        minWidth: "100%",
+                        maxWidth: "100%",
+                        minHeight: "80px",
+                        maxHeight: "150px",
+                    }}
+                    name="message"
+                    onChange={handleMsgInput}
+                    value={message.value}
+                    maxLength={250}
+                />
             </div>
             <div className="donate_btn">
                 <Button color="green" onClick={onDonationBtnClick} disabled={!donateBtnEnabled}>

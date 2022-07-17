@@ -17,7 +17,13 @@ const Navbar = (props) => {
 
     const onLogOutClick = () => {
         localStorage.clear();
-        navigate(ROUTES.LANDING_PAGE);
+        setTimeout(() => {
+            navigate(ROUTES.LANDING_PAGE);
+        }, 0);
+    };
+
+    const onSideBarHide = () => {
+        setIsNavBarVisible(false);
     }
 
     return (
@@ -28,7 +34,7 @@ const Navbar = (props) => {
                     animation="push"
                     icon="labeled"
                     inverted
-                    onHide={() => setIsNavBarVisible(false)}
+                    onHide={onSideBarHide}
                     vertical
                     visible={isNavBarVisible}
                     direction="right"

@@ -59,6 +59,10 @@ const Navbar = (props) => {
                         <Icon name="image outline" />
                         NFT Visualiser
                     </Menu.Item> */}
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.DONATIONS)}>
+                        <Icon name="heartbeat" />
+                        Donate
+                    </Menu.Item>
                     <Menu.Item as="a" onClick={onLogOutClick}>
                         <Icon name="log out" />
                         Logout

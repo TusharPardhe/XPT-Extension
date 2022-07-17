@@ -18,6 +18,7 @@ const Airdrops = React.lazy(() => import("./modules/airdrops/airdrops"));
 const DropDetails = React.lazy(() => import("./modules/airdrops/components/dropDetails/dropDetails"));
 const AirdropRegistration = React.lazy(() => import("./modules/airdrops/components/airdropRegistration/airdropRegistration"));
 const SuccessPage = React.lazy(() => import("./components/successPage/sucessPage"));
+const Donations = React.lazy(() => import("./modules/donations/donations"));
 
 export default function Routes() {
     const location = useLocation();
@@ -40,6 +41,7 @@ export default function Routes() {
                 <Route path={ROUTES.DROP_DETAILS} element={wrapWithNavBar(<DropDetails />)} />
                 <Route path={ROUTES.AIRDROP_REGISTRATION} element={wrapWithNavBar(<AirdropRegistration />)} />
                 <Route path={ROUTES.REQUEST_SUCCESS} element={wrapWithNavBar(<SuccessPage />)} />
+                <Route path={ROUTES.DONATIONS} element={wrapWithNavBar(<Donations />)} />
                 <Route path="/*" element={<div>Error</div>} />
             </RoutesBundle>
         </Suspense>

@@ -6,7 +6,7 @@ import dateFormat from "dateformat";
 
 import useMergedState from "../../utils/useMergedState";
 
-import NoResultCard from "../../components/NoResultCard/noResultCard";
+import NoResultCard from "../../components/noResultCard/noResultCard";
 import ShimmerLoader from "../../components/shimmerLoader/shimmerLoader";
 import XPTLogoImg from "../../assets/svg/xpt.svg";
 

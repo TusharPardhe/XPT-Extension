@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Dimmer } from "semantic-ui-react";
 
-import "./AnimatedLoader.scss";
+import "./animatedLoader.scss";
 
 const AnimatedLoader = ({ loadingText, isActive }) => {
+
     useEffect(() => {
         const element = document.querySelector(".pushable");
         element.style.overflowY = isActive ? "hidden" : "auto";

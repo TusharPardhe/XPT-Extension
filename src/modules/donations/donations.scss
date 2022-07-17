@@ -1,0 +1,70 @@
+.donations_container {
+    display: flex;
+    line-height: 1.5;
+    flex-direction: column;
+
+    .img_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 0 0 10px 0;
+
+        .scan_me{
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .img {
+            width: 200px;
+            height: 100%;
+            align-self: center;
+        }
+    }
+
+    .input_field {
+
+        .label {
+            color: var(--davys-grey);
+            padding-bottom: 4px;
+        }
+
+        input {
+            font-size: 12px;
+            border: 1px solid var(--gainsboro);
+            border-radius: 0px;
+        }
+    }
+
+    .donations_header {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .donations_quote {
+        font-size: 18px;
+        color: var(--toastify-color-info);
+        text-align: center;
+    }
+
+    .amount_selection {
+        padding: 5px 0 0 0;
+
+        .amount_btn {
+            font-size: 11px;
+            padding: 5px 15px;
+            border-radius: 0px;
+        }
+    }
+
+    .donate_btn {
+        display: grid;
+        text-align: center;
+        padding: 24px;
+
+        button {
+            border-radius: 0px;
+        }
+    }
+}

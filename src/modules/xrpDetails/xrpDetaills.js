@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { Image, Label, Table } from "semantic-ui-react";
 
 import useMergedState from "../../utils/useMergedState";
-import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
+
+import AnimatedLoader from "../../components/animatedLoader/animatedLoader";
 
 import { ALTERNATIVE_ME_API_ENDPOINT, URLS } from "../../constants/common.constants";
 

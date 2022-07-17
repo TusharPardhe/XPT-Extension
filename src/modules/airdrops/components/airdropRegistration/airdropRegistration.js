@@ -6,7 +6,7 @@ import { Client, convertHexToString } from 'xrpl';
 
 import useMergedState from '../../../../utils/useMergedState';
 
-import AnimatedLoader from '../../../../components/AnimatedLoader/AnimatedLoader';
+import AnimatedLoader from '../../../../components/animatedLoader/animatedLoader';
 import RegistrationForm from '../registrationForm/registrationForm';
 import XPTLogoImg from "../../../../assets/svg/xpt.svg";
 

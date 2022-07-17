@@ -1,7 +1,7 @@
 import React from "react";
 
 import useMergedState from "../../utils/useMergedState";
-import AnimatedLoader from "../../components/AnimatedLoader/AnimatedLoader";
+import AnimatedLoader from "../../components/animatedLoader/animatedLoader";
 import NewAccountDetailsInputs from "./components/newAccountDetailsInputs";
 import { ADD_ACCOUNTS_INITIAL_STATE } from "../../constants/addAccounts.constants";
 

@@ -86,3 +86,20 @@ export const isValidEqualValue = (value1, value2, message = "Your values don't m
         error: valid ? [] : [message],
     }
 };
+
+export const isPositiveNumber = (value, message = "Please enter a valid value.") => {
+    if (value.length === 0) {
+        return {
+            error: [message],
+            valid: false
+        }
+    };
+
+    value = parseInt(value);
+    const valid = value > 0;
+
+    return {
+        valid,
+        error: valid ? [] : [message],
+    };
+}

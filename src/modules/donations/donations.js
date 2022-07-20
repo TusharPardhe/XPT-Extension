@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Button, Divider, Input, TextArea } from 'semantic-ui-react';
+import { Button, Input, TextArea } from 'semantic-ui-react';
 
 import useMergedState from '../../utils/useMergedState';
 
@@ -7,7 +7,7 @@ import FUNDRAISING_IMG from "../../assets/png/fundraising.png"
 import { VALIDATION_REGEX } from '../../constants/common.constants';
 import { isPositiveNumber } from '../../utils/validations';
 import { executeScrollToRef } from '../../utils/common.utils';
-import { DONATIONS_INITIAL_STATE } from '../../constants/donations.constants';
+import { DONATIONS_INITIAL_STATE, DONATION_AMOUNTS_FOR_USER_SELECTION } from '../../constants/donations.constants';
 import { ApiCall } from '../../utils/api.util';
 
 import "./donations.scss";
@@ -116,9 +116,13 @@ const Donations = () => {
                 />
             </div>
             <div className="amount_selection">
-                <Button className="amount_btn" onClick={() => onAmountBtnClick("10")}>10 XRP</Button>
-                <Button className="amount_btn" onClick={() => onAmountBtnClick("100")}>100 XRP</Button>
-                <Button className="amount_btn" onClick={() => onAmountBtnClick("1000")}>1000 XRP</Button>
+                {DONATION_AMOUNTS_FOR_USER_SELECTION.map(amount =>
+                    <Button
+                        className="amount_btn"
+                        onClick={() => onAmountBtnClick(amount)}>
+                        {amount} XRP
+                    </Button>
+                )}
             </div>
             <div className="input_field">
                 <div className="label">Write a message:</div>

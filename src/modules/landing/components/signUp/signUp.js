@@ -197,9 +197,9 @@ const SignUp = () => {
                     <div className="labelTxt">XRPL Account: </div>
                     {xrplAddress.inputValue.length === 0 ? (
                         <Button
-                            basic
-                            color="green"
-                            onClick={onVerifyXrplAddressClick}>
+                            className="xumm_link_btn"
+                            onClick={onVerifyXrplAddressClick}
+                        >
                             Link Using Xumm
                         </Button>
                     ) : (

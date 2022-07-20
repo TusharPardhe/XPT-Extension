@@ -78,7 +78,7 @@ const Portfolio = () => {
 
         const payload = {
             method: "POST",
-            url: "use/account/details",
+            url: "user/delete/account",
             encrypt: true,
             auth: true,
             data: {

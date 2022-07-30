@@ -12,7 +12,7 @@ import XPTLogoImg from "../../assets/svg/xpt.svg";
 
 import { ROUTES } from "../../constants/common.constants";
 import { ApiCall } from "../../utils/api.util";
-import { executeScrollToRef } from "../../utils/common.utils";
+import { scrollToRef } from "../../utils/common.utils";
 import { AIRDROPS_INITIAL_STATE } from "../../constants/airdrops.constants";
 
 import "./airdrops.scss";
@@ -54,7 +54,7 @@ const Airdrops = () => {
             })
             .finally(() => {
                 setState({ loading: false });
-                executeScrollToRef(inputContainerRef);
+                scrollToRef(inputContainerRef);
             });
     }
 

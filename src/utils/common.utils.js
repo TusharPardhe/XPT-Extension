@@ -33,4 +33,4 @@ export const getDataFromLocalStrg = (key, encrypted = true) => {
     return data;
 }
 
-export const executeScrollToRef = (ref) => ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+export const scrollToRef = (ref) => ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });

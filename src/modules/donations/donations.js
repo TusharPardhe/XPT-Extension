@@ -6,7 +6,7 @@ import useMergedState from '../../utils/useMergedState';
 import FUNDRAISING_IMG from "../../assets/png/fundraising.png"
 import { VALIDATION_REGEX } from '../../constants/common.constants';
 import { isPositiveNumber } from '../../utils/validations';
-import { executeScrollToRef } from '../../utils/common.utils';
+import { scrollToRef } from '../../utils/common.utils';
 import { DONATIONS_INITIAL_STATE, DONATION_AMOUNTS_FOR_USER_SELECTION } from '../../constants/donations.constants';
 import { ApiCall } from '../../utils/api.util';
 
@@ -20,7 +20,7 @@ const Donations = () => {
     const { amount, xummPngLink, donateBtnEnabled, message } = state;
 
     useEffect(() => {
-        executeScrollToRef(amountRef);
+        scrollToRef(amountRef);
     }, []);
 
     const handleAmountInput = (e, res) => {
@@ -91,7 +91,7 @@ const Donations = () => {
                         }, 5000);
                     }
                 }).finally(() => {
-                    executeScrollToRef(amountRef);
+                    scrollToRef(amountRef);
                 });
         };
     }

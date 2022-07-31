@@ -1,7 +1,10 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Divider, Image, Table } from 'semantic-ui-react';
+import { Divider, Image } from 'semantic-ui-react';
+import parse from 'html-react-parser';
+
 import BackButton from '../../../../components/backButton/backButton';
+import { linkify, stringToLocale } from '../../../../utils/common.utils';
 
 import "./fungibleTokenDetails.scss"
 
@@ -12,12 +15,8 @@ const FungibleTokenDetails = () => {
     const { state } = location;
     if (!state) { return null };
 
-    const { name, icon, meta, metrics } = state;
-    const { token: { description: tokenDescription }, issuer: { issuerDescription } } = meta;
-    const { trustlines, holders, supply, marketcap, price, volume_24h, volume_7d } = metrics;
-    const description = tokenDescription || issuerDescription;
-
-    const parseString = (value) => parseFloat(value).toLocaleString();
+    const { name, icon, meta, metrics, issuer } = state;
+    const { token: { description: tokenDescription }, issuer: { description: issuerDescription } } = meta;
 
     return (
         <div className="fungible_token_details_container">
@@ -30,42 +29,66 @@ const FungibleTokenDetails = () => {
                     <div className="token_name">{name}</div>
                 </div>
                 <Divider />
-                {description && (
+                {tokenDescription ? (
                     <div className="token_description">
                         <p>
-                            {description}
+                            {parse(linkify(tokenDescription))}
+                        </p>
+                    </div>
+                ) : issuerDescription && (
+                    <div className="token_description">
+                        Issuer Description:<br />
+                        <p>
+                            {parse(linkify(issuerDescription))}
                         </p>
                     </div>
                 )}
-                <div className="token_details">
-                    <div className="card">
-                        <div className="heading">Market Price</div>
-                        <div className="value">{parseString(price)} XRP</div>
-                    </div>
-                    <div className="card">
-                        <div className="heading">Trustlines</div>
-                        <div className="value">{parseString(trustlines)}</div>
-                    </div>
-                    <div className="card">
-                        <div className="heading">Holders</div>
-                        <div className="value">{parseString(holders)}</div>
-                    </div>
-                    <div className="card">
-                        <div className="heading">Supply</div>
-                        <div className="value">{parseString(supply)}</div>
-                    </div>
-                    <div className="card">
-                        <div className="heading">Market Cap</div>
-                        <div className="value">{parseString(marketcap)}</div>
-                    </div>
-                    <div className="card">
-                        <div className="heading">24 Hour Volume</div>
-                        <div className="value">{parseString(volume_24h)} XRP</div>
-                    </div>
-                </div>
+                <CurrencyDetails {...metrics} />
+                <IssuerDetails {...issuer} />
             </div>
         </div>
     );
 }
 
 export default FungibleTokenDetails;
+
+function CurrencyDetails({ price, trustlines, holders, supply, marketcap, volume_24h }) {
+
+    return (
+        <div className="token_details">
+            <div className="card">
+                <div className="heading">Market Price</div>
+                <div className="value">{stringToLocale(price, 6)} XRP</div>
+            </div>
+            <div className="card">
+                <div className="heading">Trustlines</div>
+                <div className="value">{stringToLocale(trustlines, 0)}</div>
+            </div>
+            <div className="card">
+                <div className="heading">Holders</div>
+                <div className="value">{stringToLocale(holders, 0)}</div>
+            </div>
+            <div className="card">
+                <div className="heading">Supply</div>
+                <div className="value">{stringToLocale(supply, 0)}</div>
+            </div>
+            <div className="card">
+                <div className="heading">Market Cap</div>
+                <div className="value">{stringToLocale(marketcap, 0)}</div>
+            </div>
+            <div className="card">
+                <div className="heading">24 Hour Volume</div>
+                <div className="value">{stringToLocale(volume_24h)} XRP</div>
+            </div>
+        </div>
+    );
+}
+
+function IssuerDetails(props) {
+
+    return (
+        <div className="issuer_details">
+            <div className='token_details_headers'>Issuer Details</div>
+        </div>
+    )
+}

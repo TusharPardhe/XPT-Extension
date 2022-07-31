@@ -29,6 +29,16 @@
             text-align: center;
         }
 
+        .token_details_headers{
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 5px 10px;
+            border: 1px solid var(--light-gray);
+            box-shadow: 1px 0px 6px rgba(225, 224, 218, 0.67);
+            background: var(--pinkish-body-tint);
+        }
+
         .token_details {
             display: grid;
             grid-template-columns: 1fr 1fr;

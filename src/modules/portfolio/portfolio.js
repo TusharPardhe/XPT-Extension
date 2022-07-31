@@ -8,7 +8,7 @@ import useMergedState from "../../utils/useMergedState";
 
 import AccountDetails from "./components/accountDetails/accountDetails";
 import AccountTrustlines from "./components/accountTrustlines/accountTrustlines";
-import OtherDetails from "./components/otherDetails";
+import TransactionDetails from "./components/transactionDetails/transactionDetails";
 import IssuedCurrencies from "./components/issuedCurrencies/issuedCurrencies";
 import ShimmerLoader from "../../components/shimmerLoader/shimmerLoader";
 
@@ -111,7 +111,7 @@ const Portfolio = () => {
                         <AccountDetails {...{ toggleDetails, isOpen, data }} />
                         <IssuedCurrencies {...{ toggleDetails, isOpen, issuedFungibleTokens }} />
                         <AccountTrustlines {...{ id, toggleDetails, isOpen, otherCurrencies }} />
-                        <OtherDetails {...{ toggleDetails, isOpen }} />
+                        <TransactionDetails {...{ toggleDetails, isOpen }} />
                     </>
                 )}
             </div>

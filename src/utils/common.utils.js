@@ -1,4 +1,5 @@
 import { AES, enc } from "crypto-js";
+import parse from 'html-react-parser';
 import { convertHexToString } from "xrpl";
 import { VALIDATION_REGEX } from "../constants/common.constants";
 
@@ -35,16 +36,16 @@ export const getDataFromLocalStrg = (key, encrypted = true) => {
     return data;
 }
 
-export const scrollToRef = (ref) => ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+export const scrollToRef = (ref) => ref?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
 export const getTokenName = (value) => value.length === 40 ? convertHexToString(value).replaceAll("\u0000", "") : value;
 
-export const stringToLocale = (value, decimal = 4) => parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: decimal, maximumFractionDigits: decimal });
+export const stringToLocale = (value, decimal = 4) => value ? parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: decimal, maximumFractionDigits: decimal }) : "-";
 
 export const linkify = (inputText) => {
     let replacedText = inputText;
     replacedText = inputText.replace(VALIDATION_REGEX.URL_PATTERN_1, `<a href="$1" target="_blank">$1</a>`);
-    replacedText = replacedText.replace(VALIDATION_REGEX.URL_PATTERN_2, `$1<a href="http://$2" target="_blank">$2</a>`)
-    replacedText = replacedText.replace(VALIDATION_REGEX.URL_PATTERN_3, `<a href="mailto:$1">$1</a>`)
-    return replacedText;
+    replacedText = replacedText.replace(VALIDATION_REGEX.URL_PATTERN_2, `$1<a href="http://$2" target="_blank">$2</a>`);
+    replacedText = replacedText.replace(VALIDATION_REGEX.URL_PATTERN_3, `<a href="mailto:$1">$1</a>`);
+    return replacedText === inputText ? replacedText : parse(replacedText);
 }

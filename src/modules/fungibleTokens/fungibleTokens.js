@@ -3,6 +3,7 @@ import { Divider, Image, Input, Pagination } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 
 import useMergedState from "../../utils/useMergedState";
+import useDebounce from "../../utils/useDebounce";
 
 import XPTLogoImg from "../../assets/svg/xpt.svg";
 import TokenCard from "./components/tokenCard/tokenCard";
@@ -13,7 +14,6 @@ import { scrollToRef } from "../../utils/common.utils";
 import { ApiCall } from "../../utils/api.util";
 
 import "./fungibleTokens.scss";
-import useDebounce from "../../utils/useDebounce";
 
 const FungibleTokens = () => {
     const [state, setState] = useMergedState(FUNGIBLE_TOKENS_INITIAL_STATE);
@@ -73,8 +73,8 @@ const FungibleTokens = () => {
     };
 
     const onSearchValueChange = (e, { value }) => {
-        setState({ searchValue: value });
-    }
+        setState({ searchValue: value, activePage: FUNGIBLE_TOKENS_INITIAL_STATE.activePage });
+    };
 
 
     return (
@@ -83,7 +83,7 @@ const FungibleTokens = () => {
             <div className="sub_heading">A list of your favourite coins</div>
             <Divider />
             <div className="search_filter">
-                <Input value={searchValue} onChange={onSearchValueChange} placeHolder="Enter token name" />
+                <Input value={searchValue} onChange={onSearchValueChange} placeholder="Enter token name....  eg: Editions, CX1" className="search_input" />
             </div>
             <div className="fungible_tokens_table_container" ref={tableRef}>
                 {loading ? <ShimmerLoader /> : < TokenListTable {...{ list, navigate }} />}

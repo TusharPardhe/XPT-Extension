@@ -7,3 +7,8 @@ export const FUNGIBLE_TOKENS_INITIAL_STATE = {
     totalPages: 0,
     searchValue: "",
 };
+
+export const ISSUER_WEBLINK_TYPE = {
+    socialmedia: "Social",
+    "website": "Website"
+}

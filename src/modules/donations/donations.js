@@ -116,9 +116,10 @@ const Donations = () => {
                 />
             </div>
             <div className="amount_selection">
-                {DONATION_AMOUNTS_FOR_USER_SELECTION.map(amount =>
+                {DONATION_AMOUNTS_FOR_USER_SELECTION.map((amount, index) =>
                     <Button
                         className="amount_btn"
+                        key={index}
                         onClick={() => onAmountBtnClick(amount)}>
                         {amount} XRP
                     </Button>

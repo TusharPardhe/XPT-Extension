@@ -6,7 +6,7 @@ export const ROUTES = {
     ACCOUNTS: "/add_account",
     PORTFOLIO: "/portfolio/:id",
     TRANSACTIONS: "/transactions/:id",
-    XRP_DETAILS: "/price",
+    FUNGIBLE_TOKENS: "/fungible_tokens",
     NFT_DETAILS: "/nft",
     USEFUL_LINKS: "/links",
     AIRDROPS: "/airdrops",
@@ -14,6 +14,7 @@ export const ROUTES = {
     AIRDROP_REGISTRATION: "/airdrop/register",
     REQUEST_SUCCESS: "/request/success",
     DONATIONS: "/donate",
+    FUNGIBLE_TOKEN_DETAILS: "/fungible_token/details",
 };
 
 export const ENV = process.env.NODE_ENV.toUpperCase();

@@ -9,7 +9,8 @@ const Navbar = React.lazy(() => import("./components/navbar/navbar"));
 const Landing = React.lazy(() => import("./modules/landing/landing"));
 const Portfolio = React.lazy(() => import("./modules/portfolio/portfolio"));
 const AddAccount = React.lazy(() => import("./modules/addAccounts/addAccount"));
-const FungibleTokensList = React.lazy(() => import("./modules/fungibleTokensList/fungibleTokensList"));
+const FungibleTokensList = React.lazy(() => import("./modules/fungibleTokens/components/fungibleTokenList/fungibleTokensList"));
+const FungibleTokenDetails = React.lazy(() => import("./modules/fungibleTokens/components/fungibleTokenDetails/fungibleTokenDetails"));
 const UsefulLinks = React.lazy(() => import("./modules/usefulLinks/usefulLinks"));
 const Login = React.lazy(() => import("./modules/landing/components/login/login"));
 const SignUp = React.lazy(() => import("./modules/landing/components/signUp/signUp"));
@@ -34,7 +35,8 @@ export default function Routes() {
                 <Route path={ROUTES.HOME} element={wrapWithNavBar(<Home />)} />
                 <Route path={ROUTES.ACCOUNTS} element={wrapWithNavBar(<AddAccount />)} />
                 <Route path={ROUTES.PORTFOLIO} element={wrapWithNavBar(<Portfolio />)} />
-                <Route path={ROUTES.XRP_DETAILS} element={wrapWithNavBar(<FungibleTokensList />)} />
+                <Route path={ROUTES.FUNGIBLE_TOKENS} element={wrapWithNavBar(<FungibleTokensList />)} />
+                <Route path={ROUTES.FUNGIBLE_TOKEN_DETAILS} element={wrapWithNavBar(<FungibleTokenDetails />)} />
                 <Route path={ROUTES.USEFUL_LINKS} element={wrapWithNavBar(<UsefulLinks />)} />
                 <Route path={ROUTES.NFT_DETAILS} element={wrapWithNavBar(<NftVisualiser />)} />
                 <Route path={ROUTES.AIRDROPS} element={wrapWithNavBar(<Airdrops />)} />

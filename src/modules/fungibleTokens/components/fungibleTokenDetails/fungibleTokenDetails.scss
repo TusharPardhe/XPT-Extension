@@ -1,0 +1,55 @@
+.fungible_token_details_container {
+    padding: 0px 20px;
+
+    .token_details_container {
+        .token_header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .icon {
+                width: 100px;
+                height: 100px;
+                img {
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+
+            .token_name {
+                font-weight: bold;
+                padding: 10px 0px 0px 0px;
+            }
+        }
+        
+        .token_description {
+            border: 1px solid var(--platinum);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .token_details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 10px 0px;
+
+            .card{
+                border: 1px solid var(--platinum);
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                padding: 10px;
+                gap: 5px;
+
+                .heading{
+                    font-weight: bold;
+                }
+            }
+        }
+           
+           
+    }
+}

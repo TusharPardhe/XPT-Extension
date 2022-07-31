@@ -62,6 +62,7 @@ const Airdrops = () => {
         setState({ date: value });
         if (value && value - date !== 0) {
             fetchAirdropList(activePage, value);
+            setState({ activePage: AIRDROPS_INITIAL_STATE.activePage });
         };
     };
 

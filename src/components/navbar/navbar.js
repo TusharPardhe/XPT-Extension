@@ -41,23 +41,23 @@ const Navbar = (props) => {
                     width="thin"
                     className="sidebar"
                 >
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.HOME)}>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.HOME)} key="home">
                         <Icon name="home" />
                         Home
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.ACCOUNTS)}>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.ACCOUNTS)} key="account">
                         <Icon name="address book" />
                         Add Account
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.AIRDROPS)}>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.AIRDROPS)} key="airdrops">
                         <Icon name="calendar check outline" />
                         Airdrops
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.XRP_DETAILS)}>
-                        <Icon name="chart line" />
-                        Price
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.FUNGIBLE_TOKENS)} key="tokens">
+                        <Icon name="money bill alternate outline" />
+                        XRPL Tokens
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.USEFUL_LINKS)}>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.USEFUL_LINKS)} key="links">
                         <Icon name="bell" />
                         Useful Links
                     </Menu.Item>
@@ -65,11 +65,11 @@ const Navbar = (props) => {
                         <Icon name="image outline" />
                         NFT Visualiser
                     </Menu.Item> */}
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.DONATIONS)}>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.DONATIONS)} key="donate">
                         <Icon name="heartbeat" />
                         Donate
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={onLogOutClick}>
+                    <Menu.Item as="a" onClick={onLogOutClick} key="logout">
                         <Icon name="log out" />
                         Logout
                     </Menu.Item>

@@ -1,4 +1,5 @@
 import { AES, enc } from "crypto-js";
+import { convertHexToString } from "xrpl";
 
 export const redirectToUrl = (url, newTab = false) => {
     newTab ? window.open(url, "_blank") : window.open(url);
@@ -34,3 +35,5 @@ export const getDataFromLocalStrg = (key, encrypted = true) => {
 }
 
 export const scrollToRef = (ref) => ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+export const getTokenName = (value) => value.length === 40 ? convertHexToString(value).replaceAll("\u0000", "") : value;

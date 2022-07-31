@@ -1,27 +1,28 @@
 import React, { useEffect, useRef } from "react";
 import { Divider, Image, Pagination } from "semantic-ui-react";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-import useMergedState from "../../utils/useMergedState";
+import useMergedState from "../../../../utils/useMergedState";
 
-import ShimmerLoader from "../../components/shimmerLoader/shimmerLoader";
-import XPTLogoImg from "../../assets/svg/xpt.svg";
-import { ApiCall } from "../../utils/api.util";
+import TokenCard from "../tokenCard/tokenCard";
+import ShimmerLoader from "../../../../components/shimmerLoader/shimmerLoader";
+import XPTLogoImg from "../../../../assets/svg/xpt.svg";
+import { scrollToRef } from "../../../../utils/common.utils";
+import { ApiCall } from "../../../../utils/api.util";
 
 import "./fungibleTokensList.scss";
-import { scrollToRef } from "../../utils/common.utils";
 
 const FungibleTokensList = () => {
     const [state, setState] = useMergedState({
         offset: 0,
-        limit: 4,
+        limit: 8,
         loading: false,
         list: [],
         activePage: 1,
         totalPages: 0,
     });
-    const toastId = useRef(null);
     const tableRef = useRef(null);
+    const navigate = useNavigate();
 
     const {
         offset,
@@ -34,10 +35,9 @@ const FungibleTokensList = () => {
 
     useEffect(() => {
         fetchTokenList(activePage);
-    }, [])
+    }, []);
 
     const fetchTokenList = (pageNumber) => {
-        toastId.current = toast.loading("Fetching details...");
         setState({ loading: true });
 
         const payload = {
@@ -62,7 +62,6 @@ const FungibleTokensList = () => {
                 }
             })
             .finally(() => {
-                toast.dismiss(toastId.current);
                 setState({ loading: false });
                 scrollToRef(tableRef);
             });
@@ -80,11 +79,7 @@ const FungibleTokensList = () => {
             <div className="sub_heading">A list of your favourite coins</div>
             <Divider />
             <div className="fungible_tokens_table_container" ref={tableRef}>
-                {loading ? <ShimmerLoader /> : (
-                    <div className="fungible_tokens_table">
-                        {list?.length > 0 && list.map((details, index) => <TokenCard {...details} key={index} />)}
-                    </div>
-                )}
+                {loading ? <ShimmerLoader /> : < TokenListTable {...{ list, navigate }} />}
                 <div className="pagination">
                     <Pagination
                         pointing
@@ -107,26 +102,11 @@ const FungibleTokensList = () => {
 export default FungibleTokensList;
 
 
-function TokenCard(props) {
-    if (!props) {
-        return null;
-    };
-
-    const { currency } = props;
-
+function TokenListTable({ list, navigate }) {
     return (
-        <div className="fungible_token">
-            <div className="upper_section">
-                <div className="token_img">Img</div>
-            </div>
-            <div className="strip">
-                <div className="properties">
-                    <div className="name">
-                        {currency}
-                    </div>
-                </div>
-            </div>
+        <div className="fungible_tokens_table">
+            {list?.length > 0 && list.map((details, index) => <TokenCard {...{ ...details, navigate }} key={index} />)}
         </div>
-    )
-
+    );
 }
+

@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from "react";
-import { Divider, Image, Input, Pagination } from "semantic-ui-react";
+import { Divider, Icon, Image, Input, Pagination } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 
 import useMergedState from "../../utils/useMergedState";
 import useDebounce from "../../utils/useDebounce";
 
 import XPTLogoImg from "../../assets/svg/xpt.svg";
-import TokenCard from "./components/tokenCard/tokenCard";
 import ShimmerLoader from "../../components/shimmerLoader/shimmerLoader";
 
+import TokenListTable from "./components/tokenListTable/tokenListTable";
 import { FUNGIBLE_TOKENS_INITIAL_STATE } from "../../constants/fungibleTokens.constants";
 import { scrollToRef } from "../../utils/common.utils";
 import { ApiCall } from "../../utils/api.util";
@@ -20,15 +20,7 @@ const FungibleTokens = () => {
     const tableRef = useRef(null);
     const navigate = useNavigate();
 
-    const {
-        offset,
-        limit,
-        loading,
-        list,
-        totalPages,
-        activePage,
-        searchValue,
-    } = state;
+    const { offset, limit, loading, list, totalPages, activePage, searchValue } = state;
 
     const debouncedSearchValue = useDebounce(searchValue, 400);
 
@@ -57,7 +49,7 @@ const FungibleTokens = () => {
                     setState({
                         list,
                         totalPages: Math.ceil(totalCount / 4),
-                        totalCount
+                        totalCount,
                     });
                 }
             })
@@ -76,17 +68,28 @@ const FungibleTokens = () => {
         setState({ searchValue: value, activePage: FUNGIBLE_TOKENS_INITIAL_STATE.activePage });
     };
 
-
     return (
         <div className="fungible_tokens_container">
-            <div className="token_header">XRPL T<Image src={XPTLogoImg} className="logo_img" />KENS</div>
+            <div className="token_header">
+                XRPL T<Image src={XPTLogoImg} className="logo_img" />
+                KENS
+            </div>
             <div className="sub_heading">A list of your favourite coins</div>
             <Divider />
             <div className="search_filter">
-                <Input value={searchValue} onChange={onSearchValueChange} placeholder="Enter token name....  eg: Editions, CX1" className="search_input" />
+                <Input
+                    icon
+                    value={searchValue}
+                    onChange={onSearchValueChange}
+                    placeholder="Enter token name....  eg: Editions, CX1"
+                    className="search_input"
+                >
+                    <input />
+                    <Icon name="search" />
+                </Input>
             </div>
             <div className="fungible_tokens_table_container" ref={tableRef}>
-                {loading ? <ShimmerLoader /> : < TokenListTable {...{ list, navigate }} />}
+                {loading ? <ShimmerLoader /> : <TokenListTable {...{ list, navigate }} />}
                 <div className="pagination">
                     <Pagination
                         pointing
@@ -98,10 +101,10 @@ const FungibleTokens = () => {
                         lastItem={null}
                         siblingRange={1}
                         totalPages={totalPages}
-                        onPageChange={handlePaginationChange} />
+                        onPageChange={handlePaginationChange}
+                    />
                 </div>
             </div>
-
         </div>
     );
 };
@@ -109,11 +112,4 @@ const FungibleTokens = () => {
 export default FungibleTokens;
 
 
-function TokenListTable({ list, navigate }) {
-    return (
-        <div className="fungible_tokens_table">
-            {list?.length > 0 && list.map((details, index) => <TokenCard {...{ ...details, navigate }} key={index} />)}
-        </div>
-    );
-}
 

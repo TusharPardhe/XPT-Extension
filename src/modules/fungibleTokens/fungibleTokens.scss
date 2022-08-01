@@ -33,15 +33,6 @@
         flex-direction: column;
         min-height: 300px;
 
-        .fungible_tokens_table {
-            display: grid;
-            grid-template-columns: calc(50% - 8px) auto;
-            gap: 16px;
-            grid-template-rows: 50% 50%;
-            padding: 16px;
-            min-height: 280px;
-        }
-
         .pagination {
             padding: 6px 0;
         }

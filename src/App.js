@@ -9,9 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const DEV_ENV = ENV === "DEVELOPMENT";
 
-if (!DEV_ENV) {
-    console.log = () => { };
-};
 
 function App() {
     if (DEV_ENV) {

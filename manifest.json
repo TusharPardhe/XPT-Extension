@@ -10,16 +10,16 @@
   "background": {
     "persistent": false,
     "scripts": [
-      "background_worker.js"
+      "background.js"
     ]
   },
   "content_scripts": [
     {
       "matches": [
-        "https://*/*"
+      "<all_urls>"
       ],
       "js": [
-        "web_interaction_content_script.js"
+        "content.js"
       ]
     }
   ],

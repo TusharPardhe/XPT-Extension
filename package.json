@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "webpack serve --config scripts/webpack.config.js --env env=dev --progress",
-    "build": "webpack --config scripts/webpack.config.js --env env=prod --progress"
+    "start": "webpack serve --config webpack/webpack.config.js --env env=dev --progress",
+    "build": "webpack --config webpack/webpack.config.js --env env=prod --progress"
   },
   "eslintConfig": {
+    "env": {
+      "webextensions": true
+    },
     "extends": [
       "react-app"
     ]
@@ -31,9 +34,11 @@
     "dateformat": "^5.0.3",
     "html-react-parser": "^3.0.1",
     "material-design-icons": "^3.0.1",
+    "nanoid": "^4.0.0",
     "net": "^1.0.2",
     "node-polyfill-webpack-plugin": "^1.1.4",
     "prop-types": "^15.7.2",
+    "query-string": "^7.1.1",
     "react": "^17.0.2",
     "react-date-picker": "^8.4.0",
     "react-datetime-picker": "^3.5.0",

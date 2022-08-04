@@ -41,8 +41,8 @@ module.exports = {
             patterns: [
                 { from: path.resolve(__dirname, "..", "manifest.json") },
                 { from: path.resolve(__dirname, "..", "xpt192.png") },
-                { from: path.resolve(__dirname, "../scripts/background_worker.js") },
-                { from: path.resolve(__dirname, "../scripts/web_interaction_content_script.js") },
+                { from: path.resolve(__dirname, "../src/scripts/background.js") },
+                { from: path.resolve(__dirname, "../src/scripts/content.js") },
             ],
         }),
         new Dotenv({

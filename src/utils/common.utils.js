@@ -48,4 +48,8 @@ export const linkify = (inputText) => {
     replacedText = replacedText.replace(VALIDATION_REGEX.URL_PATTERN_2, `$1<a href="http://$2" target="_blank">$2</a>`);
     replacedText = replacedText.replace(VALIDATION_REGEX.URL_PATTERN_3, `<a href="mailto:$1">$1</a>`);
     return replacedText === inputText ? replacedText : parse(replacedText);
-}
+};
+
+export const sendMessageToBgScript = (data) => {
+    chrome.runtime.sendMessage(data);
+};

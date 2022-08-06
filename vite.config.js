@@ -16,7 +16,6 @@ export default defineConfig({
             targets: [
                 { src: path.resolve(__dirname, "./manifest.json"), dest: "" },
                 { src: path.resolve(__dirname, "./src/assets/png/xpt192.png"), dest: "" },
-                { src: path.resolve(__dirname, "./src/scripts/*"), dest: "" },
             ],
         }),
         EnvironmentPlugin("all"),
@@ -48,6 +47,8 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 index: path.resolve(__dirname, "./src/index.html"),
+                background: path.resolve(__dirname, "./src/scripts/background.js"),
+                content: path.resolve(__dirname, "./src/scripts/content.js"),
             },
             output: { entryFileNames: "[name].js" },
             plugins: [nodePolyfills()],

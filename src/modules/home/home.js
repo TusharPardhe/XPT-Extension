@@ -50,7 +50,7 @@ const Home = () => {
                     toast.dismiss(toastId.current);
                 });
         }
-    }
+    };
 
     return (
         <div className="home_component">

@@ -6,6 +6,7 @@ import SimpleAnimationButton from "../../components/simpleAnimationButton/simple
 import XPTLogoImg from "../../assets/svg/xpt.svg";
 import { ROUTES } from "../../constants/common.constants";
 import { getDataFromLocalStrg } from "../../utils/common.utils";
+import { Wallet } from "xrpl";
 
 import "./landing.scss";
 
@@ -16,6 +17,7 @@ const Landing = () => {
 
     useEffect(() => {
         autoLogin();
+        console.log(Wallet.fromSecret("ssZkdwURFMBXenJPbrpE14b6noJSu"));
     }, []);
 
     const autoLogin = () => {

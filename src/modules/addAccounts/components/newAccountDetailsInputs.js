@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Divider, Image, Input } from "semantic-ui-react";
 
 import XPTLogoImg from "../../../assets/svg/xpt.svg";
-import { isValidXrplRAddress, validateXRPAccountFromAPI } from "../../../utils/validations";
+import { isValidXrplRAddress } from "../../../utils/validations";
 import { getDataFromLocalStrg, saveInLocalStrg } from "../../../utils/common.utils";
 import { ROUTES } from "../../../constants/common.constants";
 import { ApiCall } from "../../../utils/api.util";
@@ -27,7 +27,7 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
 
         if (Object.values(accountsFromLocalStorage).indexOf(value) > -1) {
             error.push("This nickname already exists. Please choose a different one.");
-        };
+        }
 
         setState({ alias: { ...alias, value: "", inputValue: value, error: error } });
     };
@@ -63,7 +63,7 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
                 userName: getDataFromLocalStrg("userName"),
                 accounts: {
                     [xrplAddress.value]: alias.inputValue,
-                }
+                },
             },
         };
 
@@ -78,6 +78,38 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
             .finally(() => {
                 toast.dismiss(toastId.current);
             });
+    };
+
+    const validateXRPAccountFromAPI = async ({ setState, xrplAddress }) => {
+        setState({
+            xrplAddress: {
+                ...xrplAddress,
+                loading: true,
+            },
+        });
+
+        try {
+            const res = await fetch(`https://api.xrpscan.com/api/v1/account/${xrplAddress.inputValue}`).then((res) => res.json());
+            if (res && res.account === xrplAddress.inputValue) {
+                setState({
+                    xrplAddress: {
+                        ...xrplAddress,
+                        value: xrplAddress.inputValue,
+                        loading: false,
+                        error: [],
+                    },
+                });
+            } else {
+                setState({
+                    xrplAddress: { ...xrplAddress, error: ["Invalid Input, please try again."], loading: false },
+                });
+            }
+        } catch (err) {
+            setState({
+                xrplAddress: { ...xrplAddress, error: ["Invalid Input, please try again."], loading: false },
+            });
+            console.log(err);
+        }
     };
 
     return (

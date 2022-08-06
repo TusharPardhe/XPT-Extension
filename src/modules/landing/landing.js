@@ -1,22 +1,36 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Image } from "semantic-ui-react";
-// import queryString from "query-string";
+import queryString from "query-string";
 import SimpleAnimationButton from "../../components/simpleAnimationButton/simpleAnimationButton";
 import XPTLogoImg from "../../assets/svg/xpt.svg";
 import { ROUTES } from "../../constants/common.constants";
-import { getDataFromLocalStrg } from "../../utils/common.utils";
+import { getDataFromLocalStrg, sendMessageToBgScript } from "../../utils/common.utils";
 
 import "./landing.scss";
 
-// const parsed = queryString.parse(window.location.search);
+// this import
+import { Wallet } from "xrpl";
+
+const parsed = queryString.parse(window.location.search);
+
+// var port = chrome.extension.connect({ name: "XPT-Popup Communication" });
 
 const Landing = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
         autoLogin();
+        console.log(Wallet.fromSecret("ssZkdwURFMBXenJPbrpE14b6noJSu"));
     }, []);
+
+
+    // port.onMessage.addListener(function (message) {
+    //     if (message.id === "TRANSACTION_DETAILS") {
+    //         const signed = wallet.sign(message.transaction);
+    //         port.postMessage({ id: "DATA_FROM_POPUP", transactionId: parsed.transactionId, signed });
+    //     }
+    // });
 
     const autoLogin = () => {
         const jwt = getDataFromLocalStrg("token");
@@ -27,8 +41,9 @@ const Landing = () => {
 
     const onLoginBtnClick = () => {
         // to send message to background script
-        // sendMessageToBgScript({ id: "DATA_FROM_POPUP", transactionId: parsed.transactionId, key: "ABCD" });
-        navigate(ROUTES.LOGIN)
+        // port.postMessage({ id: "SEND_DETAILS", transactionId: parsed.transactionId });
+        // sendMessageToBgScript({ id: "DATA_FROM_POPUP", transactionId: parsed.transactionId, key: "spkPaHe6XtQgmEyU5mmLEycuguhkS" });
+        // navigate(ROUTES.LOGIN)
     };
 
     return (

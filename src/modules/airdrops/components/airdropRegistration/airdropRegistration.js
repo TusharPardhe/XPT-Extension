@@ -13,6 +13,7 @@ import { ROUTES } from "../../../../constants/common.constants";
 import { ApiCall } from "../../../../utils/api.util";
 import { isValidValue } from "../../../../utils/validations";
 import { getDataFromLocalStrg } from "../../../../utils/common.utils";
+import { AIRDROP_REGISTRATION_INITIAL_STATE } from "../../../../constants/airdrops.constants";
 
 import "./airdropRegistration.scss";
 
@@ -21,21 +22,7 @@ const AirdropRegistration = () => {
     const accountXrplAddress = getDataFromLocalStrg("xrplAddress");
     const toastId = useRef(null);
 
-    const [state, setState] = useMergedState({
-        loading: true,
-        message: "",
-        projectName: { value: "", error: [] },
-        currencyName: { value: "", error: [] },
-        date: { value: new Date(), error: [] },
-        description: { value: "", error: [] },
-        logo: { value: "", error: [] },
-        twitter: { value: "", error: [] },
-        discord: { value: "", error: [] },
-        website: { value: "", error: [] },
-        linktree: { value: "", error: [] },
-        others: { value: "", error: [] },
-        ticker: { value: "", error: [], options: [] },
-    });
+    const [state, setState] = useMergedState(AIRDROP_REGISTRATION_INITIAL_STATE);
     const { projectName, logo, ticker, currencyName, date, description, twitter, discord, website, linktree, others, loading, message } = state;
 
     useEffect(() => {

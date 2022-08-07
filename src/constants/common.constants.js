@@ -5,7 +5,6 @@ export const ROUTES = {
     HOME: "/home",
     ACCOUNTS: "/add_account",
     PORTFOLIO: "/portfolio/:id",
-    TRANSACTIONS: "/transactions/:id",
     FUNGIBLE_TOKENS: "/fungible_tokens",
     NFT_DETAILS: "/nft",
     USEFUL_LINKS: "/links",
@@ -15,6 +14,7 @@ export const ROUTES = {
     REQUEST_SUCCESS: "/request/success",
     DONATIONS: "/donate",
     FUNGIBLE_TOKEN_DETAILS: "/fungible_token/details",
+    TRANSACTIONS: "/transactions",
 };
 
 export const ENV = process.env.NODE_ENV.toUpperCase();

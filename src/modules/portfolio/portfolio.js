@@ -102,14 +102,20 @@ const Portfolio = () => {
     return (
         <div className="portfolio_container">
             <PortfolioHeading {...{ id, userName }} />
-            {!isCurrentUser && (<Button color="red" className="delete_btn" onClick={onDeleteClick}>Remove</Button>)}
+            {!isCurrentUser && (
+                <Button color="red" className="delete_btn" onClick={onDeleteClick}>
+                    Remove
+                </Button>
+            )}
             <div className="details_container">
-                {loading ? <ShimmerLoader /> : (
+                {loading ? (
+                    <ShimmerLoader />
+                ) : (
                     <>
                         <AccountDetails {...{ toggleDetails, isOpen, data }} />
                         <IssuedCurrencies {...{ toggleDetails, isOpen, issuedFungibleTokens }} />
                         <AccountTrustlines {...{ id, toggleDetails, isOpen, otherCurrencies }} />
-                        <TransactionDetails {...{ toggleDetails, isOpen }} />
+                        <TransactionDetails {...{ id, navigate }} />
                     </>
                 )}
             </div>

@@ -15,6 +15,7 @@ export const ROUTES = {
     DONATIONS: "/donate",
     FUNGIBLE_TOKEN_DETAILS: "/fungible_token/details",
     TRANSACTIONS: "/transactions",
+    PAYMENT: "/payment",
 };
 
 export const ENV = process.env.NODE_ENV.toUpperCase();

@@ -21,6 +21,7 @@ const AirdropRegistration = React.lazy(() => import("./modules/airdrops/componen
 const SuccessPage = React.lazy(() => import("./components/successPage/sucessPage"));
 const Donations = React.lazy(() => import("./modules/donations/donations"));
 const Transactions = React.lazy(() => import("./modules/transactions/transactions"));
+const Paymment = React.lazy(() => import("./modules/payment/payment"));
 
 export default function Routes() {
     const location = useLocation();
@@ -45,6 +46,7 @@ export default function Routes() {
                 <Route path={ROUTES.AIRDROP_REGISTRATION} element={wrapWithNavBar(<AirdropRegistration />)} />
                 <Route path={ROUTES.REQUEST_SUCCESS} element={wrapWithNavBar(<SuccessPage />)} />
                 <Route path={ROUTES.TRANSACTIONS} element={wrapWithNavBar(<Transactions />)} />
+                <Route path={ROUTES.PAYMENT} element={wrapWithNavBar(<Paymment />)} />
                 <Route path={ROUTES.DONATIONS} element={wrapWithNavBar(<Donations />)} />
                 <Route path="/*" element={<div>Error</div>} />
             </RoutesBundle>

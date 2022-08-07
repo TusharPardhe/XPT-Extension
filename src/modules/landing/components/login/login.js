@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Input } from "semantic-ui-react";
+import queryString from "query-string";
 
 import useMergedState from "../../../../utils/useMergedState";
 
@@ -13,6 +14,8 @@ import { saveInLocalStrg } from "../../../../utils/common.utils";
 import { ApiCall } from "../../../../utils/api.util";
 
 import "./login.scss";
+
+const parsed = queryString.parse(window.location.search);
 
 const Login = () => {
     const navigate = useNavigate();
@@ -63,7 +66,11 @@ const Login = () => {
                         saveInLocalStrg("token", response.data.token);
                         saveInLocalStrg("userName", response.data.userName);
                         saveInLocalStrg("xrplAddress", response.data.xrplAddress);
-                        navigate(ROUTES.HOME);
+                        const route = parsed.route ? ROUTES[parsed.route] : ROUTES.HOME;
+                        navigate({
+                            pathname: route,
+                            search: window.location.search,
+                        });
                     }
                 })
                 .finally(() => {

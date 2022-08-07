@@ -42,7 +42,7 @@ export const VALIDATION_REGEX = {
     XRPL_R_ADDRESS: /^r[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{24,34}$/,
     URL: /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
     NUMBERS_AND_EMPTY: /^(\s*|\d+)$/,
-
+    ALPHABETS_WITH_TRAILING_SPACES: /^[a-zA-Z0-9][a-zA-Z0-9 ]*$/,
     //URLs starting with http://, https://, or ftp://
     URL_PATTERN_1: /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim,
     //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
@@ -50,3 +50,5 @@ export const VALIDATION_REGEX = {
     //Change email addresses to mailto:: links.
     URL_PATTERN_3: /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim,
 };
+
+export const MAX_ALLOWED_LENGTH = 20;

@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { Button, Divider, Image, Input } from "semantic-ui-react";
 
 import XPTLogoImg from "../../../assets/svg/xpt.svg";
-import { isValidXrplRAddress } from "../../../utils/validations";
+import { isValidValue, isValidXrplRAddress } from "../../../utils/validations";
 import { getDataFromLocalStrg, saveInLocalStrg } from "../../../utils/common.utils";
-import { ROUTES } from "../../../constants/common.constants";
+import { MAX_ALLOWED_LENGTH, ROUTES, VALIDATION_REGEX } from "../../../constants/common.constants";
 import { ApiCall } from "../../../utils/api.util";
 import { ADD_ACCOUNTS_INITIAL_STATE } from "../../../constants/addAccounts.constants";
 
@@ -23,13 +23,14 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
 
     const onAliasValueChange = (event) => {
         const { value } = event.target;
-        let error = [];
 
-        if (Object.values(accountsFromLocalStorage).indexOf(value) > -1) {
-            error.push("This nickname already exists. Please choose a different one.");
+        if (value.length < MAX_ALLOWED_LENGTH) {
+            let { error } = isValidValue(value, undefined, VALIDATION_REGEX.ALPHABETS_WITH_TRAILING_SPACES);
+            if (Object.values(accountsFromLocalStorage).indexOf(value) > -1) {
+                error.push("This nickname already exists. Please choose a different one.");
+            }
+            setState({ alias: { ...alias, value: "", inputValue: value, error: error } });
         }
-
-        setState({ alias: { ...alias, value: "", inputValue: value, error: error } });
     };
 
     const onXrplAddressChange = (event) => {
@@ -90,7 +91,7 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
 
         try {
             const res = await fetch(`https://api.xrpscan.com/api/v1/account/${xrplAddress.inputValue}`).then((res) => res.json());
-            if (res && res.account === xrplAddress.inputValue) {
+            if (res && res.account === xrplAddress.inputValue && !res.error) {
                 setState({
                     xrplAddress: {
                         ...xrplAddress,

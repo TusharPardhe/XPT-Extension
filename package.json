@@ -23,7 +23,7 @@
     ]
   },
   "scripts": {
-    "start": "vite",
+    "start": "vite --port 8080",
     "build": "vite build --emptyOutDir",
     "preview": "vite preview"
   },

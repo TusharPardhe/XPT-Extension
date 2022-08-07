@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Divider, Image, Pagination } from "semantic-ui-react";
 import DatePicker from "react-date-picker";
 import dateFormat from "dateformat";
@@ -19,13 +19,14 @@ import "./airdrops.scss";
 
 const Airdrops = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const inputContainerRef = useRef();
-    const [state, setState] = useMergedState(AIRDROPS_INITIAL_STATE);
+    const [state, setState] = useMergedState({ ...AIRDROPS_INITIAL_STATE, ...location.state });
     const { date, activePage, totalPages, limit, list, loading } = state;
 
     useEffect(() => {
         fetchAirdropList(activePage, date);
-    }, []);
+    }, [location.state]);
 
     const fetchAirdropList = (pageNumber, date) => {
         const payload = {
@@ -36,7 +37,7 @@ const Airdrops = () => {
                 limit,
                 pageNumber,
                 date: parseInt(date.getTime() / 1000),
-            }
+            },
         };
 
         setState({ loading: true });
@@ -56,14 +57,14 @@ const Airdrops = () => {
                 setState({ loading: false });
                 scrollToRef(inputContainerRef);
             });
-    }
+    };
 
     const onDateChange = (value) => {
         setState({ date: value });
         if (value && value - date !== 0) {
             fetchAirdropList(activePage, value);
             setState({ activePage: AIRDROPS_INITIAL_STATE.activePage });
-        };
+        }
     };
 
     const handlePaginationChange = (e, { activePage }) => {
@@ -84,10 +85,12 @@ const Airdrops = () => {
                     PS
                 </div>
                 <div className="sub_heading">Never let a drop go unnoticed.</div>
-                <div className="register_drop_link" onClick={handleRegisterBtnClick}>Register your drop</div>
+                <div className="register_drop_link" onClick={handleRegisterBtnClick}>
+                    Register your drop
+                </div>
             </div>
             <Divider />
-            <div className="input_container" >
+            <div className="input_container">
                 <div className="date_picker">
                     <div className="label">From date:</div>
                     <DatePicker
@@ -100,19 +103,20 @@ const Airdrops = () => {
                     />
                 </div>
                 <div className="airdrops_container">
-                    <AirdropList {...{ loading, list, navigate }} />
+                    <AirdropList {...{ loading, list, navigate, state }} />
                     <div className="pagination" ref={inputContainerRef}>
                         <Pagination
                             pointing
                             secondary
                             boundaryRange={0}
-                            defaultActivePage={1}
+                            defaultActivePage={activePage}
                             ellipsisItem={null}
                             firstItem={null}
                             lastItem={null}
                             siblingRange={1}
                             totalPages={totalPages}
-                            onPageChange={handlePaginationChange} />
+                            onPageChange={handlePaginationChange}
+                        />
                     </div>
                 </div>
             </div>
@@ -122,18 +126,22 @@ const Airdrops = () => {
 
 export default Airdrops;
 
-const AirdropList = ({ loading, list, navigate }) => {
-    if (loading) { 
-        return <ShimmerLoader/>; 
-    };
+const AirdropList = ({ loading, list, navigate, state }) => {
+    if (loading) {
+        return <ShimmerLoader />;
+    }
 
     if (!list || list.length === 0) {
         return <NoResultCard title={"No airdrops found"} />;
-    };
+    }
 
     const onDropClick = (drop) => {
         navigate(ROUTES.DROP_DETAILS.replace(":id", drop.ticker), {
-            state: drop
+            state: {
+                ...drop,
+                selectedDate: state.date,
+                selectedPage: state.activePage,
+            },
         });
     };
 
@@ -148,5 +156,5 @@ const AirdropList = ({ loading, list, navigate }) => {
             ))}
         </div>
     );
-}
+};
 

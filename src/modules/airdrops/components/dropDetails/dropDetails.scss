@@ -1,11 +1,13 @@
 .drop_details_container {
-    .details_box {
-        padding: 0px 20px;
+    padding: 0px 20px;
+.details_box {
+        padding: 10px 0;
         text-align: center;
 
         .heading {
             .img_container {
                 img {
+                    border-radius: 10px;
                     width: 100px;
                     height: 100px;
                 }

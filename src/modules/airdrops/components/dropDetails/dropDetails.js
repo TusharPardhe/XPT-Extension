@@ -1,18 +1,30 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Divider, Icon } from "semantic-ui-react";
+import { Divider } from "semantic-ui-react";
+import dateFormat from "dateformat";
+
 import BackButton from "../../../../components/backButton/backButton";
+import { ROUTES } from "../../../../constants/common.constants";
 
 import "./dropDetails.scss";
 
 const DropDetails = () => {
     const navigate = useNavigate();
     const { state } = useLocation();
-    const { projectName, currencyName, description } = state;
+    const { projectName, currencyName, description, date } = state;
+
+    const onGoBackClick = () => {
+        navigate(ROUTES.AIRDROPS, {
+            state: {
+                date: state.selectedDate,
+                activePage: state.selectedPage,
+            },
+        });
+    };
 
     return (
         <div className="drop_details_container">
-            <BackButton onClick={() => navigate(-1)} displayName="Go Back" />
+            <BackButton onClick={onGoBackClick} displayName="Go Back" />
             <div className="details_box">
                 <div className="heading">
                     <div className="img_container">
@@ -35,6 +47,12 @@ const DropDetails = () => {
                 <Divider />
                 <div className="coin_info">
                     <div className="info_cards_container">
+                        <div className="box">
+                            <div className="details">
+                                <div className="info_heading">Airdrop Date</div>
+                                <div className="value">{dateFormat(date * 1000, "dd mmm yyyy hh:mm TT")}</div>
+                            </div>
+                        </div>
                         <div className="box">
                             <div className="details">
                                 <div className="info_heading">Project Name</div>

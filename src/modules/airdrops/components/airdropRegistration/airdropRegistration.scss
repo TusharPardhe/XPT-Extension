@@ -25,21 +25,16 @@
         }
     }
 
-    .not_issuer_not {
-        background: red;
+    .restricted_note_container {
+        background: var(--imperial-red);
         font-size: 14px;
         padding: 10px;
         color: white;
         font-weight: bold;
-        
-        span{
-            font-size: 16px;
-        }
     }
 
     .registration_form {
-
-        .heading{
+        .heading {
             font-size: 16px;
             padding-bottom: 10px;
         }
@@ -80,7 +75,7 @@
                         padding: 12px;
                         border-radius: 0px;
                         text-align: center;
-                        background-color: var(--gainsboro)
+                        background-color: var(--gainsboro);
                     }
                 }
             }
@@ -89,14 +84,16 @@
         .submission_note {
             font-size: 12px;
             padding: 10px 20px;
+
             span {
                 color: var(--carnelian);
                 font-weight: bold;
             }
         }
-           
-        .btn_container{
+
+        .btn_container {
             padding: 20px 20px 0px 20px;
+
             button {
                 width: 100%;
             }
@@ -111,14 +108,14 @@
             inset: 100% 0% !important;
         }
 
-        .react-datetime-picker__inputGroup{
+        .react-datetime-picker__inputGroup {
             input {
                 border: none;
             }
         }
 
         .react-datetime-picker__wrapper {
-            border: 1px solid var(--gainsboro); 
+            border: 1px solid var(--gainsboro);
             padding: 5px;
         }
 
@@ -126,8 +123,8 @@
             border-radius: 10px;
             box-shadow: var(--generic-box-shadow);
         }
-        
-        .error_textarea{
+
+        .error_textarea {
             background-color: #fff6f6;
             border-color: #e0b4b4;
             color: #9f3a38;

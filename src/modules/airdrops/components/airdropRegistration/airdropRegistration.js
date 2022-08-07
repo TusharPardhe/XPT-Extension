@@ -1,19 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-import { Divider, Image } from 'semantic-ui-react';
-import { Client, convertHexToString } from 'xrpl';
+import { Divider, Image } from "semantic-ui-react";
 
-import useMergedState from '../../../../utils/useMergedState';
+import useMergedState from "../../../../utils/useMergedState";
 
-import AnimatedLoader from '../../../../components/animatedLoader/animatedLoader';
-import RegistrationForm from '../registrationForm/registrationForm';
+import AnimatedLoader from "../../../../components/animatedLoader/animatedLoader";
+import RegistrationForm from "../registrationForm/registrationForm";
 import XPTLogoImg from "../../../../assets/svg/xpt.svg";
 
-import { PUBLIC_SERVER, ROUTES } from '../../../../constants/common.constants';
+import { ROUTES } from "../../../../constants/common.constants";
 import { ApiCall } from "../../../../utils/api.util";
-import { isValidValue } from '../../../../utils/validations';
-import { getDataFromLocalStrg } from '../../../../utils/common.utils';
+import { isValidValue } from "../../../../utils/validations";
+import { getDataFromLocalStrg } from "../../../../utils/common.utils";
 
 import "./airdropRegistration.scss";
 
@@ -24,7 +23,7 @@ const AirdropRegistration = () => {
 
     const [state, setState] = useMergedState({
         loading: true,
-        isAnIssuer: true,
+        message: "",
         projectName: { value: "", error: [] },
         currencyName: { value: "", error: [] },
         date: { value: new Date(), error: [] },
@@ -35,23 +34,9 @@ const AirdropRegistration = () => {
         website: { value: "", error: [] },
         linktree: { value: "", error: [] },
         others: { value: "", error: [] },
-        ticker: { value: "", error: [], options: [] }
+        ticker: { value: "", error: [], options: [] },
     });
-    const {
-        projectName,
-        logo,
-        ticker,
-        currencyName,
-        date,
-        description,
-        twitter,
-        discord,
-        website,
-        linktree,
-        others,
-        loading,
-        isAnIssuer,
-    } = state;
+    const { projectName, logo, ticker, currencyName, date, description, twitter, discord, website, linktree, others, loading, message } = state;
 
     useEffect(() => {
         fetchAccountDetails();
@@ -61,46 +46,37 @@ const AirdropRegistration = () => {
         navigate(ROUTES.AIRDROPS);
     };
 
-    const fetchAccountDetails = async () => {
-        try {
-            setState({ loading: true });
-            const client = new Client(PUBLIC_SERVER, { connectionTimeout: 10000 });
-            await client.connect();
-            const response = await client.request({
-                command: "gateway_balances",
-                account: accountXrplAddress,
-                ledger_index: "validated",
+    const fetchAccountDetails = () => {
+        setState({ loading: true });
+        const payload = {
+            method: "POST",
+            url: "airdrop/registration/token/list",
+            auth: true,
+            encrypt: true,
+            data: {
+                userName: getDataFromLocalStrg("userName"),
+            },
+        };
+
+        ApiCall(payload)
+            .then((response) => {
+                const { currencies, message } = response.data;
+                if (currencies?.length > 0) {
+                    setState({ ticker: { ...ticker, options: currencies }, message });
+                } else {
+                    setState({ message });
+                }
+            })
+            .finally(() => {
+                toast.dismiss(toastId.current);
+                setState({ loading: false });
             });
-            const currencies = response.result.obligations;
-            if (currencies) {
-                const values = Object.keys(currencies).map(a => {
-                    if (a.length === 40) {
-                        const b = convertHexToString(a).replaceAll("\u0000", "");
-                        return ({ key: b, value: b, text: b })
-                    };
-                    return ({ key: a, value: a, text: a });
-                });
-                setState({ ticker: { ...ticker, options: values ?? [] }, isAnIssuer: true });
-            } else {
-                setState({ isAnIssuer: false })
-            }
-            await client.disconnect();
-        } catch (err) {
-            console.log(err);
-        } finally {
-            setState({ loading: false });
-        }
-    }
+    };
 
     const handleUserInput = (e, res) => {
         const { name, value } = res || e.target;
         const { error } = isValidValue(value);
         const updatedObj = { ...state[name], value, error };
-
-        if (e.target.files && e.target.files[0]) {
-            updatedObj.file = e.target.files[0];
-        };
-
         setState({ [name]: updatedObj });
     };
 
@@ -143,12 +119,12 @@ const AirdropRegistration = () => {
             setState({ description: { ...description, error: descriptionError } });
         }
 
-        if (!isAnIssuer) {
+        if (message.length > 0) {
             isValid = false;
         }
 
         return isValid;
-    }
+    };
 
     const onSubmit = () => {
         const isValid = validateAllFields();
@@ -176,7 +152,7 @@ const AirdropRegistration = () => {
                         discord: discord.value,
                         linktree: linktree.value,
                         others: others.value,
-                    }
+                    },
                 },
             };
 
@@ -190,23 +166,22 @@ const AirdropRegistration = () => {
                     toast.dismiss(toastId.current);
                 });
         } else {
-            toast.error("Please check and enter valid details.")
+            toast.error("Please check and enter valid details.");
         }
-    }
+    };
 
     return (
         <div className="airdrop_registration_component">
             <RegistrationHeading {...{ gotoAirdrops }} />
             <Divider />
-            <RestrictionNote isAnIssuer={isAnIssuer} />
+            <RestrictionNote {...{ message }} />
             <RegistrationForm {...{ state, setState, handleUserInput, onSubmit }} />
             <AnimatedLoader loadingText="Fetching details..." isActive={loading} />
         </div>
     );
-}
+};
 
 export default AirdropRegistration;
-
 
 const RegistrationHeading = ({ gotoAirdrops }) => {
     return (
@@ -219,18 +194,21 @@ const RegistrationHeading = ({ gotoAirdrops }) => {
             <div className="sub_heading">Never let a drop go unnoticed.</div>
         </div>
     );
-}
+};
 
-const RestrictionNote = ({ isAnIssuer }) => {
-    if (isAnIssuer) { return null; };
+const RestrictionNote = ({ message }) => {
+    if (message.length === 0) {
+        return null;
+    }
 
     return (
         <>
-            <div className="not_issuer_not">
-                <span>Restricted:</span> Only token issuer accounts can request for an airdrop listing. Please login using an issuer account.
+            <div className="restricted_note_container">
+                <span>Restricted: </span>
+                {message}
             </div>
             <Divider />
         </>
     );
-}
+};
 

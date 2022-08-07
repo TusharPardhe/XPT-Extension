@@ -91,9 +91,7 @@ const Portfolio = () => {
             .then((response) => {
                 if (response.data) {
                     saveInLocalStrg("xrplPortfolioKeys", response.data.list);
-                    if (Object.keys(response.data.list).length === 0) {
-                        navigate(ROUTES.HOME);
-                    }
+                    navigate(ROUTES.HOME);
                 }
             })
             .finally(() => {

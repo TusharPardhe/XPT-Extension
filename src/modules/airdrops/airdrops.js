@@ -149,7 +149,9 @@ const AirdropList = ({ loading, list, navigate, state }) => {
         <div className="airdrops">
             {list.map((drop, index) => (
                 <div key={`${drop.projectName}_${index}`} className="drop" onClick={() => onDropClick(drop)}>
-                    <div className="img">Logo</div>
+                    <div className="img">
+                        <img src={drop.logo ?? XPTLogoImg} alt={`${drop.projectName}`} />
+                    </div>
                     <div className="heading">{drop.projectName}</div>
                     <div className="sub_heading">{dateFormat(drop.date * 1000, "dd-mm-yyyy")}</div>
                 </div>

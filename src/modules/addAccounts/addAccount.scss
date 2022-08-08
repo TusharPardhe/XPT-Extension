@@ -1,0 +1,99 @@
+.add_account {
+    padding: 20px;
+    line-height: 1;
+    display: flex;
+    padding: 20px 0px;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+    // box-shadow: var(--generic-box-shadow);
+
+    .subHeading {
+        padding: 16px 0;
+        line-height: 1.5;
+    }
+
+    .error_txt {
+        color: var(--carnelian);
+        font-style: normal;
+        font-size: 12px;
+    }
+    .enter_btn {
+        display: flex;
+        justify-content: center;
+        button {
+            padding: 10px 40px;
+        }
+    }
+
+    button:disabled,
+    button[disabled] {
+        background-color: var(--gainsboro);
+    }
+
+    .track_details_container {
+        padding: 0px 20px;
+
+        .heading_container{
+            .track_heading {
+                display: flex;
+                font-size: 34px;
+                font-weight: bold;
+                padding: 10px 0px;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .logo_img{
+                height: 80px;
+                width: 80px;
+            }
+
+            .sub_heading{
+                font-size: 18px;
+                font-weight: lighter;
+                color: var(--onyx);
+            }
+        }
+
+        .track_details_label {
+            text-align: left;
+        }
+
+        .input_details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px 5px;
+
+            .xrpl_details_box_heading {
+                font-size: 14px;
+                text-align: left;
+                color:var(--bdazzled-blue);
+            }
+
+            .label {
+                background-color: var(--baby-blue-eyes);
+                border-radius: 0px;
+            }
+            .disabled {
+                background-color: gray;
+                box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                color: white;
+            }
+
+            .btn_container {
+                display: flex;
+                flex-direction: column;
+            }
+
+            button,
+            input {
+                border-radius: 0px;
+            }
+        }
+    }
+}

@@ -1,22 +1,85 @@
-body, html, #root {
-  margin: 0;
-  height: 500px;
-  width: 350px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  word-break: break-word;
-  scrollbar-width: thin;
-  scrollbar-color: rgb(210, 206, 206) transparent;
+body,
+html,
+#root {
+    margin: 0;
+    height: 500px;
+    width: 350px;
+    font-family: 'PT Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    word-break: break-word;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff;
+}
+// comment for production build, its for testing
+body{
+    background-color: #000000;
 }
 
+:root {
+    // Colors
+    --blue: #1e90ff;
+    --black:#000000;
+    --light-pink: #ffadadff;
+    --deep-champagne: #ffd6a5ff;
+    --lemon-yellow-crayola: #fdffb6ff;
+    --tea-green: #caffbfff;
+    --electric-blue: #9bf6ffff;
+    --baby-blue-eyes: #a0c4ffff;
+    --maximum-blue-purple: #bdb2ffff;
+    --mauve: #ffc6ffff;
+    --lightest-pink:#fdf3fea6;
+    --baby-powder: #fffffcff;
+    --sky-blue-crayola: #7bdff2ff;
+    --celeste: #b2f7efff;
+    --mint-cream: #eff7f6ff;
+    --piggy-pink: #f7d6e0ff;
+    --cotton-candy: #f2b5d4ff;
+    --jet: #353535ff;
+    --ming: #3c6e71ff;
+    --white: #ffffffff;
+    --gainsboro: #d9d9d9ff;
+    --indigo-dye: #284b63ff;
+    --rich-black-fogra-29: #0d1b2aff;
+    --oxford-blue: #1b263bff;
+    --bdazzled-blue: #415a77ff;
+    --shadow-blue: #778da9ff;
+    --platinum: #e0e1ddff;
+    --rich-black-fogra-39: #0b090aff;
+    --eerie-black: #161a1dff;
+    --blood-red: #660708ff;
+    --ruby-red: #a4161aff;
+    --carnelian: #ba181bff;
+    --imperial-red: #e5383bff;
+    --black-shadows: #b1a7a6ff;
+    --light-gray: #d3d3d3ff;
+    --cultured: #f5f3f4ff;
+    --light-gray: #ced4daff;
+    --cadet-blue-crayola: #adb5bdff;
+    --sonic-silver: #6c757dff;
+    --davys-grey: #495057ff;
+    --onyx: #343a40ff;
+    --space-cadet: #392f5aff;
+
+    // custom values
+    --generic-box-shadow: 0px 0px 13px rgba(225, 224, 218, 0.67);
+    --pinkish-body-tint: radial-gradient( circle 621px at 25.3% 13.8%, rgb(255, 255, 255) 0%, rgb(238, 234, 255) 90% );
+    --blueish-body-tint: radial-gradient( circle 621px at 25.3% 13.8%, rgb(255, 255, 255) 0%, rgb(234, 242, 255) 80% );
+}
+  
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.container{
-  height: 100%;
+.container {
+    height: 100%;
+    background-color: var(--white);
+    color: var(--black);
+        //toastify variables
+    --toastify-toast-width: 250px;
+    --toastify-toast-min-height: 45px;
+}
+
+.ui.secondary.pointing.menu .active.item {
+    height: 40px;
 }

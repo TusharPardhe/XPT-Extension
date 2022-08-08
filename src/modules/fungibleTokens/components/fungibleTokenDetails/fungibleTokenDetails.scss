@@ -1,0 +1,71 @@
+.fungible_token_details_container {
+    padding: 0px 20px;
+
+    .token_details_container {
+        .token_header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .icon {
+                width: 100px;
+                height: 100px;
+
+                img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 10px;
+                }
+            }
+
+            .token_name {
+                font-weight: bold;
+                padding: 10px 0px 0px 0px;
+            }
+        }
+
+        .token_description {
+            border: 1px solid var(--platinum);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .token_details_headers {
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 5px 10px;
+            border: 1px solid var(--light-gray);
+            box-shadow: 1px 0px 6px rgba(225, 224, 218, 0.67);
+            background: var(--pinkish-body-tint);
+            margin: 0px 0px 5px 0px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 10px 0px;
+
+            .card {
+                border: 1px solid var(--platinum);
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                padding: 10px;
+                gap: 5px;
+
+                .heading {
+                    font-weight: bold;
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        .issuer_details {
+            padding: 10px 0px;
+        }
+    }
+}

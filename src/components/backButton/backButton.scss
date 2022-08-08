@@ -1,0 +1,23 @@
+.back_btn {
+    text-align: left;
+    .btn {
+        cursor: pointer;
+        background: white;
+        box-shadow: 5px 5px 0 var(--carnelian), -5px -5px 0 var(--carnelian), -5px 5px 0 var(--carnelian), 5px -5px 0 var(--carnelian);
+        transition: 200ms ease-in-out;
+        color: var(--carnelian);
+        box-shadow: none;
+        font-size: 14px;
+        border-radius: 20px;
+        padding: 1px 6px;
+        border: 1px solid;
+
+        &:hover {
+            box-shadow: 10px 5px 0px 0px var(--carnelian), -10px -5px 0px 0px var(--carnelian);
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

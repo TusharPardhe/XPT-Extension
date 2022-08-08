@@ -1,0 +1,100 @@
+.sign_up_container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 30px;
+    line-height: 1;
+    background: var(--pinkish-body-tint);
+    overflow: scroll;
+
+    .heading_container {
+        .heading {
+            font-size: 30px;
+            padding: 10px 0 0 0;
+            font-weight: bold;
+            color: var(--space-cadet);
+        }
+
+        .subHeading {
+            padding: 10px 0;
+            line-height: 1.5;
+        }
+    }
+    .input_container {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+
+        .input_field {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+
+            .labelTxt {
+                font-size: 15px;
+                padding: 12px 0px 0px 0px;
+                color: var(--davys-grey);
+                font-weight: 500;
+            }
+
+            input {
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-radius: 0px;
+                background-color: inherit;
+                font-size: 13px;
+            }
+            .verify_with_xumm {
+                padding: 10px 0px 0px 0px;
+                text-align: center;
+
+                .xumm_link_btn {
+                    padding: 7px 0px;
+                    margin-top: 12px;
+                    color: #3052FF;
+                    background: #F3F5FF;
+                    border: 1px solid;
+                    opacity: 0.7;
+                    width: 100%;
+                }
+
+                .disabled {
+                    background: var(--light-gray);
+                    cursor: not-allowed;
+                }
+
+                img {
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 10px;
+                }
+            }
+
+            .note{
+                padding: 0 10px;
+                font-size: 11px;
+                line-height: 1.4;
+                color: rebeccapurple;
+            }
+
+            .error_txt {
+                font-size: 12px;
+                font-style: normal;
+                color: var(--ruby-red);
+                padding-top: 4px;
+            }
+               
+        }
+    }
+
+    .submit_btn {
+        display: grid;
+        padding: 20px;
+        button {
+            font-size: 16px;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+.navbar_container{
+    .slider{
+        text-align: end;
+        font-size: 16px;
+        padding: 10px;
+
+        .icon{
+            cursor: pointer;
+            font-size: 20px;
+        }
+    }
+
+    .content{
+        padding: 10px;
+    }
+
+    .content_pusher{
+        max-height: 400px;
+        overflow: hidden;
+    }
+
+    .ui.visible.push.sidebar{
+        background-color: #2d3436;
+        background-image: linear-gradient(270.8deg, #1a1b1c 15%, #000 74%);
+        .item{
+            transition: background 0.5s ease-in-out;  
+        }
+    }
+}
+
+// background: linear-gradient(-65deg, #fdfdfd 40%, #f9f9f999 0 60%, #f9f9f9 0) right/300% 100% no-repeat, linear-gradient(-45deg, #f0f0f000 40%, #fbfbfb 0 60%, #f7f7f700 0) right/300% 100% no-repeat;
+// -webkit-background-clip: text, padding-box;
+// background-clip: text, padding-box;
+
+// :hover {
+//     background-position: left;
+//     transition: 0.8s;
+// }

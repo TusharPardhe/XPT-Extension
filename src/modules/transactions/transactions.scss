@@ -1,0 +1,29 @@
+.transactions_container{
+    padding: 0 20px;
+    
+    .transactions_header{
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+        align-items: center;
+
+        .heading {
+            font-size: 38px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+
+            .logo_img {
+                height: 40px;
+                width: 40px;
+            }
+        }
+
+        .sub_heading {
+            font-weight: lighter;
+            padding: 6px;
+        }
+    }
+}

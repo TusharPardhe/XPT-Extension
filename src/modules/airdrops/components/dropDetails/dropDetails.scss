@@ -1,0 +1,110 @@
+.drop_details_container {
+    padding: 0px 20px;
+.details_box {
+        padding: 10px 0;
+        text-align: center;
+
+        .heading {
+            .img_container {
+                img {
+                    border-radius: 10px;
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+
+            .name {
+                font-weight: bold;
+                padding: 5px 0px 0px 0px;
+            }
+        }
+
+        .coin_info {
+            .info_cards_container {
+                display: grid;
+                grid-template-columns: 46% 46%;
+                padding: 10px;
+                gap: 24px;
+
+                .details {
+                    display: flex;
+                    position: relative;
+                    padding: 5px;
+                    min-width: 100px;
+                    min-height: 150px;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    text-align: center;
+                    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 40px -7px;
+                    border-radius: 15px;
+                    gap: 8px;
+                    background: white;
+                    z-index: 1;
+
+                    .info_heading {
+                        font-weight: bold;
+                    }
+                }
+
+                .box {
+                    position: relative;
+                    background: white;
+                    cursor: pointer;
+
+                    &:hover {
+                        &::after {
+                            position: absolute;
+                            content: "";
+                            top: 15px;
+                            left: 0;
+                            right: 0;
+                            height: 100%;
+                            width: 100%;
+                            transform: scale(0.9) translateZ(0);
+                            transition: background 5s ease-in-out;
+                            background: linear-gradient(to left,
+                                    var(--platinum),
+                                    var(--sky-blue-crayola),
+                                    var(--baby-blue-eyes),
+                                    var(--baby-blue-eyes),
+                                    var(--platinum),
+                                    var(--black-shadows),
+                                    var(--sky-blue-crayola),
+                                    var(--light-gray),
+                                    var(--baby-blue-eyes));
+                            background-size: 200% 200%;
+                            z-index: 0;
+                            filter: blur(20px);
+                            animation: animateGlow 5s linear infinite;
+                        }
+                    }
+                }
+            }
+        }
+
+        .description {
+            padding: 10px;
+            border: 1px solid var(--platinum);
+        }
+
+        .trustline {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+
+            .trustline_xumm {
+                padding: 20px;
+            }
+        }
+    }
+}
+
+@keyframes animateGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}

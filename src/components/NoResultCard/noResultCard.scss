@@ -1,0 +1,12 @@
+.no_result_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+        font-size: 20px;
+        color: var(--davys-grey);
+    }
+}
+   

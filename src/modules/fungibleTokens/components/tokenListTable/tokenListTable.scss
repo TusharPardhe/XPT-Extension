@@ -1,0 +1,7 @@
+.fungible_tokens_table {
+    display: grid;
+    grid-template-columns: calc(50% - 8px) auto;
+    gap: 16px;
+    padding: 16px;
+    min-height: 280px;
+}

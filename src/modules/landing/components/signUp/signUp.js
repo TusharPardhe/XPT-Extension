@@ -1,13 +1,15 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Input } from "semantic-ui-react";
+import { Input } from "semantic-ui-react";
 import { toast } from "react-toastify";
-import { XummPkce } from "xumm-oauth2-pkce";
 
 import useMergedState from "../../../../utils/useMergedState";
+
 import BackButton from "../../../../components/backButton/backButton";
 import SimpleAnimationButton from "../../../../components/simpleAnimationButton/simpleAnimationButton";
-import { ROUTES } from "../../../../constants/common.constants";
+import VerifyWithXUMM from "../verifyWithXUMM/VerifyWithXUMM";
+
+import { FIELD_INITIAL_STATE, ROUTES } from "../../../../constants/common.constants";
 import { SIGNUP_INITIAL_STATE } from "../../../../constants/landing.constants";
 import { ApiCall } from "../../../../utils/api.util";
 import { isValidEqualValue, isValidPassword, isValidValue } from "../../../../utils/validations";
@@ -17,8 +19,15 @@ import "./signUp.scss";
 const SignUp = () => {
     const navigate = useNavigate();
     const [state, setState] = useMergedState(SIGNUP_INITIAL_STATE);
-    const { username, password, confirmPassword, xrplAddress } = state;
+    const {
+        username,
+        password,
+        confirmPassword,
+        xrplAddress,
+        xumm: { imgUrl, isOpened },
+    } = state;
     const toastId = useRef(null);
+    // const ws = new WebSocket(wss);
 
     const onGoBackClick = () => navigate(-1);
 
@@ -77,7 +86,7 @@ const SignUp = () => {
         if (confirmPasswordError.length > 0) {
             isValid = false;
             setState({ confirmPassword: { ...confirmPassword, error: confirmPasswordError } });
-        };
+        }
 
         const { error: xrplAddressError } = isValidValue(xrplAddress.inputValue, "Please verify your XRPL address");
         if (xrplAddressError.length > 0) {
@@ -86,7 +95,7 @@ const SignUp = () => {
         }
 
         return isValid;
-    }
+    };
 
     const onSubmitBtnClick = () => {
         let areAllValidInputs = checkUserInputs();
@@ -119,26 +128,98 @@ const SignUp = () => {
         }
     };
 
-    const onVerifyXrplAddressClick = () => {
-        const auth = new XummPkce(process.env.XUMM_API_KEY);
+    const createWebSocketConnection = (data) => {
+        const ws = new WebSocket(data.data.refs.websocket_status);
 
-        auth.authorize().then(authorized => {
+        ws.onmessage = async function (event) {
+            const json = JSON.parse(event.data);
+            try {
+                if (json.payload_uuidv4) {
+                    const payload = {
+                        method: "GET",
+                        url: "user/validate/uuid",
+                        params: {
+                            uuid: json.payload_uuidv4,
+                        },
+                    };
+                    const response = await ApiCall(payload);
+                    if (response.data.signed) {
+                        setState({
+                            xrplAddress: {
+                                ...xrplAddress,
+                                inputValue: response.data.account,
+                                error: [],
+                            },
+                        });
+                    } else {
+                        setState({
+                            xrplAddress: {
+                                ...xrplAddress,
+                                error: ["You've cancelled the request. Please try again."],
+                            },
+                            xumm: {
+                                imgUrl: "",
+                                isOpened: false,
+                            },
+                        });
+                    }
+                    ws.close();
+                }
+
+                if (json.opened) {
+                    setState({
+                        xumm: {
+                            imgUrl,
+                            isOpened: true,
+                        },
+                    });
+                }
+            } catch (err) {
+                console.log(err);
+                setState({
+                    xrplAddress: {
+                        ...xrplAddress,
+                        error: ["Uh Oh! An error occurred. Please try again."],
+                    },
+                    xumm: {
+                        imgUrl: "",
+                        isOpened: false,
+                    },
+                });
+                ws.close();
+            }
+        };
+    };
+
+    const onVerifyXrplAddressClick = async () => {
+        try {
+            const payload = {
+                method: "GET",
+                url: "user/validate/xrplAccount",
+            };
+            const response = await ApiCall(payload);
+            setState({
+                xumm: {
+                    imgUrl: response.data.refs.qr_png,
+                    isOpened: false,
+                },
+                xrplAddress: FIELD_INITIAL_STATE,
+            });
+            createWebSocketConnection(response);
+        } catch (err) {
+            console.log(err);
             setState({
                 xrplAddress: {
                     ...xrplAddress,
-                    inputValue: authorized.me.account,
-                    error: []
-                }
-            })
-        }).catch((err) => {
-            setState({
-                xrplAddress: {
-                    ...xrplAddress,
-                    error: ["Uh Oh! We faced some issue. Please sign in again."]
-                }
-            })
-        })
-    }
+                    error: ["Uh Oh! An error occurred. Please try again."],
+                },
+                xumm: {
+                    imgUrl: "",
+                    isOpened: false,
+                },
+            });
+        }
+    };
 
     return (
         <div className="sign_up_container">
@@ -160,7 +241,7 @@ const SignUp = () => {
                     />
                     {username.error.length > 0 && <i className="error_txt">{username.error[0]}</i>}
                     <ul className="note">
-                        <li>Choose a random & unique username.</li>
+                        <li>[IMPORTANT] Choose a random & unique username.</li>
                         <li>Username must have 5 or more characters.</li>
                         <li>For eg: CoolXpt01, xptGuy22 etc.</li>
                     </ul>
@@ -195,27 +276,11 @@ const SignUp = () => {
                 </div>
                 <div className="input_field">
                     <div className="labelTxt">XRPL Account: </div>
-                    {xrplAddress.inputValue.length === 0 ? (
-                        <Button
-                            className="xumm_link_btn"
-                            onClick={onVerifyXrplAddressClick}
-                        >
-                            Link Using Xumm
-                        </Button>
-                    ) : (
-                        <Input
-                            name="id"
-                            placeholder="Enter your account address"
-                            autoComplete="off"
-                            value={xrplAddress.inputValue}
-                            error={xrplAddress.error.length > 0}
-                            disabled
-                        />
-                    )}
+                    <VerifyWithXUMM {...{ xrplAddress, imgUrl, onVerifyXrplAddressClick, isOpened }} />
                     {xrplAddress.error.length > 0 && <i className="error_txt">{xrplAddress.error[0]}</i>}
                     <ul className="note">
-                        <li>Click the button below to sign In using XUMM</li>
-                        <li>This is only a one time process!</li>
+                        <li>Press the button to verify your address</li>
+                        <li>This is a one time process!</li>
                     </ul>
                 </div>
             </div>

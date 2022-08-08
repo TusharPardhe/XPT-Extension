@@ -57,8 +57,7 @@
     "semantic-ui-react": "^2.1.1",
     "stream": "^0.0.2",
     "tls": "^0.0.1",
-    "xrpl": "^2.3.1",
-    "xumm-oauth2-pkce": "^2.0.3"
+    "xrpl": "^2.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

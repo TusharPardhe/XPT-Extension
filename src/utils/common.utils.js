@@ -1,5 +1,6 @@
 import { AES, enc } from "crypto-js";
 import parse from 'html-react-parser';
+import { toast } from "react-toastify";
 import { convertHexToString } from "xrpl";
 import { VALIDATION_REGEX } from "../constants/common.constants";
 
@@ -20,27 +21,30 @@ export const decryptJSON = (data) => {
 
 export const saveInLocalStrg = (key, data, encrypted = true) => {
     if (encrypted) {
-        data = encryptJSON(data)
-    };
+        data = encryptJSON(data);
+    }
     localStorage.setItem(key, data);
 };
 
 export const getDataFromLocalStrg = (key, encrypted = true) => {
     let data = localStorage.getItem(key);
-    if (!data) { return null; }
+    if (!data) {
+        return null;
+    }
 
     if (encrypted) {
         data = decryptJSON(data);
-    };
+    }
 
     return data;
-}
+};
 
-export const scrollToRef = (ref) => ref?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+export const scrollToRef = (ref) => ref?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
-export const getTokenName = (value) => value.length === 40 ? convertHexToString(value).replaceAll("\u0000", "") : value;
+export const getTokenName = (value) => (value.length === 40 ? convertHexToString(value).replaceAll("\u0000", "") : value);
 
-export const stringToLocale = (value, decimal = 4) => value ? parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: decimal, maximumFractionDigits: decimal }) : "-";
+export const stringToLocale = (value, decimal = 4) =>
+    value ? parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: decimal, maximumFractionDigits: decimal }) : "-";
 
 export const linkify = (inputText) => {
     let replacedText = inputText;
@@ -52,4 +56,12 @@ export const linkify = (inputText) => {
 
 export const sendMessageToBgScript = (data) => {
     chrome.runtime.sendMessage(data);
+};
+
+export const copyToClipBoard = (value) => {
+    navigator.clipboard.writeText(value);
+    toast.success("Copied to clipboard!", {
+        autoClose: 100,
+        hideProgressBar: true,
+    });
 };

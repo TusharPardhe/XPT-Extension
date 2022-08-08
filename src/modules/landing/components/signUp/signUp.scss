@@ -47,19 +47,36 @@
                 background-color: inherit;
                 font-size: 13px;
             }
-            
-            .xumm_link_btn {
-                padding: 7px 0px;
-                margin-top: 12px;
-                color: #3052FF;
-                background: #F3F5FF;
-                border: 1px solid;
-                opacity: 0.7;
+            .verify_with_xumm {
+                padding: 10px 0px 0px 0px;
+                text-align: center;
+
+                .xumm_link_btn {
+                    padding: 7px 0px;
+                    margin-top: 12px;
+                    color: #3052FF;
+                    background: #F3F5FF;
+                    border: 1px solid;
+                    opacity: 0.7;
+                    width: 100%;
+                }
+
+                .disabled {
+                    background: var(--light-gray);
+                    cursor: not-allowed;
+                }
+
+                img {
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 10px;
+                }
             }
 
             .note{
                 padding: 0 10px;
                 font-size: 11px;
+                line-height: 1.4;
                 color: rebeccapurple;
             }
 

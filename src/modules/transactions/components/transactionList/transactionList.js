@@ -1,22 +1,20 @@
 import React from "react";
-
-import useMergedState from "../../../../utils/useMergedState";
+import ShimmerLoader from "../../../../components/shimmerLoader/shimmerLoader";
 
 import TransactionCard from "../transactionCard/transactionCard";
 
 import "./transactionList.scss";
 
-const TransactionList = () => {
-    const [state, setState] = useMergedState({ isTouched: false });
-    const { isTouched } = state;
-    const copyToClipBoard = (value) => {
-        navigator.clipboard.writeText(value);
-    };
-
+const TransactionList = ({ transactions, loading, setState }) => {
     return (
         <div className="transaction_list_container">
-            <TransactionCard {...{ isTouched, setState, copyToClipBoard }} />
-            <TransactionCard {...{ isTouched, setState, copyToClipBoard }} />
+            {loading ? (
+                <ShimmerLoader />
+            ) : (
+                transactions.map((currentTransaction, index) => (
+                    <TransactionCard key={index} {...{ transactions, currentTransaction, index, setState }} />
+                ))
+            )}
         </div>
     );
 };

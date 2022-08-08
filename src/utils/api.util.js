@@ -34,7 +34,7 @@ export const ApiCall = (payload) => {
 
     let axiosPayload = {
         url: payload.url || "",
-        method: payload.method || "get",
+        method: payload.method || "POST",
         baseURL: payload.baseURL || "",
         headers: payload.headers || {},
         params: payload.params || {},

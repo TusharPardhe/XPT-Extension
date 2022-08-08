@@ -22,6 +22,7 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                         style={{ width: "100%" }}
                         value={ticker.value}
                         name="ticker"
+                        disabled={ticker.options.length === 0}
                         onChange={handleUserInput} />
                 </div>
                 <div className="input_field">

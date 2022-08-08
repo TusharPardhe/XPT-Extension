@@ -18,7 +18,7 @@ export const ROUTES = {
     PAYMENT: "/payment",
 };
 
-export const ENV = process.env.NODE_ENV.toUpperCase();
+export const ENV = import.meta.env.MODE.toUpperCase();
 
 export const PUBLIC_SERVER = "wss://xrplcluster.com/";
 
@@ -52,4 +52,13 @@ export const VALIDATION_REGEX = {
     URL_PATTERN_3: /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim,
 };
 
-export const MAX_ALLOWED_LENGTH = 20;
+export const MAX_ALLOWED_CARD_VALUE_LENGTH = 15;
+
+export const RIPPLED_API_TRANSACTION_RESULT_CODES = {
+    tec: "error",
+    tef: "error",
+    tel: "error",
+    tem: "error",
+    ter: "error",
+    tes: "success",
+}

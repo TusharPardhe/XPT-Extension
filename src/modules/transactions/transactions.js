@@ -43,7 +43,15 @@ const Transactions = () => {
             .then((response) => {
                 if (response.data) {
                     const { transactions } = response.data;
-                    setState({ transactions });
+                    const values = transactions.map((transaction) => {
+                        const { meta, tx } = transaction;
+                        return {
+                            ...tx,
+                            result: meta?.TransactionResult,
+                            isExpanded: false,
+                        }
+                    });
+                    setState({ transactions: values });
                 }
             })
             .finally(() => {
@@ -64,7 +72,7 @@ const Transactions = () => {
                     <div className="sub_heading">Everything is transactional.</div>
                 </div>
                 <Divider />
-                <TransactionList {...{ transactions }} />
+                <TransactionList {...{ transactions, setState }} />
             </div>
         </>
     );

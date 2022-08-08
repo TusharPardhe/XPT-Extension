@@ -6,7 +6,7 @@ import { Button, Divider, Image, Input } from "semantic-ui-react";
 import XPTLogoImg from "../../../assets/svg/xpt.svg";
 import { isValidValue, isValidXrplRAddress } from "../../../utils/validations";
 import { getDataFromLocalStrg, saveInLocalStrg } from "../../../utils/common.utils";
-import { MAX_ALLOWED_LENGTH, ROUTES, VALIDATION_REGEX } from "../../../constants/common.constants";
+import { MAX_ALLOWED_ALIAS_LENGTH, ROUTES, VALIDATION_REGEX } from "../../../constants/common.constants";
 import { ApiCall } from "../../../utils/api.util";
 import { ADD_ACCOUNTS_INITIAL_STATE } from "../../../constants/addAccounts.constants";
 
@@ -24,7 +24,7 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
     const onAliasValueChange = (event) => {
         const { value } = event.target;
 
-        if (value.length < MAX_ALLOWED_LENGTH) {
+        if (value.length < MAX_ALLOWED_ALIAS_LENGTH) {
             let { error } = isValidValue(value, undefined, VALIDATION_REGEX.ALPHABETS_WITH_TRAILING_SPACES);
             if (Object.values(accountsFromLocalStorage).indexOf(value) > -1) {
                 error.push("This nickname already exists. Please choose a different one.");

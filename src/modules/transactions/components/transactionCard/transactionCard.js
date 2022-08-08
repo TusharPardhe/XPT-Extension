@@ -3,21 +3,17 @@ import dateFormat from "dateformat";
 import { Popup } from "semantic-ui-react";
 
 import { MAX_ALLOWED_CARD_VALUE_LENGTH, RIPPLED_API_TRANSACTION_RESULT_CODES } from "../../../../constants/common.constants";
+import { copyToClipBoard } from "../../../../utils/common.utils";
 
 import "./transactionCard.scss";
 
 const TransactionCard = ({ transactions, currentTransaction, index, setState }) => {
-    const { TransactionType, result, Destination, date, Sequence, Fee, Flags, TxnSignature, SigningPubKey, ledger_index, isExpanded } =
-        currentTransaction;
+    const { TransactionType, result, Destination, date, Sequence, Fee, Flags, hash, SigningPubKey, ledger_index, isExpanded } = currentTransaction;
 
     const onHeaderClick = () => {
         let updatedTransactions = [...transactions];
         updatedTransactions[index].isExpanded = !updatedTransactions[index].isExpanded;
         setState({ transactions: updatedTransactions });
-    };
-
-    const copyToClipBoard = (value) => {
-        navigator.clipboard.writeText(value);
     };
 
     return (
@@ -66,7 +62,7 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
                     <div className="property">
                         <div className="header">Fee: </div>
                         <div className="value">
-                            <span>{Fee}</span>
+                            <span>{Fee / Math.pow(10, 6)} XRP</span>
                         </div>
                     </div>
                 )}
@@ -78,17 +74,17 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
                         </div>
                     </div>
                 )}
-                {TxnSignature && (
+                {hash && (
                     <div className="property">
-                        <div className="header">Tx Sign: </div>
-                        <div className="value" onClick={() => copyToClipBoard(TxnSignature)}>
+                        <div className="header">Tx Hash: </div>
+                        <div className="value" onClick={() => copyToClipBoard(hash)}>
                             <Popup
                                 content="Click to copy"
                                 size="mini"
                                 inverted
                                 trigger={
                                     <span className="copy">
-                                        {TxnSignature.slice(0, MAX_ALLOWED_CARD_VALUE_LENGTH)}
+                                        {hash.slice(0, MAX_ALLOWED_CARD_VALUE_LENGTH)}
                                         ...
                                     </span>
                                 }

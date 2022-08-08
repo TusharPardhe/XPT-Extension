@@ -5,6 +5,11 @@ export const SIGNUP_INITIAL_STATE = {
     password: FIELD_INITIAL_STATE,
     confirmPassword: FIELD_INITIAL_STATE,
     xrplAddress: FIELD_INITIAL_STATE,
+    xummImgUrl: "",
+    xumm: {
+        imgUrl: "",
+        isOpened: false,
+    },
 };
 
 export const LOGIN_INITIAL_STATE = {

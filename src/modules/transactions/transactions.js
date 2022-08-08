@@ -17,7 +17,7 @@ import "./transactions.scss";
 const Transactions = () => {
     const location = useLocation();
     const [state, setState] = useMergedState({ ...TRANSACTIONS_INITIAL_STATE, ...location.state });
-    const { account, transactions } = state;
+    const { account, transactions, loading } = state;
     const toastId = useRef(null);
     const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const Transactions = () => {
 
     const fetchTransactions = () => {
         toastId.current = toast.loading("Fetching transactions...");
-
+        setState({ loading: true });
         const payload = {
             method: "POST",
             url: "user/account/transactions",
@@ -49,13 +49,14 @@ const Transactions = () => {
                             ...tx,
                             result: meta?.TransactionResult,
                             isExpanded: false,
-                        }
+                        };
                     });
                     setState({ transactions: values });
                 }
             })
             .finally(() => {
                 toast.dismiss(toastId.current);
+                setState({ loading: false });
             });
     };
 
@@ -72,7 +73,7 @@ const Transactions = () => {
                     <div className="sub_heading">Everything is transactional.</div>
                 </div>
                 <Divider />
-                <TransactionList {...{ transactions, setState }} />
+                <TransactionList {...{ transactions, loading, setState }} />
             </div>
         </>
     );

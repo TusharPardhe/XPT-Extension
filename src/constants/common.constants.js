@@ -53,6 +53,7 @@ export const VALIDATION_REGEX = {
 };
 
 export const MAX_ALLOWED_CARD_VALUE_LENGTH = 15;
+export const MAX_ALLOWED_ALIAS_LENGTH = 20;
 
 export const RIPPLED_API_TRANSACTION_RESULT_CODES = {
     tec: "error",

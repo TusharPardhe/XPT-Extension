@@ -48,12 +48,6 @@ This is a simple browser plugin built with ReactJs that allows users to save and
     - Social media links: Discord handles, Twitter accounts etc.
 
 
-## Demo
-
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/V_MzL013tDc/0.jpg)](https://youtu.be/V_MzL013tDc)
-
-
-
 ## Installation
 
 Currently this extension is supported for chrome browsers. You need to follow these steps to add this extension to your chrome browser.

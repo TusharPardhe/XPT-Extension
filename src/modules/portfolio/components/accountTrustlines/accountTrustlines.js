@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Icon } from "semantic-ui-react";
 
 import FungibleHoldings from "../fungibleHoldings/fungibleHoldings";
-import { PORTFOLIO_HEADER_KEYS } from "../../../../constants/portfolio.constants";
+import { PORTFOLIO_HEADER_KEYS, MAX_TRUSTLINE_SHOW_LIMIT } from "../../../../constants/portfolio.constants";
 import { URLS } from "../../../../constants/common.constants";
 
 const AccountTrustlines = ({ id, toggleDetails, isOpen, otherCurrencies }) => {
@@ -18,10 +18,10 @@ const AccountTrustlines = ({ id, toggleDetails, isOpen, otherCurrencies }) => {
                 Trustline(s) <Icon name={`caret ${isOpen.FUNGIBLE_HOLDINGS ? "down" : "right"}`} />
             </div>
             <div className={`transition ${isOpen.FUNGIBLE_HOLDINGS ? "load" : "hide"}`}>
-                {otherCurrencies.slice(0, 20).map((token, index) => (
+                {otherCurrencies.slice(0, MAX_TRUSTLINE_SHOW_LIMIT).map((token, index) => (
                     <FungibleHoldings token={token} key={index} />
                 ))}
-                {otherCurrencies.length > 20 && (
+                {otherCurrencies.length > MAX_TRUSTLINE_SHOW_LIMIT && (
                     <div className="links">
                         <Button onClick={onXrpscanBtnClick}>View more on xrpscan</Button>
                     </div>

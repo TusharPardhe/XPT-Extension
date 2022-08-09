@@ -16,29 +16,35 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
         setState({ transactions: updatedTransactions });
     };
 
+    const popup = (value) => <Popup content="Click to copy" size="mini" inverted trigger={<span className="copy">{value}</span>} />;
+
     return (
         <div className={`transaction_card ${isExpanded ? "active" : ""}`}>
             <div className="card_header" onClick={onHeaderClick}>
-                <div className="property">
-                    <div className="header">Transaction Type:</div>
-                    <div className="value">
-                        <span>{TransactionType}</span>
+                {TransactionType && (
+                    <div className="property">
+                        <div className="header">Transaction Type:</div>
+                        <div className="value">
+                            <span>{TransactionType}</span>
+                        </div>
                     </div>
-                </div>
-                <div className="property">
-                    <div className="header">Result:</div>
-                    <div className={`value ${RIPPLED_API_TRANSACTION_RESULT_CODES[result.substr(0, 3)] ? "success" : ""}`}>
-                        <span>{result.substr(3)}</span>
+                )}
+                {result && (
+                    <div className="property">
+                        <div className="header">Result:</div>
+                        <div className={`value ${RIPPLED_API_TRANSACTION_RESULT_CODES[result.substr(0, 3)]}`}>
+                            <span>{result.substr(3)}</span>
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
             <div className="hidden_content">
                 <div className="hidden_content_heading">More details</div>
                 {Destination && (
                     <div className="property">
                         <div className="header">Destination: </div>
-                        <div className="value">
-                            <span>{Destination}</span>
+                        <div className="value" onClick={() => copyToClipBoard(Destination)}>
+                            <span>{popup(Destination)}</span>
                         </div>
                     </div>
                 )}
@@ -78,17 +84,7 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
                     <div className="property">
                         <div className="header">Tx Hash: </div>
                         <div className="value" onClick={() => copyToClipBoard(hash)}>
-                            <Popup
-                                content="Click to copy"
-                                size="mini"
-                                inverted
-                                trigger={
-                                    <span className="copy">
-                                        {hash.slice(0, MAX_ALLOWED_CARD_VALUE_LENGTH)}
-                                        ...
-                                    </span>
-                                }
-                            />
+                            {popup(`${hash.slice(0, MAX_ALLOWED_CARD_VALUE_LENGTH)}...`)}
                         </div>
                     </div>
                 )}
@@ -96,17 +92,7 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
                     <div className="property">
                         <div className="header">Public Key: </div>
                         <div className="value" onClick={() => copyToClipBoard(SigningPubKey)}>
-                            <Popup
-                                content="Click to copy"
-                                size="mini"
-                                inverted
-                                trigger={
-                                    <span className="copy">
-                                        {SigningPubKey.slice(0, MAX_ALLOWED_CARD_VALUE_LENGTH)}
-                                        ...
-                                    </span>
-                                }
-                            />
+                            {popup(`${SigningPubKey.slice(0, MAX_ALLOWED_CARD_VALUE_LENGTH)}...`)}
                         </div>
                     </div>
                 )}

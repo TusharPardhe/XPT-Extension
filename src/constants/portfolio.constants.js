@@ -21,3 +21,5 @@ export const PORTFOLIO_INITIAL_STATE = {
         TRANSACTIONS: false,
     },
 };
+
+export const MAX_TRUSTLINE_SHOW_LIMIT = 50;

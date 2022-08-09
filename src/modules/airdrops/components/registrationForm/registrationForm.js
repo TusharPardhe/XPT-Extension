@@ -22,7 +22,8 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                         style={{ width: "100%" }}
                         value={ticker.value}
                         name="ticker"
-                        onChange={handleUserInput} />
+                        onChange={handleUserInput}
+                    />
                 </div>
                 <div className="input_field">
                     <div className="label">Project Name:</div>
@@ -32,7 +33,8 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                         value={projectName.value}
                         name="projectName"
                         onChange={handleUserInput}
-                        error={projectName.error.length > 0} />
+                        error={projectName.error.length > 0}
+                    />
                 </div>
                 <div className="input_field">
                     <div className="label">Currency Name:</div>
@@ -42,19 +44,16 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                         value={currencyName.value}
                         name="currencyName"
                         onChange={handleUserInput}
-                        error={currencyName.error.length > 0} />
+                        error={currencyName.error.length > 0}
+                    />
                 </div>
                 <div className="input_field">
                     <div className="label">Airdrop Date:</div>
-                    <DateTimePicker
-                        onChange={(value) => setState({ date: { value } })}
-                        value={date.value}
-                        style={{ width: "100%" }}
-                        required />
+                    <DateTimePicker onChange={(value) => setState({ date: { value } })} value={date.value} style={{ width: "100%" }} required />
                 </div>
                 <div className="input_field">
                     <div className="label">Links:</div>
-                    <div className='social_inputs'>
+                    <div className="social_inputs">
                         <Input
                             label={{ content: "Logo: " }}
                             labelPosition="left"
@@ -63,7 +62,8 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                             name="logo"
                             placeholder="Png/Jpeg/Jpg link"
                             onChange={handleUserInput}
-                            error={logo.error.length > 0} />
+                            error={logo.error.length > 0}
+                        />
                         <Input
                             label={{ content: "Twitter: " }}
                             labelPosition="left"
@@ -71,7 +71,8 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                             value={twitter.value}
                             name="twitter"
                             placeholder="Enter twitter link"
-                            onChange={handleUserInput} />
+                            onChange={handleUserInput}
+                        />
                         <Input
                             label={{ content: "Discord: " }}
                             labelPosition="left"
@@ -79,7 +80,8 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                             value={discord.value}
                             name="discord"
                             placeholder="Enter discord link"
-                            onChange={handleUserInput} />
+                            onChange={handleUserInput}
+                        />
                         <Input
                             label={{ content: "Website: " }}
                             labelPosition="left"
@@ -87,7 +89,8 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                             value={website.value}
                             name="website"
                             placeholder="Enter website link"
-                            onChange={handleUserInput} />
+                            onChange={handleUserInput}
+                        />
                         <Input
                             label={{ content: "LinkTree: " }}
                             labelPosition="left"
@@ -95,7 +98,8 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                             value={linktree.value}
                             name="linktree"
                             placeholder="Enter linktree link"
-                            onChange={handleUserInput} />
+                            onChange={handleUserInput}
+                        />
                         <Input
                             label={{ content: "Others: " }}
                             labelPosition="left"
@@ -103,7 +107,8 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                             value={others.value}
                             name="others"
                             placeholder="Enter additional links"
-                            onChange={handleUserInput} />
+                            onChange={handleUserInput}
+                        />
                     </div>
                 </div>
                 <div className="input_field">
@@ -114,26 +119,25 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                             minWidth: "100%",
                             maxWidth: "100%",
                             minHeight: "80px",
-                            maxHeight: "150px"
+                            maxHeight: "150px",
                         }}
                         name="description"
                         onChange={handleUserInput}
                         value={description.value}
-                        className={description.error.length > 0 ? "error_textarea" : ""} />
+                        className={description.error.length > 0 ? "error_textarea" : ""}
+                    />
                 </div>
             </div>
             <div className="submission_note">
-                <span>Note:</span> A token issuer can submit only one request per issued token.If you want to omit your details after submission, please contact us on <a href={URLS.XPT_TWITTER} target="_blank" rel="noopener noreferrer">Twitter</a>.
+                <span>Note:</span> A token issuer can submit only one request per issued token.If you want to edit your details after submission,
+                please contact us on{" "}
+                <a href={URLS.XPT_TWITTER} target="_blank" rel="noopener noreferrer">
+                    Twitter
+                </a>
+                .
             </div>
             <div className="btn_container">
-                <Button
-                    inverted
-                    color={"green"}
-                    type="submit"
-                    onClick={onSubmit}
-                    disabled={false}
-                    loading={loading}
-                >
+                <Button inverted color={"green"} type="submit" onClick={onSubmit} disabled={false} loading={loading}>
                     Submit
                 </Button>
             </div>

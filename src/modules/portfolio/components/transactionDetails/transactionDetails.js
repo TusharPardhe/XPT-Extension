@@ -4,9 +4,7 @@ import { ROUTES } from "../../../../constants/common.constants";
 
 const TransactionDetails = ({ id, navigate }) => {
     const onHeadingClick = () => {
-        navigate(ROUTES.TRANSACTIONS, {
-            state: { account: id },
-        });
+        navigate(ROUTES.TRANSACTIONS.replace(":id", id));
     };
 
     return (

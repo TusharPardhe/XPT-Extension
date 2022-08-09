@@ -26,4 +26,17 @@
             padding: 6px;
         }
     }
+
+    .load_more_btn {
+        padding: 20px 0;
+
+        .btn {
+            width: 100%;
+            background-color: white;
+            border: 1px solid var(--baby-blue-eyes);
+            border-radius: 10px;
+            box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.1) ;
+            -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.1) ;
+        }
+    }
 }

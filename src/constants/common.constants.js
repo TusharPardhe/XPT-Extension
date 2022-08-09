@@ -14,10 +14,10 @@ export const ROUTES = {
     REQUEST_SUCCESS: "/request/success",
     DONATIONS: "/donate",
     FUNGIBLE_TOKEN_DETAILS: "/fungible_token/details",
-    TRANSACTIONS: "/transactions",
+    TRANSACTIONS: "/transactions/:id",
 };
 
-export const ENV = process.env.NODE_ENV.toUpperCase();
+export const ENV = import.meta.env.MODE.toUpperCase();
 
 export const PUBLIC_SERVER = "wss://xrplcluster.com/";
 
@@ -29,6 +29,7 @@ export const URLS = {
     XRPSCAN: "https://xrpscan.com/",
     TWITTER: "https://twitter.com/",
     XPT_TWITTER: "https://twitter.com/xptxrpl",
+    LIVENET: "https://livenet.xrpl.org/accounts/",
 };
 
 export const FIELD_INITIAL_STATE = {

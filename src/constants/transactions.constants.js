@@ -5,6 +5,7 @@ export const TRANSACTIONS_INITIAL_STATE = {
     loading: false,
     btnLoading: false,
     showLimitReached: false,
+    noTransactionsAvailable: false,
 };
 
 export const MAX_TRANSACTION_LIMIT = 250;

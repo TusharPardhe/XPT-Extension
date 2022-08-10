@@ -7,4 +7,7 @@ export const ADD_ACCOUNTS_INITIAL_STATE = {
     },
     alias: FIELD_INITIAL_STATE,
     isLoading: false,
+    showLimitReachedModal: false,
 };
+
+export const MAX_ACCOUNT_LIMIT = 10;

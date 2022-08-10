@@ -1,0 +1,50 @@
+.cheat_sheet_component{
+    padding: 0px 20px;
+
+    .heading_component {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.5;
+
+        .heading {
+            font-size: 40px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+
+            .logo_img {
+                height: 40px;
+                width: 40px;
+                transform: rotate(90deg);
+            }
+        }
+
+        .sub_heading {
+            font-weight: lighter;
+        }
+
+    }
+
+    .links_container{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .tab_names {
+            padding: 5px 15px;
+            cursor: pointer;
+            border: 1px solid var(--gainsboro);
+            border-radius: 20px;
+            font-size: 14px;
+            transition: box-shadow 0.2s ease-in-out;
+            box-shadow: 1px 0px 0px 0px rgba(225, 224, 218, 0.67);
+            &:hover {
+                box-shadow: 9px 8px 0px rgba(225, 224, 218, 0.67);
+            }
+        }
+    }
+    
+}

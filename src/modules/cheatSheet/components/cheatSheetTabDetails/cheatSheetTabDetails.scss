@@ -1,0 +1,20 @@
+.cheat_sheet_tab_details_container{
+    padding: 0px 20px;
+
+    .details_container{
+        text-align: center;
+
+        .heading {
+            font-size: 28px;
+            padding: 20px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+        }  
+
+        .description {
+            font-size: 14px;
+            color: var(--davys-grey);
+        }
+           
+    }
+}

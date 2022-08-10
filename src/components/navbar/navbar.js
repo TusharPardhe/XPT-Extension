@@ -57,9 +57,9 @@ const Navbar = (props) => {
                         <Icon name="money bill alternate outline" />
                         XRPL Tokens
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.USEFUL_LINKS)} key="links">
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.CHEAT_SHEET)} key="links">
                         <Icon name="bell" />
-                        Useful Links
+                        Cheat Sheet
                     </Menu.Item>
                     {/* <Menu.Item as="a" onClick={() => navigateTo(ROUTES.NFT_DETAILS)}>
                         <Icon name="image outline" />

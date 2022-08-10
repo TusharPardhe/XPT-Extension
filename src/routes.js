@@ -11,7 +11,7 @@ const Portfolio = React.lazy(() => import("./modules/portfolio/portfolio"));
 const AddAccount = React.lazy(() => import("./modules/addAccounts/addAccount"));
 const FungibleTokens = React.lazy(() => import("./modules/fungibleTokens/fungibleTokens"));
 const FungibleTokenDetails = React.lazy(() => import("./modules/fungibleTokens/components/fungibleTokenDetails/fungibleTokenDetails"));
-const UsefulLinks = React.lazy(() => import("./modules/usefulLinks/usefulLinks"));
+const CheatSheet = React.lazy(() => import("./modules/cheatSheet/CheatSheet"));
 const Login = React.lazy(() => import("./modules/landing/components/login/login"));
 const SignUp = React.lazy(() => import("./modules/landing/components/signUp/signUp"));
 const NftVisualiser = React.lazy(() => import("./modules/nftVisualiser/nftVisualiser"));
@@ -21,6 +21,7 @@ const AirdropRegistration = React.lazy(() => import("./modules/airdrops/componen
 const SuccessPage = React.lazy(() => import("./components/successPage/sucessPage"));
 const Donations = React.lazy(() => import("./modules/donations/donations"));
 const Transactions = React.lazy(() => import("./modules/transactions/transactions"));
+const CheatSheetTabDetails = React.lazy(() => import("./modules/cheatSheet/components/cheatSheetTabDetails/cheatSheetTabDetails"));
 
 export default function Routes() {
     const location = useLocation();
@@ -38,7 +39,6 @@ export default function Routes() {
                 <Route path={ROUTES.PORTFOLIO} element={wrapWithNavBar(<Portfolio />)} />
                 <Route path={ROUTES.FUNGIBLE_TOKENS} element={wrapWithNavBar(<FungibleTokens />)} />
                 <Route path={ROUTES.FUNGIBLE_TOKEN_DETAILS} element={wrapWithNavBar(<FungibleTokenDetails />)} />
-                <Route path={ROUTES.USEFUL_LINKS} element={wrapWithNavBar(<UsefulLinks />)} />
                 <Route path={ROUTES.NFT_DETAILS} element={wrapWithNavBar(<NftVisualiser />)} />
                 <Route path={ROUTES.AIRDROPS} element={wrapWithNavBar(<Airdrops />)} />
                 <Route path={ROUTES.DROP_DETAILS} element={wrapWithNavBar(<DropDetails />)} />
@@ -46,6 +46,8 @@ export default function Routes() {
                 <Route path={ROUTES.REQUEST_SUCCESS} element={wrapWithNavBar(<SuccessPage />)} />
                 <Route path={ROUTES.TRANSACTIONS} element={wrapWithNavBar(<Transactions />)} />
                 <Route path={ROUTES.DONATIONS} element={wrapWithNavBar(<Donations />)} />
+                <Route path={ROUTES.CHEAT_SHEET} element={wrapWithNavBar(<CheatSheet />)} />
+                <Route path={ROUTES.CHEAT_SHEET_TAB} element={wrapWithNavBar(<CheatSheetTabDetails />)} />
                 <Route path="/*" element={<div>Error</div>} />
             </RoutesBundle>
         </Suspense>

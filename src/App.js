@@ -33,3 +33,22 @@ function App() {
 }
 
 export default App;
+
+
+// Additional things in manifest.json file
+// "background": {
+//     "persistent": false,
+//     "scripts": [
+//       "background.js"
+//     ]
+//   },
+//   "content_scripts": [
+//     {
+//       "matches": [
+//       "<all_urls>"
+//       ],
+//       "js": [
+//         "content.js"
+//       ]
+//     }
+//   ],

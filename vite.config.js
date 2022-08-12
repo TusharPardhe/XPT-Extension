@@ -2,6 +2,7 @@ import path from "path";
 import react from "@vitejs/plugin-react";
 import EnvironmentPlugin from "vite-plugin-environment";
 import nodePolyfills from "rollup-plugin-polyfill-node";
+import removeConsole from 'vite-plugin-remove-console';
 import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
 import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfill";
 import { viteStaticCopy } from "vite-plugin-static-copy";
@@ -19,6 +20,7 @@ export default defineConfig({
             ],
         }),
         EnvironmentPlugin("all"),
+        removeConsole(),
     ],
     resolve: {
         extensions: ["*", ".js", ".jsx"],

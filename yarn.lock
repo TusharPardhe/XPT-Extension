@@ -9898,6 +9898,11 @@ vite-plugin-environment@^1.1.2:
   resolved "https://registry.yarnpkg.com/vite-plugin-environment/-/vite-plugin-environment-1.1.2.tgz#4048256370592e25f1b76345eafdbf23b35823fc"
   integrity sha512-WFgM/ibceOEIuficZVaLcmJvcMZiyTkGzeS8+pzfByGYRdewqil7LSLDV1DwJfFQIx/YzcW9YRSWQG7cJ2XT1w==
 
+vite-plugin-remove-console@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-remove-console/-/vite-plugin-remove-console-1.1.0.tgz#bb7f00669004d25ac5bb8f45aff97612fef46f41"
+  integrity sha512-FZ0gLEsRqgHPCl+blHpT3h004+InKrGddmBXTfs7Cj/xWY7FdHpL9Zc9kgjxh8zIzjZ/MblsPDDEqg5BVHIXDA==
+
 vite-plugin-static-copy@^0.7.0:
   version "0.7.0"
   resolved "https://registry.npmjs.org/vite-plugin-static-copy/-/vite-plugin-static-copy-0.7.0.tgz"

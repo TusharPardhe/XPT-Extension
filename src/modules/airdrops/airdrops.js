@@ -84,7 +84,7 @@ const Airdrops = () => {
                     <Image src={XPTLogoImg} className="logo_img" />
                     PS
                 </div>
-                <div className="sub_heading">Never let a drop go unnoticed.</div>
+                <div className="sub_heading">Never let a drop go unnoticed</div>
                 <div className="register_drop_link" onClick={handleRegisterBtnClick}>
                     Register your drop
                 </div>

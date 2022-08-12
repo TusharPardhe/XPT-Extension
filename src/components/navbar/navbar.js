@@ -50,15 +50,15 @@ const Navbar = (props) => {
                         Add Account
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.AIRDROPS)} key="airdrops">
-                        <Icon name="calendar check outline" />
+                        <Icon name="compass" />
                         Airdrops
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.FUNGIBLE_TOKENS)} key="tokens">
-                        <Icon name="money bill alternate outline" />
-                        XRPL Tokens
+                        <Icon name="diamond" />
+                        Tokens
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.CHEAT_SHEET)} key="links">
-                        <Icon name="bell" />
+                        <Icon name="sticky note outline" />
                         Cheat Sheet
                     </Menu.Item>
                     {/* <Menu.Item as="a" onClick={() => navigateTo(ROUTES.NFT_DETAILS)}>

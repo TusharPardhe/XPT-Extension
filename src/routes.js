@@ -21,7 +21,6 @@ const AirdropRegistration = React.lazy(() => import("./modules/airdrops/componen
 const SuccessPage = React.lazy(() => import("./components/successPage/sucessPage"));
 const Donations = React.lazy(() => import("./modules/donations/donations"));
 const Transactions = React.lazy(() => import("./modules/transactions/transactions"));
-const CheatSheetTabDetails = React.lazy(() => import("./modules/cheatSheet/components/cheatSheetTabDetails/cheatSheetTabDetails"));
 
 export default function Routes() {
     const location = useLocation();
@@ -47,7 +46,6 @@ export default function Routes() {
                 <Route path={ROUTES.TRANSACTIONS} element={wrapWithNavBar(<Transactions />)} />
                 <Route path={ROUTES.DONATIONS} element={wrapWithNavBar(<Donations />)} />
                 <Route path={ROUTES.CHEAT_SHEET} element={wrapWithNavBar(<CheatSheet />)} />
-                <Route path={ROUTES.CHEAT_SHEET_TAB} element={wrapWithNavBar(<CheatSheetTabDetails />)} />
                 <Route path="/*" element={<div>Error</div>} />
             </RoutesBundle>
         </Suspense>

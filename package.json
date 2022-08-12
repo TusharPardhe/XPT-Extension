@@ -69,6 +69,7 @@
     "vite-plugin-babel": "^1.1.0",
     "vite-plugin-copy": "^0.1.6",
     "vite-plugin-environment": "^1.1.2",
+    "vite-plugin-remove-console": "^1.1.0",
     "vite-plugin-static-copy": "^0.7.0"
   }
 }

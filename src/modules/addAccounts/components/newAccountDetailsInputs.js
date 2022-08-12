@@ -1,17 +1,17 @@
 import React, { useRef } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { Button, Divider, Image, Input } from "semantic-ui-react";
+import { Button, Divider, Image, Input, Modal } from "semantic-ui-react";
 
 import XPTLogoImg from "../../../assets/svg/xpt.svg";
 import { isValidValue, isValidXrplRAddress } from "../../../utils/validations";
 import { getDataFromLocalStrg, saveInLocalStrg } from "../../../utils/common.utils";
 import { MAX_ALLOWED_ALIAS_LENGTH, ROUTES, VALIDATION_REGEX } from "../../../constants/common.constants";
 import { ApiCall } from "../../../utils/api.util";
-import { ADD_ACCOUNTS_INITIAL_STATE } from "../../../constants/addAccounts.constants";
+import { ADD_ACCOUNTS_INITIAL_STATE, MAX_ACCOUNT_LIMIT } from "../../../constants/addAccounts.constants";
 
 const NewAccountDetailsInputs = ({ state, setState }) => {
-    const { xrplAddress, alias } = state;
+    const { xrplAddress, alias, showLimitReachedModal } = state;
     const toastId = useRef(null);
     const navigate = useNavigate();
 
@@ -53,6 +53,14 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
     };
 
     const verifyAndSaveAddress = () => {
+        const noOfStoredAccounts = Object.keys(accountsFromLocalStorage).length;
+
+        // If limit reached show a popup to donate
+        if (noOfStoredAccounts >= MAX_ACCOUNT_LIMIT) {
+            setState({ showLimitReachedModal: true });
+            return;
+        }
+
         toastId.current = toast.loading("Sending details...");
 
         const payload = {
@@ -113,6 +121,10 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
         }
     };
 
+    const navigateToDonationPage = () => {
+        navigate(ROUTES.DONATIONS);
+    };
+
     return (
         <div className="track_details_container">
             <div className="heading_container">
@@ -123,57 +135,106 @@ const NewAccountDetailsInputs = ({ state, setState }) => {
                 <div className="sub_heading">Track XRPL accounts</div>
             </div>
             <Divider />
-            <div className="input_details">
-                <div className="xrpl_details_box_heading">Enter account details:</div>
-                <Input
-                    placeholder="r....."
-                    label={{ content: "Address: " }}
-                    value={xrplAddress.inputValue}
-                    labelPosition="left"
-                    onChange={onXrplAddressChange}
-                    error={xrplAddress.error.length > 0}
-                />
-                <i className="error_txt">{xrplAddress.error[0]}</i>
-                {xrplAddress.value.length > 0 && xrplAddress.error.length === 0 ? (
-                    <>
-                        <Input
-                            placeholder="Enter alias.."
-                            label={{ content: "Alias: " }}
-                            labelPosition="left"
-                            value={alias.inputValue}
-                            onChange={onAliasValueChange}
-                            error={alias.error.length > 0}
-                        />
-                        <i className="error_txt">{alias.error[0]}</i>
-                        <div className="btn_container">
-                            <Button
-                                type="submit"
-                                color="green"
-                                disabled={alias.error.length > 0 || alias.inputValue.length === 0}
-                                inverted
-                                onClick={verifyAndSaveAddress}
-                            >
-                                Submit
-                            </Button>
-                        </div>
-                    </>
-                ) : (
-                    <div className="btn_container">
-                        <Button
-                            inverted
-                            color={isErrorXrplAddInput ? "grey" : "green"}
-                            type="submit"
-                            onClick={() => validateXRPAccountFromAPI({ setState, xrplAddress })}
-                            disabled={isErrorXrplAddInput}
-                            loading={xrplAddress.loading}
-                        >
-                            Validate
-                        </Button>
-                    </div>
-                )}
-            </div>
+            <InputFields
+                {...{
+                    state,
+                    setState,
+                    onAliasValueChange,
+                    isErrorXrplAddInput,
+                    onXrplAddressChange,
+                    verifyAndSaveAddress,
+                    validateXRPAccountFromAPI,
+                }}
+            />
+            <LimitExceededModal {...{ showLimitReachedModal, setState, navigateToDonationPage }} />
         </div>
     );
 };
 
 export default NewAccountDetailsInputs;
+
+function InputFields({
+    state,
+    setState,
+    onAliasValueChange,
+    isErrorXrplAddInput,
+    onXrplAddressChange,
+    verifyAndSaveAddress,
+    validateXRPAccountFromAPI,
+}) {
+    const { alias, xrplAddress } = state;
+
+    return (
+        <div className="input_details">
+            <div className="xrpl_details_box_heading">Enter account details:</div>
+            <Input
+                placeholder="r....."
+                label={{ content: "Address: " }}
+                value={xrplAddress.inputValue}
+                labelPosition="left"
+                onChange={onXrplAddressChange}
+                error={xrplAddress.error.length > 0}
+            />
+            <i className="error_txt">{xrplAddress.error[0]}</i>
+            {xrplAddress.value.length > 0 && xrplAddress.error.length === 0 ? (
+                <>
+                    <Input
+                        placeholder="Enter alias.."
+                        label={{ content: "Alias: " }}
+                        labelPosition="left"
+                        value={alias.inputValue}
+                        onChange={onAliasValueChange}
+                        error={alias.error.length > 0}
+                    />
+                    <i className="error_txt">{alias.error[0]}</i>
+                    <div className="btn_container">
+                        <Button
+                            type="submit"
+                            color="green"
+                            disabled={alias.error.length > 0 || alias.inputValue.length === 0}
+                            inverted
+                            onClick={verifyAndSaveAddress}
+                        >
+                            Submit
+                        </Button>
+                    </div>
+                </>
+            ) : (
+                <div className="btn_container">
+                    <Button
+                        inverted
+                        color={isErrorXrplAddInput ? "grey" : "green"}
+                        type="submit"
+                        onClick={() => validateXRPAccountFromAPI({ setState, xrplAddress })}
+                        disabled={isErrorXrplAddInput}
+                        loading={xrplAddress.loading}
+                    >
+                        Validate
+                    </Button>
+                </div>
+            )}
+        </div>
+    );
+}
+
+function LimitExceededModal({ showLimitReachedModal, setState, navigateToDonationPage }) {
+    const closeModal = () => setState({ showLimitReachedModal: false });
+
+    return (
+        <Modal size="mini" open={showLimitReachedModal} onClose={closeModal}>
+            <Modal.Header className="modal_header">Limit Reached</Modal.Header>
+            <Modal.Content>
+                <p>
+                    Hey! Due to limited resources, we only allow 10 accounts per user. Please consider donating so we can scale up our database or use
+                    a different account.
+                </p>
+            </Modal.Content>
+            <Modal.Actions>
+                <Button onClick={closeModal}>Close</Button>
+                <Button positive onClick={navigateToDonationPage}>
+                    Donate
+                </Button>
+            </Modal.Actions>
+        </Modal>
+    );
+};

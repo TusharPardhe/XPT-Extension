@@ -8,6 +8,7 @@ import useMergedState from "../../utils/useMergedState";
 import XPTLogoImg from "../../assets/svg/xpt.svg";
 import BackButton from "../../components/backButton/backButton";
 import TransactionList from "./components/transactionList/transactionList";
+import NoResultCard from "../../components/NoResultCard/noResultCard";
 import { ApiCall } from "../../utils/api.util";
 import { getDataFromLocalStrg, redirectToUrl } from "../../utils/common.utils";
 import { TRANSACTIONS_INITIAL_STATE, MAX_TRANSACTION_LIMIT } from "../../constants/transactions.constants";
@@ -18,7 +19,7 @@ import "./transactions.scss";
 const Transactions = () => {
     const { id } = useParams();
     const [state, setState] = useMergedState({ ...TRANSACTIONS_INITIAL_STATE, account: id });
-    const { account, transactions, loading, marker, btnLoading, showLimitReached } = state;
+    const { account, transactions, marker } = state;
     const toastId = useRef(null);
     const navigate = useNavigate();
 
@@ -60,7 +61,8 @@ const Transactions = () => {
                             isExpanded: false,
                         };
                     });
-                    setState({ transactions: [...state.transactions, ...values], marker });
+                    const noTransactionsAvailable = values.length === 0 && state.transactions.length === 0;
+                    setState({ transactions: [...state.transactions, ...values], marker, noTransactionsAvailable });
                 }
             })
             .finally(() => {
@@ -95,24 +97,39 @@ const Transactions = () => {
                     <div className="sub_heading">Everything is transactional.</div>
                 </div>
                 <Divider />
-                <TransactionList {...{ transactions, loading, setState }} />
-                {transactions.length > 0 && !showLimitReached && (
-                    <div className="load_more_btn">
-                        <Button className="btn" loading={btnLoading} disabled={btnLoading} onClick={onLoadMoreClick}>
-                            Load More
-                        </Button>
-                    </div>
-                )}
-                {showLimitReached && (
-                    <div className="load_more_btn">
-                        <Button className="btn" onClick={limitReachedBtnClick}>
-                            View more on Livenet
-                        </Button>
-                    </div>
-                )}
+                <TransactionDetails {...{ state, setState, onLoadMoreClick, limitReachedBtnClick }} />
             </div>
         </>
     );
 };
 
 export default Transactions;
+
+function TransactionDetails({ state, setState, onLoadMoreClick, limitReachedBtnClick }) {
+    const { transactions, loading, showLimitReached, btnLoading, noTransactionsAvailable } = state;
+
+    if (noTransactionsAvailable) {
+        return <NoResultCard title="No transactions found" />;
+    }
+
+    return (
+        <>
+            <TransactionList {...{ transactions, loading, setState }} />
+            {transactions.length > 0 && !showLimitReached && (
+                <div className="load_more_btn">
+                    <Button className="btn" loading={btnLoading} disabled={btnLoading} onClick={onLoadMoreClick}>
+                        Load More
+                    </Button>
+                </div>
+            )}
+            {showLimitReached && (
+                <div className="load_more_btn">
+                    <Button className="btn" onClick={limitReachedBtnClick}>
+                        View more on Livenet
+                    </Button>
+                </div>
+            )}
+        </>
+    );
+};
+

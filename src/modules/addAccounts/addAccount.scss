@@ -97,3 +97,25 @@
         }
     }
 }
+
+.dimmed.dimmable>.ui.animating.dimmer,
+.dimmed.dimmable>.ui.visible.dimmer,
+.ui.active.dimmer {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    opacity:1;
+    width: inherit;
+    height: inherit;
+
+    .ui.mini.modal {
+        width:95%;
+        margin:0;
+        height: 150px;
+    }
+       
+}
+
+.ui.modal > .header {
+    color: var(--blue);
+}

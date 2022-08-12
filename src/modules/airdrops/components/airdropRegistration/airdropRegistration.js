@@ -5,9 +5,9 @@ import { Divider, Image } from "semantic-ui-react";
 
 import useMergedState from "../../../../utils/useMergedState";
 
-import AnimatedLoader from "../../../../components/animatedLoader/animatedLoader";
 import RegistrationForm from "../registrationForm/registrationForm";
 import XPTLogoImg from "../../../../assets/svg/xpt.svg";
+import ShimmerLoader from "../../../../components/shimmerLoader/shimmerLoader";
 
 import { ROUTES } from "../../../../constants/common.constants";
 import { ApiCall } from "../../../../utils/api.util";
@@ -162,8 +162,7 @@ const AirdropRegistration = () => {
             <RegistrationHeading {...{ gotoAirdrops }} />
             <Divider />
             <RestrictionNote {...{ message }} />
-            <RegistrationForm {...{ state, setState, handleUserInput, onSubmit }} />
-            <AnimatedLoader loadingText="Fetching details..." isActive={loading} />
+            {loading ? <ShimmerLoader /> : <RegistrationForm {...{ state, setState, handleUserInput, onSubmit }} />}
         </div>
     );
 };
@@ -178,7 +177,7 @@ const RegistrationHeading = ({ gotoAirdrops }) => {
                 <Image src={XPTLogoImg} className="logo_img" />
                 PS
             </div>
-            <div className="sub_heading">Never let a drop go unnoticed.</div>
+            <div className="sub_heading">Never let a drop go unnoticed</div>
         </div>
     );
 };

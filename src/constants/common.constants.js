@@ -7,7 +7,7 @@ export const ROUTES = {
     PORTFOLIO: "/portfolio/:id",
     FUNGIBLE_TOKENS: "/fungible_tokens",
     NFT_DETAILS: "/nft",
-    USEFUL_LINKS: "/links",
+    CHEAT_SHEET: "/cheat_sheet",
     AIRDROPS: "/airdrops",
     DROP_DETAILS: "/drop/:id",
     AIRDROP_REGISTRATION: "/airdrop/register",

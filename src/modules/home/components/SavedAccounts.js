@@ -4,7 +4,7 @@ import { Divider } from "semantic-ui-react";
 const SavedAccounts = ({ accounts, navigateTo }) => {
     return (
         <>
-            <p>Select your preferred account to track.</p>
+            <p>Select your preferred account to track</p>
             <Divider />
             <div className="saved_accounts_container">
                 <div className="heading_details">

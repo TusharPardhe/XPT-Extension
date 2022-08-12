@@ -7,22 +7,6 @@
       "default_popup": "index.html",
       "default_title": "XPT"
     },
-    "background": {
-      "persistent": false,
-      "scripts": [
-        "background.js"
-      ]
-    },
-    "content_scripts": [
-      {
-        "matches": [
-        "<all_urls>"
-        ],
-        "js": [
-          "content.js"
-        ]
-      }
-    ],
     "permissions": [
       "storage",
       "tabs",

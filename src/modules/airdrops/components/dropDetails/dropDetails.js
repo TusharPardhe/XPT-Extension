@@ -1,19 +1,20 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Divider } from "semantic-ui-react";
+import { Divider, Icon } from "semantic-ui-react";
 import dateFormat from "dateformat";
 
 import XPTLogoImg from "../../../../assets/svg/xpt.svg";
 import BackButton from "../../../../components/backButton/backButton";
 import { ROUTES } from "../../../../constants/common.constants";
-import { linkify } from "../../../../utils/common.utils";
+import { linkify, redirectToUrl, stringToLocale } from "../../../../utils/common.utils";
 
 import "./dropDetails.scss";
 
 const DropDetails = () => {
     const navigate = useNavigate();
     const { state } = useLocation();
-    const { projectName, currencyName, description, date, logo, blackholed, noFreeze, maxSupply, issuer } = state;
+    const { projectName, currencyName, description, date, logo, blackholed, noFreeze, maxSupply, issuer, links } = state;
+    const { website, twitter, discord, linktree, others } = links;
 
     const onGoBackClick = () => {
         navigate(ROUTES.AIRDROPS, {
@@ -37,6 +38,14 @@ const DropDetails = () => {
                 <Divider />
                 <div className="description">
                     {linkify(description)}
+                    <br />
+                    <div className="links">
+                        {twitter && <Icon name="twitter" onClick={() => redirectToUrl(twitter)} />}
+                        {discord && <Icon name="discord" onClick={() => redirectToUrl(discord)} />}
+                        {website && <Icon name="world" onClick={() => redirectToUrl(website)} />}
+                        {linktree && <Icon name="linkify" onClick={() => redirectToUrl(linktree)} />}
+                        {others && <Icon name="asterisk" onClick={() => redirectToUrl(others)} />}
+                    </div>
                 </div>
                 <div className="trustline">
                     <img className="trustline_xumm" alt="trustline" src="https://randomuser.me/api/portraits/men/3.jpg" />
@@ -64,7 +73,7 @@ const DropDetails = () => {
                         <div className="box">
                             <div className="details">
                                 <div className="info_heading">Total Supply</div>
-                                <div className="value">{maxSupply ?? "-"}</div>
+                                <div className="value">{stringToLocale(maxSupply) ?? "-"}</div>
                             </div>
                         </div>
                         <div className="box">
@@ -76,13 +85,13 @@ const DropDetails = () => {
                         <div className="box">
                             <div className="details">
                                 <div className="info_heading">No Freeze Enabled</div>
-                                <div className="value">{noFreeze ? noFreeze.toString() : "-"}</div>
+                                <div className="value">{noFreeze ? "Enabled" : "Disabled"}</div>
                             </div>
                         </div>
                         <div className="box">
                             <div className="details">
                                 <div className="info_heading">Blackholed</div>
-                                <div className="value">{blackholed ? noFreeze.toString() : "-"}</div>
+                                <div className="value">{blackholed ? "Enabled" : "Disabled"}</div>
                             </div>
                         </div>
                     </div>

@@ -145,6 +145,7 @@ const AirdropRegistration = () => {
                         twitter: twitter.value,
                         discord: discord.value,
                         linktree: linktree.value,
+                        website: website.value,
                         others: others.value,
                     },
                 },

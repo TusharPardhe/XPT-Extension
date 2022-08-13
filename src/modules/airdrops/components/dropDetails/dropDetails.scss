@@ -88,6 +88,19 @@
             padding: 10px;
             box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px -7px;
             border-radius: 15px;
+
+            .links {
+                display: flex;
+                justify-content: space-around;
+                padding: 20px 0px 10px 0px;
+                font-size: 15px;
+                color: var(--shadow-blue);
+
+                i {
+                    cursor: pointer;
+                }
+            }
+               
         }
 
         .note{

@@ -70,10 +70,7 @@
         border-radius: 10px;
         font-size: 16px;
         transition: box-shadow 0.2s ease-in-out;
-        box-shadow: 1px 0px 0px 0px rgba(225, 224, 218, 0.67);
-        &:hover {
-            box-shadow: 9px 8px 0px rgba(225, 224, 218, 0.67);
-        }
+        box-shadow: 9px 8px 0px rgba(225, 224, 218, 0.67);
     }
 
     .heading {

@@ -22,24 +22,26 @@
         .coin_info {
             .info_cards_container {
                 display: grid;
-                grid-template-columns: 46% 46%;
                 padding: 10px;
                 gap: 24px;
 
                 .details {
-                    display: flex;
-                    position: relative;
-                    padding: 5px;
-                    min-width: 100px;
-                    min-height: 150px;
-                    flex-direction: column;
-                    justify-content: space-evenly;
-                    text-align: center;
-                    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 40px -7px;
-                    border-radius: 15px;
-                    gap: 8px;
-                    background: white;
-                    z-index: 1;
+                        display: grid;
+                        position: relative;
+                        grid-template-columns: 30% auto;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        text-align: center;
+                        border-radius: 15px;
+                        gap: 8px;
+                        background: white;
+                        z-index: 1;
+                        flex-direction: row;
+                        text-align: center;
+                        align-items: center;
+                        padding: 15px;
+                        box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px -7px;
+                        font-size: 13px;
 
                     .info_heading {
                         font-weight: bold;
@@ -84,13 +86,26 @@
 
         .description {
             padding: 10px;
-            border: 1px solid var(--platinum);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px -7px;
+            border-radius: 15px;
+        }
+
+        .note{
+            font-size: 12px;
+            line-height: 1;
+            span {
+                color: var(--carnelian);
+                font-weight: bold;
+            }
         }
 
         .trustline {
             display: flex;
             flex-direction: column;
             padding: 10px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px -7px;
+            margin-top: 24px;
+            border-radius: 15px;
 
             .trustline_xumm {
                 padding: 20px;

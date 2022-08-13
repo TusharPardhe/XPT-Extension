@@ -13,7 +13,7 @@ import "./dropDetails.scss";
 const DropDetails = () => {
     const navigate = useNavigate();
     const { state } = useLocation();
-    const { projectName, currencyName, description, date, logo } = state;
+    const { projectName, currencyName, description, date, logo, blackholed, noFreeze, maxSupply, issuer } = state;
 
     const onGoBackClick = () => {
         navigate(ROUTES.AIRDROPS, {
@@ -32,13 +32,19 @@ const DropDetails = () => {
                     <div className="img_container">
                         <img src={logo ?? XPTLogoImg} alt={projectName} />
                     </div>
-                    <div className="drop_name">{currencyName}</div>
+                    <div className="drop_name">{currencyName ?? "-"}</div>
                 </div>
                 <Divider />
-                <div className="description">{linkify(description)}</div>
+                <div className="description">
+                    {linkify(description)}
+                </div>
                 <div className="trustline">
                     <img className="trustline_xumm" alt="trustline" src="https://randomuser.me/api/portraits/men/3.jpg" />
                     <div className="heading">Scan me with XUMM</div>
+                </div>
+                <div className="note">
+                    <br></br>
+                    <span>Note:</span> XPT is not associated with any token issuers. Participate at your own risk.
                 </div>
                 <Divider />
                 <div className="coin_info">
@@ -46,37 +52,37 @@ const DropDetails = () => {
                         <div className="box">
                             <div className="details">
                                 <div className="info_heading">Airdrop Date</div>
-                                <div className="value">{dateFormat(date * 1000, "dd mmm yyyy hh:mm TT")}</div>
+                                <div className="value">{date ? dateFormat(date * 1000, "dd mmm yyyy hh:mm TT") : "-"}</div>
                             </div>
                         </div>
                         <div className="box">
                             <div className="details">
                                 <div className="info_heading">Project Name</div>
-                                <div className="value">{projectName}</div>
+                                <div className="value">{projectName ?? "-"}</div>
                             </div>
                         </div>
                         <div className="box">
                             <div className="details">
                                 <div className="info_heading">Total Supply</div>
-                                <div className="value">100000</div>
+                                <div className="value">{maxSupply ?? "-"}</div>
                             </div>
                         </div>
                         <div className="box">
                             <div className="details">
-                                <div className="info_heading">Total Trustlines</div>
-                                <div className="value">100000</div>
+                                <div className="info_heading">Issuer</div>
+                                <div className="value">{issuer ?? "-"}</div>
                             </div>
                         </div>
                         <div className="box">
                             <div className="details">
                                 <div className="info_heading">No Freeze Enabled</div>
-                                <div className="value">False</div>
+                                <div className="value">{noFreeze ? noFreeze.toString() : "-"}</div>
                             </div>
                         </div>
                         <div className="box">
                             <div className="details">
                                 <div className="info_heading">Blackholed</div>
-                                <div className="value">False</div>
+                                <div className="value">{blackholed ? noFreeze.toString() : "-"}</div>
                             </div>
                         </div>
                     </div>

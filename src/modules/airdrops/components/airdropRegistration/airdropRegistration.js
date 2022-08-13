@@ -23,7 +23,7 @@ const AirdropRegistration = () => {
     const toastId = useRef(null);
 
     const [state, setState] = useMergedState(AIRDROP_REGISTRATION_INITIAL_STATE);
-    const { projectName, logo, ticker, currencyName, date, description, twitter, discord, website, linktree, others, loading, message } = state;
+    const { projectName, logo, ticker, limit, currencyName, date, description, twitter, discord, website, linktree, others, loading, message } = state;
 
     useEffect(() => {
         fetchAccountDetails();
@@ -64,6 +64,12 @@ const AirdropRegistration = () => {
         const { name, value } = res || e.target;
         const { error } = isValidValue(value);
         const updatedObj = { ...state[name], value, error };
+
+        if (name === "ticker") {
+            const currentSelection = ticker.options.filter(t => t.value === value);
+            setState({ [name]: updatedObj, limit: currentSelection[0].limit });
+            return;
+        };
         setState({ [name]: updatedObj });
     };
 
@@ -133,8 +139,9 @@ const AirdropRegistration = () => {
                     currencyName: currencyName.value,
                     date: parseInt(date.value.getTime() / 1000),
                     description: description.value,
+                    logo: logo.value,
+                    maxSupply: limit,
                     links: {
-                        logo: logo.value,
                         twitter: twitter.value,
                         discord: discord.value,
                         linktree: linktree.value,

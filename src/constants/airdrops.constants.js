@@ -11,6 +11,7 @@ export const AIRDROPS_INITIAL_STATE = {
 export const AIRDROP_REGISTRATION_INITIAL_STATE = {
     loading: true,
     message: "",
+    limit: "",
     projectName: { value: "", error: [] },
     currencyName: { value: "", error: [] },
     date: { value: new Date(), error: [] },

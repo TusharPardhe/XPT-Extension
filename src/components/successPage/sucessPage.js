@@ -27,7 +27,7 @@ const SuccessPage = () => {
                 <div className="text">
                     Thank you for using XPT.
                     <br /><br />
-                    We are happy to have you here. Press the buttons below or open the sidebar to navigate. Also, consider donating to the project it keeps us motivated! 
+                    Happy to have you here. Navigate using the buttons below or by using the sidebar. If you love the extension, please consider donating; it keeps me motivated! 
                 </div>
             </div>
             <div className="buttons_container">

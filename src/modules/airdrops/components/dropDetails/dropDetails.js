@@ -1,29 +1,74 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Divider, Icon } from "semantic-ui-react";
+
+import { Button, Icon } from "semantic-ui-react";
 import dateFormat from "dateformat";
 
+import useMergedState from "../../../../utils/useMergedState";
 import XPTLogoImg from "../../../../assets/svg/xpt.svg";
 import BackButton from "../../../../components/backButton/backButton";
 import { ROUTES } from "../../../../constants/common.constants";
-import { linkify, redirectToUrl, stringToLocale } from "../../../../utils/common.utils";
+import { ApiCall } from "../../../../utils/api.util";
+import { linkify, redirectToUrl, scrollToRef, stringToLocale } from "../../../../utils/common.utils";
 
 import "./dropDetails.scss";
 
 const DropDetails = () => {
     const navigate = useNavigate();
-    const { state } = useLocation();
-    const { projectName, currencyName, description, date, logo, blackholed, noFreeze, maxSupply, issuer, links } = state;
+    const { state: locationState } = useLocation();
+    const trustLineRef = useRef(null);
+    const [state, setState] = useMergedState({ trustLineImg: "", isTrustLineBtnClicked: false });
+    const { trustLineImg, isTrustLineBtnClicked } = state;
+    const { ticker, projectName, currencyName, description, date, logo, blackholed, noFreeze, maxSupply, issuer, links } = locationState;
     const { website, twitter, discord, linktree, others } = links;
+
+
+    useEffect(() => {
+        if (isTrustLineBtnClicked) {
+            fetchXummTrustlineQr();
+        }
+    }, [isTrustLineBtnClicked]);
 
     const onGoBackClick = () => {
         navigate(ROUTES.AIRDROPS, {
             state: {
-                date: state.selectedDate,
-                activePage: state.selectedPage,
+                date: locationState.selectedDate,
+                activePage: locationState.selectedPage,
             },
         });
     };
+
+    const fetchXummTrustlineQr = () => {
+        const payload = {
+            method: "POST",
+            url: "user/xumm/transaction",
+            encrypt: false,
+            auth: false,
+            data: {
+                txJSON: {
+                    "TransactionType": "TrustSet",
+                    "Flags": 131072,
+                    "LimitAmount": {
+                        "currency": ticker,
+                        "issuer": issuer,
+                        "value": maxSupply,
+                    },
+                },
+            },
+        };
+
+        ApiCall(payload).then(response => {
+            if (response.data) {
+                const { png } = response.data;
+                setState({ trustLineImg: png });
+                setTimeout(() => {
+                    setState({ donateBtnEnabled: true });
+                }, 5000);
+            }
+        }).finally(() => {
+            scrollToRef(trustLineRef);
+        })
+    }
 
     return (
         <div className="drop_details_container">
@@ -35,7 +80,6 @@ const DropDetails = () => {
                     </div>
                     <div className="drop_name">{currencyName ?? "-"}</div>
                 </div>
-                <Divider />
                 <div className="description">
                     {linkify(description)}
                     <br />
@@ -48,14 +92,19 @@ const DropDetails = () => {
                     </div>
                 </div>
                 <div className="trustline">
-                    <img className="trustline_xumm" alt="trustline" src="https://randomuser.me/api/portraits/men/3.jpg" />
-                    <div className="heading">Scan me with XUMM</div>
+                    {trustLineImg.length > 0 ? (
+                        <>
+                            <div className="trustline_xumm_heading">Scan me with XUMM</div>
+                            <img className="trustline_xumm" alt="trustline" src={trustLineImg} ref={trustLineRef} />
+                        </>
+                    ) : (
+                        <Button className="trustline_btn" onClick={() => setState({ isTrustLineBtnClicked: true })}>Set Trustline</Button>
+                    )}
+                    <div className="note">
+                        <br></br>
+                        <span>Note:</span> XPT is not associated with any token issuers. Participate at your own risk.
+                    </div>
                 </div>
-                <div className="note">
-                    <br></br>
-                    <span>Note:</span> XPT is not associated with any token issuers. Participate at your own risk.
-                </div>
-                <Divider />
                 <div className="coin_info">
                     <div className="info_cards_container">
                         <div className="box">

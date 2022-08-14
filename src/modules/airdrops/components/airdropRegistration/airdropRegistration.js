@@ -106,6 +106,12 @@ const AirdropRegistration = () => {
             setState({ logo: { ...logo, error: logoError } });
         }
 
+        const { error: twitterError } = isValidValue(twitter.value);
+        if (twitterError.length) {
+            isValid = false;
+            setState({ twitter: { ...twitter, error: twitterError } });
+        }
+
         const { error: descriptionError } = isValidValue(description.value);
         if (descriptionError.length) {
             isValid = false;

@@ -194,10 +194,16 @@ const SignUp = () => {
     const onVerifyXrplAddressClick = async () => {
         try {
             const payload = {
-                method: "GET",
-                url: "user/validate/xrplAccount",
+                method: "POST",
+                url: "user/xumm/transaction",
+                encrypt: false,
+                auth: false,
+                data: {
+                    txJSON: { "TransactionType": "SignIn" },
+                },
             };
             const response = await ApiCall(payload);
+
             setState({
                 xumm: {
                     imgUrl: response.data.refs.qr_png,

@@ -59,8 +59,8 @@ const DropDetails = () => {
 
         ApiCall(payload).then(response => {
             if (response.data) {
-                const { png } = response.data;
-                setState({ trustLineImg: png });
+                const { refs: { qr_png } } = response.data;
+                setState({ trustLineImg: qr_png });
                 setTimeout(() => {
                     setState({ donateBtnEnabled: true });
                 }, 5000);

@@ -33,7 +33,7 @@ const SignUp = () => {
 
     const handleUsernameInput = (event) => {
         const { value } = event.target;
-        const { error } = isValidValue(value);
+        const { error } = isValidValue(value, undefined, /^\S*$/);
         setState({
             username: {
                 ...username,

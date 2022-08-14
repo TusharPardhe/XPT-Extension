@@ -8,7 +8,7 @@ import { copyToClipBoard } from "../../../../utils/common.utils";
 import "./transactionCard.scss";
 
 const TransactionCard = ({ transactions, currentTransaction, index, setState }) => {
-    const { TransactionType, result, Destination, date, Sequence, Fee, Flags, hash, SigningPubKey, ledger_index, isExpanded } = currentTransaction;
+    const { Account, TransactionType, result, Destination, date, Sequence, Fee, Flags, hash, SigningPubKey, ledger_index, isExpanded } = currentTransaction;
 
     const onHeaderClick = () => {
         let updatedTransactions = [...transactions];
@@ -40,6 +40,14 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
             </div>
             <div className="hidden_content">
                 <div className="hidden_content_heading">More details</div>
+                {Account && (
+                    <div className="property">
+                        <div className="header">From: </div>
+                        <div className="value" onClick={() => copyToClipBoard(Account)}>
+                            <span>{popup(Account)}</span>
+                        </div>
+                    </div>
+                )}
                 {Destination && (
                     <div className="property">
                         <div className="header">Destination: </div>
@@ -52,7 +60,7 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
                     <div className="property">
                         <div className="header">Date: </div>
                         <div className="value">
-                            <span>{dateFormat(new Date(date * 1000))}</span>
+                            <span>{dateFormat(new Date((date + 946684800) * 1000), "dd mmm yyyy hh:mm tt")}</span>
                         </div>
                     </div>
                 )}

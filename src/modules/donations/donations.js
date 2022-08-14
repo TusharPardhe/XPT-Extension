@@ -95,8 +95,8 @@ const Donations = () => {
             ApiCall(payload)
                 .then((response) => {
                     if (response.data) {
-                        const { png } = response.data;
-                        setState({ xummPngLink: png, donateBtnEnabled: false });
+                        const { refs: { qr_png } } = response.data;
+                        setState({ xummPngLink: qr_png, donateBtnEnabled: false });
                         setTimeout(() => {
                             setState({ donateBtnEnabled: true });
                         }, 5000);

@@ -18,6 +18,7 @@
     transition: 75ms;
     opacity: 0;
     padding: 10px 20px 2px 20px;
+    gap: 5px;
 
     .hidden_content_heading {
         text-align: center;
@@ -83,5 +84,5 @@
 }
 
 .active {
-    height: 332px;
+    height: 420px;
 }

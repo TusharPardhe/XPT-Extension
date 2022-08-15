@@ -5,7 +5,7 @@ import { encryptJSON, getDataFromLocalStrg } from "./common.utils";
 
 export const API_CONFIG = {
     PRODUCTION: {
-        default: "http://localhost:3000/",
+        default: "https://api.xptxrpl.com/",
     },
     DEVELOPMENT: {
         default: "http://localhost:3000/",

@@ -3,12 +3,29 @@ import dateFormat from "dateformat";
 import { Popup } from "semantic-ui-react";
 
 import { MAX_ALLOWED_CARD_VALUE_LENGTH, RIPPLED_API_TRANSACTION_RESULT_CODES } from "../../../../constants/common.constants";
-import { copyToClipBoard } from "../../../../utils/common.utils";
+import { copyToClipBoard, getTokenName } from "../../../../utils/common.utils";
 
 import "./transactionCard.scss";
 
 const TransactionCard = ({ transactions, currentTransaction, index, setState }) => {
-    const { Account, TransactionType, result, Destination, date, Sequence, Fee, Flags, hash, SigningPubKey, ledger_index, isExpanded } = currentTransaction;
+    const {
+        Account,
+        TransactionType,
+        result,
+        Destination,
+        date,
+        Sequence,
+        Fee,
+        Flags,
+        hash,
+        SigningPubKey,
+        ledger_index,
+        isExpanded,
+        LimitAmount,
+        TakerPays,
+        TakerGets,
+        Amount,
+    } = currentTransaction;
 
     const onHeaderClick = () => {
         let updatedTransactions = [...transactions];
@@ -25,7 +42,7 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
                     <div className="property">
                         <div className="header">Transaction Type:</div>
                         <div className="value">
-                            <span>{TransactionType}</span>
+                            <span>{TransactionType.match(/[A-Z][a-z]+|[0-9]+/g).join(" ")}</span>
                         </div>
                     </div>
                 )}
@@ -40,9 +57,32 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
             </div>
             <div className="hidden_content">
                 <div className="hidden_content_heading">More details</div>
+                {LimitAmount && (
+                    <>
+                        {LimitAmount.currency && (
+                            <div className="property">
+                                <div className="header">Currency: </div>
+                                <div className="value">
+                                    <span>{getTokenName(LimitAmount.currency)}</span>
+                                </div>
+                            </div>
+                        )}
+                        {LimitAmount.issuer && (
+                            <div className="property">
+                                <div className="header">Issuer: </div>
+                                <div className="value">
+                                    <span>{LimitAmount.issuer}</span>
+                                </div>
+                            </div>
+                        )}
+                    </>
+                )}
+                {TakerGets && renderVariableValueRow(TakerGets, "Offer")}
+                {TakerPays && renderVariableValueRow(TakerPays, "Receive")}
+                {Amount && renderVariableValueRow(Amount, "Send")}
                 {Account && (
                     <div className="property">
-                        <div className="header">From: </div>
+                        <div className="header">Account: </div>
                         <div className="value" onClick={() => copyToClipBoard(Account)}>
                             <span>{popup(Account)}</span>
                         </div>
@@ -118,3 +158,27 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
 };
 
 export default TransactionCard;
+
+const renderVariableValueRow = (value, heading) => {
+    if (typeof value === "object") {
+        return (
+            <div className="property">
+                <div className="header">{heading}: </div>
+                <div className="value">
+                    <span>
+                        {value.value} {getTokenName(value.currency)}
+                    </span>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="property">
+            <div className="header">{heading}: </div>
+            <div className="value">
+                <span>{value / Math.pow(10, 6)} XRP</span>
+            </div>
+        </div>
+    );
+};

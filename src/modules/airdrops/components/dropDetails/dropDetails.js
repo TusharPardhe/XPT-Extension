@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Button, Icon } from "semantic-ui-react";
 import dateFormat from "dateformat";
+import { Button, Icon } from "semantic-ui-react";
 
 import useMergedState from "../../../../utils/useMergedState";
 import XPTLogoImg from "../../../../assets/svg/xpt.svg";
@@ -17,17 +17,17 @@ const DropDetails = () => {
     const navigate = useNavigate();
     const { state: locationState } = useLocation();
     const trustLineRef = useRef(null);
-    const [state, setState] = useMergedState({ trustLineImg: "", isTrustLineBtnClicked: false });
-    const { trustLineImg, isTrustLineBtnClicked } = state;
+    const [state, setState] = useMergedState({ trustLineImg: "", isBtnLoading: false });
+    const { trustLineImg, isBtnLoading } = state;
     const { ticker, projectName, currencyName, description, date, logo, blackholed, noFreeze, maxSupply, issuer, links } = locationState;
     const { website, twitter, discord, linktree, others } = links;
 
 
     useEffect(() => {
-        if (isTrustLineBtnClicked) {
+        if (isBtnLoading) {
             fetchXummTrustlineQr();
         }
-    }, [isTrustLineBtnClicked]);
+    }, [isBtnLoading]);
 
     const onGoBackClick = () => {
         navigate(ROUTES.AIRDROPS, {
@@ -61,12 +61,10 @@ const DropDetails = () => {
             if (response.data) {
                 const { refs: { qr_png } } = response.data;
                 setState({ trustLineImg: qr_png });
-                setTimeout(() => {
-                    setState({ donateBtnEnabled: true });
-                }, 5000);
             }
         }).finally(() => {
             scrollToRef(trustLineRef);
+            setState({ isBtnLoading: false })
         })
     }
 
@@ -94,11 +92,11 @@ const DropDetails = () => {
                 <div className="trustline">
                     {trustLineImg.length > 0 ? (
                         <>
-                            <div className="trustline_xumm_heading">Scan me with XUMM</div>
-                            <img className="trustline_xumm" alt="trustline" src={trustLineImg} ref={trustLineRef} />
+                            <div className="trustline_xumm_heading" ref={trustLineRef}>Scan me with XUMM</div>
+                            <img className="trustline_xumm" alt="trustline" src={trustLineImg} />
                         </>
                     ) : (
-                        <Button className="trustline_btn" onClick={() => setState({ isTrustLineBtnClicked: true })}>Set Trustline</Button>
+                            <Button className="trustline_btn" basic color="purple" onClick={() => setState({ isBtnLoading: true })} loading={isBtnLoading}>Set Trustline</Button>
                     )}
                     <div className="note">
                         <br></br>

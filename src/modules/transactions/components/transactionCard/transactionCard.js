@@ -79,7 +79,7 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
                 )}
                 {TakerGets && renderVariableValueRow(TakerGets, "Offer")}
                 {TakerPays && renderVariableValueRow(TakerPays, "Receive")}
-                {Amount && renderVariableValueRow(Amount, "Send")}
+                {Amount && renderVariableValueRow(Amount, "Amount")}
                 {Account && (
                     <div className="property">
                         <div className="header">Account: </div>

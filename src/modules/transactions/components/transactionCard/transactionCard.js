@@ -82,7 +82,7 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
                 {Amount && renderVariableValueRow(Amount, "Amount")}
                 {Account && (
                     <div className="property">
-                        <div className="header">Account (From): </div>
+                        <div className="header">From: </div>
                         <div className="value" onClick={() => copyToClipBoard(Account)}>
                             <span>{popup(Account)}</span>
                         </div>
@@ -90,7 +90,7 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
                 )}
                 {Destination && (
                     <div className="property">
-                        <div className="header">Destination (To): </div>
+                        <div className="header">To: </div>
                         <div className="value" onClick={() => copyToClipBoard(Destination)}>
                             <span>{popup(Destination)}</span>
                         </div>

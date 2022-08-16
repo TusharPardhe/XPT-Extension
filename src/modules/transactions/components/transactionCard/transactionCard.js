@@ -120,7 +120,7 @@ const TransactionCard = ({ transactions, currentTransaction, index, setState }) 
                         </div>
                     </div>
                 )}
-                {Flags && (
+                {!!Flags && (
                     <div className="property">
                         <div className="header">Flags: </div>
                         <div className="value">

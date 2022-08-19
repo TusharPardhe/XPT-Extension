@@ -4,6 +4,15 @@
 
 A simple browser plugin built with ReactJs that allows users to save and monitor their XRP ledger accounts in real-time, visit this [link](https://xptxrpl.com/#/) to know more about the extension. All the features are listed below:
 
+## How to install?
+
+1. Click on the latest release. (Located towards the left section of your github screen under about section)
+2. Download dist.zip
+3. Unpack dist.zip and delete the zip file.
+4. Open your chrome browser and go to extension settings, here from the top right corner enable developer mode.
+5. Now click "Load Unpacked" button on the left corner of your chrome browser and select the unpacked dist folder.
+
+You are all set to use XPT :)
 
 ## Features
 
@@ -46,4 +55,3 @@ A simple browser plugin built with ReactJs that allows users to save and monitor
     - XRPScan, Bithomp, Xumm wallet Information
     - Code snippets, Open source projects etc.
     - Social media links: Discord handles, Twitter accounts etc.
-

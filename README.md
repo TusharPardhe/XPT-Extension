@@ -9,8 +9,9 @@ A simple browser plugin built with ReactJs that allows users to save and monitor
 1. Click on the releases section. (Located towards the left side of your github screen under about section)
 2. Download dist.zip
 3. Unpack dist.zip and delete the zip file.
-4. Open your chrome browser and go to extension settings, here from the top right corner enable developer mode.
-5. Now click "Load Unpacked" button on the left corner of your chrome browser and select the unpacked dist folder.
+4. Open your chrome browser and go to settings -> extensions, 
+5. When you are on extension settings enable developer mode from the top right corner slider.
+5. Now click "Load Unpacked" button on the left corner of the page and select the unpacked dist folder from step 3.
 
 You are all set to use XPT :)
 

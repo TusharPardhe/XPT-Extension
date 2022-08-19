@@ -81,16 +81,19 @@ const Donations = () => {
                         "TransactionType": "Payment",
                         "Destination": process.env.DONATION_ADDRESS,
                         "Amount": (parseFloat(amount.value) * 1000000).toString(),
-                        "Memos": [
-                            {
-                                "Memo": {
-                                    "MemoData": convertStringToHex(message.value)
-                                }
-                            }
-                        ]
                     },
                 },
             };
+
+            if (message.value.length > 0) {
+                payload.data.txJSON["Memos"] = [
+                    {
+                        "Memo": {
+                            "MemoData": convertStringToHex(message.value)
+                        }
+                    }
+                ]
+            }
 
             ApiCall(payload)
                 .then((response) => {

@@ -1,23 +1,21 @@
 {
-    "name": "XPT",
-    "description": "XRPL Portfolio Tracker Browser extension fetches information about your XRPL accounts",
-    "version": "1.0",
-    "manifest_version": 2,
-    "browser_action": {
-      "default_popup": "index.html",
-      "default_title": "XPT"
-    },
-    "permissions": [
-      "storage",
-      "tabs",
-      "activeTab",
-      "http://*/*",
-      "https://*/*"
-    ],
-    "icons": {
-      "16": "xpt192.png",
-      "48": "xpt192.png",
-      "128": "xpt192.png"
-    },
-    "content_security_policy": "script-src 'self'; object-src 'self'"
+  "name": "XPT",
+  "description": "XRPL Portfolio Tracker Browser extension fetches information about your XRPL accounts",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "storage"
+  ],
+  "icons": {
+    "16": "xpt192.png",
+    "48": "xpt192.png",
+    "128": "xpt192.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "XPT"
   }
+}

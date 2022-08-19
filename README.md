@@ -15,6 +15,14 @@ A simple browser plugin built with ReactJs that allows users to save and monitor
 
 You are all set to use XPT :)
 
+## Screenshots
+
+<img src="./screenshots/snap1.jpg" heigth="1280px" width="800px" alt="snap1"/>
+<img src="./screenshots/snap2.jpg" heigth="1280px" width="800px" alt="snap2"/>
+<img src="./screenshots/snap3.jpg" heigth="1280px" width="800px" alt="snap3"/>
+<img src="./screenshots/snap4.jpg" heigth="1280px" width="800px" alt="snap4"/>
+<img src="./screenshots/snap5.jpg" heigth="1280px" width="800px" alt="snap5"/>
+
 ## Features
 
 - Account Details: 

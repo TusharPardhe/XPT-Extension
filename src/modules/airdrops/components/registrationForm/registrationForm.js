@@ -72,6 +72,7 @@ const RegistrationForm = ({ state, setState, handleUserInput, onSubmit }) => {
                             name="twitter"
                             placeholder="Enter twitter link"
                             onChange={handleUserInput}
+                            error={twitter.error.length > 0}
                         />
                         <Input
                             label={{ content: "Discord: " }}

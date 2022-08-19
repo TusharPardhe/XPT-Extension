@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Button, Input, TextArea } from 'semantic-ui-react';
+import { convertStringToHex } from 'xrpl';
 
 import useMergedState from '../../utils/useMergedState';
 
@@ -72,20 +73,33 @@ const Donations = () => {
         if (isValid) {
             const payload = {
                 method: "POST",
-                url: "user/donate",
+                url: "user/xumm/transaction",
                 encrypt: false,
                 auth: false,
                 data: {
-                    amount: (parseFloat(amount.value) * 1000000).toString(),
-                    memo: message.value,
+                    txJSON: {
+                        "TransactionType": "Payment",
+                        "Destination": process.env.DONATION_ADDRESS,
+                        "Amount": (parseFloat(amount.value) * 1000000).toString(),
+                    },
                 },
             };
+
+            if (message.value.length > 0) {
+                payload.data.txJSON["Memos"] = [
+                    {
+                        "Memo": {
+                            "MemoData": convertStringToHex(message.value)
+                        }
+                    }
+                ]
+            }
 
             ApiCall(payload)
                 .then((response) => {
                     if (response.data) {
-                        const { png } = response.data;
-                        setState({ xummPngLink: png, donateBtnEnabled: false });
+                        const { refs: { qr_png } } = response.data;
+                        setState({ xummPngLink: qr_png, donateBtnEnabled: false });
                         setTimeout(() => {
                             setState({ donateBtnEnabled: true });
                         }, 5000);

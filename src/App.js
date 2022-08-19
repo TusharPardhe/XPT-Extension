@@ -15,7 +15,7 @@ function App() {
         return (
             <BrowserRouter>
                 <div className="container" id="xpt_browser_extension">
-                    <ToastContainer />
+                    <ToastContainer autoClose={1000} />
                     <Routes />
                 </div>
             </BrowserRouter>

@@ -26,14 +26,14 @@ const AirdropRegistration = () => {
     const { projectName, logo, ticker, limit, currencyName, date, description, twitter, discord, website, linktree, others, loading, message } = state;
 
     useEffect(() => {
-        fetchAccountDetails();
+        fetchAccountTokens();
     }, []);
 
     const gotoAirdrops = () => {
         navigate(ROUTES.AIRDROPS);
     };
 
-    const fetchAccountDetails = () => {
+    const fetchAccountTokens = () => {
         setState({ loading: true });
         const payload = {
             method: "POST",
@@ -47,12 +47,9 @@ const AirdropRegistration = () => {
 
         ApiCall(payload)
             .then((response) => {
-                const { currencies, message } = response.data;
-                if (currencies?.length > 0) {
-                    setState({ ticker: { ...ticker, options: currencies }, message });
-                } else {
-                    setState({ message });
-                }
+                let { currencies, message } = response.data;
+                currencies = currencies?.length > 0 ? currencies : [];
+                setState({ ticker: { ...ticker, options: currencies }, message });
             })
             .finally(() => {
                 toast.dismiss(toastId.current);
@@ -104,6 +101,12 @@ const AirdropRegistration = () => {
         if (logoError.length) {
             isValid = false;
             setState({ logo: { ...logo, error: logoError } });
+        }
+
+        const { error: twitterError } = isValidValue(twitter.value);
+        if (twitterError.length) {
+            isValid = false;
+            setState({ twitter: { ...twitter, error: twitterError } });
         }
 
         const { error: descriptionError } = isValidValue(description.value);

@@ -6,7 +6,7 @@ A simple browser plugin built with ReactJs that allows users to save and monitor
 
 ## How to install?
 
-1. Click on the latest release. (Located towards the left section of your github screen under about section)
+1. Click on the releases section. (Located towards the left side of your github screen under about section)
 2. Download dist.zip
 3. Unpack dist.zip and delete the zip file.
 4. Open your chrome browser and go to extension settings, here from the top right corner enable developer mode.

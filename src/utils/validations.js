@@ -18,10 +18,16 @@ export const isValidValue = (value, message = "Please enter a valid value", rege
 };
 
 export const isValidPassword = (value, message = "Enter a stronger password") => {
-    const valid = VALIDATION_REGEX.PASSWORD.test(value);
+    let valid = true;
 
     if (value.length === 0) {
         message = "Please enter a valid value.";
+        valid = false;
+    }
+
+    if (value.length < 8) {
+        message = "Password length must be atleast 8 characters.";
+        valid = false;
     }
 
     return {

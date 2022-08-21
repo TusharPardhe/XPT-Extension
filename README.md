@@ -4,6 +4,10 @@
 
 A simple browser plugin built with ReactJs that allows users to save and monitor their XRP ledger accounts in real-time, visit this [link](https://xptxrpl.com/#/) to know more about the extension. All the features are listed below:
 
+Related Repositories:
+1. [XPT Backend](https://github.com/TusharPardhe/xpt-backend)
+2. [XRPL Cheat Sheet](http://sheet.xptxrpl.com/)
+
 ## How to install?
 
 1. Click on the releases section. (Located towards the left side of your github screen under about section)
@@ -30,10 +34,8 @@ You are all set to use XPT :)
   - Initial account balance 
   - Parent account address 
   - Date of creation etc.
-  
-- Trustlines Information:
-    - Number of trustlines 
-    - Currency ticker 
+  - Number of trustlines 
+  - Currency ticker 
     - Issuer account etc.
 
 - Issued Tokens: 
@@ -41,26 +43,29 @@ You are all set to use XPT :)
     - Ticker 
     - Issued supply
 
-- Other details:
-    - Last five transactions
-    - Bithomp/XRPscan links
-    - Xumm Kyc Information 
+- Transaction details:
+    - Date of transaction
+    - Amount
+    - Type of transaction
+    - Tx hash
+    - Other important transaction details
 
-- XRP Details
+- XRPL Tokens
     - Real-time price update
     - Circulating supply
-    - 1hr, 7hr, 24hr price change %
+    - 24hr price change
     - Market cap
-    - Current Rank
+    - Current Marketcap
     - Total supply
-    - 24hr Volume
+    - etc.
 
 - NFT Visualiser **(After XLS20D is live)
     - View your NFT Jpeg/Png etc
     - Check current price etc.
 
-- Useful links
-    - XRPL Dev links
+- XRPL Cheat Sheet [sheet.xptxrpl.com](http://sheet.xptxrpl.com/)
+    - XRPL Projects
     - XRPScan, Bithomp, Xumm wallet Information
     - Code snippets, Open source projects etc.
     - Social media links: Discord handles, Twitter accounts etc.
+    - API details, Libraries, Packages etc.

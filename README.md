@@ -8,17 +8,6 @@ Related Repositories:
 1. [XPT Backend](https://github.com/TusharPardhe/xpt-backend)
 2. [XRPL Cheat Sheet](http://sheet.xptxrpl.com/)
 
-## How to install?
-
-1. Click on the releases section. (Located towards the left side of your github screen under about section)
-2. Download dist.zip
-3. Unpack dist.zip and delete the zip file.
-4. Open your chrome browser and go to settings -> extensions, 
-5. When you are on extension settings enable developer mode from the top right corner slider.
-5. Now click "Load Unpacked" button on the left corner of the page and select the unpacked dist folder from step 3.
-
-You are all set to use XPT :)
-
 ## Screenshots
 
 <img src="./screenshots/snap1.jpg" heigth="1280px" width="800px" alt="snap1"/>
@@ -69,3 +58,14 @@ You are all set to use XPT :)
     - Code snippets, Open source projects etc.
     - Social media links: Discord handles, Twitter accounts etc.
     - API details, Libraries, Packages etc.
+
+## How to install?
+
+1. Click on the releases section. (Located towards the left side of your github screen under about section)
+2. Download dist.zip
+3. Unpack dist.zip and delete the zip file.
+4. Open your chrome browser and go to settings -> extensions, 
+5. When you are on extension settings enable developer mode from the top right corner slider.
+5. Now click "Load Unpacked" button on the left corner of the page and select the unpacked dist folder from step 3.
+
+You are all set to use XPT :)

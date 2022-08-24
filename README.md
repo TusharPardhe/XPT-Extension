@@ -2,7 +2,7 @@
 # XPT Browser Extension
 
 
-A simple browser plugin built with ReactJs that allows users to save and monitor their XRP ledger accounts in real-time, visit this [link](https://xptxrpl.com/#/) to know more about the extension. All the features are listed below:
+A simple browser plugin built with ReactJs that allows users to save and monitor their XRP ledger accounts in real-time, visit this [link](https://xptxrpl.com/#/) to know more about the extension.
 
 Related Repositories:
 1. [XPT Backend](https://github.com/TusharPardhe/xpt-backend)

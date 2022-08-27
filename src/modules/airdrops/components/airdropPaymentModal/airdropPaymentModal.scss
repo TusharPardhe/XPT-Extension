@@ -12,6 +12,7 @@
         width:80%;
         margin:0;
         height: 150px;
+        top: 50px;
     }
     .ui.modal > .header{
         padding: 10px !important;
@@ -28,6 +29,7 @@
 
     .modal_content {
         text-align: center;
+        min-height: 100px;
         img {
            width: 200px;
            height: 200px; 

@@ -76,7 +76,7 @@ const AirdropPaymentModal = ({ closeModal, state, setState }) => {
         <Modal size="mini" open={openPaymentModal} onClose={closeModal} className="paymentModal">
             <Modal.Header className="modal_header">Pay with XUMM</Modal.Header>
             <Modal.Content className="modal_content">
-                <img src={paymentImgUrl} alt="payWithXumm" />
+                {paymentImgUrl ? <img src={paymentImgUrl} alt="payWithXumm" /> : null}
             </Modal.Content>
             <Modal.Actions>
                 <Button onClick={closeModal}>Close</Button>

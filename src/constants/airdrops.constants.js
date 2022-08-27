@@ -1,5 +1,5 @@
 export const AIRDROPS_INITIAL_STATE = {
-    date: new Date(),
+    date: new Date(new Date().setHours(0, 0, 0)),
     activePage: 1,
     totalPages: 0,
     totalCount: 0,

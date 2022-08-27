@@ -1,0 +1,37 @@
+.dimmed.dimmable>.ui.animating.dimmer,
+.dimmed.dimmable>.ui.visible.dimmer,
+.ui.active.dimmer {
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    opacity:1;
+    width: inherit;
+    height: inherit;
+
+    .ui.mini.modal {
+        width:80%;
+        margin:0;
+        height: 150px;
+    }
+    .ui.modal > .header{
+        padding: 10px !important;
+    }
+}
+
+.paymentModal{
+    text-align: center;
+
+    .modal_header {
+        text-align: center;
+        color: var(--blue);
+    }
+
+    .modal_content {
+        text-align: center;
+        img {
+           width: 200px;
+           height: 200px; 
+        }
+    }
+       
+}

@@ -63,4 +63,9 @@ export const RIPPLED_API_TRANSACTION_RESULT_CODES = {
     tem: "error",
     ter: "error",
     tes: "success",
+};
+
+export const ACCOUNT_TYPES = {
+    USER: "USER",
+    AIRDROP_ACCESS: "AIRDROP_ACCESS",
 }

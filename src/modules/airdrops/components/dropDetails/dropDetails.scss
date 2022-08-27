@@ -90,10 +90,11 @@
         }
 
         .description {
-            padding: 10px;
+            padding: 20px;
             box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px -7px;
             border-radius: 15px;
-
+            white-space: pre-line;
+            
             .links {
                 display: flex;
                 justify-content: space-around;

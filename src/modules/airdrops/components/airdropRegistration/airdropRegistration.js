@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Divider, Image } from "semantic-ui-react";
 
@@ -8,8 +8,9 @@ import useMergedState from "../../../../utils/useMergedState";
 import RegistrationForm from "../registrationForm/registrationForm";
 import XPTLogoImg from "../../../../assets/svg/xpt.svg";
 import ShimmerLoader from "../../../../components/shimmerLoader/shimmerLoader";
+import AirdropPaymentModal from "../airdropPaymentModal/airdropPaymentModal";
 
-import { ROUTES } from "../../../../constants/common.constants";
+import { ACCOUNT_TYPES, ROUTES, URLS } from "../../../../constants/common.constants";
 import { ApiCall } from "../../../../utils/api.util";
 import { isValidValue } from "../../../../utils/validations";
 import { getDataFromLocalStrg } from "../../../../utils/common.utils";
@@ -20,14 +21,20 @@ import "./airdropRegistration.scss";
 const AirdropRegistration = () => {
     const navigate = useNavigate();
     const accountXrplAddress = getDataFromLocalStrg("xrplAddress");
+    const accountType = getDataFromLocalStrg("accountType");
+    const isAirdropAccessAccount = accountType === ACCOUNT_TYPES.AIRDROP_ACCESS;
     const toastId = useRef(null);
 
     const [state, setState] = useMergedState(AIRDROP_REGISTRATION_INITIAL_STATE);
-    const { projectName, logo, ticker, limit, currencyName, date, description, twitter, discord, website, linktree, others, loading, message } = state;
+    const { projectName, logo, ticker, limit, currencyName, date, description, twitter, discord, website, linktree, others, loading, issuer, paymentSuccess } = state;
 
     useEffect(() => {
         fetchAccountTokens();
     }, []);
+
+    useEffect(() => {
+        onPaymentSuccess();
+    }, [paymentSuccess])
 
     const gotoAirdrops = () => {
         navigate(ROUTES.AIRDROPS);
@@ -47,9 +54,9 @@ const AirdropRegistration = () => {
 
         ApiCall(payload)
             .then((response) => {
-                let { currencies, message } = response.data;
+                let { currencies, listingFees } = response.data;
                 currencies = currencies?.length > 0 ? currencies : [];
-                setState({ ticker: { ...ticker, options: currencies }, message });
+                setState({ ticker: { ...ticker, options: currencies }, listingFees });
             })
             .finally(() => {
                 toast.dismiss(toastId.current);
@@ -63,10 +70,10 @@ const AirdropRegistration = () => {
         const updatedObj = { ...state[name], value, error };
 
         if (name === "ticker") {
-            const currentSelection = ticker.options.filter(t => t.value === value);
-            setState({ [name]: updatedObj, limit: currentSelection[0].limit });
+            const currentSelection = ticker.options.filter((t) => t.value === value);
+            setState({ [name]: updatedObj, limit: currentSelection[0].limit, issuer: currentSelection[0].issuer });
             return;
-        };
+        }
         setState({ [name]: updatedObj });
     };
 
@@ -115,17 +122,27 @@ const AirdropRegistration = () => {
             setState({ description: { ...description, error: descriptionError } });
         }
 
-        if (message.length > 0) {
-            isValid = false;
-        }
-
         return isValid;
     };
+
+    const closeModal = () => setState({ openPaymentModal: false });
 
     const onSubmit = () => {
         const isValid = validateAllFields();
 
-        if (isValid) {
+        if (!isValid) {
+            toast.error("Please check and enter valid details.");
+            return;
+        };
+
+        setState({
+            openPaymentModal: !isAirdropAccessAccount,
+            paymentSuccess: isAirdropAccessAccount,
+        });
+    };
+
+    const onPaymentSuccess = () => {
+        if (paymentSuccess) {
             toastId.current = toast.loading("Sending request");
 
             const payload = {
@@ -137,7 +154,7 @@ const AirdropRegistration = () => {
                     userName: getDataFromLocalStrg("userName"),
                     projectName: projectName.value,
                     ticker: ticker.value,
-                    issuer: accountXrplAddress,
+                    issuer,
                     addedByAccount: accountXrplAddress,
                     currencyName: currencyName.value,
                     date: parseInt(date.value.getTime() / 1000),
@@ -163,17 +180,29 @@ const AirdropRegistration = () => {
                 .finally(() => {
                     toast.dismiss(toastId.current);
                 });
-        } else {
-            toast.error("Please check and enter valid details.");
-        }
-    };
+        };
+    }
 
     return (
         <div className="airdrop_registration_component">
             <RegistrationHeading {...{ gotoAirdrops }} />
+            <div className="note_heading">
+                {isAirdropAccessAccount ? (
+                    <>Your account has unlimited access to list ADs, just add a trustline of the token & start listing.</>
+                ) : (
+                    <>
+                        The cost of listing an airdrop is 5 XRP. <br />
+                        Partner projects can list unlimited ADs for free; for more information, contact us on{" "}
+                        <a href={URLS.XPT_TWITTER} target="_blank" rel="noopener noreferrer">
+                            Twitter
+                        </a>
+                        .
+                    </>
+                )}
+            </div>
             <Divider />
-            <RestrictionNote {...{ message }} />
             {loading ? <ShimmerLoader /> : <RegistrationForm {...{ state, setState, handleUserInput, onSubmit }} />}
+            <AirdropPaymentModal {...{ closeModal, state, setState }} />
         </div>
     );
 };
@@ -192,20 +221,3 @@ const RegistrationHeading = ({ gotoAirdrops }) => {
         </div>
     );
 };
-
-const RestrictionNote = ({ message }) => {
-    if (message.length === 0) {
-        return null;
-    }
-
-    return (
-        <>
-            <div className="restricted_note_container">
-                <span>Restricted: </span>
-                {message}
-            </div>
-            <Divider />
-        </>
-    );
-};
-

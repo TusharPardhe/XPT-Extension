@@ -4,7 +4,7 @@ import { Divider, Image } from 'semantic-ui-react';
 
 import BackButton from '../../../../components/backButton/backButton';
 import { ISSUER_WEBLINK_TYPE } from '../../../../constants/fungibleTokens.constants';
-import { linkify, scrollToRef, stringToLocale } from '../../../../utils/common.utils';
+import { linkify, scrollToRef, valueToLocaleString } from '../../../../utils/common.utils';
 
 import "./fungibleTokenDetails.scss"
 
@@ -64,27 +64,27 @@ function CurrencyDetails({ price, trustlines, holders, supply, marketcap, volume
         <div className="details">
             <div className="card">
                 <div className="heading">Market Price</div>
-                <div className="value">{stringToLocale(price, 6)} XRP</div>
+                <div className="value">{valueToLocaleString(price, 6)} XRP</div>
             </div>
             <div className="card">
                 <div className="heading">Trustlines</div>
-                <div className="value">{stringToLocale(trustlines, 0)}</div>
+                <div className="value">{valueToLocaleString(trustlines, 0)}</div>
             </div>
             <div className="card">
                 <div className="heading">Holders</div>
-                <div className="value">{stringToLocale(holders, 0)}</div>
+                <div className="value">{valueToLocaleString(holders, 0)}</div>
             </div>
             <div className="card">
                 <div className="heading">Supply</div>
-                <div className="value">{stringToLocale(supply, 0)}</div>
+                <div className="value">{valueToLocaleString(supply, 0)}</div>
             </div>
             <div className="card">
                 <div className="heading">Market Cap</div>
-                <div className="value">{stringToLocale(marketcap, 0)}</div>
+                <div className="value">{valueToLocaleString(marketcap, 0)}</div>
             </div>
             <div className="card">
                 <div className="heading">24 Hour Volume</div>
-                <div className="value">{stringToLocale(volume_24h)} XRP</div>
+                <div className="value">{valueToLocaleString(volume_24h)} XRP</div>
             </div>
         </div>
     );
@@ -98,7 +98,7 @@ function IssuerDetails(props) {
             <div className="details">
                 <div className="card">
                     <div className="heading">Followers</div>
-                    <div className="value">{stringToLocale(followers, 0)}</div>
+                    <div className="value">{valueToLocaleString(followers, 0)}</div>
                 </div>
                 <div className="card">
                     <div className="heading">KYC</div>

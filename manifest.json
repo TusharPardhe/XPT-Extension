@@ -1,11 +1,9 @@
 {
   "name": "XPT",
   "description": "XRPL Portfolio Tracker Browser extension fetches information about your XRPL accounts",
-  "version": "1.0",
+  "version": "1.0.1",
   "manifest_version": 3,
-  "permissions": [
-    "storage"
-  ],
+  "permissions": [],
   "icons": {
     "16": "xpt192.png",
     "48": "xpt192.png",

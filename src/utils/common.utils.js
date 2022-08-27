@@ -43,7 +43,7 @@ export const scrollToRef = (ref) => ref?.current?.scrollIntoView({ behavior: "sm
 
 export const getTokenName = (value) => (value.length === 40 ? convertHexToString(value).replaceAll("\u0000", "") : value);
 
-export const stringToLocale = (value, decimal = 4) =>
+export const valueToLocaleString = (value, decimal = 4) =>
     value ? parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: decimal, maximumFractionDigits: decimal }) : "-";
 
 export const linkify = (inputText) => {

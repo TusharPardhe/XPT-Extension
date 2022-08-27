@@ -25,12 +25,17 @@
         }
     }
 
-    .restricted_note_container {
-        background: var(--imperial-red);
-        font-size: 14px;
+    .note_heading {
         padding: 10px;
-        color: white;
-        font-weight: bold;
+        border: 1px solid var(--baby-blue-eyes);
+        border-radius: 10px;
+        background: azure;
+        white-space: pre-line;
+        text-align: center;
+
+        a {
+            cursor: pointer;
+        }
     }
 
     .registration_form {

@@ -10,8 +10,8 @@ export const AIRDROPS_INITIAL_STATE = {
 
 export const AIRDROP_REGISTRATION_INITIAL_STATE = {
     loading: true,
-    message: "",
     limit: "",
+    issuer: "",
     projectName: { value: "", error: [] },
     currencyName: { value: "", error: [] },
     date: { value: new Date(), error: [] },
@@ -23,4 +23,9 @@ export const AIRDROP_REGISTRATION_INITIAL_STATE = {
     linktree: { value: "", error: [] },
     others: { value: "", error: [] },
     ticker: { value: "", error: [], options: [] },
+    openPaymentModal: false,
+    paymentSuccess: false,
+    listingFees: 2,
+    paymentError: [],
+    paymentImgUrl: "",
 };

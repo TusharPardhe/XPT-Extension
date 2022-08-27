@@ -92,7 +92,6 @@ const Airdrops = () => {
             <Divider />
             <div className="input_container">
                 <div className="date_picker">
-                    <div className="label">From date:</div>
                     <DatePicker
                         value={date}
                         onChange={onDateChange}

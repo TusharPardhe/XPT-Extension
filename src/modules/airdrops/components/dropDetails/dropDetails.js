@@ -9,7 +9,7 @@ import XPTLogoImg from "../../../../assets/svg/xpt.svg";
 import BackButton from "../../../../components/backButton/backButton";
 import { ROUTES } from "../../../../constants/common.constants";
 import { ApiCall } from "../../../../utils/api.util";
-import { linkify, redirectToUrl, scrollToRef, stringToLocale } from "../../../../utils/common.utils";
+import { linkify, redirectToUrl, scrollToRef, valueToLocaleString } from "../../../../utils/common.utils";
 
 import "./dropDetails.scss";
 
@@ -120,7 +120,7 @@ const DropDetails = () => {
                         <div className="box">
                             <div className="details">
                                 <div className="info_heading">Total Supply</div>
-                                <div className="value">{stringToLocale(maxSupply) ?? "-"}</div>
+                                <div className="value">{valueToLocaleString(maxSupply) ?? "-"}</div>
                             </div>
                         </div>
                         <div className="box">

@@ -66,6 +66,7 @@ const Login = () => {
                         saveInLocalStrg("token", response.data.token);
                         saveInLocalStrg("userName", response.data.userName);
                         saveInLocalStrg("xrplAddress", response.data.xrplAddress);
+                        saveInLocalStrg("accountType", response.data.type);
                         const route = parsed.route ? ROUTES[parsed.route] : ROUTES.HOME;
                         navigate({
                             pathname: route,

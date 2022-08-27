@@ -3,7 +3,7 @@ import dateFormat from "dateformat";
 import { Popup } from "semantic-ui-react";
 
 import { MAX_ALLOWED_CARD_VALUE_LENGTH, RIPPLED_API_TRANSACTION_RESULT_CODES } from "../../../../constants/common.constants";
-import { copyToClipBoard, getTokenName, stringToLocale } from "../../../../utils/common.utils";
+import { copyToClipBoard, getTokenName, valueToLocaleString } from "../../../../utils/common.utils";
 
 import "./transactionCard.scss";
 
@@ -166,7 +166,7 @@ const renderVariableValueRow = (value, heading) => {
                 <div className="header">{heading}: </div>
                 <div className="value">
                     <span>
-                        {stringToLocale(value.value)} {getTokenName(value.currency)}
+                        {valueToLocaleString(value.value)} {getTokenName(value.currency)}
                     </span>
                 </div>
             </div>
@@ -177,7 +177,7 @@ const renderVariableValueRow = (value, heading) => {
         <div className="property">
             <div className="header">{heading}: </div>
             <div className="value">
-                <span>{value / Math.pow(10, 6)} XRP</span>
+                <span>{valueToLocaleString(value / Math.pow(10, 6))} XRP</span>
             </div>
         </div>
     );

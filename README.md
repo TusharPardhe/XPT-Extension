@@ -1,8 +1,9 @@
 
 # XPT Browser Extension
+[![Google Chrome](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)](https://chrome.google.com/webstore/detail/xpt/fimlhknmipbchckdhhaobdkddnobcjki)
+[![Xrp](https://img.shields.io/badge/Xrp-black?style=for-the-badge&logo=xrp&logoColor=white)](https://xptxrpl.com/)
 
-
-A simple browser plugin built with ReactJs that allows users to save and monitor their XRP ledger accounts in real-time, visit this [link](https://xptxrpl.com/#/) to know more about the extension.
+A simple browser plugin that allows users to save and monitor their XRP ledger accounts in real-time, it also displays information related to upcoming airdrops, NFT minting details, XRPL token details, XRPL cheat sheet, account transactions and other things. All the features are listed below.
 
 Related Repositories:
 1. [XPT Backend](https://github.com/TusharPardhe/xpt-backend)

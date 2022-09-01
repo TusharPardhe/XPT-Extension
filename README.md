@@ -1,18 +1,16 @@
-<div style="text-align:center;" class="main_content">
+<div style="text-align:center;" align="center">
 <h1 style="">XPT Browser Extension</h1>
 <span style="display:flex;justify-content:center;">
 
-[![Google Chrome](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)](https://chrome.google.com/webstore/detail/xpt/fimlhknmipbchckdhhaobdkddnobcjki)
-
-[![Xrp](https://img.shields.io/badge/Xrp-black?style=for-the-badge&logo=xrp&logoColor=white)](https://xptxrpl.com/)
+[![Google Chrome](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)](https://chrome.google.com/webstore/detail/xpt/fimlhknmipbchckdhhaobdkddnobcjki)[![Xrp](https://img.shields.io/badge/Xrp-black?style=for-the-badge&logo=xrp&logoColor=white)](https://xptxrpl.com/)
 
 </span>
 <img src="./src/assets/jpg/XPT_background.jpg" height="400px" alt="xpt" style="border-radius: 20px;"/>
-
+<br/><br/>
 <div class="description" style="border: 1px solid black;padding: 20px;border-radius: 20px;margin: 20px;">
 A simple browser plugin that allows users to save and monitor their XRP ledger accounts in real-time, it also displays information related to upcoming airdrops, NFT minting details, XRPL token details, XRPL cheat sheet, account transactions and other things. All the features are listed below.
 </div>
-
+<br/><br/>
 </div>
 
 Related Repositories:
@@ -22,7 +20,7 @@ Related Repositories:
 
 ## Screenshots
 
-<div style="text-align:center;">
+<div style="text-align:center;" align="center">
     <img src="./screenshots/snap1.jpg" heigth="1280px" width="800px" alt="snap1"/>
     <img src="./screenshots/snap2.jpg" heigth="1280px" width="800px" alt="snap2"/>
     <img src="./screenshots/snap3.jpg" heigth="1280px" width="800px" alt="snap3"/>

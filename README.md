@@ -1,6 +1,6 @@
 
 # XPT Browser Extension
-[![Chrome Web Store](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)](https://chrome.google.com/webstore/detail/xpt/fimlhknmipbchckdhhaobdkddnobcjki)
+[![Google Chrome](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)](https://chrome.google.com/webstore/detail/xpt/fimlhknmipbchckdhhaobdkddnobcjki)
 [![Xrp](https://img.shields.io/badge/Xrp-black?style=for-the-badge&logo=xrp&logoColor=white)](https://xptxrpl.com/)
 
 A simple browser plugin that allows users to save and monitor their XRP ledger accounts in real-time, it also displays information related to upcoming airdrops, NFT minting details, XRPL token details, XRPL cheat sheet, account transactions and other things. All the features are listed below.
@@ -26,7 +26,7 @@ Related Repositories:
   - Date of creation etc.
   - Number of trustlines 
   - Currency ticker 
-    - Issuer account etc.
+  - Issuer account etc.
 
 - Issued Tokens: 
     - Number of tokens issued 
@@ -62,6 +62,6 @@ Related Repositories:
 
 ## How to use?
 
-1. Click the `Chrome Web Store` link on the top and download the extension.
+1. Click the `Google Chrome` link on the top and download the extension.
 2. Sign Up if you don't have an account.
 3. Play around & give your valuable feedback.

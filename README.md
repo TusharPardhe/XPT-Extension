@@ -1,6 +1,6 @@
 
 # XPT Browser Extension
-[![Google Chrome](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)](https://chrome.google.com/webstore/detail/xpt/fimlhknmipbchckdhhaobdkddnobcjki)
+[![Chrome Web Store](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)](https://chrome.google.com/webstore/detail/xpt/fimlhknmipbchckdhhaobdkddnobcjki)
 [![Xrp](https://img.shields.io/badge/Xrp-black?style=for-the-badge&logo=xrp&logoColor=white)](https://xptxrpl.com/)
 
 A simple browser plugin that allows users to save and monitor their XRP ledger accounts in real-time, it also displays information related to upcoming airdrops, NFT minting details, XRPL token details, XRPL cheat sheet, account transactions and other things. All the features are listed below.
@@ -60,13 +60,8 @@ Related Repositories:
     - Social media links: Discord handles, Twitter accounts etc.
     - API details, Libraries, Packages etc.
 
-## How to install?
+## How to use?
 
-1. Click on the releases section. (Located towards the left side of your github screen under about section)
-2. Download dist.zip
-3. Unpack dist.zip and delete the zip file.
-4. Open your chrome browser and go to settings -> extensions, 
-5. When you are on extension settings enable developer mode from the top right corner slider.
-5. Now click "Load Unpacked" button on the left corner of the page and select the unpacked dist folder from step 3.
-
-You are all set to use XPT :)
+1. Click the `Chrome Web Store` link on the top and download the extension.
+2. Sign Up if you don't have an account.
+3. Play around & give your valuable feedback.

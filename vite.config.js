@@ -22,6 +22,8 @@ const viteConfig = ({ mode }) => {
                 targets: [
                     { src: path.resolve(__dirname, `./manifest_json/${process.env.BROWSER.toLowerCase()}_manifest.json`), dest: "", rename: "manifest.json" },
                     { src: path.resolve(__dirname, "./src/assets/png/xpt192.png"), dest: "" },
+                    { src: path.resolve(__dirname, "./src/scripts/background.js"), dest: "" },
+                    { src: path.resolve(__dirname, "./src/scripts/content.js"), dest: "" },
                 ],
             }),
         removeConsole(),

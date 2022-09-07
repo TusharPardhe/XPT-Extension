@@ -26,6 +26,7 @@ const Airdrops = () => {
 
     useEffect(() => {
         fetchAirdropList(activePage, date);
+        window.postMessage({ code: "EXTENSION_LOADED" })
     }, [location.state]);
 
     const fetchAirdropList = (pageNumber, date) => {

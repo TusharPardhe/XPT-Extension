@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
-import { Route, Routes as RoutesBundle, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes as RoutesBundle, useLocation } from "react-router-dom";
+import queryString from "query-string";
 
 import { ROUTES } from "./constants/common.constants";
 
@@ -22,6 +23,9 @@ const SuccessPage = React.lazy(() => import("./components/successPage/sucessPage
 const Donations = React.lazy(() => import("./modules/donations/donations"));
 const Transactions = React.lazy(() => import("./modules/transactions/transactions"));
 
+const { route } = queryString.parse(window.location.search);
+const isTransactionRoute = route === "transaction";
+
 export default function Routes() {
     const location = useLocation();
 
@@ -30,7 +34,7 @@ export default function Routes() {
     return (
         <Suspense fallback={<ShimmerLoader />}>
             <RoutesBundle location={location}>
-                <Route path={ROUTES.LANDING_PAGE} element={<Landing />} />
+                <Route path={ROUTES.LANDING_PAGE} element={isTransactionRoute ? <Navigate to={ROUTES.AIRDROPS} /> : <Landing />} />
                 <Route path={ROUTES.LOGIN} element={<Login />} />
                 <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
                 <Route path={ROUTES.HOME} element={wrapWithNavBar(<Home />)} />
@@ -46,7 +50,7 @@ export default function Routes() {
                 <Route path={ROUTES.TRANSACTIONS} element={wrapWithNavBar(<Transactions />)} />
                 <Route path={ROUTES.DONATIONS} element={wrapWithNavBar(<Donations />)} />
                 <Route path={ROUTES.CHEAT_SHEET} element={wrapWithNavBar(<CheatSheet />)} />
-                <Route path="/*" element={<div>Error</div>} />
+                <Route path="/*" element={<Navigate to={ROUTES.LANDING_PAGE} />} />
             </RoutesBundle>
         </Suspense>
     );

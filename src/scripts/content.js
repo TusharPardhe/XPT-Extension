@@ -12,13 +12,20 @@ const randomString = (length, chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDE
 
 // Message from web page
 window.addEventListener("message", (event) => {
+  console.log(event.data);
+
   if (event.data.id === "XRPL_TRANSACTION") {
     // send message to background script
     const transactionId = `${new Date().getTime()}${randomString(6)}`;
     browser.runtime.sendMessage({
       id: event.data.id,
       transactionId: transactionId,
+      screenWidth: window.screen.width
     });
+  }
+
+  if (event.data.id === "CONNECT") {
+    window.postMessage({ code: "SUCCESS" });
   }
 });
 

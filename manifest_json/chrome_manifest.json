@@ -3,17 +3,32 @@
   "description": "XRPL Portfolio Tracker Browser extension fetches information about your XRPL accounts",
   "version": "1.0.1",
   "manifest_version": 3,
-  "permissions": [],
+  "permissions": [
+    "activeTab"
+  ],
   "icons": {
-    "16": "xpt192.png",
-    "48": "xpt192.png",
-    "128": "xpt192.png"
+      "16": "xpt192.png",
+      "48": "xpt192.png",
+      "128": "xpt192.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
   },
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'"
+      "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "action": {
-    "default_popup": "index.html",
-    "default_title": "XPT"
+      "default_popup": "index.html",
+      "default_title": "XPT"
   }
 }

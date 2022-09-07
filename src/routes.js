@@ -14,7 +14,7 @@ const FungibleTokenDetails = React.lazy(() => import("./modules/fungibleTokens/c
 const CheatSheet = React.lazy(() => import("./modules/cheatSheet/CheatSheet"));
 const Login = React.lazy(() => import("./modules/landing/components/login/login"));
 const SignUp = React.lazy(() => import("./modules/landing/components/signUp/signUp"));
-const NftVisualiser = React.lazy(() => import("./modules/nftVisualiser/nftVisualiser"));
+const NftCalendar = React.lazy(() => import("./modules/nftCalendar/nftCalendar"));
 const Airdrops = React.lazy(() => import("./modules/airdrops/airdrops"));
 const DropDetails = React.lazy(() => import("./modules/airdrops/components/dropDetails/dropDetails"));
 const AirdropRegistration = React.lazy(() => import("./modules/airdrops/components/airdropRegistration/airdropRegistration"));
@@ -38,7 +38,7 @@ export default function Routes() {
                 <Route path={ROUTES.PORTFOLIO} element={wrapWithNavBar(<Portfolio />)} />
                 <Route path={ROUTES.FUNGIBLE_TOKENS} element={wrapWithNavBar(<FungibleTokens />)} />
                 <Route path={ROUTES.FUNGIBLE_TOKEN_DETAILS} element={wrapWithNavBar(<FungibleTokenDetails />)} />
-                <Route path={ROUTES.NFT_DETAILS} element={wrapWithNavBar(<NftVisualiser />)} />
+                <Route path={ROUTES.MINT_CALENDAR} element={wrapWithNavBar(<NftCalendar />)} />
                 <Route path={ROUTES.AIRDROPS} element={wrapWithNavBar(<Airdrops />)} />
                 <Route path={ROUTES.DROP_DETAILS} element={wrapWithNavBar(<DropDetails />)} />
                 <Route path={ROUTES.AIRDROP_REGISTRATION} element={wrapWithNavBar(<AirdropRegistration />)} />

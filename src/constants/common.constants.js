@@ -6,7 +6,6 @@ export const ROUTES = {
     ACCOUNTS: "/add_account",
     PORTFOLIO: "/portfolio/:id",
     FUNGIBLE_TOKENS: "/fungible_tokens",
-    NFT_DETAILS: "/nft",
     CHEAT_SHEET: "/cheat_sheet",
     AIRDROPS: "/airdrops",
     DROP_DETAILS: "/drop/:id",
@@ -15,6 +14,8 @@ export const ROUTES = {
     DONATIONS: "/donate",
     FUNGIBLE_TOKEN_DETAILS: "/fungible_token/details",
     TRANSACTIONS: "/transactions/:id",
+    MINT_CALENDAR: "/mint_calendar",
+    NFT_DETAILS: "/nft/:id",
 };
 
 export const ENV = import.meta.env.MODE.toUpperCase();

@@ -49,6 +49,10 @@ const Navbar = (props) => {
                         <Icon name="address book" />
                         Add Account
                     </Menu.Item>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.MINT_CALENDAR)} key="mint_calendar">
+                        <Icon name="map marker alternate" />
+                        Mint Calendar
+                    </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.AIRDROPS)} key="airdrops">
                         <Icon name="compass" />
                         Airdrops

@@ -1,0 +1,154 @@
+.nft_details_container {
+    padding: 0px 20px;
+
+    .details_box {
+        padding: 10px 0;
+        text-align: center;
+
+        .heading {
+            padding: 0px 0px 20px 0px;
+            .img_container {
+                img {
+                    border-radius: 10px;
+                    width: 300px;
+                    height: 300px;
+                }
+            }
+
+            .name {
+                font-weight: bold;
+                padding: 5px 0px 0px 0px;
+            }
+        }
+
+        .coin_info {
+            padding: 24px 0px;
+
+            .info_cards_container {
+                display: grid;
+                gap: 24px;
+
+                .details {
+                    display: grid;
+                    position: relative;
+                    grid-template-columns: 30% auto;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    text-align: center;
+                    border-radius: 15px;
+                    gap: 8px;
+                    background: white;
+                    z-index: 1;
+                    flex-direction: row;
+                    text-align: center;
+                    align-items: center;
+                    padding: 15px;
+                    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px -7px;
+                    font-size: 13px;
+
+                    .info_heading {
+                        font-weight: bold;
+                    }
+                }
+
+                .box {
+                    position: relative;
+                    background: white;
+                    cursor: pointer;
+
+                    &:hover {
+                        &::after {
+                            position: absolute;
+                            content: "";
+                            top: 15px;
+                            left: 0;
+                            right: 0;
+                            height: 100%;
+                            width: 100%;
+                            transform: scale(0.9) translateZ(0);
+                            transition: background 5s ease-in-out;
+                            background: linear-gradient(
+                                to left,
+                                var(--platinum),
+                                var(--sky-blue-crayola),
+                                var(--baby-blue-eyes),
+                                var(--baby-blue-eyes),
+                                var(--platinum),
+                                var(--black-shadows),
+                                var(--sky-blue-crayola),
+                                var(--light-gray),
+                                var(--baby-blue-eyes)
+                            );
+                            background-size: 200% 200%;
+                            z-index: 0;
+                            filter: blur(20px);
+                            animation: animateGlow 5s linear infinite;
+                        }
+                    }
+                }
+            }
+        }
+
+        .description {
+            padding: 20px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px -7px;
+            border-radius: 15px;
+            white-space: pre-line;
+            
+            .links {
+                display: flex;
+                justify-content: space-around;
+                padding: 20px 0px 10px 0px;
+                font-size: 15px;
+                color: var(--shadow-blue);
+
+                i {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .trustline {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px -7px;
+            margin-top: 24px;
+            border-radius: 15px;
+
+            .trustline_xumm_heading{
+                font-size: 12px;
+            }
+
+            .trustline_xumm {
+                padding: 10px 20px;
+            }
+
+            .trustline_btn{
+                font-size: 13px;
+                font-weight: normal;
+                border-radius: 10px;
+                padding: 8px;
+            }
+
+            .note {
+                font-size: 12px;
+                line-height: 1;
+                span {
+                    color: var(--carnelian);
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+@keyframes animateGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}

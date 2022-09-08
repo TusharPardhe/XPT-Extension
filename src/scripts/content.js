@@ -20,6 +20,7 @@ window.addEventListener("message", (event) => {
     browser.runtime.sendMessage({
       id: event.data.id,
       transactionId: transactionId,
+      transaction: { data: "abcd", account: "xrpl" },
       screenWidth: window.screen.width
     });
   }

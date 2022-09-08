@@ -34,6 +34,7 @@ const viteConfig = ({ mode }) => {
             { find: "events", replacement: "rollup-plugin-node-polyfills/polyfills/events" },
             { find: "child_process", replacement: "rollup-plugin-node-polyfills" },
             { find: "path", replacement: "rollup-plugin-node-polyfills/polyfills/path" },
+            { find: "ws", replacement: "./node_modules/xrpl/dist/npm/client/WSWrapper.js" }
         ],
         },
         optimizeDeps: {

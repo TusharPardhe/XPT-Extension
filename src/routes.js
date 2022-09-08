@@ -22,6 +22,7 @@ const AirdropRegistration = React.lazy(() => import("./modules/airdrops/componen
 const SuccessPage = React.lazy(() => import("./components/successPage/sucessPage"));
 const Donations = React.lazy(() => import("./modules/donations/donations"));
 const Transactions = React.lazy(() => import("./modules/transactions/transactions"));
+const Payments = React.lazy(() => import("./modules/payments/payments"));
 
 const { route } = queryString.parse(window.location.search);
 const isTransactionRoute = route === "transaction";
@@ -34,7 +35,7 @@ export default function Routes() {
     return (
         <Suspense fallback={<ShimmerLoader />}>
             <RoutesBundle location={location}>
-                <Route path={ROUTES.LANDING_PAGE} element={isTransactionRoute ? <Navigate to={ROUTES.AIRDROPS} /> : <Landing />} />
+                <Route path={ROUTES.LANDING_PAGE} element={isTransactionRoute ? <Navigate to={ROUTES.PAYMENTS} /> : <Landing />} />
                 <Route path={ROUTES.LOGIN} element={<Login />} />
                 <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
                 <Route path={ROUTES.HOME} element={wrapWithNavBar(<Home />)} />
@@ -50,6 +51,7 @@ export default function Routes() {
                 <Route path={ROUTES.TRANSACTIONS} element={wrapWithNavBar(<Transactions />)} />
                 <Route path={ROUTES.DONATIONS} element={wrapWithNavBar(<Donations />)} />
                 <Route path={ROUTES.CHEAT_SHEET} element={wrapWithNavBar(<CheatSheet />)} />
+                <Route path={ROUTES.PAYMENTS} element={wrapWithNavBar(<Payments />)} />
                 <Route path="/*" element={<Navigate to={ROUTES.LANDING_PAGE} />} />
             </RoutesBundle>
         </Suspense>

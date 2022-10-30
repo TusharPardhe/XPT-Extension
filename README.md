@@ -8,31 +8,40 @@
 <a href="#">
     <img src="./src/assets/jpg/XPT_background.jpg" height="400px" alt="xpt" style="border-radius: 20px;"/>
 </a>
+
 <br/><br/>
 <div class="description" style="border: 1px solid black;padding: 20px;border-radius: 20px;margin: 20px;">
 A simple browser plugin that allows users to save and monitor their XRP ledger accounts in real-time, it also displays information related to upcoming airdrops, NFT minting details, XRPL token details, XRPL cheat sheet, account transactions and other things. All the features are listed below.
 </div>
-<br/><br/>
-</div>
 
+</div>
+<br />
 Related Repositories:
 
-1. [XPT Backend](https://github.com/TusharPardhe/xpt-backend)
-2. [XRPL Cheat Sheet](http://sheet.xptxrpl.com/)
+- [XPT Backend](https://github.com/TusharPardhe/xpt-backend)
+- [XRPL Cheat Sheet](http://sheet.xptxrpl.com/)
 
-## Screenshots
+<br />
 
-<div style="text-align:center;" align="center">
-    <a href="#">
-        <img src="./screenshots/snap1.jpg" heigth="1280px" width="800px" alt="snap1"/>
-        <img src="./screenshots/snap2.jpg" heigth="1280px" width="800px" alt="snap2"/>
-        <img src="./screenshots/snap3.jpg" heigth="1280px" width="800px" alt="snap3"/>
-        <img src="./screenshots/snap4.jpg" heigth="1280px" width="800px" alt="snap4"/>
-        <img src="./screenshots/snap5.jpg" heigth="1280px" width="800px" alt="snap5"/>
-    </a>
-</div>
+---
+
+<br />
+
+## How to download?
+
+- Click the `Google Chrome` link on the top and download the extension.
+- Sign Up if you don't have an account.
+- Play around & explore.
+
+<br />
+
+---
+
+<br />
 
 ## Features
+XPT is a first-of-its-kind browser plugin introduced on the Chrome Web Store with intriguing features for anyone who loves the XRP blockchain.
+Some of these features are as follows: 
 
 -   Account Details:
 
@@ -80,8 +89,23 @@ Related Repositories:
     -   Social media links: Discord handles, Twitter accounts etc.
     -   API details, Libraries, Packages etc.
 
-## How to use?
+<br />
 
-1. Click the `Google Chrome` link on the top and download the extension.
-2. Sign Up if you don't have an account.
-3. Play around & give your valuable feedback.
+---
+
+<br />
+
+## Screenshots
+
+<div style="text-align:center;" align="center">
+    <a href="#">
+        <img src="./screenshots/snap1.jpg" heigth="1280px" width="800px" alt="snap1"/>
+        <img src="./screenshots/snap2.jpg" heigth="1280px" width="800px" alt="snap2"/>
+        <img src="./screenshots/snap3.jpg" heigth="1280px" width="800px" alt="snap3"/>
+        <img src="./screenshots/snap4.jpg" heigth="1280px" width="800px" alt="snap4"/>
+        <img src="./screenshots/snap5.jpg" heigth="1280px" width="800px" alt="snap5"/>
+    </a>
+</div>
+
+---
+---

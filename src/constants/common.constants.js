@@ -16,6 +16,7 @@ export const ROUTES = {
     TRANSACTIONS: '/transactions/:id',
     ADD_ESCROW: '/add_escrow',
     ESCROW: '/escrow',
+    TRACK_ESCROW: '/track_escrow',
 };
 
 export const ENV = import.meta.env.MODE.toUpperCase();
@@ -71,5 +72,6 @@ export const ACCOUNT_TYPES = {
     AIRDROP_ACCESS: 'AIRDROP_ACCESS',
 };
 
+export const SUIT_COIN_LIMIT = '100000000000';
 export const SUIT_COIN_HEX = '5355495400000000000000000000000000000000';
-export const SUIT_COIN_ISSUER = 'r3qu8oJr2dohhaFCj1vggKaXDAHHEir7vL';
+export const SUIT_COIN_ISSUER = 'r4xCmBYuMg5VrhTSqc41ir7Lds9btaEAH';

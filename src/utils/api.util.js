@@ -6,10 +6,10 @@ import { toast } from 'react-toastify';
 
 export const API_CONFIG = {
     PRODUCTION: {
-        default: 'http://localhost:3000/',
+        default: 'http://xpt.suitcoin.ai/',
     },
     DEVELOPMENT: {
-        default: 'http://localhost:3000/',
+        default: 'http://18.171.184.98/',
     },
 }[ENV];
 
@@ -47,7 +47,7 @@ export const ApiCall = (payload) => {
     if (payload.encrypt) {
         const dataToEncrypt = axiosPayload.data;
         axiosPayload.data = {
-            encryptedRequest: encryptJSON(dataToEncrypt),
+            encryptedRequest: encryptJSON(dataToEncrypt, process.env.ENCRYPTION_KEY),
         };
     }
 

@@ -1,12 +1,16 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "semantic-ui-react";
-import { ROUTES } from "../../constants/common.constants";
+import './successPage.scss';
 
-import "./successPage.scss";
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { Button } from 'semantic-ui-react';
+import { ROUTES } from '../../constants/common.constants';
+import React from 'react';
+import { copyToClipBoard } from '../../utils/common.utils';
 
 const SuccessPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { journey, id } = location.state;
 
     const redirectToHome = () => {
         navigate(ROUTES.HOME);
@@ -16,18 +20,19 @@ const SuccessPage = () => {
         navigate(-1);
     };
 
-    const onSupportBtnClick = () => {
-        navigate(ROUTES.DONATIONS);
-    };
-
     return (
         <div className="success_page">
             <div className="success_heading">Awesome! 🎉</div>
             <div className="description">
                 <div className="text">
                     Thank you for using XPT.
-                    <br /><br />
-                    Happy to have you here. Navigate using the buttons below or by using the sidebar. If you love the extension, please consider donating; it keeps me motivated! 
+                    <br />
+                    <br />
+                    {journey === 'escrow' && (
+                        <div onClick={() => copyToClipBoard(id)}>
+                            Escrow added successfully. Please save this ID for tracking: <span>{id}</span>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="buttons_container">
@@ -36,9 +41,6 @@ const SuccessPage = () => {
                 </Button>
                 <Button color="green" onClick={redirectToHome}>
                     Home
-                </Button>
-                <Button inverted color="blue" onClick={onSupportBtnClick}>
-                    Support project!
                 </Button>
             </div>
         </div>

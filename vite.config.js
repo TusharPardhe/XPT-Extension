@@ -1,68 +1,80 @@
-import path from "path";
-import react from "@vitejs/plugin-react";
-import EnvironmentPlugin from "vite-plugin-environment";
-import nodePolyfills from "rollup-plugin-polyfill-node";
-import removeConsole from "vite-plugin-remove-console";
-import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
-import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfill";
-import { viteStaticCopy } from "vite-plugin-static-copy";
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig, loadEnv } from 'vite';
 
-const envDir = path.resolve(__dirname, "./src");
+import EnvironmentPlugin from 'vite-plugin-environment';
+import fs from 'fs/promises';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
+import path from 'path';
+import react from '@vitejs/plugin-react';
+import removeConsole from 'vite-plugin-remove-console';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+
+const envDir = path.resolve(__dirname, '.');
 
 const viteConfig = ({ mode }) => {
-    process.env = { ...process.env, ...loadEnv(mode, envDir, "") };
+    process.env = { ...process.env, ...loadEnv(mode, envDir, '') };
 
     return defineConfig({
-        root: "src",
+        root: 'src',
+        server: {
+            watch: {
+                usePolling: true,
+            },
+        },
         plugins: [
             react(),
-            EnvironmentPlugin("all"),
+            nodePolyfills(),
+            EnvironmentPlugin('all'),
             viteStaticCopy({
                 targets: [
-                    { src: path.resolve(__dirname, `./manifest_json/${process.env.BROWSER.toLowerCase()}_manifest.json`), dest: "", rename: "manifest.json" },
-                    { src: path.resolve(__dirname, "./src/assets/png/xpt192.png"), dest: "" },
+                    {
+                        src: path.resolve(
+                            __dirname,
+                            `./manifest_json/${process.env.BROWSER.toLowerCase()}_manifest.json`
+                        ),
+                        dest: '',
+                        rename: 'manifest.json',
+                    },
+                    { src: path.resolve(__dirname, './src/assets/png/xpt192.png'), dest: '' },
                 ],
             }),
-        removeConsole(),
+            removeConsole(),
         ],
         resolve: {
-            extensions: ["*", ".js", ".jsx"],
-        alias: [
-            { find: "events", replacement: "rollup-plugin-node-polyfills/polyfills/events" },
-            { find: "child_process", replacement: "rollup-plugin-node-polyfills" },
-            { find: "path", replacement: "rollup-plugin-node-polyfills/polyfills/path" },
-        ],
+            extensions: ['*', '.js', '.jsx'],
         },
         optimizeDeps: {
             esbuildOptions: {
                 define: {
-                    global: "globalThis",
+                    global: 'globalThis',
                 },
                 plugins: [
-                    NodeGlobalsPolyfillPlugin({
-                        process: true,
-                        buffer: true,
-                    }),
-                    NodeModulesPolyfillPlugin(),
+                    {
+                        name: 'load-js-files-as-jsx',
+                        setup(build) {
+                            build.onLoad({ filter: /src\/.*\.js$/ }, async (args) => ({
+                                loader: 'jsx',
+                                contents: await fs.readFile(args.path, 'utf8'),
+                            }));
+                        },
+                    },
                 ],
             },
         },
         build: {
-            outDir: path.resolve(__dirname, "dist"),
-        rollupOptions: {
+            outDir: path.resolve(__dirname, 'dist'),
+            rollupOptions: {
                 input: {
-                    index: path.resolve(__dirname, "./src/index.html"),
+                    index: path.resolve(__dirname, './src/index.html'),
                     // background: path.resolve(__dirname, "./src/scripts/background.js"),
                     // content: path.resolve(__dirname, "./src/scripts/content.js"),
                 },
-                output: { entryFileNames: "[name].js" },
+                output: { entryFileNames: '[name].js' },
                 plugins: [nodePolyfills()],
             },
         },
         esbuild: {
-            loader: "jsx",
-        include: /src\/.*\.jsx?$/,
+            loader: 'jsx',
+            include: /src\/.*\.jsx?$/,
             exclude: [],
         },
     });

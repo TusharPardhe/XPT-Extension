@@ -1,0 +1,125 @@
+// Escrow.scss
+.escrows_container,
+.track_escrow_container {
+    padding: 0 20px;
+
+    .escrows_header,
+    .track_escrow_header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
+        font-weight: bold;
+        margin: 20px 0;
+        color: #2c3e50;
+    }
+
+    .track_escrow_body {
+        display: flex;
+        padding: 20px 0;
+        flex-direction: column;
+
+        input {
+            font-size: 16px;
+            border-radius: 0;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            -ms-border-radius: 0;
+            -o-border-radius: 0;
+        }
+
+        .track_escrow_button_container {
+            width: 100%;
+        }
+    }
+
+    .pagination {
+        text-align: center;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        border-radius: 10px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease;
+        -moz-transition: transform 0.3s ease, box-shadow 0.3s ease;
+        -ms-transition: transform 0.3s ease, box-shadow 0.3s ease;
+        -o-transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .content {
+            padding: 15px;
+
+            button:hover {
+                background-color: #2980b9;
+            }
+        }
+    }
+}
+
+.escrow_item {
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid green;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        // Add hover styles if needed
+    }
+
+    .header {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        padding: 15px;
+        background-color: #3498db;
+        color: white;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .description {
+        padding: 15px;
+        font-size: 14px;
+        line-height: 1.5;
+
+        strong {
+            color: #3498db;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .extra {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #bdc3c7;
+        border-radius: 0 0 10px 10px;
+
+        button {
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+
+            &:hover {
+                background-color: #2980b9;
+            }
+        }
+    }
+}

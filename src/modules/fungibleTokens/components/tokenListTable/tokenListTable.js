@@ -1,8 +1,8 @@
-import React from "react";
-import NoResultCard from "../../../../components/noResultCard/noResultCard";
-import TokenCard from "../tokenCard/tokenCard";
+import './tokenListTable.scss';
 
-import "./tokenListTable.scss";
+import NoResultCard from '../../../../components/NoResultCard/NoResultCard';
+import React from 'react';
+import TokenCard from '../tokenCard/tokenCard';
 
 const TokenListTable = ({ list, navigate }) => {
     if (list.length === 0) {

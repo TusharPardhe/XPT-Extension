@@ -1,100 +1,163 @@
-.sign_up_container{
+.login_container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 100%;
+  padding: 30px;
+  line-height: 1;
+  background: var(--pinkish-body-tint);
+
+  button {
+    border-radius: 0px;
+    padding: 20px;
+  }
+
+  .explaination_text {
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .error {
+    color: red;
+    font-size: 14px;
+    padding: 10px 0px;
+    text-align: left;
+  }
+
+  .alert_dialog {
     display: flex;
     flex-direction: column;
+
+    .button_container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+  }
+
+  .heading_container {
+    padding: 20px 10px 10px 10px;
     text-align: center;
-    justify-content: space-between;
+
+    .heading {
+      color: black;
+      font-size: 45px;
+      font-weight: bold;
+    }
+
+    .subHeading {
+      padding: 10px 0;
+      line-height: 1.5;
+    }
+  }
+
+  .seed_container,
+  .numbers_container,
+  .new_wallet_container {
+    padding: 30px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    padding: 30px;
-    line-height: 1;
-    background: var(--pinkish-body-tint);
-    overflow: scroll;
 
-    .heading_container {
-        .heading {
-            font-size: 30px;
-            padding: 10px 0 0 0;
-            font-weight: bold;
-            color: var(--space-cadet);
-        }
+    input,
+    input:focus-visible {
+      outline: 1px solid black;
+      border: none;
+      box-shadow: none;
+      border-radius: 0px;
+      padding: 20px;
 
-        .subHeading {
-            padding: 10px 0;
-            line-height: 1.5;
-        }
+      &.error_input {
+        outline: 1px solid red;
+      }
     }
-    .input_container {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
+  }
 
-        .input_field {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
+  .seed_container,
+  .numbers_container {
+    gap: 10px;
 
-            .labelTxt {
-                font-size: 15px;
-                padding: 12px 0px 0px 0px;
-                color: var(--davys-grey);
-                font-weight: 500;
-            }
+    input,
+    input:focus-visible {
+      padding: 12px;
+    }
+  }
 
-            input {
-                border-top: none;
-                border-left: none;
-                border-right: none;
-                border-radius: 0px;
-                background-color: inherit;
-                font-size: 13px;
-            }
-            .verify_with_xumm {
-                padding: 10px 0px 0px 0px;
-                text-align: center;
+  .new_wallet_container {
+    overflow: auto;
+    gap: 15px;
 
-                .xumm_link_btn {
-                    padding: 7px 0px;
-                    margin-top: 12px;
-                    color: #3052FF;
-                    background: #F3F5FF;
-                    border: 1px solid;
-                    opacity: 0.7;
-                    width: 100%;
-                }
-
-                .disabled {
-                    background: var(--light-gray);
-                    cursor: not-allowed;
-                }
-
-                img {
-                    width: 200px;
-                    height: 200px;
-                    border-radius: 10px;
-                }
-            }
-
-            .note{
-                padding: 0 10px;
-                font-size: 11px;
-                line-height: 1.4;
-                color: rebeccapurple;
-            }
-
-            .error_txt {
-                font-size: 12px;
-                font-style: normal;
-                color: var(--ruby-red);
-                padding-top: 4px;
-            }
-               
-        }
+    input,
+    input:focus-visible {
+      padding: 10px;
     }
 
-    .submit_btn {
-        display: grid;
-        padding: 20px;
-        button {
-            font-size: 16px;
-        }
+    .new_wallet_details_container {
+      padding: 10px 0;
     }
+
+    .new_wallet_instruction_container {
+      border: 1px solid black;
+      padding: 10px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+  }
+
+  .submit_btn_container {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+
+    button {
+      width: 100%;
+      font-size: 16px;
+    }
+  }
+
+  .input_container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .input_ {
+      display: grid;
+      gap: 10px;
+    }
+
+    .input_field {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+
+      .labelTxt {
+        font-size: 14px;
+        padding: 10px 0px;
+        color: var(--davys-grey);
+        font-weight: 500;
+      }
+
+      input {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .selection_btns_container {
+    margin-top: auto;
+    display: grid;
+    padding: 20px;
+    gap: 20px;
+
+    button {
+      font-size: 16px;
+    }
+  }
 }

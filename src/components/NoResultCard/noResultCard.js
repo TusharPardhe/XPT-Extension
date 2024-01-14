@@ -1,9 +1,8 @@
-import React from "react";
-import { Image } from "semantic-ui-react";
+import './NoResultCard.scss';
 
-import NotFoundImg from "../../assets/png/not_found.png";
-
-import "./noResultCard.scss";
+import { Image } from 'semantic-ui-react';
+import NotFoundImg from '../../assets/png/not_found.png';
+import React from 'react';
 
 const NoResultCard = ({ title }) => {
     return (

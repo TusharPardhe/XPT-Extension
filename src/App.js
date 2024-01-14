@@ -1,14 +1,13 @@
-import React from "react";
-import { ToastContainer } from "react-toastify";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 
-import Routes from "./routes";
-import { ENV } from "./constants/common.constants";
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 
-import "react-toastify/dist/ReactToastify.css";
+import { ENV } from './constants/common.constants';
+import React from 'react';
+import Routes from './routes';
+import { ToastContainer } from 'react-toastify';
 
-const DEV_ENV = ENV === "DEVELOPMENT";
-
+const DEV_ENV = ENV === 'DEVELOPMENT';
 
 function App() {
     if (DEV_ENV) {
@@ -33,7 +32,6 @@ function App() {
 }
 
 export default App;
-
 
 // Additional things in manifest.json file
 // "background": {

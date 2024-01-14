@@ -1,40 +1,41 @@
 export const ROUTES = {
-    LANDING_PAGE: "/",
-    LOGIN: "/login",
-    SIGN_UP: "/sign_up",
-    HOME: "/home",
-    ACCOUNTS: "/add_account",
-    PORTFOLIO: "/portfolio/:id",
-    FUNGIBLE_TOKENS: "/fungible_tokens",
-    NFT_DETAILS: "/nft",
-    CHEAT_SHEET: "/cheat_sheet",
-    AIRDROPS: "/airdrops",
-    DROP_DETAILS: "/drop/:id",
-    AIRDROP_REGISTRATION: "/airdrop/register",
-    REQUEST_SUCCESS: "/request/success",
-    DONATIONS: "/donate",
-    FUNGIBLE_TOKEN_DETAILS: "/fungible_token/details",
-    TRANSACTIONS: "/transactions/:id",
+    LANDING_PAGE: '/',
+    SIGN_UP: '/sign_up',
+    HOME: '/home',
+    ACCOUNTS: '/add_account',
+    PORTFOLIO: '/portfolio/:id',
+    FUNGIBLE_TOKENS: '/fungible_tokens',
+    NFT_DETAILS: '/nft',
+    CHEAT_SHEET: '/cheat_sheet',
+    AIRDROPS: '/airdrops',
+    DROP_DETAILS: '/drop/:id',
+    AIRDROP_REGISTRATION: '/airdrop/register',
+    REQUEST_SUCCESS: '/request/success',
+    DONATIONS: '/donate',
+    FUNGIBLE_TOKEN_DETAILS: '/fungible_token/details',
+    TRANSACTIONS: '/transactions/:id',
+    ADD_ESCROW: '/add_escrow',
+    ESCROW: '/escrow',
 };
 
 export const ENV = import.meta.env.MODE.toUpperCase();
 
-export const PUBLIC_SERVER = "wss://xrplcluster.com/";
+export const PUBLIC_SERVER = 'wss://xrplcluster.com/';
 
-export const ALTERNATIVE_ME_API_ENDPOINT = "https://api.alternative.me/v2/ticker/ripple/";
+export const ALTERNATIVE_ME_API_ENDPOINT = 'https://api.alternative.me/v2/ticker/ripple/';
 
 export const URLS = {
-    XRP_ICON: "https://drive.google.com/uc?export=view&id=1VUSemYB5GqRNihGVELTrlcW3VObhhn0-",
-    CONSTRUCTION_GIF: "https://drive.google.com/uc?export=view&id=1219VV9-YnQBRiPnSFz2WjTULg6J0vdNc",
-    XRPSCAN: "https://xrpscan.com/",
-    TWITTER: "https://twitter.com/",
-    XPT_TWITTER: "https://twitter.com/xptxrpl",
-    LIVENET: "https://livenet.xrpl.org/accounts/",
+    XRP_ICON: 'https://drive.google.com/uc?export=view&id=1VUSemYB5GqRNihGVELTrlcW3VObhhn0-',
+    CONSTRUCTION_GIF: 'https://drive.google.com/uc?export=view&id=1219VV9-YnQBRiPnSFz2WjTULg6J0vdNc',
+    XRPSCAN: 'https://xrpscan.com/',
+    TWITTER: 'https://twitter.com/',
+    XPT_TWITTER: 'https://twitter.com/xptxrpl',
+    LIVENET: 'https://livenet.xrpl.org/accounts/',
 };
 
 export const FIELD_INITIAL_STATE = {
-    value: "",
-    inputValue: "",
+    value: '',
+    inputValue: '',
     error: [],
 };
 
@@ -57,15 +58,18 @@ export const MAX_ALLOWED_CARD_VALUE_LENGTH = 15;
 export const MAX_ALLOWED_ALIAS_LENGTH = 20;
 
 export const RIPPLED_API_TRANSACTION_RESULT_CODES = {
-    tec: "error",
-    tef: "error",
-    tel: "error",
-    tem: "error",
-    ter: "error",
-    tes: "success",
+    tec: 'error',
+    tef: 'error',
+    tel: 'error',
+    tem: 'error',
+    ter: 'error',
+    tes: 'success',
 };
 
 export const ACCOUNT_TYPES = {
-    USER: "USER",
-    AIRDROP_ACCESS: "AIRDROP_ACCESS",
-}
+    USER: 'USER',
+    AIRDROP_ACCESS: 'AIRDROP_ACCESS',
+};
+
+export const SUIT_COIN_HEX = '5355495400000000000000000000000000000000';
+export const SUIT_COIN_ISSUER = 'r3qu8oJr2dohhaFCj1vggKaXDAHHEir7vL';

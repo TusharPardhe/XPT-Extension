@@ -1,0 +1,190 @@
+.add_escrow_container {
+    text-align: center;
+    font-family: "Arial", sans-serif;
+    color: #333;
+    border-radius: 15px;
+    padding: 0 20px;
+    margin: auto;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    min-height: 430px;
+
+    .heading_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin: 10px;
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .heading {
+            font-size: 38px;
+            font-weight: bold;
+            color: #333;
+        }
+
+    }
+
+    .sub_heading {
+        font-size: 16px;
+        color: #7f8c8d;
+        margin-bottom: 20px;
+    }
+
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        input {
+            border: 1px solid #bdc3c7;
+            font-size: 14px;
+            border-radius: 0;
+            padding: 12px;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            margin-top: 10px;
+
+            label {
+                margin-left: 5px;
+                font-size: 14px;
+                color: #34495e;
+            }
+        }
+
+        .text_red {
+            color: #e74c3c;
+            font-size: 12px;
+            text-align: left;
+            margin-top: 5px;
+        }
+
+        .date_picker {
+            text-align: center;
+
+            input {
+                padding: 0 8px;
+                border: none;
+                outline: none;
+            }
+
+            .react-date-picker {
+                width: 100%;
+                border: 1px solid #bdc3c7 !important;
+
+                .react-date-picker__wrapper {
+                    border: none;
+                    padding: 2px 0;
+                    width: 100%;
+                    position: relative;
+                }
+            }
+
+            .react-date-picker__inputGroup__divider {
+                padding: 20px 10px;
+            }
+
+            .react-datepicker__input-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                input {
+                    width: 100%;
+                    padding: 12px;
+                    font-size: 14px;
+                    border: 1px solid #bdc3c7;
+                    border-radius: 0;
+                }
+            }
+
+            .react-datepicker {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 14px;
+                margin-top: 10px;
+
+                &__triangle {
+                    display: none; // Hide the triangle icon
+                }
+
+                &__header {
+                    text-align: center;
+                    background-color: #3498db;
+                    color: white;
+                    border: none;
+                }
+
+                &__current-month {
+                    margin-top: 5px;
+                }
+
+                &__day-names {
+                    display: flex;
+                    justify-content: space-around;
+                    margin-top: 5px;
+                }
+
+                &__day {
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 2px;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+
+                    &:hover {
+                        background-color: #2980b9;
+                        color: white;
+                    }
+
+                    &--selected {
+                        background-color: #3498db;
+                        color: white;
+                    }
+
+                    &--today {
+                        font-weight: bold;
+                    }
+
+                    &--disabled {
+                        color: #bdc3c7;
+                        cursor: not-allowed;
+                    }
+                }
+            }
+        }
+    }
+
+    .submit_btn_container {
+        margin-top: auto;
+
+        .simple_animation_button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+
+            &:hover {
+                background-color: #2980b9;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+}

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import './navbar.scss';
 
-import { Icon, Menu, Sidebar } from "semantic-ui-react";
-import { ROUTES } from "../../constants/common.constants";
+import { Icon, Menu, Sidebar } from 'semantic-ui-react';
+import React, { useState } from 'react';
 
-import "./navbar.scss";
+import { ROUTES } from '../../constants/common.constants';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = (props) => {
     const [isNavBarVisible, setIsNavBarVisible] = useState(false);
@@ -16,7 +16,9 @@ const Navbar = (props) => {
     };
 
     const onLogOutClick = () => {
-        localStorage.clear();
+        localStorage.removeItem('address');
+        localStorage.removeItem('savedAccounts');
+
         setTimeout(() => {
             navigate(ROUTES.LANDING_PAGE);
         }, 0);
@@ -24,10 +26,10 @@ const Navbar = (props) => {
 
     const onSideBarHide = () => {
         setIsNavBarVisible(false);
-    }
+    };
 
     return (
-        <div className="navbar_container" style={{ height: "100%" }}>
+        <div className="navbar_container" style={{ height: '100%' }}>
             <Sidebar.Pushable>
                 <Sidebar
                     as={Menu}
@@ -45,36 +47,24 @@ const Navbar = (props) => {
                         <Icon name="home" />
                         Home
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.ACCOUNTS)} key="account">
-                        <Icon name="address book" />
-                        Add Account
-                    </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.AIRDROPS)} key="airdrops">
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.ESCROW)} key="airdrops">
                         <Icon name="compass" />
-                        Airdrops
+                        Escrows
+                    </Menu.Item>
+                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.ADD_ESCROW)} key="account">
+                        <Icon name="address book" />
+                        Add Escrow
                     </Menu.Item>
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.FUNGIBLE_TOKENS)} key="tokens">
                         <Icon name="diamond" />
                         Tokens
-                    </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.CHEAT_SHEET)} key="links">
-                        <Icon name="sticky note outline" />
-                        Cheat Sheet
-                    </Menu.Item>
-                    {/* <Menu.Item as="a" onClick={() => navigateTo(ROUTES.NFT_DETAILS)}>
-                        <Icon name="image outline" />
-                        NFT Visualiser
-                    </Menu.Item> */}
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.DONATIONS)} key="donate">
-                        <Icon name="heartbeat" />
-                        Donate
                     </Menu.Item>
                     <Menu.Item as="a" onClick={onLogOutClick} key="logout">
                         <Icon name="log out" />
                         Logout
                     </Menu.Item>
                 </Sidebar>
-                <Sidebar.Pusher dimmed={isNavBarVisible} className={isNavBarVisible ? "content_pusher" : ""}>
+                <Sidebar.Pusher dimmed={isNavBarVisible} className={isNavBarVisible ? 'content_pusher' : ''}>
                     <div className="slider">
                         <Icon name="bars" className="icon" onClick={() => setIsNavBarVisible(true)} />
                     </div>

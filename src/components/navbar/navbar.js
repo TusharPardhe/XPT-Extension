@@ -4,11 +4,18 @@ import { Icon, Menu, Sidebar } from 'semantic-ui-react';
 import React, { useState } from 'react';
 
 import { ROUTES } from '../../constants/common.constants';
+import { decryptJSON } from '../../utils/common.utils';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = (props) => {
     const [isNavBarVisible, setIsNavBarVisible] = useState(false);
     const navigate = useNavigate();
+    const approverFromLocalStorage = localStorage.getItem('approver');
+    let isApprover = false;
+
+    if (approverFromLocalStorage) {
+        isApprover = decryptJSON(approverFromLocalStorage, process.env.ENCRYPTION_KEY).approver ?? false;
+    }
 
     const navigateTo = (route) => {
         navigate(route);
@@ -51,10 +58,12 @@ const Navbar = (props) => {
                         <Icon name="compass" />
                         Escrows
                     </Menu.Item>
-                    <Menu.Item as="a" onClick={() => navigateTo(ROUTES.ADD_ESCROW)} key="account">
-                        <Icon name="address book" />
-                        Add Escrow
-                    </Menu.Item>
+                    {isApprover && (
+                        <Menu.Item as="a" onClick={() => navigateTo(ROUTES.ADD_ESCROW)} key="account">
+                            <Icon name="address book" />
+                            Add Escrow
+                        </Menu.Item>
+                    )}
                     <Menu.Item as="a" onClick={() => navigateTo(ROUTES.FUNGIBLE_TOKENS)} key="tokens">
                         <Icon name="diamond" />
                         Tokens

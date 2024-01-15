@@ -9,7 +9,7 @@ export const API_CONFIG = {
         default: 'http://xpt.suitcoin.ai/',
     },
     DEVELOPMENT: {
-        default: 'http://18.171.184.98/',
+        default: 'http://localhost:3000/',
     },
 }[ENV];
 

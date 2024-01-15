@@ -6,7 +6,9 @@ import React, { useState } from 'react';
 import { ApiCall } from '../../utils/api.util';
 import BackButton from '../../components/backButton/backButton';
 import EscrowItem from './EscrowItem';
+import NoResultCard from '../../components/NoResultCard/NoResultCard';
 import { ROUTES } from '../../constants/common.constants';
+import SearchImage from '../../assets/svg/search_bg.svg';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -70,11 +72,19 @@ const TrackEscrow = () => {
                             loading={isLoading}
                             disabled={isLoading}
                             onClick={handleTrackEscrow}
+                            style={{
+                                top: '0.5rem',
+                                right: '0.5rem',
+                            }}
                         />
                     }
                 />
             </div>
-            {escrowData && escrowData.map((escrow) => <EscrowItem key={escrow._id} {...escrow} />)}
+            {escrowData.length > 0 ? (
+                escrowData.map((escrow) => <EscrowItem key={escrow._id} {...escrow} />)
+            ) : (
+                <NoResultCard text="Let's find your escrows" img={SearchImage} />
+            )}
         </div>
     );
 };

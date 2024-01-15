@@ -2,6 +2,7 @@ import './home.scss';
 
 import { Button, Image } from 'semantic-ui-react';
 import React, { useEffect, useState } from 'react';
+import { encryptJSON, numberWithCommas } from '../../utils/common.utils';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import AnimatedLoader from '../../components/animatedLoader/animatedLoader';
@@ -10,7 +11,6 @@ import { ROUTES } from '../../constants/common.constants';
 import SUIT_COIN_IMG from '../../assets/svg/suitcoin.svg';
 import XPTLogoImg from '../../assets/svg/xpt.svg';
 import XRPL_IMG from '../../assets/png/xrpl_white.png';
-import { numberWithCommas } from '../../utils/common.utils';
 
 const Home = () => {
     const location = useLocation();
@@ -37,6 +37,10 @@ const Home = () => {
             };
 
             const response = await ApiCall(payload);
+            localStorage.setItem(
+                'approver',
+                encryptJSON({ approver: response.data.isApprover }, process.env.ENCRYPTION_KEY)
+            );
 
             if (response.data) {
                 newAccountsData[address] = response.data;

@@ -12,6 +12,7 @@
       justify-content: center;
       text-align: center;
       background-color: #fff;
+      border: 1px solid black;
 
       .btn {
         letter-spacing: 0.1em;
@@ -24,6 +25,7 @@
         text-transform: uppercase;
         width: 100%;
       }
+
       .btn:hover {
         text-decoration: none;
       }
@@ -47,12 +49,15 @@
 
       .effect04:hover {
         background-color: #000;
+
         &.candy {
           background-color: var(--cotton-candy);
         }
+
         &.baby-blue {
           background: var(--baby-blue-eyes);
         }
+
         &.purple {
           background: var(--maximum-blue-purple);
         }

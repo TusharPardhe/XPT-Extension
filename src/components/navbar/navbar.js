@@ -40,7 +40,7 @@ const Navbar = (props) => {
             <Sidebar.Pushable>
                 <Sidebar
                     as={Menu}
-                    animation="scale down"
+                    animation="overlay"
                     icon="labeled"
                     inverted
                     onHide={onSideBarHide}

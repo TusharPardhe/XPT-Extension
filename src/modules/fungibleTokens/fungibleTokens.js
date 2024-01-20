@@ -1,19 +1,17 @@
-import React, { useEffect, useRef } from "react";
-import { Divider, Icon, Image, Input, Pagination } from "semantic-ui-react";
-import { useNavigate } from "react-router-dom";
+import './fungibleTokens.scss';
 
-import useMergedState from "../../utils/useMergedState";
-import useDebounce from "../../utils/useDebounce";
+import { Divider, Icon, Image, Input, Pagination } from 'semantic-ui-react';
+import React, { useEffect, useRef } from 'react';
 
-import XPTLogoImg from "../../assets/svg/xpt.svg";
-import ShimmerLoader from "../../components/shimmerLoader/shimmerLoader";
-
-import TokenListTable from "./components/tokenListTable/tokenListTable";
-import { FUNGIBLE_TOKENS_INITIAL_STATE } from "../../constants/fungibleTokens.constants";
-import { scrollToRef } from "../../utils/common.utils";
-import { ApiCall } from "../../utils/api.util";
-
-import "./fungibleTokens.scss";
+import { ApiCall } from '../../utils/api.util';
+import { FUNGIBLE_TOKENS_INITIAL_STATE } from '../../constants/fungibleTokens.constants';
+import ShimmerLoader from '../../components/shimmerLoader/shimmerLoader';
+import TokenListTable from './components/tokenListTable/tokenListTable';
+import XPTLogoImg from '../../assets/svg/xpt.svg';
+import { scrollToRef } from '../../utils/common.utils';
+import useDebounce from '../../utils/useDebounce';
+import useMergedState from '../../utils/useMergedState';
+import { useNavigate } from 'react-router-dom';
 
 const FungibleTokens = () => {
     const [state, setState] = useMergedState(FUNGIBLE_TOKENS_INITIAL_STATE);
@@ -32,8 +30,8 @@ const FungibleTokens = () => {
         setState({ loading: true });
 
         const payload = {
-            method: "GET",
-            url: "xrpl/fungibleTokens/list",
+            method: 'GET',
+            url: 'xrpl/fungibleTokens/list',
             params: {
                 pageNumber,
                 offset,
@@ -81,11 +79,11 @@ const FungibleTokens = () => {
                     icon
                     value={searchValue}
                     onChange={onSearchValueChange}
-                    placeholder="Enter token name....  eg: Editions, CX1"
+                    placeholder="Enter token name"
                     className="search_input"
                 >
                     <input />
-                    <Icon name="search" />
+                    <Icon name="search" color="yellow" style={{ cursor: 'pointer' }} />
                 </Input>
             </div>
             <div className="fungible_tokens_table_container" ref={tableRef}>
@@ -110,6 +108,3 @@ const FungibleTokens = () => {
 };
 
 export default FungibleTokens;
-
-
-

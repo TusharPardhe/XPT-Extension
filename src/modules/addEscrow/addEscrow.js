@@ -72,14 +72,14 @@ const AddEscrow = () => {
                     Amount: xrpToDrops(14),
                     Fee: '24',
                 };
-                await client
-                    .submitAndWait(transferXRP, {
-                        wallet,
-                        autofill: true,
-                    })
-                    .catch((err) => {
-                        throw new Error(err);
-                    });
+                const funded = await client.submitAndWait(transferXRP, {
+                    wallet,
+                    autofill: true,
+                });
+
+                if (funded.result.meta.TransactionResult !== 'tesSUCCESS') {
+                    throw new Error('Insufficient balance');
+                }
 
                 const trustLine = {
                     TransactionType: 'TrustSet',
@@ -174,13 +174,13 @@ const AddEscrow = () => {
 
     return (
         <div className="add_escrow_container">
-            <BackButton onClick={() => navigate(-1)} displayName="Go Back" />
             <AnimatedLoader loadingText="Loading..." isActive={loading} />
             <div className="heading_container">
                 <Image src={SuitCoin} alt="escrow" />
                 <div className="heading">Escrow</div>
             </div>
-            <div className="sub_heading">Please enter the details below</div>
+            <div className="sub_heading">Enter Escrow Details</div>
+            <BackButton onClick={() => navigate(-1)} displayName="Go Back" />
             <div className="inputs">
                 <Input placeholder="Enter Destination Address" name="address" value={address} onChange={onChange} />
                 <Input placeholder="Enter Amount" name="amount" value={amount} onChange={onChange} />
@@ -219,7 +219,11 @@ const AddEscrow = () => {
                     value={createAccount}
                     onClick={onCheckboxClick}
                 />
-                {createAccount && <Message floating>Cost of creating a new account is 14 XRP</Message>}
+                {createAccount && (
+                    <Message className="account_creation_message" floating>
+                        Cost of creating a new account is 14 XRP
+                    </Message>
+                )}
             </div>
             <div className="submit_btn_container">
                 <SimpleAnimationButton

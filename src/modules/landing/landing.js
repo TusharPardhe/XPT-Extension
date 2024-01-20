@@ -39,10 +39,7 @@ const Landing = () => {
 
     return (
         <div className="landing_container">
-            <div className="heading">
-                <Image src={XPTLogoImg} className="logo_img" />
-                PT
-            </div>
+            <div className="heading luminance">REVO</div>
             <div className="short_phrase">Let's keep it simple.</div>
             <div className="btns_container">
                 {isLoginJourney ? (

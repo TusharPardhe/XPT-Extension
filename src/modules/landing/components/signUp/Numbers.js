@@ -2,6 +2,7 @@ import { Button, Input } from 'semantic-ui-react';
 import { ROUTES, VALIDATION_REGEX } from '../../../../constants/common.constants';
 
 import React from 'react';
+import SimpleAnimationButton from '../../../../components/simpleAnimationButton/simpleAnimationButton';
 import { Wallet } from 'xrpl';
 import { saveInLocalStrg } from '../../../../utils/common.utils';
 import { toast } from 'react-toastify';
@@ -72,8 +73,8 @@ const Numbers = () => {
         if (validateFields()) return;
 
         try {
-            const buffer = Buffer.from(entropy, 'utf8');
-            const wallet = Wallet.fromEntropy(buffer);
+            const numbers = entropy.split('');
+            const wallet = Wallet.fromEntropy(numbers);
             const savedAccounts = {};
             savedAccounts[wallet.address] = wallet.seed;
             saveInLocalStrg('savedAccounts', savedAccounts, password);
@@ -121,9 +122,7 @@ const Numbers = () => {
                 onChange={onChange}
             />
             <div className="submit_btn_container">
-                <Button onClick={handleSubmission} color="blue" basic>
-                    Submit
-                </Button>
+                <SimpleAnimationButton onClick={handleSubmission} firstText={'Submit'} secondText={'Proceed'} />
             </div>
         </div>
     );

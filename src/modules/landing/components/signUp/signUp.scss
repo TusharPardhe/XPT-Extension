@@ -1,11 +1,10 @@
 .login_container {
   display: flex;
   flex-direction: column;
-  text-align: center;
   height: 100%;
   padding: 30px;
   line-height: 1;
-  background: var(--pinkish-body-tint);
+  color: white;
 
   button {
     border-radius: 0px;
@@ -44,7 +43,6 @@
     text-align: center;
 
     .heading {
-      color: black;
       font-size: 45px;
       font-weight: bold;
     }
@@ -61,6 +59,7 @@
     padding: 30px 10px 10px 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     height: 100%;
 
     input,
@@ -100,18 +99,36 @@
       padding: 10px 0;
     }
 
+    .simple_animation_component .anim_button .container {
+      border-radius: 40px !important;
+      -webkit-border-radius: 40px !important;
+      -moz-border-radius: 40px !important;
+      -ms-border-radius: 40px !important;
+      -o-border-radius: 40px !important;
+    }
+
     .new_wallet_instruction_container {
-      border: 1px solid black;
       padding: 10px;
       line-height: 1.5;
-      font-style: italic;
+      border: none;
+      transition: all 0.3s ease-in-out;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color: var(--sgray);
+
+      &:hover {
+        box-shadow: rgba(0, 0, 0, .03) 2px 18px 4px 5px, rgba(236, 236, 236, 0.04) 0 5px 10px 2px;
+      }
+
+      .instructions {
+        padding: 10px;
+      }
     }
   }
 
   .submit_btn_container {
     margin-top: auto;
-    display: flex;
-    justify-content: center;
 
     button {
       width: 100%;
@@ -122,7 +139,7 @@
   .input_container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 
     .input_ {
       display: grid;
@@ -137,7 +154,7 @@
       .labelTxt {
         font-size: 14px;
         padding: 10px 0px;
-        color: var(--davys-grey);
+        // color: var(--davys-grey);
         font-weight: 500;
       }
 

@@ -9,8 +9,6 @@ import AnimatedLoader from '../../components/animatedLoader/animatedLoader';
 import { ApiCall } from '../../utils/api.util';
 import { ROUTES } from '../../constants/common.constants';
 import SUIT_COIN_IMG from '../../assets/svg/suitcoin.svg';
-import XPTLogoImg from '../../assets/svg/xpt.svg';
-import XRPL_IMG from '../../assets/png/xrpl_white.png';
 
 const Home = () => {
     const location = useLocation();
@@ -55,10 +53,8 @@ const Home = () => {
 
     return (
         <div className="home_component">
-            <div className="heading">
-                <Image src={XPTLogoImg} className="logo_img" alt="Logo" />
-                PT
-            </div>
+            <div className="heading">REVO</div>
+            <div className="sub_heading">Account Details</div>
             <AnimatedLoader loadingText="Loading..." isActive={isLoading} />
             <div className="user_details_container">
                 {Object.entries(accountsData).map(([account, data]) => (
@@ -76,21 +72,18 @@ const AccountDetails = ({ account, data }) => {
 
     return (
         <React.Fragment key={account}>
-            <div className="card">
-                <div className="card_heading">{account}</div>
-            </div>
+            <div className="account">{account}</div>
             <div className="card suit_coin">
                 <Image src={SUIT_COIN_IMG} className="suit_img" alt="SuitCoin" />
                 <div className="right_section">
-                    <div className="card_heading">SuitCoin Balance</div>
                     <div className="card_value">{numberWithCommas(data.suitCoinBalance)}</div>
+                    <div className="card_heading">SuitCoin</div>
                 </div>
             </div>
             <div className="card xrp">
-                <Image src={XRPL_IMG} className="suit_img" alt="XRPL" />
                 <div className="right_section">
-                    <div className="card_heading">XRP Balance</div>
                     <div className="card_value">{numberWithCommas(data.xrpBalance)}</div>
+                    <div className="card_heading">XRP</div>
                 </div>
             </div>
             <div className="timer_card">

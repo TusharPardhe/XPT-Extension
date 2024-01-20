@@ -3,10 +3,10 @@ import './signUp.scss';
 import React, { useState } from 'react';
 
 import BackButton from '../../../../components/backButton/backButton';
-import { Button } from 'semantic-ui-react';
 import NewWallet from './NewWallet';
 import Numbers from './Numbers';
 import Seed from './Seed';
+import SimpleAnimationButton from '../../../../components/simpleAnimationButton/simpleAnimationButton';
 
 const SignUpJourney = ({ userSelection }) => {
     if (userSelection === 'seed') {
@@ -40,20 +40,21 @@ const SignUp = () => {
                 </>
             ) : (
                 <div className="selection_btns_container">
-                    <Button onClick={() => setUserSelection('seed')} size="md" basic>
-                        Seed
-                    </Button>
-                    <Button size="md" onClick={() => setUserSelection('numbers')} basic>
-                        Numbers
-                    </Button>
-                    <Button
-                        firstText="Create New Wallet"
-                        primary
+                    <SimpleAnimationButton
+                        onClick={() => setUserSelection('seed')}
+                        firstText={'Seed'}
+                        secondText={'Secret Phrase'}
+                    />
+                    <SimpleAnimationButton
+                        onClick={() => setUserSelection('numbers')}
+                        firstText={'Numbers'}
+                        secondText={'Numerical Phrase'}
+                    />
+                    <SimpleAnimationButton
                         onClick={() => setUserSelection('newWallet')}
-                        variant="outline"
-                    >
-                        Create New Wallet
-                    </Button>
+                        firstText={'Create New Wallet'}
+                        secondText={'Start from Scratch'}
+                    />
                 </div>
             )}
         </div>

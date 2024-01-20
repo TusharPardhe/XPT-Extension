@@ -1,8 +1,9 @@
-import { Button, Input } from 'semantic-ui-react';
 import { copyToClipBoard, saveInLocalStrg } from '../../../../utils/common.utils';
 
+import { Input } from 'semantic-ui-react';
 import { ROUTES } from '../../../../constants/common.constants';
 import React from 'react';
+import SimpleAnimationButton from '../../../../components/simpleAnimationButton/simpleAnimationButton';
 import { Wallet } from 'xrpl';
 import { toast } from 'react-toastify';
 import useMergedState from '../../../../utils/useMergedState';
@@ -160,18 +161,21 @@ const NewWallet = () => {
                         <div className="instructions">
                             Click on the button below to generate a new wallet. You will be given a secret phrase. It is
                             very important that you write this phrase down and keep it in a safe place. If you lose this
-                            phrasimport {Input} from 'semantic-ui-react'; e, you will not be able to access your funds.
+                            phrase, you will not be able to access your funds.
                         </div>
                     </div>
                 )}
             </div>
             <div className="new_wallet_btn_container">
-                <Button onClick={generateNewWallet} basic>
-                    Generate Wallet
-                </Button>
-                <Button onClick={onConfirmClick} basic color="green">
-                    Confirm
-                </Button>
+                {!wallet ? (
+                    <SimpleAnimationButton
+                        onClick={generateNewWallet}
+                        firstText={'Generate'}
+                        secondText={'New Wallet'}
+                    />
+                ) : (
+                    <SimpleAnimationButton onClick={onConfirmClick} firstText={'Confirm'} secondText={'Proceed'} />
+                )}
             </div>
         </div>
     );

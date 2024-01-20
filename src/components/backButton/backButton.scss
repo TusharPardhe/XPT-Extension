@@ -1,19 +1,38 @@
 .back_btn {
     text-align: left;
+    font-family: 'Cinzel Decorative' !important;
+
     .btn {
+        display: flex;
         cursor: pointer;
-        background: white;
-        box-shadow: 5px 5px 0 var(--carnelian), -5px -5px 0 var(--carnelian), -5px 5px 0 var(--carnelian), 5px -5px 0 var(--carnelian);
+        background: transparent;
+        border: none;
         transition: 200ms ease-in-out;
-        color: var(--carnelian);
-        box-shadow: none;
-        font-size: 14px;
-        border-radius: 20px;
-        padding: 1px 6px;
-        border: 1px solid;
+        color: var(--sgolden);
+        font-size: 18px;
+        font-family: 'Cinzel Decorative' !important;
+
+        .arrow {
+            color: var(--sgolden);
+            font-size: 18px;
+        }
+
+        .display_name {
+            padding: 0 5px;
+        }
+
+        &:before {
+            transition: opacity 0.3s;
+        }
 
         &:hover {
-            box-shadow: 10px 5px 0px 0px var(--carnelian), -10px -5px 0px 0px var(--carnelian);
+            color: var(--sgolden);
+            opacity: 0.5;
+            transform: translateX(-3px);
+            -webkit-transform: translateX(-3px);
+            -moz-transform: translateX(-3px);
+            -ms-transform: translateX(-3px);
+            -o-transform: translateX(-3px);
         }
 
         &:focus {

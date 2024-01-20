@@ -1,44 +1,37 @@
-console.log("XPT background script loaded");
+let popupWindowId = null;
 
-const transactions = {};
+chrome.runtime.onInstalled.addListener(function () {
+    console.log('XPT Extension Installed');
+});
 
-if (typeof browser === "undefined") {
-    var browser = chrome;
-}
-
-const createWindow = ({ transactionId }) => {
-    browser.windows.create({
-        url: `index.html?route=transaction&transactionId=${transactionId}`,
-        type: "popup",
-        focused: true,
-        height: 500,
-        width: 350,
-        top: 0,
-        left: window.screen.width - 400,
-    });
-};
-
-browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.id === "XRPL_TRANSACTION") {
-        // transactions[message.transactionId] = message.txJSON;
-        transactions[message.transactionId] = {
-            "Account": "Hii",
-            "TransactionType": "Payment",
-            "Destination": "rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn",
-            "Amount": "13000000",
-            "Flags": 2147483648,
-            "LastLedgerSequence": 7835923, // Optional, but recommended.
-            "Fee": "13",
-            "Sequence": "my_seq"
-        };
-        createWindow(message);
-    }
-
-    if (message.id === "DATA_FROM_POPUP") {
-        message.signed = transactions[message.transactionId];
-        delete transactions[message.transactionId];
-        browser.tabs.query({ active: true }, function (tabs) {
-            browser.tabs.sendMessage(tabs[0].id, message, (response) => { });
+chrome.action.onClicked.addListener(function (tab) {
+    if (popupWindowId === null) {
+        createPopupWindow();
+    } else {
+        chrome.windows.get(popupWindowId, function (window) {
+            if (chrome.runtime.lastError || !window) {
+                // Window is closed or doesn't exist, create a new one
+                createPopupWindow();
+            } else {
+                // Window exists, bring it to the front
+                chrome.windows.update(popupWindowId, { focused: true });
+            }
         });
     }
 });
+
+function createPopupWindow() {
+    chrome.windows.create(
+        {
+            type: 'popup',
+            url: 'index.html',
+            width: 350,
+            height: 600,
+            top: 50,
+            left: 100,
+        },
+        function (window) {
+            popupWindowId = window.id;
+        }
+    );
+}

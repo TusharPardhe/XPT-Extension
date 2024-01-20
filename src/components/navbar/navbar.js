@@ -40,7 +40,7 @@ const Navbar = (props) => {
             <Sidebar.Pushable>
                 <Sidebar
                     as={Menu}
-                    animation="push"
+                    animation="scale down"
                     icon="labeled"
                     inverted
                     onHide={onSideBarHide}
@@ -75,7 +75,12 @@ const Navbar = (props) => {
                 </Sidebar>
                 <Sidebar.Pusher dimmed={isNavBarVisible} className={isNavBarVisible ? 'content_pusher' : ''}>
                     <div className="slider">
-                        <Icon name="bars" className="icon" onClick={() => setIsNavBarVisible(true)} />
+                        <Icon
+                            name="bars"
+                            className="icon"
+                            onClick={() => setIsNavBarVisible(true)}
+                            style={{ color: 'var(--sgolden)' }}
+                        />
                     </div>
                     <div className="content">{props.children}</div>
                 </Sidebar.Pusher>

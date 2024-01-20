@@ -1,4 +1,4 @@
-.loader_component { 
+.loader_component {
     .loading_icons {
         $colors: var(--sky-blue-crayola), var(--celeste), var(--tea-green), var(--piggy-pink), var(--cotton-candy);
         display: flex;
@@ -33,17 +33,18 @@
             }
         }
     }
+
     .text {
-        color: black;
+        color: wheat;
         padding: 20px 0;
         font-size: 14px;
         font-weight: bold;
-        color: var(--indigo-dye);
     }
-       
+
 }
 
 @keyframes wave {
+
     50%,
     75% {
         transform: scale(2.5);

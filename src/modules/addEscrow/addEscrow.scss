@@ -1,7 +1,6 @@
 .add_escrow_container {
     text-align: center;
-    font-family: "Arial", sans-serif;
-    color: #333;
+    color: white;
     border-radius: 15px;
     padding: 0 20px;
     margin: auto;
@@ -18,32 +17,37 @@
         margin: 10px;
 
         img {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
         }
 
         .heading {
             font-size: 38px;
             font-weight: bold;
-            color: #333;
+            color: white;
         }
 
     }
 
     .sub_heading {
         font-size: 16px;
-        color: #7f8c8d;
+        color: wheat;
         margin-bottom: 20px;
     }
+
+    .ui.checkbox input.hidden+label {
+        color: wheat !important;
+    }
+
 
     .inputs {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        margin-bottom: 20px;
+        margin: 20px 0px;
 
         input {
-            border: 1px solid #bdc3c7;
+            border: 1px solid var(--sgray);
             font-size: 14px;
             border-radius: 0;
             padding: 12px;
@@ -76,11 +80,12 @@
                 padding: 0 8px;
                 border: none;
                 outline: none;
+                color: white
             }
 
             .react-date-picker {
                 width: 100%;
-                border: 1px solid #bdc3c7 !important;
+                border: 1px solid var(--sgray) !important;
 
                 .react-date-picker__wrapper {
                     border: none;
@@ -103,7 +108,7 @@
                     width: 100%;
                     padding: 12px;
                     font-size: 14px;
-                    border: 1px solid #bdc3c7;
+                    border: 1px solid var(--sgray) !important;
                     border-radius: 0;
                 }
             }
@@ -114,6 +119,7 @@
                 transform: translateX(-50%);
                 font-size: 14px;
                 margin-top: 10px;
+                color: var(--sgray) !important;
 
                 &__triangle {
                     display: none; // Hide the triangle icon
@@ -122,7 +128,6 @@
                 &__header {
                     text-align: center;
                     background-color: #3498db;
-                    color: white;
                     border: none;
                 }
 
@@ -147,13 +152,12 @@
                     transition: background-color 0.3s;
 
                     &:hover {
+                        background-color: var(--sgray);
                         background-color: #2980b9;
-                        color: white;
                     }
 
                     &--selected {
                         background-color: #3498db;
-                        color: white;
                     }
 
                     &--today {
@@ -165,26 +169,30 @@
                         cursor: not-allowed;
                     }
                 }
+
+                input {
+                    color: var(--sgray) !important;
+                }
             }
         }
     }
 
     .submit_btn_container {
         margin-top: auto;
+    }
 
-        .simple_animation_button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 15px;
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
+    .react-date-picker__button svg {
+        display: inherit;
+        stroke: var(--sgray);
+    }
 
-            &:hover {
-                background-color: #2980b9;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            }
-        }
+    .react-date-picker__button:enabled:hover .react-date-picker__button__icon,
+    .react-date-picker__button:enabled:focus .react-date-picker__button__icon {
+        stroke: wheat;
+    }
+
+    .account_creation_message {
+        background: var(--sgray);
+        color: lightblue;
     }
 }

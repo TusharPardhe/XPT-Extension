@@ -1,6 +1,6 @@
 import './Escrow.scss';
 
-import { Divider, Pagination } from 'semantic-ui-react';
+import { Divider, Icon, Input, Pagination } from 'semantic-ui-react';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import AnimatedLoader from '../../components/animatedLoader/animatedLoader';
@@ -14,6 +14,7 @@ import useMergedState from '../../utils/useMergedState';
 const Escrow = () => {
     const [loading, setLoading] = useState(true);
     const address = localStorage.getItem('address');
+    const [escrowId, setEscrowId] = useState('');
     const ref = useRef(null);
 
     const [state, setState] = useMergedState({
@@ -43,7 +44,8 @@ const Escrow = () => {
                 params: {
                     limit,
                     page,
-                    address,
+                    // address,
+                    id: escrowId,
                 },
             };
 
@@ -86,6 +88,12 @@ const Escrow = () => {
             setLoading(false);
         }
     };
+    const onSearchValueKeyPress = (e) => {
+        console.log(e.keyCode);
+        if (e.keyCode === 13) {
+            fetchEscrows();
+        }
+    };
 
     return (
         <div className="escrows_container">
@@ -93,17 +101,44 @@ const Escrow = () => {
             <div className="escrows_header" ref={ref}>
                 ESCROWS
             </div>
+            <div className="escrows_sub_header">Manage your escrows</div>
             <Divider />
+            <div className="search">
+                <Input
+                    placeholder="Enter Escrow ID"
+                    value={escrowId}
+                    onChange={(e, { value }) => setEscrowId(value)}
+                    onKeyDown={onSearchValueKeyPress}
+                    icon={
+                        <Icon
+                            name="search"
+                            inverted
+                            circular
+                            link
+                            color="yellow"
+                            loading={loading}
+                            disabled={loading}
+                            onClick={fetchEscrows}
+                            style={{
+                                top: '0.5rem',
+                                right: '0.5rem',
+                            }}
+                        />
+                    }
+                />
+            </div>
             {escrows?.length === 0 && !loading ? (
-                <NoResultCard title="You've no escrows" />
+                <NoResultCard title="No Escrows Found" />
             ) : (
                 <>
-                    {escrows?.map((escrow) => (
-                        <EscrowItem
-                            key={escrow._id}
-                            {...{ ...escrow, onApproveClick, currentAccount: address, isApprover }}
-                        />
-                    ))}
+                    <div className="escrow_cards">
+                        {escrows?.map((escrow) => (
+                            <EscrowItem
+                                key={escrow._id}
+                                {...{ ...escrow, onApproveClick, currentAccount: address, isApprover }}
+                            />
+                        ))}
+                    </div>
                     <div className="pagination">
                         <Pagination
                             pointing

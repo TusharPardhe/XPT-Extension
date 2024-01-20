@@ -52,9 +52,16 @@ const TrackEscrow = () => {
         }
     };
 
+    const onSearchValueKeyPress = (e) => {
+        if (e.keyCode === 13) {
+            handleTrackEscrow();
+        }
+    };
+
     return (
         <div className="track_escrow_container">
             <div className="track_escrow_header">Track Escrow</div>
+            <div className="track_escrow_sub_header">Let's find your escrow</div>
             <Divider />
             <BackButton onClick={() => navigate(ROUTES.LANDING_PAGE)} displayName="Go Back" />
             <div className="track_escrow_body">
@@ -62,13 +69,14 @@ const TrackEscrow = () => {
                     placeholder="Enter Escrow ID"
                     value={escrowId}
                     onChange={(e) => setEscrowId(e.target.value)}
+                    onKeyDown={onSearchValueKeyPress}
                     icon={
                         <Icon
                             name="search"
                             inverted
                             circular
                             link
-                            color="blue"
+                            color="yellow"
                             loading={isLoading}
                             disabled={isLoading}
                             onClick={handleTrackEscrow}

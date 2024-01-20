@@ -1,7 +1,7 @@
-import { Button, Input } from 'semantic-ui-react';
-
+import { Input } from 'semantic-ui-react';
 import { ROUTES } from '../../../../constants/common.constants';
 import React from 'react';
+import SimpleAnimationButton from '../../../../components/simpleAnimationButton/simpleAnimationButton';
 import { Wallet } from 'xrpl';
 import { saveInLocalStrg } from '../../../../utils/common.utils';
 import { toast } from 'react-toastify';
@@ -122,9 +122,7 @@ const Seed = () => {
                 onChange={onChange}
             />
             <div className="submit_btn_container">
-                <Button onClick={handleSubmission} basic color="green">
-                    Submit
-                </Button>
+                <SimpleAnimationButton onClick={handleSubmission} firstText={'Submit'} secondText={'Proceed'} />
             </div>
         </div>
     );

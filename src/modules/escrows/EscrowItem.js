@@ -26,7 +26,6 @@ const EscrowItem = ({
                 <Card.Header
                     style={{
                         borderRadius: '10px',
-                        background: completed ? '#E5FFE5' : '#F5F5F5',
                     }}
                 >
                     Escrow Details
@@ -38,7 +37,7 @@ const EscrowItem = ({
                             basic
                             style={{
                                 width: '100%',
-                                borderRadius: 'none',
+                                borderRadius: '40px',
                                 cursor: 'default',
                             }}
                         >

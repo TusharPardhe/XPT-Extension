@@ -2,11 +2,17 @@
     padding: 0px 20px;
 
     .token_details_container {
+        color: white;
+
         .token_header {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            color: wheat;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 20px 0 0 0;
 
             .icon {
                 width: 100px;
@@ -32,14 +38,13 @@
         }
 
         .token_details_headers {
-            font-weight: bold;
-            cursor: pointer;
+            font-weight: 700;
             font-size: 14px;
-            padding: 5px 10px;
-            border: 1px solid var(--light-gray);
-            box-shadow: 1px 0px 6px rgba(225, 224, 218, 0.67);
-            background: var(--pinkish-body-tint);
+            border: 1px solid black;
+            background: var(--sgray);
             margin: 0px 0px 5px 0px;
+            padding: 10px;
+            text-align: center;
         }
 
         .details {
@@ -58,7 +63,8 @@
                 gap: 5px;
 
                 .heading {
-                    font-weight: bold;
+                    font-weight: 700;
+                    color: wheat;
                     text-transform: capitalize;
                 }
             }

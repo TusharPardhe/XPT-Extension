@@ -65,7 +65,7 @@ const viteConfig = ({ mode }) => {
             rollupOptions: {
                 input: {
                     index: path.resolve(__dirname, './src/index.html'),
-                    // background: path.resolve(__dirname, "./src/scripts/background.js"),
+                    background: path.resolve(__dirname, './src/scripts/background.js'),
                     // content: path.resolve(__dirname, "./src/scripts/content.js"),
                 },
                 output: { entryFileNames: '[name].js' },

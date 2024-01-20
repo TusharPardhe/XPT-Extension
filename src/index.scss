@@ -77,7 +77,7 @@ code {
 .container {
     height: 100%;
     color: var(--black);
-    overflow: auto;
+    overflow: hidden;
     //toastify variables
     --toastify-toast-width: 250px;
     --toastify-toast-min-height: 45px;

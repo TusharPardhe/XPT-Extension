@@ -23,6 +23,13 @@
         }
     }
 
+    .input_container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: auto;
+    }
+
     .subHeading {
         font-size: 16px;
         font-weight: bold;
@@ -33,12 +40,12 @@
         font-weight: lighter;
     }
 
-    .btns_container {
+    .landing_content_container {
         display: flex;
         flex-direction: column;
-        margin-top: auto;
         gap: 10px;
         padding: 30px 0px;
+        height: 100%;
 
         input,
         input:focus-visible {
@@ -48,6 +55,8 @@
             margin-bottom: 5px;
             box-shadow: none;
             border: 1px solid black;
+            width: 100%;
+            margin-bottom: 10px;
         }
 
         button {

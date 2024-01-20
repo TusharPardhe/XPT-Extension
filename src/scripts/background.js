@@ -20,6 +20,17 @@ chrome.action.onClicked.addListener(function (tab) {
     }
 });
 
+// dont let the width and height to be changed
+chrome.windows.onBoundsChanged.addListener(function (window) {
+    if (window.id === popupWindowId) {
+        console.log('window bounds changed', window);
+        chrome.windows.update(popupWindowId, {
+            width: 350,
+            height: 600,
+        });
+    }
+});
+
 function createPopupWindow() {
     chrome.windows.create(
         {
@@ -30,6 +41,7 @@ function createPopupWindow() {
             top: 50,
             left: 100,
         },
+
         function (window) {
             popupWindowId = window.id;
         }

@@ -1,4 +1,4 @@
-.login_container {
+.signup_container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -9,6 +9,12 @@
   button {
     border-radius: 0px;
     padding: 20px;
+  }
+
+  .signup_content_container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .explaination_text {
@@ -169,8 +175,8 @@
 
   .selection_btns_container {
     margin-top: auto;
-    display: grid;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
 
     button {

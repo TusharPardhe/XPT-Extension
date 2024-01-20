@@ -1,11 +1,11 @@
 import './landing.scss';
 
-import { Image, Input } from 'semantic-ui-react';
 import React, { useState } from 'react';
 
+import BackButton from '../../components/backButton/backButton';
+import { Input } from 'semantic-ui-react';
 import { ROUTES } from '../../constants/common.constants';
 import SimpleAnimationButton from '../../components/simpleAnimationButton/simpleAnimationButton';
-import XPTLogoImg from '../../assets/svg/xpt.svg';
 import { getDataFromLocalStrg } from '../../utils/common.utils';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -40,19 +40,26 @@ const Landing = () => {
     return (
         <div className="landing_container">
             <div className="heading luminance">REVO</div>
-            <div className="short_phrase">Let's keep it simple.</div>
-            <div className="btns_container">
+            <div className="short_phrase">Vision 2.0 Product</div>
+            <div className="landing_content_container">
                 {isLoginJourney ? (
                     <>
-                        <Input
-                            placeholder="Enter password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <SimpleAnimationButton onClick={onLoginButtonClick} firstText="Login" secondText="Let's Go!" />
+                        <BackButton onClick={() => setIsLoginJourney(false)} displayName="Go Back" />
+                        <div className="input_container">
+                            <Input
+                                placeholder="Enter password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <SimpleAnimationButton
+                                onClick={onLoginButtonClick}
+                                firstText="Login"
+                                secondText="Let's Go!"
+                            />
+                        </div>
                     </>
                 ) : (
-                    <>
+                    <div className="input_container">
                         <SimpleAnimationButton
                             onClick={() => setIsLoginJourney(true)}
                             firstText="Login"
@@ -64,7 +71,7 @@ const Landing = () => {
                             firstText="Track Escrow"
                             secondText="Track"
                         />
-                    </>
+                    </div>
                 )}
             </div>
         </div>

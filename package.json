@@ -24,7 +24,7 @@
     },
     "scripts": {
         "start": "vite --port 8080",
-        "build": "vite build --emptyOutDir",
+        "build": "vite build --emptyOutDir && (zip -r dist.zip dist || tar -czvf dist.tar.gz dist)",
         "preview": "vite preview"
     },
     "dependencies": {

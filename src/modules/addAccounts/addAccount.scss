@@ -19,9 +19,11 @@
         font-style: normal;
         font-size: 12px;
     }
+
     .enter_btn {
         display: flex;
         justify-content: center;
+
         button {
             padding: 10px 40px;
         }
@@ -35,7 +37,7 @@
     .track_details_container {
         padding: 0px 20px;
 
-        .heading_container{
+        .heading_container {
             .track_heading {
                 display: flex;
                 font-size: 34px;
@@ -44,14 +46,15 @@
                 text-align: center;
                 justify-content: center;
                 align-items: center;
+                font-family: 'Cinzel Decorative';
             }
 
-            .logo_img{
+            .logo_img {
                 height: 80px;
                 width: 80px;
             }
 
-            .sub_heading{
+            .sub_heading {
                 font-size: 18px;
                 font-weight: lighter;
                 color: var(--onyx);
@@ -71,13 +74,14 @@
             .xrpl_details_box_heading {
                 font-size: 14px;
                 text-align: left;
-                color:var(--bdazzled-blue);
+                color: var(--bdazzled-blue);
             }
 
             .label {
                 background-color: var(--baby-blue-eyes);
                 border-radius: 0px;
             }
+
             .disabled {
                 background-color: gray;
                 box-shadow: none !important;
@@ -101,21 +105,21 @@
 .dimmed.dimmable>.ui.animating.dimmer,
 .dimmed.dimmable>.ui.visible.dimmer,
 .ui.active.dimmer {
-    display:-webkit-box;
-    display:-ms-flexbox;
-    display:flex;
-    opacity:1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    opacity: 1;
     width: inherit;
     height: inherit;
 
     .ui.mini.modal {
-        width:95%;
-        margin:0;
+        width: 95%;
+        margin: 0;
         height: 150px;
     }
-       
+
 }
 
-.ui.modal > .header {
+.ui.modal>.header {
     color: var(--blue);
 }

@@ -1,21 +1,19 @@
 import './fungibleTokens.scss';
 
 import { Divider, Icon, Image, Input, Pagination } from 'semantic-ui-react';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 import { ApiCall } from '../../utils/api.util';
 import { FUNGIBLE_TOKENS_INITIAL_STATE } from '../../constants/fungibleTokens.constants';
 import ShimmerLoader from '../../components/shimmerLoader/shimmerLoader';
 import TokenListTable from './components/tokenListTable/tokenListTable';
 import XPTLogoImg from '../../assets/svg/xpt.svg';
-import { scrollToRef } from '../../utils/common.utils';
 import useDebounce from '../../utils/useDebounce';
 import useMergedState from '../../utils/useMergedState';
 import { useNavigate } from 'react-router-dom';
 
 const FungibleTokens = () => {
     const [state, setState] = useMergedState(FUNGIBLE_TOKENS_INITIAL_STATE);
-    const tableRef = useRef(null);
     const navigate = useNavigate();
 
     const { offset, limit, loading, list, totalPages, activePage, searchValue } = state;
@@ -53,7 +51,6 @@ const FungibleTokens = () => {
             })
             .finally(() => {
                 setState({ loading: false });
-                scrollToRef(tableRef);
             });
     };
 
@@ -72,7 +69,7 @@ const FungibleTokens = () => {
                 XRPL T<Image src={XPTLogoImg} className="logo_img" />
                 KENS
             </div>
-            <div className="sub_heading">A list of your favourite coins</div>
+            <div className="sub_header">A list of your favourite coins</div>
             <Divider />
             <div className="search_filter">
                 <Input
@@ -86,7 +83,7 @@ const FungibleTokens = () => {
                     <Icon name="search" color="yellow" style={{ cursor: 'pointer' }} />
                 </Input>
             </div>
-            <div className="fungible_tokens_table_container" ref={tableRef}>
+            <div className="fungible_tokens_table_container">
                 {loading ? <ShimmerLoader /> : <TokenListTable {...{ list, navigate }} />}
                 <div className="pagination">
                     <Pagination

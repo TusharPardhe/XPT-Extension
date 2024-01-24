@@ -43,6 +43,8 @@ export const getDataFromLocalStrg = (key, encryptionKey) => {
 
 export const scrollToRef = (ref) => ref?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+export const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
 export const getTokenName = (value) =>
     value.length === 40 ? convertHexToString(value).replaceAll('\u0000', '') : value;
 

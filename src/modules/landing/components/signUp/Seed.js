@@ -66,8 +66,6 @@ const Seed = () => {
         return hasError;
     };
 
-    const onConfirmClick = () => {};
-
     const handleSubmission = async () => {
         if (validateFields()) return;
 

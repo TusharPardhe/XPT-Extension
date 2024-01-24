@@ -37,14 +37,19 @@ const Landing = () => {
         }
     };
 
+    const onBackToLandingPageClick = () => {
+        setIsLoginJourney(false);
+        setPassword('');
+    };
+
     return (
         <div className="landing_container">
             <div className="heading luminance">REVO</div>
-            <div className="short_phrase">Vision 2.0 Product</div>
+            <div className="short_phrase">A Vision 2.0 Product</div>
             <div className="landing_content_container">
                 {isLoginJourney ? (
                     <>
-                        <BackButton onClick={() => setIsLoginJourney(false)} displayName="Go Back" />
+                        <BackButton onClick={onBackToLandingPageClick} displayName="Go Back" />
                         <div className="input_container">
                             <Input
                                 placeholder="Enter password"

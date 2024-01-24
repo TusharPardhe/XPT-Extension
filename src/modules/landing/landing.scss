@@ -38,6 +38,7 @@
 
     .short_phrase {
         font-weight: lighter;
+        font-family: 'Cinzel Decorative';
     }
 
     .landing_content_container {
@@ -67,6 +68,7 @@
     .luminance {
         background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
         -webkit-background-clip: text;
+        font-family: 'Cinzel Decorative';
         background-clip: text;
         color: transparent;
         animation: reveal 3000ms ease-in-out forwards 200ms,

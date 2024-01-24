@@ -4,7 +4,7 @@ html,
     margin: 0;
     height: 600px;
     width: 350px;
-    font-family: 'Cinzel Decorative' !important;
+    font-family: 'Open Sans';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     word-break: break-word;
@@ -87,7 +87,7 @@ code {
 .ui.input>input:focus {
     background: inherit;
     color: white;
-    font-family: 'Cinzel Decorative';
+    font-family: 'Open Sans';
     border: solid 1px rgba(255, 255, 255, .1) !important;
     background-color: transparent;
     color: rgba(255, 255, 255, .9);

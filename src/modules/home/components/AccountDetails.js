@@ -24,11 +24,9 @@ export const AccountDetails = ({ account, data, isLoading, setIsLoading, fetchAc
                     </div>
                 ) : (
                     <div className="right_section">
-                        <div className="card_heading">
-                            <Button className="trustline_btn" onClick={() => setOpenModal(true)}>
-                                Add Trustline
-                            </Button>
-                        </div>
+                        <Button className="trustline_btn" onClick={() => setOpenModal(true)}>
+                            Add Trustline
+                        </Button>
                     </div>
                 )}
             </div>

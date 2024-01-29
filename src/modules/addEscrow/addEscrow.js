@@ -2,7 +2,7 @@ import './addEscrow.scss';
 
 import { Checkbox, Image, Input, Message } from 'semantic-ui-react';
 import { Client, Wallet, xrpToDrops } from 'xrpl';
-import { ROUTES, SUIT_COIN_HEX, SUIT_COIN_ISSUER } from '../../constants/common.constants';
+import { ROUTES, SUIT_COIN_HEX, SUIT_COIN_ISSUER, SUIT_COIN_LIMIT } from '../../constants/common.constants';
 import React, { useState } from 'react';
 import { copyToClipBoard, getDataFromLocalStrg, transferSuitCoin } from '../../utils/common.utils';
 
@@ -86,7 +86,7 @@ const AddEscrow = () => {
                     Account: state.address,
                     LimitAmount: {
                         currency: SUIT_COIN_HEX,
-                        value: '10000000000',
+                        value: SUIT_COIN_LIMIT,
                         issuer: SUIT_COIN_ISSUER,
                     },
                     Flags: 131072,

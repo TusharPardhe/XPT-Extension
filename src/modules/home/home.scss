@@ -115,4 +115,34 @@
       }
     }
   }
+
+  .trustline_transaction_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .transaction_details {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      font-size: 16px;
+      gap: 15px;
+
+      p {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .trustline_btn {
+    color: wheat;
+    border-radius: 20px;
+    background: var(--sgray);
+    transition: all 0.8s ease;
+
+    &:hover {
+      color: black;
+      background-color: wheat;
+    }
+  }
 }

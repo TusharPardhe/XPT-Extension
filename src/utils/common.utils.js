@@ -15,9 +15,13 @@ export const encryptJSON = (data, encryptionKey) => {
 };
 
 export const decryptJSON = (data, encryptionKey) => {
-    const decrypt = AES.decrypt(data, encryptionKey);
-    const str = decrypt.toString(enc.Utf8);
-    return JSON.parse(str);
+    try {
+        const decrypt = AES.decrypt(data, encryptionKey);
+        const str = decrypt.toString(enc.Utf8);
+        return JSON.parse(str);
+    } catch (e) {
+        throw new Error('Invalid Password');
+    }
 };
 
 export const saveInLocalStrg = (key, data, encryptionKey) => {

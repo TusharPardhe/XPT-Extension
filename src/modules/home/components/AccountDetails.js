@@ -12,6 +12,20 @@ export const AccountDetails = ({ account, data, isLoading, setIsLoading, fetchAc
     const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
 
+    if (data.newAccount) {
+        return (
+            <React.Fragment key={account}>
+                <div className="account">{account}</div>
+
+                <div className="card xrp">
+                    <div className="right_section">
+                        <div className="card_heading">Please activate your account</div>
+                    </div>
+                </div>
+            </React.Fragment>
+        );
+    }
+
     return (
         <React.Fragment key={account}>
             <div className="account">{account}</div>
@@ -46,7 +60,7 @@ export const AccountDetails = ({ account, data, isLoading, setIsLoading, fetchAc
                 <div className="timer_heading">Total Outstanding Escrows</div>
                 <div className="timer_value">{numberWithCommas(data.totalNumberOfEscrows)}</div>
                 {data.isApprover && (
-                    <Button basic inverted className="trustline_btn" onClick={() => navigate(ROUTES.ADD_ESCROW)}>
+                    <Button className="trustline_btn" onClick={() => navigate(ROUTES.ADD_ESCROW)}>
                         Add Escrow
                     </Button>
                 )}

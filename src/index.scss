@@ -117,3 +117,26 @@ code {
         color: white;
     }
 }
+
+.react-calendar {
+    border-radius: 20px !important;
+    border: 2px solid var(--sgolden) !important;
+    color: white !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    -ms-border-radius: 20px !important;
+    -o-border-radius: 20px !important;
+}
+
+.react-calendar__month-view__weekdays {
+    display: flex;
+    color: black !important;
+}
+
+.react-calendar__navigation button {
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    -ms-border-radius: 20px !important;
+    -o-border-radius: 20px !important;
+}

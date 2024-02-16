@@ -44,7 +44,7 @@ const Escrow = () => {
                 params: {
                     limit,
                     page,
-                    // address,
+                    address,
                     id: escrowId,
                 },
             };

@@ -100,6 +100,7 @@ const Numbers = () => {
         <div className="numbers_container">
             <Input
                 name="entropy"
+                autoComplete="off"
                 className={error.entropy.length > 0 ? 'error_input' : ''}
                 placeholder="Enter numbers"
                 value={entropy}
@@ -108,6 +109,7 @@ const Numbers = () => {
             <Input
                 name="password"
                 type="password"
+                autoComplete="off"
                 className={error.password.length > 0 ? 'error_input' : ''}
                 placeholder="Enter password"
                 value={password}
@@ -115,7 +117,7 @@ const Numbers = () => {
             />
             <Input
                 name="reEnterPassword"
-                type="password"
+                autoComplete="off"
                 className={error.reEnterPassword.length > 0 ? 'error_input' : ''}
                 placeholder="Re-enter password"
                 value={reEnterPassword}

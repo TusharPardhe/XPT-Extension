@@ -1,15 +1,16 @@
 .loader_component {
+    padding: 20px;
+
     .loading_icons {
-        $colors: var(--sky-blue-crayola), var(--celeste), var(--tea-green), var(--piggy-pink), var(--cotton-candy);
+        $colors: wheat, rgb(249, 213, 148), rgb(254, 209, 126), rgb(252, 195, 90), rgb(248, 187, 74);
         display: flex;
-        // color: transparent;
 
         .dot {
             position: relative;
             width: 2em;
             height: 2em;
             margin: 0.8em;
-            //   border-radius: 50%;
+            border-radius: 100%;
 
             &::before {
                 position: absolute;

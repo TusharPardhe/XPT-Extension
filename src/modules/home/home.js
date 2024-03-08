@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { AccountDetails } from './components/AccountDetails';
 import AnimatedLoader from '../../components/animatedLoader/animatedLoader';
 import { ApiCall } from '../../utils/api.util';
+import NoResultCard from '../../components/NoResultCard/NoResultCard';
 import { encryptJSON } from '../../utils/common.utils';
 import { useLocation } from 'react-router-dom';
 
@@ -13,17 +14,20 @@ const Home = () => {
     const address = localStorage.getItem('address') || location.state?.address;
 
     const [accountsData, setAccountsData] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        if (!address) {
-            return;
+        if (address) {
+            setIsLoading(true);
+            fetchAccountDetails();
         }
-        setIsLoading(true);
-        fetchAccountDetails();
     }, [address]);
 
-    const fetchAccountDetails = async () => {
+    if (!address) {
+        return <NoResultCard message="No account found" />;
+    }
+
+    async function fetchAccountDetails() {
         try {
             const newAccountsData = {};
             const payload = {
@@ -47,18 +51,14 @@ const Home = () => {
         } catch (error) {
             console.error(error);
         }
-    };
+    }
 
     return (
         <div className="home_component">
-            <div className="heading">REVO</div>
-            <div className="sub_heading">Account Details</div>
             <AnimatedLoader loadingText="Loading..." isActive={isLoading} />
-            <div className="user_details_container">
-                {Object.entries(accountsData).map(([account, data]) => (
-                    <AccountDetails {...{ account, data, isLoading, setIsLoading, fetchAccountDetails }} />
-                ))}
-            </div>
+            {Object.entries(accountsData).map(([account, data]) => (
+                <AccountDetails {...{ account, data, isLoading, setIsLoading, fetchAccountDetails }} />
+            ))}
         </div>
     );
 };

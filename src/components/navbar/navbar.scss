@@ -1,18 +1,35 @@
 .navbar_container {
+    position: relative;
 
     .slider {
         text-align: end;
         font-size: 16px;
-        padding: 10px;
+        padding: 6px;
+        position: fixed;
+        top: 525px;
+        left: 290px;
+        background: var(--sgray);
+        opacity: 0.2;
+        z-index: 100000;
+        border-radius: 10px;
+        border: 1px solid wheat;
+        cursor: pointer;
+        transition: all 0.6s ease;
+
+        &:hover {
+            opacity: 1;
+        }
 
         .icon {
-            cursor: pointer;
             font-size: 20px;
+            width: 29px;
         }
     }
 
-    .content {
+    .nav_content {
         padding: 10px;
+        height: 600px;
+        overflow-y: scroll;
     }
 
     .content_pusher {
@@ -24,17 +41,18 @@
         background-color: var(--sgray);
     }
 
-    .item {
-        transition: background 0.5s ease-in-out;
+    .ui.inverted.icon.menu .item {
+        transition: background 0.6s ease-in-out;
+        color: wheat;
         font-family: "Cinzel Decorative" !important;
+
+        &:hover {
+            background: wheat;
+            color: var(--sgray);
+        }
+    }
+
+    .ui.vertical.inverted.menu .item:before {
+        background: none;
     }
 }
-
-// background: linear-gradient(-65deg, #fdfdfd 40%, #f9f9f999 0 60%, #f9f9f9 0) right/300% 100% no-repeat, linear-gradient(-45deg, #f0f0f000 40%, #fbfbfb 0 60%, #f7f7f700 0) right/300% 100% no-repeat;
-// -webkit-background-clip: text, padding-box;
-// background-clip: text, padding-box;
-
-// :hover {
-//     background-position: left;
-//     transition: 0.8s;
-// }

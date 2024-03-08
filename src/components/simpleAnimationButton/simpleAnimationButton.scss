@@ -11,11 +11,10 @@
       flex-direction: column;
       justify-content: center;
       text-align: center;
-      border: 1px solid black;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, .1) 30%, rgba(0, 0, 0, .8) 70%, #000 100%) !important;
-      background-image: linear-gradient(to bottom, #ecbb5d, #eaeaea) !important;
-      color: black;
-      border-radius: 40px;
+      border: 1px solid wheat;
+      color: wheat;
+      border-radius: 15px;
+      transition: box-shadow 0.8s ease;
 
       .btn {
         letter-spacing: 0.1em;
@@ -41,52 +40,53 @@
         position: relative;
         transition-duration: 0.4s;
         overflow: hidden;
-      }
 
-      .effect04::before,
-      .effect04 span {
-        margin: 0 auto;
-        transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
-        transition-duration: 0.4s;
-        font-weight: 400;
-      }
-
-      .effect04:hover {
-        background-image: linear-gradient(to bottom, #f4f4f4, #ffda81) !important;
-
-        &.candy {
-          background-color: var(--cotton-candy);
+        &::before,
+        span {
+          margin: 0 auto;
+          transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+          transition-duration: 0.4s;
+          font-weight: 400;
         }
 
-        &.baby-blue {
-          background: var(--baby-blue-eyes);
+        &:hover {
+          &.candy {
+            background-color: var(--cotton-candy);
+          }
+
+          &.baby-blue {
+            background: var(--baby-blue-eyes);
+          }
+
+          &.purple {
+            background: var(--maximum-blue-purple);
+          }
         }
 
-        &.purple {
-          background: var(--maximum-blue-purple);
+        &:hover span {
+          -webkit-transform: translateY(-400%) scale(-0.1, 20);
+          transform: translateY(-400%) scale(-0.1, 20);
+        }
+
+        &::before {
+          content: attr(data-sm-link-text);
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin: auto;
+          -webkit-transform: translateY(500%) scale(-0.1, 20);
+          transform: translateY(500%) scale(-0.1, 20);
+        }
+
+        &:hover::before {
+          letter-spacing: 0.05em;
+          -webkit-transform: translateY(0) scale(1, 1);
+          transform: translateY(0) scale(1, 1);
         }
       }
 
-      .effect04:hover span {
-        -webkit-transform: translateY(-400%) scale(-0.1, 20);
-        transform: translateY(-400%) scale(-0.1, 20);
-      }
-
-      .effect04::before {
-        content: attr(data-sm-link-text);
-        color: black;
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: auto;
-        -webkit-transform: translateY(500%) scale(-0.1, 20);
-        transform: translateY(500%) scale(-0.1, 20);
-      }
-
-      .effect04:hover::before {
-        letter-spacing: 0.05em;
-        -webkit-transform: translateY(0) scale(1, 1);
-        transform: translateY(0) scale(1, 1);
+      &:hover {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
       }
     }
   }

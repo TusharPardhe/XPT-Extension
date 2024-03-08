@@ -8,6 +8,7 @@
     height: 120px;
     font-weight: 700;
     border: 1px solid var(--sgray);
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
     -moz-background-size: 250% 250%, 100% 100%;
     background-size: 250% 250%, 100% 100%;
@@ -33,7 +34,7 @@
             img {
                 width: inherit;
                 height: inherit;
-                border-radius: 10px;
+                border-radius: 100%;
             }
         }
     }

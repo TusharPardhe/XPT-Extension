@@ -1,13 +1,14 @@
 import './fungibleTokens.scss';
 
-import { Divider, Icon, Image, Input, Pagination } from 'semantic-ui-react';
+import { Icon, Input, Pagination } from 'semantic-ui-react';
 import React, { useEffect } from 'react';
 
 import { ApiCall } from '../../utils/api.util';
+import BackButton from '../../components/backButton/backButton';
 import { FUNGIBLE_TOKENS_INITIAL_STATE } from '../../constants/fungibleTokens.constants';
+import { ROUTES } from '../../constants/common.constants';
 import ShimmerLoader from '../../components/shimmerLoader/shimmerLoader';
 import TokenListTable from './components/tokenListTable/tokenListTable';
-import XPTLogoImg from '../../assets/svg/xpt.svg';
 import useDebounce from '../../utils/useDebounce';
 import useMergedState from '../../utils/useMergedState';
 import { useNavigate } from 'react-router-dom';
@@ -65,12 +66,11 @@ const FungibleTokens = () => {
 
     return (
         <div className="fungible_tokens_container">
-            <div className="token_header">
-                XRPL T<Image src={XPTLogoImg} className="logo_img" />
-                KENS
+            <BackButton displayName="Home" onClick={() => navigate(ROUTES.HOME)} />
+            <div class="tokens_header_container">
+                <div class="tokens_header">Tokens</div>
+                <div class="tokens_sub_header">View your favourite coins</div>
             </div>
-            <div className="sub_header">A list of your favourite coins</div>
-            <Divider />
             <div className="search_filter">
                 <Input
                     icon

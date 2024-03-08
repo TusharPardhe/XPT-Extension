@@ -26,12 +26,13 @@ export const PUBLIC_SERVER = 'wss://xrplcluster.com/';
 export const ALTERNATIVE_ME_API_ENDPOINT = 'https://api.alternative.me/v2/ticker/ripple/';
 
 export const URLS = {
-    XRP_ICON: 'https://drive.google.com/uc?export=view&id=1VUSemYB5GqRNihGVELTrlcW3VObhhn0-',
+    XRP_ICON: 'https://cryptologos.cc/logos/xrp-xrp-logo.svg',
     CONSTRUCTION_GIF: 'https://drive.google.com/uc?export=view&id=1219VV9-YnQBRiPnSFz2WjTULg6J0vdNc',
     XRPSCAN: 'https://xrpscan.com/',
     TWITTER: 'https://twitter.com/',
     XPT_TWITTER: 'https://twitter.com/xptxrpl',
     LIVENET: 'https://livenet.xrpl.org/accounts/',
+    FLOWER_BG: 'https://cdn.jsdelivr.net/gh/TusharPardhe/assets@main/golde_leaf.png',
 };
 
 export const FIELD_INITIAL_STATE = {

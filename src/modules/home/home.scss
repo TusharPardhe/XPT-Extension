@@ -22,127 +22,251 @@
     font-family: 'Cinzel Decorative';
   }
 
-
-  .timer_card {
-    background-color: var(--sgray);
-    color: #ecf0f1;
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .timer_heading {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .timer_value {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-  }
-
-
   .user_details_container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px 10px;
+    padding: 20px 5px 15px 15px;
+    margin: 0;
 
-    .account {
-      font-size: 16px;
-      font-weight: bold;
-      border: 1px solid wheat;
-      padding: 10px;
-      border-radius: 15px;
+    .account_row {
+      display: block;
     }
 
-    .card {
-      color: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      padding: 10px;
-      text-align: center;
-      border: 1px solid wheat;
-      align-items: center;
+    .grid-row {
+      display: flex;
+      justify-content: space-between;
+    }
 
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-      }
-
-      &.suit_coin,
-      &.xrp {
-        display: flex;
-        gap: 12px;
-        justify-content: center;
-
-        .card_heading {
-          font-size: 16px;
-        }
-
-        .right_section {
-          display: flex;
-          gap: 12px;
-        }
-      }
+    .suitcoin_row {
+      height: 125px;
+      width: 140px;
+      min-width: 140px;
+      overflow: hidden;
+      box-shadow: 5px 5px 0px 0px rgb(129 129 129 / 30%);
+      padding: 10px 20px !important;
+      border-radius: 10px;
+      background: wheat;
+      transition: box-shadow 0.3s ease;
+      text-align: start;
+      color: var(--sgray);
 
       .suit_img {
-        height: 45px;
-        width: 45px;
+        height: 90px;
+        width: 90px;
+        position: absolute;
+        right: -4px;
+        bottom: -30px;
+        z-index: 0;
       }
 
-      .card_heading {
-        font-size: 14px;
-        font-weight: bold;
-        margin-bottom: 5px;
+      .balance_heading {
+        font-size: 20px;
+      }
+
+      .coins {
+        display: flex;
+        margin-top: 10px;
+
+        .trustline_btn {
+          color: wheat;
+          padding: 10px 14px;
+          border-radius: 20px;
+          border: 1px solid black;
+          background: var(--sgray);
+          transition: all 0.8s ease;
+          z-index: 1;
+
+          &:hover {
+            color: black;
+            background-color: wheat;
+          }
+        }
+
+        .coin_value {
+          z-index: 1;
+          font-size: 15px;
+          color: black;
+        }
+      }
+
+      &:hover {
+        box-shadow: 10px 10px 0px 0px rgb(129 129 129 / 30%);
+      }
+    }
+
+    .xrp_row {
+      height: 125px;
+      overflow: hidden;
+      width: 140px;
+      min-width: 140px;
+      box-shadow: 5px 5px 0px 0px rgb(129 129 129 / 30%);
+      padding: 10px 20px !important;
+      border-radius: 10px;
+      color: wheat;
+      transition: box-shadow 0.3s ease;
+      text-align: start;
+      background: #aaaaaa;
+
+      .balance_heading {
+        font-size: 20px;
+      }
+
+      .coins {
+        display: flex;
+        margin-top: 10px;
+
+        .coin_value {
+          z-index: 1;
+          font-size: 15px;
+          color: black;
+        }
+
+        .xrp_img {
+          height: 75px;
+          width: 75px;
+          position: absolute;
+          left: -10px;
+          bottom: -24px;
+          z-index: 0;
+          transform: rotate(45deg);
+          opacity: 0.7;
+        }
+      }
+
+      &:hover {
+        box-shadow: 10px 10px 0px 0px rgb(129 129 129 / 30%);
+      }
+    }
+
+    .activate_row {
+      height: 200px;
+      overflow: hidden;
+      box-shadow: 5px 5px 0px 0px rgba(129, 129, 129, 0.3);
+      padding: 20px;
+      border-radius: 10px;
+      color: wheat;
+      transition: box-shadow 0.3s ease;
+      text-align: start;
+      background: transparent;
+      border: 1px solid wheat;
+      margin-top: 20px;
+
+      .activate_heading {
+        font-size: 20px;
+      }
+
+      .activate_text {
+        display: flex;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      &:hover {
+        box-shadow: 10px 10px 0px 0px rgb(129 129 129 / 30%);
+      }
+    }
+
+    .account_heading {
+      font-size: 12px;
+      color: wheat;
+      padding: 10px;
+      display: flex;
+      gap: 5px;
+      text-align: center;
+      justify-content: center;
+      padding: 22px 20px;
+      border-radius: 10px;
+      flex-direction: column;
+      text-align: start;
+      box-shadow: 5px 5px 0px 0px rgb(129 129 129 / 30%);
+      transition: box-shadow 0.3s ease;
+      outline: 1px solid wheat;
+
+      .hello {
+        font-size: 25px;
+        color: white;
+        margin-bottom: 2px;
+      }
+
+      .account {
+        margin-top: 2px;
+        font-size: 13px;
         color: wheat;
       }
 
-      .card_value {
-        font-size: 16px;
-        color: #16a085;
-        font-weight: 700;
+      &:hover {
+        box-shadow: 10px 10px 0px 0px rgb(129 129 129 / 30%);
       }
+
     }
   }
 
-  .trustline_transaction_container {
+  .divider {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: center;
+  }
 
-    .transaction_details {
+  .account_escrow_details {
+    text-align: left;
+    padding: 20px 15px;
+
+    .account_escrow_heading_container {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      .account_escrow_heading {
+        font-size: 24px;
+      }
+
+      .view_all {
+        font-size: 14px;
+        color: gray;
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: wheat;
+        }
+      }
+
+    }
+
+    .user_escrows {
       display: flex;
       flex-direction: column;
-      text-align: left;
-      font-size: 16px;
-      gap: 15px;
+      margin-top: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+      scrollbar-width: none;
 
-      p {
-        font-weight: bold;
+      .grid-row {
+        display: flex;
+        height: 140px;
+        gap: 20px;
+        overflow-x: auto;
+        padding-right: 20px;
       }
-    }
-  }
 
-  .trustline_btn {
-    color: wheat;
-    border-radius: 20px;
-    background: var(--sgray);
-    transition: all 0.8s ease;
+      .escrow_card {
+        width: 140px;
+        min-width: 140px;
+        position: relative;
+        height: 125px;
+        overflow: hidden;
+        box-shadow: 5px 5px 0px 0px rgba(129, 129, 129, 0.3);
+        padding: 10px 20px !important;
+        border-radius: 10px;
+        color: wheat;
+        transition: box-shadow 0.3s ease;
+        text-align: start;
+        border: 1px solid #f5deb338;
 
-    &:hover {
-      color: black;
-      background-color: wheat;
+        box-shadow: 5px 5px 0px 0px rgb(129 129 129 / 30%);
+
+        &:hover {
+          box-shadow: 10px 10px 0px 0px rgb(129 129 129 / 30%);
+        }
+      }
     }
   }
 }

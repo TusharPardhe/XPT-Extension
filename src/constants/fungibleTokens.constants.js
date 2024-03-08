@@ -1,14 +1,14 @@
 export const FUNGIBLE_TOKENS_INITIAL_STATE = {
     offset: 0,
     limit: 8,
-    loading: false,
+    loading: true,
     list: [],
     activePage: 1,
     totalPages: 0,
-    searchValue: "",
+    searchValue: '',
 };
 
 export const ISSUER_WEBLINK_TYPE = {
-    socialmedia: "Social",
-    "website": "Website"
-}
+    socialmedia: 'Social',
+    website: 'Website',
+};

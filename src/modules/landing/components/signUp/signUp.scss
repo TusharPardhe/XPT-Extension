@@ -64,7 +64,7 @@
   .seed_container,
   .numbers_container,
   .new_wallet_container {
-    padding: 30px 10px 10px 10px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -77,6 +77,16 @@
       box-shadow: none;
       border-radius: 0px;
       padding: 20px;
+      border-radius: 10px;
+      transition: box-shadow 0.3s ease-in-out;
+      padding: 12px;
+
+      &:hover,
+      &:focus {
+        box-shadow: 0 0 5px rgba(232, 232, 232, 0.7);
+        border: none;
+        outline: none;
+      }
 
       &.error_input {
         outline: 1px solid red;
@@ -86,12 +96,7 @@
 
   .seed_container,
   .numbers_container {
-    gap: 10px;
-
-    input,
-    input:focus-visible {
-      padding: 12px;
-    }
+    gap: 20px;
   }
 
   .new_wallet_container {
@@ -119,14 +124,15 @@
       padding: 10px;
       line-height: 1.5;
       border: none;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.5s ease-in-out;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
       background-color: var(--sgray);
+      border-radius: 10px;
 
       &:hover {
-        box-shadow: rgba(0, 0, 0, .03) 2px 18px 4px 5px, rgba(236, 236, 236, 0.04) 0 5px 10px 2px;
+        box-shadow: rgb(0 0 0 / 69%) 12px 13px 4px -4px, rgba(236, 236, 236, 0.04) 0 5px 0px -6px;
       }
 
       .instructions {

@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { Route, Routes as RoutesBundle, useLocation } from 'react-router-dom';
 
+import AnimatedLoader from './components/animatedLoader/animatedLoader';
 import { ROUTES } from './constants/common.constants';
-import ShimmerLoader from './components/shimmerLoader/shimmerLoader';
 import TrackEscrow from './modules/escrows/TrackEscrow';
 
 const Home = React.lazy(() => import('./modules/home/home'));
@@ -34,7 +34,7 @@ export default function Routes() {
     const wrapWithNavBar = (component) => <Navbar>{component}</Navbar>;
 
     return (
-        <Suspense fallback={<ShimmerLoader />}>
+        <Suspense fallback={<AnimatedLoader loadingText="Loading" />}>
             <RoutesBundle location={location}>
                 <Route path={ROUTES.LANDING_PAGE} element={<Landing />} />
                 <Route path={ROUTES.SIGN_UP} element={<SignUp />} />

@@ -14,53 +14,54 @@ const ScrollableModal = ({ open, onClose, heading = 'Heading', content = 'Conten
         if (onClose) onClose();
     };
 
-    const modalStyle = {
+    const modalContainerStyle = {
         position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: isOpen ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0)',
-        backgroundColor: 'rgba(128, 128, 128, 0.87)', // Dimmed background
-        color: 'wheat',
+        top: '0',
+        left: '0',
         width: '100%',
         height: '100%',
+        backgroundColor: 'rgb(0 0 0 / 80%)', // Dimmed background
         zIndex: '1',
-        display: isOpen ? 'block' : 'none',
+        display: 'flex',
+        color: 'wheat',
+        justifyContent: 'center',
+        alignItems: 'center',
+        scrollbarWidth: 'none',
+        transition: 'opacity 0.3s ease',
+        opacity: isOpen ? '1' : '0',
+        pointerEvents: isOpen ? 'auto' : 'none', // Disable pointer events when modal is closed
     };
 
-    const contentStyle = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        zIndex: '2',
-        transform: 'translate(-50%, -50%)',
-        backgroundColor: '#18191a',
+    const modalContentStyle = {
         color: 'wheat',
-        borderRadius: '20px',
-        width: '80%',
-        maxWidth: '350px',
+        borderRadius: '8px',
+        background: 'var(--sgray)',
+        padding: '20px',
+        maxWidth: '80%',
         maxHeight: '80%',
         overflowY: 'auto',
-        padding: '20px',
+        transition: 'transform 0.4s ease',
+        transform: isOpen ? 'scale(1)' : 'scale(0.5)',
+        opacity: isOpen ? '1' : '0',
+        scrollbarWidth: 'none',
+        border: '1px solid #f5deb378',
     };
 
     return (
-        <>
-            {isOpen && (
-                <>
-                    <div style={modalStyle} onClick={handleClose}></div>
-                    <div style={contentStyle}>
-                        <Icon
-                            name="close"
-                            link
-                            style={{ position: 'absolute', top: '10px', right: '10px' }}
-                            onClick={handleClose}
-                        />
-                        <h2 style={{ fontFamily: 'Cinzel Decorative', paddingBottom: '10px' }}>{heading}</h2>
-                        {content}
-                    </div>
-                </>
-            )}
-        </>
+        <div style={modalContainerStyle} onClick={handleClose}>
+            <div style={modalContentStyle} onClick={(e) => e.stopPropagation()}>
+                <Icon
+                    name="close"
+                    link
+                    style={{ position: 'absolute', top: '10px', right: '10px', cursor: 'pointer' }}
+                    onClick={handleClose}
+                />
+                <h2 style={{ fontFamily: 'Cinzel Decorative', paddingBottom: '10px', textAlign: 'center' }}>
+                    {heading}
+                </h2>
+                {content}
+            </div>
+        </div>
     );
 };
 

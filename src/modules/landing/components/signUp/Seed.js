@@ -103,10 +103,12 @@ const Seed = () => {
                 placeholder="Enter seed phrase"
                 value={seed}
                 onChange={onChange}
+                autoComplete="off"
             />
             <Input
                 name="password"
                 type="password"
+                autoComplete="off"
                 className={error.password.length > 0 ? 'error_input' : ''}
                 placeholder="Enter password"
                 value={password}
@@ -114,6 +116,7 @@ const Seed = () => {
             />
             <Input
                 name="reEnterPassword"
+                autoComplete="off"
                 className={error.reEnterPassword.length > 0 ? 'error_input' : ''}
                 placeholder="Re-enter password"
                 value={reEnterPassword}

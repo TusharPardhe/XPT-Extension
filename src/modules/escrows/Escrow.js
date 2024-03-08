@@ -1,26 +1,28 @@
 import './Escrow.scss';
 
-import { Divider, Icon, Input, Pagination } from 'semantic-ui-react';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Icon, Input, Pagination } from 'semantic-ui-react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import AnimatedLoader from '../../components/animatedLoader/animatedLoader';
 import { ApiCall } from '../../utils/api.util';
+import BackButton from '../../components/backButton/backButton';
 import EscrowItem from './EscrowItem';
 import NoResultCard from '../../components/NoResultCard/NoResultCard';
-import { scrollToRef } from '../../utils/common.utils';
+import { ROUTES } from '../../constants/common.constants';
 import { toast } from 'react-toastify';
 import useMergedState from '../../utils/useMergedState';
+import { useNavigate } from 'react-router-dom';
 
 const Escrow = () => {
     const [loading, setLoading] = useState(true);
     const address = localStorage.getItem('address');
+    const navigate = useNavigate();
     const [escrowId, setEscrowId] = useState('');
-    const ref = useRef(null);
 
     const [state, setState] = useMergedState({
         escrows: [],
         total: 0,
-        limit: 2,
+        limit: 4,
         page: 1,
         pages: 1,
         isApprover: false,
@@ -45,6 +47,7 @@ const Escrow = () => {
                     limit,
                     page,
                     address,
+                    sortBy: 'time',
                     id: escrowId,
                 },
             };
@@ -57,7 +60,6 @@ const Escrow = () => {
         } catch (error) {
             toast.error(error.message);
         } finally {
-            scrollToRef(ref);
             setLoading(false);
         }
     };
@@ -98,21 +100,21 @@ const Escrow = () => {
     return (
         <div className="escrows_container">
             <AnimatedLoader loadingText="Loading..." isActive={loading} />
-            <div className="escrows_header" ref={ref}>
-                ESCROWS
+            <BackButton displayName="Home" onClick={() => navigate(ROUTES.HOME)} />
+            <div className="escrows_header_container">
+                <div className="escrows_header">ESCROWS</div>
+                <div className="escrows_sub_header">Manage your escrows</div>
             </div>
-            <div className="escrows_sub_header">Manage your escrows</div>
-            <Divider />
             <div className="search">
                 <Input
                     placeholder="Enter Escrow ID"
                     value={escrowId}
+                    className="search_input"
                     onChange={(e, { value }) => setEscrowId(value)}
                     onKeyDown={onSearchValueKeyPress}
                     icon={
                         <Icon
                             name="search"
-                            inverted
                             circular
                             link
                             color="yellow"

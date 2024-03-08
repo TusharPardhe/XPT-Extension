@@ -29,6 +29,11 @@ const Landing = () => {
                 return;
             }
             const storedAccounts = getDataFromLocalStrg('savedAccounts', password);
+            if (!storedAccounts) {
+                toast.error('No account found, please sign up');
+                return;
+            }
+
             const [account, _] = Object.entries(storedAccounts)[0];
             localStorage.setItem('address', account);
             navigate(ROUTES.HOME);
@@ -71,11 +76,11 @@ const Landing = () => {
                             secondText="Enter Password"
                         />
                         <SimpleAnimationButton onClick={onEnterButtonClick} firstText="Join Us!" secondText="Enter" />
-                        <SimpleAnimationButton
+                        {/* <SimpleAnimationButton
                             onClick={() => navigate(ROUTES.TRACK_ESCROW)}
                             firstText="Track Escrow"
                             secondText="Track"
-                        />
+                        /> */}
                     </div>
                 )}
             </div>

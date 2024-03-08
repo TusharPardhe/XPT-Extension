@@ -7,7 +7,15 @@ import { Dimmer } from 'semantic-ui-react';
 const AnimatedLoader = ({ loadingText, isActive }) => {
     useEffect(() => {
         const element = document.querySelector('.pushable');
-        element.style.overflowY = isActive ? 'hidden' : 'auto';
+        const slider = document.querySelector('.slider');
+        const content = document.querySelector('.content');
+        if (element) element.style.overflowY = isActive ? 'hidden' : 'auto';
+        if (slider) slider.style.display = isActive ? 'none' : 'block';
+        if (content) {
+            content.style.overflow = isActive ? 'hidden' : content.style.overflow;
+            content.style.display = isActive ? 'flex' : content.style.display;
+            content.style.alignItems = isActive ? 'center' : content.style.alignItems;
+        }
     }, [isActive]);
 
     return (

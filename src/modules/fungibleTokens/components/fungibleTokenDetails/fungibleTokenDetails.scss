@@ -33,19 +33,22 @@
         }
 
         .token_description {
-            border: 1px solid var(--platinum);
+            border: 1px solid wheat;
             padding: 10px;
             text-align: center;
+            border-radius: 10px;
         }
 
         .token_details_headers {
             font-weight: 700;
             font-size: 14px;
-            border: 1px solid black;
-            background: var(--sgray);
+            border: 1px solid wheat;
+            background: transparent;
+            border-radius: 10px;
             margin: 0px 0px 5px 0px;
             padding: 10px;
             text-align: center;
+            color: wheat;
         }
 
         .details {
@@ -55,13 +58,20 @@
             padding: 10px 0px;
 
             .card {
-                border: 1px solid var(--platinum);
+                // border: 1px solid var(--platinum);
                 text-align: center;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-evenly;
                 padding: 10px;
                 gap: 5px;
+                box-shadow: inset 0px 0px 0px 1px rgba(232, 232, 232, 0.18);
+                border-radius: 10px;
+                transition: box-shadow 0.9s ease;
+
+                &:hover {
+                    box-shadow: inset 0px 0px 5px rgba(232, 232, 232, 0.7);
+                }
 
                 .heading {
                     font-weight: 700;

@@ -8,12 +8,12 @@
         background: transparent;
         border: none;
         transition: 200ms ease-in-out;
-        color: var(--sgolden);
+        color: wheat;
         font-size: 18px;
         font-family: 'Cinzel Decorative' !important;
 
         .arrow {
-            color: var(--sgolden);
+            color: wheat;
             font-size: 18px;
         }
 
@@ -26,13 +26,9 @@
         }
 
         &:hover {
-            color: var(--sgolden);
+            color: wheat;
             opacity: 0.5;
             transform: translateX(-3px);
-            -webkit-transform: translateX(-3px);
-            -moz-transform: translateX(-3px);
-            -ms-transform: translateX(-3px);
-            -o-transform: translateX(-3px);
         }
 
         &:focus {

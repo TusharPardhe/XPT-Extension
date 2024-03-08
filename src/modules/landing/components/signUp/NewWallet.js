@@ -100,6 +100,7 @@ const NewWallet = () => {
                                 <div className="label">XRPL ADDRESS</div>
                                 <Input
                                     name="address"
+                                    autoComplete="off"
                                     value={wallet.address}
                                     placeholder="Address"
                                     onChange={() => {}}
@@ -115,6 +116,7 @@ const NewWallet = () => {
                                 <div className="label">SECRET</div>
                                 <Input
                                     name="seed"
+                                    autoComplete="off"
                                     value={wallet.seed}
                                     placeholder="Seed Phrase"
                                     onClick={() => copyToClipBoard(wallet.seed)}
@@ -144,6 +146,8 @@ const NewWallet = () => {
                             <div className="input_">
                                 <Input
                                     name="reEnterPassword"
+                                    type="text"
+                                    autoComplete="off"
                                     placeholder="Re-enter Password"
                                     value={reEnterPassword}
                                     className={error.reEnterPassword.length > 0 ? 'error_input' : ''}

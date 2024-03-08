@@ -7,17 +7,31 @@
     line-height: 1.5;
     color: white;
 
-    .token_header {
+    .tokens_header_container {
+        padding: 20px 0 10px 0px;
+        border: 1px solid wheat;
+        border-radius: 10px;
+        min-height: 100px;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: center;
-        font-size: 40px;
-        font-weight: 500;
-        font-family: 'Cinzel Decorative';
-    }
+        margin: 20px 0;
 
-    .sub_header {
-        font-family: 'Cinzel Decorative';
+        .tokens_header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            font-family: "Cinzel Decorative";
+        }
+
+        .tokens_sub_header {
+            color: wheat;
+            text-align: center;
+            font-family: "Cinzel Decorative";
+        }
     }
 
     .logo_img {
@@ -27,10 +41,25 @@
 
     .search_filter {
 
-        .search_input,
-        input {
+        .search_input {
             width: 100%;
-            border-radius: 0px;
+            font-size: 16px;
+
+            input {
+                border-radius: 0;
+                border: none !important;
+                border-bottom: 1px solid gray !important;
+                transition: border 0.8s ease-in-out;
+
+                &:focus {
+                    // border-radius: 10px;
+                    border-bottom: 1px solid wheat !important;
+                }
+            }
+
+            i.yellow.icon {
+                color: wheat !important;
+            }
         }
     }
 
@@ -38,6 +67,7 @@
         display: flex;
         flex-direction: column;
         min-height: 300px;
+        margin-top: 20px;
 
         .pagination {
             padding: 6px 0 10px 0;

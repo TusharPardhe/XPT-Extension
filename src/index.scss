@@ -8,7 +8,7 @@ html,
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     word-break: break-word;
-    scrollbar-width: thin;
+    scrollbar-width: none;
     scrollbar-color: #ffffff;
     background: #18191a;
 }
@@ -122,10 +122,6 @@ code {
     border-radius: 20px !important;
     border: 2px solid var(--sgolden) !important;
     color: white !important;
-    -webkit-border-radius: 20px !important;
-    -moz-border-radius: 20px !important;
-    -ms-border-radius: 20px !important;
-    -o-border-radius: 20px !important;
 }
 
 .react-calendar__month-view__weekdays {
@@ -135,8 +131,29 @@ code {
 
 .react-calendar__navigation button {
     border-radius: 20px !important;
-    -webkit-border-radius: 20px !important;
-    -moz-border-radius: 20px !important;
-    -ms-border-radius: 20px !important;
-    -o-border-radius: 20px !important;
+}
+
+.flower_bg_img {
+    position: absolute;
+    height: 90px;
+    width: 90px;
+    z-index: -1;
+    right: -28px;
+    bottom: -12px;
+    opacity: 0.4;
+    transform: scale(3.5) rotate(63deg);
+
+    &.total {
+        filter: hue-rotate(0deg);
+    }
+
+    &.completed {
+        filter: hue-rotate(75deg);
+        transform: scale(3.5) rotate(218deg);
+    }
+
+    &.pending {
+        filter: hue-rotate(300deg);
+        transform: scale(3.5) rotate(218deg);
+    }
 }

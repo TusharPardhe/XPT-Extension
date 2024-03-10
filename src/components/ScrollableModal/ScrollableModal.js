@@ -56,7 +56,14 @@ const ScrollableModal = ({ open, onClose, heading = 'Heading', content = 'Conten
                     style={{ position: 'absolute', top: '10px', right: '10px', cursor: 'pointer' }}
                     onClick={handleClose}
                 />
-                <h2 style={{ fontFamily: 'Cinzel Decorative', paddingBottom: '10px', textAlign: 'center' }}>
+                <h2
+                    style={{
+                        fontFamily: 'Cinzel Decorative',
+                        paddingBottom: '10px',
+                        textAlign: 'center',
+                        margin: '10px',
+                    }}
+                >
                     {heading}
                 </h2>
                 {content}

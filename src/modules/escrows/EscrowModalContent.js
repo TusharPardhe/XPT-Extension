@@ -28,7 +28,7 @@ export const EscrowModalContent = ({
                 </Grid.Row>
                 <Grid.Row columns={2} style={{ flexDirection: 'column' }}>
                     <strong>TIME LEFT</strong>
-                    <p>{timeLeftForEscrow}</p>
+                    <p>{numberWithCommas(timeLeftForEscrow)} days</p>
                 </Grid.Row>
                 <Grid.Row columns={2} style={{ flexDirection: 'column' }}>
                     <strong>ID</strong>
